@@ -1,6 +1,20 @@
 # ChangeLog for media-video/vlc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/ChangeLog,v 1.593 2010/06/18 07:08:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/ChangeLog,v 1.596 2010/06/22 12:26:03 aballier Exp $
+
+  22 Jun 2010; Alexis Ballier <aballier@gentoo.org> vlc-1.1.0.ebuild,
+  vlc-1.1.9999.ebuild, vlc-9999.ebuild:
+  remove custom handling of icons; its done properly by upstream's makefiles
+  now, by Rafał Mużyło <galtgendo@o2.pl>, bug #325049
+
+  22 Jun 2010; Christian Faulhammer <fauli@gentoo.org> vlc-1.1.0.ebuild:
+  add ~x86 for bug 325007
+
+*vlc-1.1.0 (22 Jun 2010)
+
+  22 Jun 2010; Alexis Ballier <aballier@gentoo.org> -vlc-1.1.0_rc4.ebuild,
+  +vlc-1.1.0.ebuild:
+  bump to 1.1.0
 
   18 Jun 2010; Alexis Ballier <aballier@gentoo.org> -vlc-1.0.9999.ebuild:
   Remove 1.0.9999 ebuild per the announce of end of support by upstream
