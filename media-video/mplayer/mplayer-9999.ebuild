@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-9999.ebuild,v 1.70 2010/06/30 16:45:23 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-9999.ebuild,v 1.73 2010/07/17 03:48:29 beandog Exp $
 
 EAPI="2"
 
@@ -11,11 +11,11 @@ inherit toolchain-funcs eutils flag-o-matic multilib base ${SVN_ECLASS}
 
 [[ ${PV} != *9999* ]] && MPLAYER_REVISION=SVN-r30554
 
-IUSE="3dnow 3dnowext +a52 aalib +alsa altivec +ass bidi bindist bl bs2b
+IUSE="3dnow 3dnowext +a52 aalib +alsa altivec +ass bidi bindist bl bluray bs2b
 +cddb +cdio cdparanoia cpudetection custom-cpuopts debug dga +dirac directfb
 doc +dts +dv dvb +dvd +dvdnav dxr3 +enca +encode esd +faac +faad fbcon ftp
 gif ggi -gmplayer +iconv ipv6 jack joystick jpeg jpeg2k kernel_linux ladspa
-libcaca lirc +live lzo mad md5sum +mmx mmxext mng +mp3 nas +network nut openal
+libass libcaca lirc +live lzo mad md5sum +mmx mmxext mng +mp3 nas +network nut openal
 amr +opengl +osdmenu oss png pnm pulseaudio pvr +quicktime radio +rar +real +rtc
 samba +shm +schroedinger sdl +speex sse sse2 ssse3 tga +theora +tremor
 +truetype +toolame +twolame +unicode v4l v4l2 vdpau vidix +vorbis vpx
@@ -93,8 +93,9 @@ RDEPEND+="
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
 	amr? ( !bindist? ( media-libs/opencore-amr ) )
-	ass? ( ${FONT_RDEPS} media-libs/libass[enca?] )
+	ass? ( ${FONT_RDEPS} )
 	bidi? ( dev-libs/fribidi )
+	bluray? ( media-libs/libbluray )
 	bs2b? ( media-libs/libbs2b )
 	cdio? ( dev-libs/libcdio )
 	cdparanoia? ( !cdio? ( media-sound/cdparanoia ) )
@@ -120,6 +121,7 @@ RDEPEND+="
 	jpeg? ( media-libs/jpeg )
 	jpeg2k? ( media-libs/openjpeg )
 	ladspa? ( media-libs/ladspa-sdk )
+	libass? ( ${FONT_RDEPS} media-libs/libass[enca?] )
 	libcaca? ( media-libs/libcaca )
 	lirc? ( app-misc/lirc )
 	live? ( media-plugins/live )
@@ -283,13 +285,13 @@ src_configure() {
 		$(use_enable network)
 		$(use_enable joystick)
 	"
-	uses="ass bl enca ftp rtc" # nemesi <- not working with in-tree ebuild
+	uses="bl enca ftp rtc" # nemesi <- not working with in-tree ebuild
 	myconf+=" --disable-nemesi" # nemesi automagic disable
-	myconf+=" --disable-ass-internal" # always use system libass
 	for i in ${uses}; do
 		use ${i} || myconf+=" --disable-${i}"
 	done
 	use bidi || myconf+=" --disable-fribidi"
+	use bluray || myconf+=" --disable-bluray"
 	use ipv6 || myconf+=" --disable-inet6"
 	use nut || myconf+=" --disable-libnut"
 	use rar || myconf+=" --disable-unrarexec"
@@ -300,6 +302,22 @@ src_configure() {
 			--disable-lircc
 			--disable-apple-ir
 		"
+	fi
+
+	###########
+	#Subtitles#
+	###########
+
+	# ASS/SSA support
+
+	# MPlayer ships with an internal copy, or the user can choose
+	# to build against external libass.
+
+	# You need to disable internal support to enable external.
+	use libass && myconf+=" --disable-ass-internal"
+
+	if ! use ass && ! use libass; then
+		myconf+=" --disable-ass-internal --disable-ass"
 	fi
 
 	# libcdio support: prefer libcdio over cdparanoia
