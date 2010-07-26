@@ -1,8 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/apsw/apsw-3.6.22.1.ebuild,v 1.2 2010/03/01 08:53:01 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/apsw/apsw-3.7.0.1.ebuild,v 1.1 2010/07/25 21:13:38 arfrever Exp $
 
-EAPI="2"
+EAPI="3"
 SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils eutils versionator
@@ -15,18 +15,19 @@ SRC_URI="http://apsw.googlecode.com/files/${PN}-${MY_PV}.zip"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc64 x86"
+KEYWORDS="~amd64 ~ppc64 ~x86"
 IUSE=""
 
-RDEPEND=">=dev-db/sqlite-3.6.6.2"
+RDEPEND=">=dev-db/sqlite-3.7.0"
 DEPEND="${RDEPEND}
 	app-arch/unzip"
 
 S="${WORKDIR}/${PN}-${MY_PV}"
 
+PYTHON_CFLAGS=("2.* + -fno-strict-aliasing")
+
 src_prepare() {
 	distutils_src_prepare
-
 	epatch "${FILESDIR}/${PN}-3.6.20.1-fix_tests.patch"
 }
 
