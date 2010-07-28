@@ -1,9 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/opencv/opencv-2.0.0-r1.ebuild,v 1.6 2010/06/16 16:38:21 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/opencv/opencv-2.1.0.ebuild,v 1.3 2010/07/27 19:27:49 ssuominen Exp $
 
-EAPI=2
-inherit cmake-utils flag-o-matic
+EAPI=3
+
+PYTHON_DEPEND="python? 2:2.6"
+
+inherit cmake-utils eutils flag-o-matic python
 
 MY_P=OpenCV-${PV}
 
@@ -14,13 +17,10 @@ SRC_URI="mirror://sourceforge/${PN}library/${MY_P}.tar.bz2"
 LICENSE="v4l? ( GPL-2 ) xine? ( GPL-2 ) BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE="debug +deprecated examples ffmpeg gstreamer gtk ieee1394 ipp jpeg jpeg2k
-mmx octave openmp png python sse sse2 sse3 test tiff v4l xine"
+IUSE="debug +deprecated examples ffmpeg gstreamer gtk ieee1394 ipp jpeg jpeg2k octave openmp png python sse sse2 sse3 ssse3 test tiff v4l xine"
 
 RDEPEND="sys-libs/zlib
 	ipp? ( sci-libs/ipp )
-	python? ( >=dev-lang/python-2.5
-		deprecated? ( dev-lang/swig ) )
 	ieee1394? ( sys-libs/libraw1394
 		media-libs/libdc1394:2 )
 	ffmpeg? ( >=media-video/ffmpeg-0.5 )
@@ -28,20 +28,35 @@ RDEPEND="sys-libs/zlib
 	gtk? ( x11-libs/gtk+:2 )
 	jpeg2k? ( media-libs/jasper )
 	jpeg? ( media-libs/jpeg )
-	png? ( media-libs/libpng )
+	png? ( >=media-libs/libpng-1.4 )
 	tiff? ( media-libs/tiff )
 	xine? ( media-libs/xine-lib )
-	octave? ( sci-mathematics/octave
-		dev-lang/swig )"
+	octave? ( sci-mathematics/octave )"
 DEPEND="${RDEPEND}
+	octave? ( dev-lang/swig )
+	python? ( deprecated? ( dev-lang/swig ) )
 	dev-util/pkgconfig"
 
 S=${WORKDIR}/${MY_P}
 
-PATCHES=(
-	"${FILESDIR}/${P}-multilib.patch"
-	"${FILESDIR}/${P}-libpng14.patch"
-	)
+RESTRICT="test" #296681
+
+pkg_setup() {
+	if use python; then
+		python_set_active_version 2
+		python_pkg_setup
+	fi
+}
+
+src_prepare() {
+	sed -i \
+		-e "s:share/opencv/doc:share/doc/${PF}:" \
+		CMakeLists.txt || die
+
+	epatch "${FILESDIR}"/${P}-multilib.patch \
+		"${FILESDIR}"/${P}-mmap.patch \
+		"${FILESDIR}"/${PN}-2.0.0-libpng14.patch
+}
 
 src_configure() {
 	append-cppflags -D__STDC_CONSTANT_MACROS #324259
@@ -49,17 +64,17 @@ src_configure() {
 	mycmakeargs=(
 		"-DCMAKE_SKIP_RPATH=ON"
 		$(cmake-utils_use_build examples)
+		"-DBUILD_LATEX_DOCS=OFF"
 		$(cmake-utils_use_build python NEW_PYTHON_SUPPORT)
 		$(cmake-utils_use_build octave OCTAVE_SUPPORT)
 		$(cmake-utils_use_build test TESTS)
-		$(cmake-utils_use_enable openmp)
-		$(cmake-utils_use ipp USE_IPP)
-		$(cmake-utils_use mmx USE_MMX)
-		"-DUSE_O3=OFF"
-		"-DUSE_OMIT_FRAME_POINTER=OFF"
 		$(cmake-utils_use sse USE_SSE)
 		$(cmake-utils_use sse2 USE_SSE2)
 		$(cmake-utils_use sse3 USE_SSE3)
+		$(cmake-utils_use ssse3 USE_SSSE3)
+		$(cmake-utils_use examples INSTALL_C_EXAMPLES)
+		$(cmake-utils_use_with ipp)
+		"-DUSE_O3=OFF"
 		$(cmake-utils_use_with ieee1394 1394)
 		$(cmake-utils_use_with ffmpeg)
 		$(cmake-utils_use_with gstreamer)
@@ -73,11 +88,26 @@ src_configure() {
 		$(cmake-utils_use_with xine)
 		)
 
+	if use octave; then
+		mycmakeargs+=(
+			$(cmake-utils_use examples INSTALL_OCTAVE_EXAMPLES)
+			)
+	fi
+
 	if use python; then
 		mycmakeargs+=(
 			$(cmake-utils_use_build deprecated SWIG_PYTHON_SUPPORT)
+			$(cmake-utils_use examples INSTALL_PYTHON_EXAMPLES)
 			)
 	fi
 
 	cmake-utils_src_configure
+}
+
+pkg_postinst() {
+	use python && python_mod_optimize opencv
+}
+
+pkg_postrm() {
+	use python && python_mod_cleanup opencv
 }
