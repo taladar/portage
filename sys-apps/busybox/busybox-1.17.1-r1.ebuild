@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/busybox/busybox-1.17.1.ebuild,v 1.3 2010/08/15 17:29:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/busybox/busybox-1.17.1-r1.ebuild,v 1.1 2010/08/16 21:23:57 vapier Exp $
 
 EAPI=2
 inherit eutils flag-o-matic savedconfig toolchain-funcs
@@ -68,7 +68,7 @@ S=${WORKDIR}/${MY_P}
 
 busybox_config_option() {
 	case $1 in
-		y) sed -i -e "s:.*CONFIG_$2.*set:CONFIG_$2=y:g" .config;;
+		y) sed -i -e "s:.*\<CONFIG_$2\>.*set:CONFIG_$2=y:g" .config;;
 		n) sed -i -e "s:CONFIG_$2=y:# CONFIG_$2 is not set:g" .config;;
 		*) use $1 \
 		       && busybox_config_option y $2 \
@@ -121,8 +121,8 @@ src_prepare() {
 
 	# If these are not set and we are using a uclibc/busybox setup
 	# all calls to system() will fail.
-	busybox_config_option y FEATURE_SH_IS_ASH
-	busybox_config_option n FEATURE_SH_IS_NONE
+	busybox_config_option y ASH
+	busybox_config_option n HUSH
 
 	# disable ipv6 applets
 	if ! use ipv6; then
