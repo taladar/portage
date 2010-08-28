@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.8-r1.ebuild,v 1.3 2009/11/21 10:42:30 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.11.ebuild,v 1.2 2010/08/28 11:40:05 swegener Exp $
 
 EAPI="2"
 
@@ -12,13 +12,13 @@ SRC_URI="mirror://sourceforge/libvncserver/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="fbcon +jpeg +zlib threads ssl crypt v4l xinerama avahi system-libvncserver"
 
 RDEPEND="system-libvncserver? ( >=net-libs/libvncserver-0.9.7[threads=,jpeg=,zlib=] )
 	!system-libvncserver? (
 		zlib? ( sys-libs/zlib )
-		jpeg? ( media-libs/jpeg )
+		jpeg? ( media-libs/jpeg:0 )
 	)
 	ssl? ( dev-libs/openssl )
 	avahi? ( >=net-dns/avahi-0.6.4 )
@@ -26,7 +26,7 @@ RDEPEND="system-libvncserver? ( >=net-libs/libvncserver-0.9.7[threads=,jpeg=,zli
 	x11-libs/libXfixes
 	x11-libs/libXrandr
 	x11-libs/libX11
-	x11-libs/libXtst
+	>=x11-libs/libXtst-1.1.0
 	x11-libs/libXdamage
 	x11-libs/libXext"
 
@@ -39,16 +39,16 @@ DEPEND="${RDEPEND}
 	x11-proto/xproto
 	x11-proto/xextproto"
 
-src_prepare() {
-	epatch "${FILESDIR}/${P}-xshm-header-fix.patch"
-}
-
 pkg_setup() {
 	if use avahi && ! use threads
 	then
 		ewarn "Non-native avahi support has been enabled."
 		ewarn "Native avahi support can be enabled by also enabling the threads USE flag."
 	fi
+}
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-rename-pointer.patch
 }
 
 src_configure() {
@@ -63,11 +63,12 @@ src_configure() {
 		$(use_with jpeg) \
 		$(use_with zlib) \
 		$(use_with threads pthread) \
-		$(use_with fbcon fbdev) \
-		|| die "econf failed"
+		$(use_with fbcon fbdev)
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc x11vnc/{ChangeLog,README}
+	# Remove include files, which conflict with net-libs/libvncserver
+	rm -rf "${D}"/usr/include
 }
