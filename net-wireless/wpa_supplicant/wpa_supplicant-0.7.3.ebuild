@@ -1,60 +1,40 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/wpa_supplicant/wpa_supplicant-9999.ebuild,v 1.5 2010/07/25 13:29:03 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/wpa_supplicant/wpa_supplicant-0.7.3.ebuild,v 1.1 2010/09/08 17:34:33 gurligebis Exp $
 
 EAPI="2"
 
-inherit eutils toolchain-funcs qt4
-
-if [[ ${PV} == "9999" ]] ; then
-	EGIT_REPO_URI="git://w1.fi/srv/git/hostap.git"
-	inherit git
-	SRC_URI=""
-	S="${WORKDIR}/${P}/${PN}/${PN}"
-else
-	SRC_URI="http://hostap.epitest.fi/releases/${P}.tar.gz"
-	S="${WORKDIR}/${P}/${PN}"
-fi
+inherit eutils toolchain-funcs qt4-r2
 
 DESCRIPTION="IEEE 802.1X/WPA supplicant for secure wireless transfers"
 HOMEPAGE="http://hostap.epitest.fi/wpa_supplicant/"
-
+SRC_URI="http://hostap.epitest.fi/releases/${P}.tar.gz"
 LICENSE="|| ( GPL-2 BSD )"
 
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86 ~x86-fbsd"
 IUSE="dbus debug gnutls eap-sim fasteap madwifi ps3 qt4 readline ssl wps kernel_linux kernel_FreeBSD"
 
-DEPEND="dev-libs/libnl
-	dbus? ( sys-apps/dbus )
+RDEPEND="dbus? ( sys-apps/dbus )
 	kernel_linux? (
 		eap-sim? ( sys-apps/pcsc-lite )
 		madwifi? ( ||
 			( >net-wireless/madwifi-ng-tools-0.9.3
 			net-wireless/madwifi-old )
 		)
+		dev-libs/libnl
 	)
 	!kernel_linux? ( net-libs/libpcap )
-	qt4? ( x11-libs/qt-gui:4 )
+	qt4? ( x11-libs/qt-gui:4
+		x11-libs/qt-svg:4 )
 	readline? ( sys-libs/ncurses sys-libs/readline )
 	ssl? ( dev-libs/openssl )
 	!ssl? ( gnutls? ( net-libs/gnutls ) )
 	!ssl? ( !gnutls? ( dev-libs/libtommath ) )"
-RDEPEND="${DEPEND}"
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig"
 
-S="${WORKDIR}/${P}/${PN}/${PN}"
-
-src_unpack() {
-	einfo "src dir ${S}/"
-	if [[ ${PV} == "9999" ]] ; then
-		S="${WORKDIR}/${P}/${PN}"
-		git_src_unpack
-		S="${WORKDIR}/${P}/${PN}/${PN}"
-	  else
-		unpack ${A}
-	fi
-	cd "${S}"
-}
+S="${WORKDIR}/${P}/${PN}"
 
 pkg_setup() {
 	if use fasteap && (use gnutls || use ssl) ; then
@@ -67,8 +47,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	einfo "src dir ${S}/"
-
 	# net/bpf.h needed for net-libs/libpcap on Gentoo/FreeBSD
 	sed -i \
 		-e "s:\(#include <pcap\.h>\):#include <net/bpf.h>\n\1:" \
@@ -87,11 +65,13 @@ src_prepare() {
 		-e "s:/usr/lib/pkcs11:/usr/$(get_libdir):" \
 		wpa_supplicant.conf || die
 
-	epatch "${FILESDIR}"/${P}-dbus_path_fix.patch
+	epatch "${FILESDIR}/${P}-dbus_path_fix.patch"
+
+	# bug (320097)
+	epatch "${FILESDIR}/do-not-call-dbus-functions-with-NULL-path.patch"
 }
 
 src_configure() {
-# 	cd ${S}/${PN}
 	# Toolchain setup
 	echo "CC = $(tc-getCC)" > .config
 
@@ -189,23 +169,25 @@ src_configure() {
 
 	# Enable mitigation against certain attacks against TKIP
 	echo "CONFIG_DELAYED_MIC_ERROR_REPORT=y" >> .config
-}
-
-src_compile() {
-# 	cd ${S}/${PN}
-	emake || die "emake failed"
 
 	if use qt4 ; then
 		cd "${S}"/wpa_gui-qt4
 		eqmake4 wpa_gui.pro
-		emake || die "Qt4 wpa_gui compilation failed"
+	fi
+}
+
+src_compile() {
+	einfo "Building wpa_supplicant"
+	emake || die "emake failed"
+
+	if use qt4 ; then
+		cd "${S}"/wpa_gui-qt4
+		einfo "Building wpa_gui"
+		emake || die "wpa_gui compilation failed"
 	fi
 }
 
 src_install() {
-
-# 	cd ${S}/${PN}
-
 	dosbin wpa_supplicant || die
 	dobin wpa_cli wpa_passphrase || die
 
@@ -217,27 +199,32 @@ src_install() {
 		dosym /usr/bin/wpa_cli /bin/wpa_cli || die
 	fi
 
+	if has_version ">=sys-apps/openrc-0.5.0"; then
+		newinitd "${FILESDIR}/${PN}-init.d" wpa_supplicant
+		newconfd "${FILESDIR}/${PN}-conf.d" wpa_supplicant
+	fi
+
 	exeinto /etc/wpa_supplicant/
-	newexe "${FILESDIR}"/wpa_cli.sh wpa_cli.sh
+	newexe "${FILESDIR}/wpa_cli.sh" wpa_cli.sh
 
 	dodoc ChangeLog {eap_testing,todo}.txt README{,-WPS} \
 		wpa_supplicant.conf || die "dodoc failed"
 
+	doman doc/docbook/*.{5,8} || die "doman failed"
+
 	if use qt4 ; then
 		into /usr
 		dobin wpa_gui-qt4/wpa_gui || die
-	fi
-
-	if use qt4 ; then
 		doicon wpa_gui-qt4/icons/wpa_gui.svg || die "Icon not found"
 		make_desktop_entry wpa_gui "WPA Supplicant Administration GUI" "wpa_gui" "Qt;Network;"
 	fi
 
 	if use dbus ; then
+		cd "${S}"/dbus
 		insinto /etc/dbus-1/system.d
 		newins dbus-wpa_supplicant.conf wpa_supplicant.conf || die
 		insinto /usr/share/dbus-1/system-services
-		newins dbus-wpa_supplicant.service 'fi.epitest.hostap.WPASupplicant.service' || die
+		doins fi.epitest.hostap.WPASupplicant.service || die
 		keepdir /var/run/wpa_supplicant
 	fi
 }
@@ -262,10 +249,4 @@ pkg_postinst() {
 		einfo "madwifi-old, madwifi-ng or madwifi-ng-tools."
 		einfo "You should re-emerge ${PN} after upgrading these packages."
 	fi
-}
-
-pkg_postinst() {
-	ewarn "You are installing a live ebuild of wpa_supplicant"
-	ewarn "Since this is a moving target, bug reports must be"
-	ewarn "reported on a regular ebuild instead."
 }
