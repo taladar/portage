@@ -1,9 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/subversion/subversion-1.6.11.ebuild,v 1.8 2010/07/11 19:34:41 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/subversion/subversion-1.6.13.ebuild,v 1.1 2010/10/02 21:17:55 arfrever Exp $
 
 EAPI="3"
 SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="3.*"
 WANT_AUTOMAKE="none"
 
 inherit autotools bash-completion db-use depend.apache elisp-common eutils flag-o-matic java-pkg-opt-2 libtool multilib perl-module python
@@ -14,7 +15,7 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2"
 
 LICENSE="Subversion"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 s390 sh sparc x86 ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
 IUSE="apache2 berkdb ctypes-python debug doc +dso emacs extras gnome-keyring java kde nls perl python ruby sasl test vim-syntax +webdav-neon webdav-serf"
 
 CDEPEND=">=dev-db/sqlite-3.4[threadsafe]
@@ -32,7 +33,7 @@ CDEPEND=">=dev-db/sqlite-3.4[threadsafe]
 	ruby? ( >=dev-lang/ruby-1.8.2 )
 	sasl? ( dev-libs/cyrus-sasl )
 	webdav-neon? ( >=net-libs/neon-0.28 )
-	webdav-serf? ( =net-libs/serf-0.3* )"
+	webdav-serf? ( >=net-libs/serf-0.3.0 )"
 RDEPEND="${CDEPEND}
 	apache2? ( www-servers/apache[apache2_modules_dav] )
 	java? ( >=virtual/jre-1.5 )
@@ -44,7 +45,7 @@ APACHE_TEST_DEPEND="|| (
 	=www-servers/apache-2.2*[apache2_modules_auth_basic,apache2_modules_authn_file,apache2_modules_dav,apache2_modules_log_config]
 	)"
 DEPEND="${CDEPEND}
-	>=sys-apps/sandbox-1.6
+	!!<sys-apps/sandbox-1.6
 	ctypes-python? ( dev-python/ctypesgen )
 	doc? ( app-doc/doxygen )
 	gnome-keyring? ( dev-util/pkgconfig )
@@ -57,15 +58,48 @@ DEPEND="${CDEPEND}
 		webdav-serf? ( ${APACHE_TEST_DEPEND} )
 	)
 	webdav-neon? ( dev-util/pkgconfig )"
-RESTRICT_PYTHON_ABIS="3.*"
 
 want_apache
 
 S="${WORKDIR}/${P/_/-}"
 
-# Allow for custom repository locations.
-# This can't be in pkg_setup() because the variable needs to be available to pkg_config().
-: ${SVN_REPOS_LOC:=/var/svn}
+print() {
+	local blue color green normal red
+
+	if [[ "${NOCOLOR:-false}" =~ ^(false|no)$ ]]; then
+		red=$'\e[1;31m'
+		green=$'\e[1;32m'
+		blue=$'\e[1;34m'
+		normal=$'\e[0m'
+	fi
+
+	while (($#)); do
+		case "$1" in
+			--red)
+				color="${red}"
+				;;
+			--green)
+				color="${green}"
+				;;
+			--blue)
+				color="${blue}"
+				;;
+			--)
+				shift
+				break
+				;;
+			-*)
+				die "${FUNCNAME}(): Unrecognized option '$1'"
+				;;
+			*)
+				break
+				;;
+		esac
+		shift
+	done
+
+	echo " ${green}*${normal} ${color}$@${normal}"
+}
 
 pkg_setup() {
 	if use kde && ! use nls; then
@@ -82,7 +116,7 @@ pkg_setup() {
 		einfo "Using: Berkeley DB ${SVN_BDB_VERSION}"
 		einfo
 
-		local apu_bdb_version="$(scanelf -nq "${ROOT}usr/$(get_libdir)/libaprutil-1.so.0" | grep -Eo "libdb-[[:digit:]]+\.[[:digit:]]+" | sed -e "s/libdb-\(.*\)/\1/")"
+		local apu_bdb_version="$(scanelf -nq "${EROOT}usr/$(get_libdir)/libaprutil-1.so.0" | grep -Eo "libdb-[[:digit:]]+\.[[:digit:]]+" | sed -e "s/libdb-\(.*\)/\1/")"
 		if [[ -n "${apu_bdb_version}" && "${SVN_BDB_VERSION}" != "${apu_bdb_version}" ]]; then
 			eerror "APR-Util is linked against Berkeley DB ${apu_bdb_version}, but you are trying"
 			eerror "to build Subversion with support for Berkeley DB ${SVN_BDB_VERSION}."
@@ -115,36 +149,36 @@ pkg_setup() {
 	fi
 
 	if use test; then
-		elog
-		elog "\e[1;31m************************************************************************************************\e[0m"
-		elog
-		elog "NOTES ABOUT TESTS"
-		elog
-		elog "You can set the following variables to enable testing of some features and configure testing:"
+		print
+		print --red "************************************************************************************************"
+		print
+		print "NOTES ABOUT TESTS"
+		print
+		print "You can set the following variables to enable testing of some features and configure testing:"
 		if use webdav-neon || use webdav-serf; then
-			elog "  SVN_TEST_APACHE_PORT=integer          - Set Apache port number (Default value: 62208)"
+			print "  SVN_TEST_APACHE_PORT=integer          - Set Apache port number (Default value: 62208)"
 		fi
-		elog "  SVN_TEST_SVNSERVE_PORT=integer        - Set svnserve port number (Default value: 62209)"
-		elog "  SVN_TEST_FSFS_MEMCACHED=1             - Enable using of Memcached for FSFS repositories"
-		elog "  SVN_TEST_FSFS_MEMCACHED_PORT=integer  - Set Memcached port number (Default value: 62210)"
-		elog "  SVN_TEST_FSFS_SHARDING=integer        - Enable sharding of FSFS repositories and set default shard size for FSFS repositories"
-		elog "  SVN_TEST_FSFS_PACKING=1               - Enable packing of FSFS repositories"
-		elog "                                          (SVN_TEST_FSFS_PACKING requires SVN_TEST_FSFS_SHARDING)"
+		print "  SVN_TEST_SVNSERVE_PORT=integer        - Set svnserve port number (Default value: 62209)"
+		print "  SVN_TEST_FSFS_MEMCACHED=1             - Enable using of Memcached for FSFS repositories"
+		print "  SVN_TEST_FSFS_MEMCACHED_PORT=integer  - Set Memcached port number (Default value: 62210)"
+		print "  SVN_TEST_FSFS_SHARDING=integer        - Enable sharding of FSFS repositories and set default shard size for FSFS repositories"
+		print "  SVN_TEST_FSFS_PACKING=1               - Enable packing of FSFS repositories"
+		print "                                          (SVN_TEST_FSFS_PACKING requires SVN_TEST_FSFS_SHARDING)"
 #		if use sasl; then
-#	 		elog "  SVN_TEST_SASL=1                       - Enable SASL authentication"
+#	 		print "  SVN_TEST_SASL=1                       - Enable SASL authentication"
 #		fi
 		if use ctypes-python || use java || use perl || use python || use ruby; then
-			elog "  SVN_TEST_BINDINGS=1                   - Enable testing of bindings"
+			print "  SVN_TEST_BINDINGS=1                   - Enable testing of bindings"
 		fi
 		if use java || use perl || use python || use ruby; then
-			elog "                                          (Testing of bindings requires ${CATEGORY}/${PF})"
+			print "                                          (Testing of bindings requires ${CATEGORY}/${PF})"
 		fi
 		if use java; then
-			elog "                                          (Testing of JavaHL library requires dev-java/junit:4)"
+			print "                                          (Testing of JavaHL library requires dev-java/junit:4)"
 		fi
-		elog
-		elog "\e[1;31m************************************************************************************************\e[0m"
-		elog
+		print
+		print --red "************************************************************************************************"
+		print
 
 		if ! use apache2 && { use webdav-neon || use webdav-serf; }; then
 			eerror "Testing of libsvn_ra_neon / libsvn_ra_serf requires support for Apache."
@@ -185,6 +219,9 @@ pkg_setup() {
 	if use debug; then
 		append-cppflags -DSVN_DEBUG -DAP_DEBUG
 	fi
+
+	# Allow for custom repository locations.
+	SVN_REPOS_LOC="${SVN_REPOS_LOC:-${EPREFIX}/var/svn}"
 }
 
 src_prepare() {
@@ -218,16 +255,16 @@ src_configure() {
 
 	if use java; then
 		if use test && [[ -n "${SVN_TEST_BINDINGS}" ]]; then
-			myconf+=" --with-junit=/usr/share/junit-4/lib/junit.jar"
+			myconf+=" --with-junit=${EPREFIX}/usr/share/junit-4/lib/junit.jar"
 		else
 			myconf+=" --without-junit"
 		fi
 	fi
 
-	econf --libdir="/usr/$(get_libdir)" \
+	econf --libdir="${EPREFIX}/usr/$(get_libdir)" \
 		$(use_with apache2 apxs "${APXS}") \
-		$(use_with berkdb berkeley-db "db.h:/usr/include/db${SVN_BDB_VERSION}::db-${SVN_BDB_VERSION}") \
-		$(use_with ctypes-python ctypesgen /usr) \
+		$(use_with berkdb berkeley-db "db.h:${EPREFIX}/usr/include/db${SVN_BDB_VERSION}::db-${SVN_BDB_VERSION}") \
+		$(use_with ctypes-python ctypesgen "${EPREFIX}/usr") \
 		$(use_enable dso runtime-module-search) \
 		$(use_with gnome-keyring) \
 		$(use_enable java javahl) \
@@ -236,28 +273,28 @@ src_configure() {
 		$(use_enable nls) \
 		$(use_with sasl) \
 		$(use_with webdav-neon neon) \
-		$(use_with webdav-serf serf /usr) \
+		$(use_with webdav-serf serf "${EPREFIX}/usr") \
 		${myconf} \
-		--with-apr=/usr/bin/apr-1-config \
-		--with-apr-util=/usr/bin/apu-1-config \
+		--with-apr="${EPREFIX}/usr/bin/apr-1-config" \
+		--with-apr-util="${EPREFIX}/usr/bin/apu-1-config" \
 		--disable-experimental-libtool \
 		--without-jikes \
 		--enable-local-library-preloading \
 		--disable-mod-activation \
 		--disable-neon-version-check \
-		--with-sqlite=/usr
+		--with-sqlite="${EPREFIX}/usr"
 }
 
 src_compile() {
-	einfo
-	einfo "Building of core of Subversion"
-	einfo
+	print
+	print "Building of core of Subversion"
+	print
 	emake local-all || die "Building of core of Subversion failed"
 
 	if use ctypes-python; then
-		einfo
-		einfo "Building of Subversion Ctypes Python bindings"
-		einfo
+		print
+		print "Building of Subversion Ctypes Python bindings"
+		print
 		python_copy_sources subversion/bindings/ctypes-python
 		rm -fr subversion/bindings/ctypes-python
 		ctypes_python_bindings_building() {
@@ -272,19 +309,19 @@ src_compile() {
 	fi
 
 	if use python; then
-		einfo
-		einfo "Building of Subversion SWIG Python bindings"
-		einfo
+		print
+		print "Building of Subversion SWIG Python bindings"
+		print
 		python_copy_sources subversion/bindings/swig/python
 		rm -fr subversion/bindings/swig/python
 		swig_python_bindings_building() {
 			rm -f subversion/bindings/swig/python
 			ln -s python-${PYTHON_ABI} subversion/bindings/swig/python
 			emake \
-				PYTHON_INCLUDES="-I$(python_get_includedir)" \
+				PYTHON_INCLUDES="-I${EPREFIX}$(python_get_includedir)" \
 				PYTHON_VERSION="$(python_get_version)" \
-				swig_pydir="$(python_get_sitedir)/libsvn" \
-				swig_pydir_extra="$(python_get_sitedir)/svn" \
+				swig_pydir="${EPREFIX}$(python_get_sitedir)/libsvn" \
+				swig_pydir_extra="${EPREFIX}$(python_get_sitedir)/svn" \
 				swig-py
 		}
 		python_execute_function \
@@ -294,51 +331,51 @@ src_compile() {
 	fi
 
 	if use perl; then
-		einfo
-		einfo "Building of Subversion SWIG Perl bindings"
-		einfo
+		print
+		print "Building of Subversion SWIG Perl bindings"
+		print
 		emake -j1 swig-pl || die "Building of Subversion SWIG Perl bindings failed"
 	fi
 
 	if use ruby; then
-		einfo
-		einfo "Building of Subversion SWIG Ruby bindings"
-		einfo
+		print
+		print "Building of Subversion SWIG Ruby bindings"
+		print
 		emake swig-rb || die "Building of Subversion SWIG Ruby bindings failed"
 	fi
 
 	if use java; then
-		einfo
-		einfo "Building of Subversion JavaHL library"
-		einfo
+		print
+		print "Building of Subversion JavaHL library"
+		print
 		emake -j1 JAVAC_FLAGS="$(java-pkg_javac-args) -encoding iso8859-1" javahl || die "Building of Subversion JavaHL library failed"
 	fi
 
 	if use emacs; then
-		einfo
-		einfo "Compilation of Emacs modules"
-		einfo
+		print
+		print "Compilation of Emacs modules"
+		print
 		elisp-compile contrib/client-side/emacs/{dsvn,psvn,vc-svn}.el doc/svn-doc.el doc/tools/svnbook.el || die "Compilation of Emacs modules failed"
 	fi
 
 	if use extras; then
-		einfo
-		einfo "Building of contrib and tools"
-		einfo
+		print
+		print "Building of contrib and tools"
+		print
 		emake contrib || die "Building of contrib failed"
 		emake tools || die "Building of tools failed"
 	fi
 
 	if use doc; then
-		einfo
-		einfo "Building of Subversion HTML documentation"
-		einfo
+		print
+		print "Building of Subversion HTML documentation"
+		print
 		doxygen doc/doxygen.conf || die "Building of Subversion HTML documentation failed"
 
 		if use java; then
-			einfo
-			einfo "Building of Subversion JavaHL library HTML documentation"
-			einfo
+			print
+			print "Building of Subversion JavaHL library HTML documentation"
+			print
 			emake doc-javahl || die "Building of Subversion JavaHL library HTML documentation failed"
 		fi
 	fi
@@ -498,9 +535,9 @@ src_test() {
 	for ra_type in ${ra_types}; do
 		for fs_type in ${fs_types}; do
 			[[ "${ra_type}" == "local" && "${fs_type}" == "bdb" ]] && continue
-			einfo
-			einfo "\e[1;34mTesting of ra_${ra_type} + $(echo ${fs_type} | tr '[:lower:]' '[:upper:]')\e[0m"
-			einfo
+			print
+			print --blue "Testing of ra_${ra_type} + $(echo ${fs_type} | tr '[:lower:]' '[:upper:]')"
+			print
 			set_tests_variables ${ra_type}
 			time emake check FS_TYPE="${fs_type}" BASE_URL="${base_url}" HTTP_LIBRARY="${http_library}" CLEANUP="1" ${options} || failed_tests="1"
 			mv tests.log "${T}/tests-ra_${ra_type}-${fs_type}.log"
@@ -515,9 +552,9 @@ src_test() {
 		local -A linguas
 
 		if use ctypes-python; then
-			einfo
-			einfo "\e[1;34mTesting of Subversion Ctypes Python bindings\e[0m"
-			einfo
+			print
+			print --blue "Testing of Subversion Ctypes Python bindings"
+			print
 			ctypes_python_bindings_testing() {
 				rm -f subversion/bindings/ctypes-python
 				ln -s ctypes-python-${PYTHON_ABI} subversion/bindings/ctypes-python
@@ -530,9 +567,9 @@ src_test() {
 		fi
 
 		if use python; then
-			einfo
-			einfo "\e[1;34mTesting of Subversion SWIG Python bindings\e[0m"
-			einfo
+			print
+			print --blue "Testing of Subversion SWIG Python bindings"
+			print
 			swig_python_bindings_testing() {
 				rm -f subversion/bindings/swig/python
 				ln -s python-${PYTHON_ABI} subversion/bindings/swig/python
@@ -551,16 +588,16 @@ src_test() {
 		linguas[rb]="Ruby"
 
 		for swig_lingua in ${swig_linguas}; do
-			einfo
-			einfo "\e[1;34mTesting of Subversion SWIG ${linguas[${swig_lingua}]} bindings\e[0m"
-			einfo
+			print
+			print --blue "Testing of Subversion SWIG ${linguas[${swig_lingua}]} bindings"
+			print
 			time emake check-swig-${swig_lingua} || failed_tests="1"
 		done
 
 		if use java; then
-			einfo
-			einfo "\e[1;34mTesting of Subversion JavaHL library\e[0m"
-			einfo
+			print
+			print --blue "Testing of Subversion JavaHL library"
+			print
 			time emake check-javahl || failed_tests="1"
 		fi
 	fi
@@ -573,15 +610,15 @@ src_test() {
 }
 
 src_install() {
-	einfo
-	einfo "Installation of core of Subversion"
-	einfo
+	print
+	print "Installation of core of Subversion"
+	print
 	emake -j1 DESTDIR="${D}" local-install || die "Installation of core of Subversion failed"
 
 	if use ctypes-python; then
-		einfo
-		einfo "Installation of Subversion Ctypes Python bindings"
-		einfo
+		print
+		print "Installation of Subversion Ctypes Python bindings"
+		print
 		ctypes_python_bindings_installation() {
 			rm -f subversion/bindings/ctypes-python
 			ln -s ctypes-python-${PYTHON_ABI} subversion/bindings/ctypes-python
@@ -594,23 +631,28 @@ src_install() {
 	fi
 
 	if use python; then
-		einfo
-		einfo "Installation of Subversion SWIG Python bindings"
-		einfo
+		print
+		print "Installation of Subversion SWIG Python bindings"
+		print
 		swig_python_bindings_installation() {
 			rm -f subversion/bindings/swig/python
 			ln -s python-${PYTHON_ABI} subversion/bindings/swig/python
 			emake -j1 \
 				DESTDIR="${D}" \
 				PYTHON_VERSION="$(python_get_version)" \
-				swig_pydir="$(python_get_sitedir)/libsvn" \
-				swig_pydir_extra="$(python_get_sitedir)/svn" \
+				swig_pydir="${EPREFIX}$(python_get_sitedir)/libsvn" \
+				swig_pydir_extra="${EPREFIX}$(python_get_sitedir)/svn" \
 				install-swig-py
 		}
 		python_execute_function \
 			--action-message 'Installation of Subversion SWIG Python bindings with $(python_get_implementation) $(python_get_version)' \
 			--failure-message 'Installation of Subversion SWIG Python bindings failed with $(python_get_implementation) $(python_get_version)' \
 			swig_python_bindings_installation
+
+		delete_static_libraries() {
+			find "${ED}$(python_get_sitedir)" -name "*.a" -print0 | xargs -0 rm -f
+		}
+		python_execute_function -q delete_static_libraries
 	fi
 
 	if use ctypes-python || use python; then
@@ -618,34 +660,35 @@ src_install() {
 	fi
 
 	if use perl; then
-		einfo
-		einfo "Installation of Subversion SWIG Perl bindings"
-		einfo
+		print
+		print "Installation of Subversion SWIG Perl bindings"
+		print
 		emake -j1 DESTDIR="${D}" INSTALLDIRS="vendor" install-swig-pl || die "Installation of Subversion SWIG Perl bindings failed"
 		fixlocalpod
-		find "${D}" "(" -name .packlist -o -name "*.bs" ")" -print0 | xargs -0 rm -fr
+		find "${ED}" "(" -name .packlist -o -name "*.bs" ")" -print0 | xargs -0 rm -fr
 	fi
 
 	if use ruby; then
-		einfo
-		einfo "Installation of Subversion SWIG Ruby bindings"
-		einfo
+		print
+		print "Installation of Subversion SWIG Ruby bindings"
+		print
 		emake -j1 DESTDIR="${D}" install-swig-rb || die "Installation of Subversion SWIG Ruby bindings failed"
+		find "${ED}usr/$(get_libdir)/ruby" "(" -name "*.a" -o -name "*.la" ")" -print0 | xargs -0 rm -f
 	fi
 
 	if use java; then
-		einfo
-		einfo "Installation of Subversion JavaHL library"
-		einfo
+		print
+		print "Installation of Subversion JavaHL library"
+		print
 		emake -j1 DESTDIR="${D}" install-javahl || die "Installation of Subversion JavaHL library failed"
-		java-pkg_regso "${D}"usr/$(get_libdir)/libsvnjavahl*.so
-		java-pkg_dojar "${D}"usr/$(get_libdir)/svn-javahl/svn-javahl.jar
-		rm -fr "${D}"usr/$(get_libdir)/svn-javahl/*.jar
+		java-pkg_regso "${ED}"usr/$(get_libdir)/libsvnjavahl*.so
+		java-pkg_dojar "${ED}"usr/$(get_libdir)/svn-javahl/svn-javahl.jar
+		rm -fr "${ED}"usr/$(get_libdir)/svn-javahl/*.jar
 	fi
 
 	# Install Apache module configuration.
 	if use apache2; then
-		dodir "${APACHE_MODULES_CONFDIR}"
+		mkdir -p "${D}${APACHE_MODULES_CONFDIR}"
 		cat << EOF > "${D}${APACHE_MODULES_CONFDIR}"/47_mod_dav_svn.conf
 <IfDefine SVN>
 LoadModule dav_svn_module modules/mod_dav_svn.so
@@ -702,20 +745,20 @@ EOF
 	if use emacs; then
 		elisp-install ${PN} contrib/client-side/emacs/{dsvn,psvn}.{el,elc} doc/svn-doc.{el,elc} doc/tools/svnbook.{el,elc} || die "Installation of Emacs modules failed"
 		elisp-install ${PN}/compat contrib/client-side/emacs/vc-svn.{el,elc} || die "Installation of Emacs modules failed"
-		touch "${D}${SITELISP}/${PN}/compat/.nosearch"
+		touch "${ED}${SITELISP}/${PN}/compat/.nosearch"
 		elisp-site-file-install "${FILESDIR}/70svn-gentoo.el" || die "Installation of Emacs site-init file failed"
 	fi
 	rm -fr contrib/client-side/emacs
 
 	# Install extra files.
 	if use extras; then
-		einfo
-		einfo "Installation of contrib and tools"
-		einfo
+		print
+		print "Installation of contrib and tools"
+		print
 
 		cat << EOF > 80subversion-extras
-PATH="/usr/$(get_libdir)/subversion/bin"
-ROOTPATH="/usr/$(get_libdir)/subversion/bin"
+PATH="${EPREFIX}/usr/$(get_libdir)/subversion/bin"
+ROOTPATH="${EPREFIX}/usr/$(get_libdir)/subversion/bin"
 EOF
 		doenvd 80subversion-extras
 
@@ -734,9 +777,9 @@ EOF
 	fi
 
 	if use doc; then
-		einfo
-		einfo "Installation of Subversion HTML documentation"
-		einfo
+		print
+		print "Installation of Subversion HTML documentation"
+		print
 		dohtml -r doc/doxygen/html/* || die "Installation of Subversion HTML documentation failed"
 
 		insinto /usr/share/doc/${PF}
@@ -755,9 +798,9 @@ EOF
 
 pkg_preinst() {
 	# Compare versions of Berkeley DB, bug 122877.
-	if use berkdb && [[ -f "${ROOT}usr/bin/svn" ]]; then
-		OLD_BDB_VERSION="$(scanelf -nq "${ROOT}usr/$(get_libdir)/libsvn_subr-1.so.0" | grep -Eo "libdb-[[:digit:]]+\.[[:digit:]]+" | sed -e "s/libdb-\(.*\)/\1/")"
-		NEW_BDB_VERSION="$(scanelf -nq "${D}usr/$(get_libdir)/libsvn_subr-1.so.0" | grep -Eo "libdb-[[:digit:]]+\.[[:digit:]]+" | sed -e "s/libdb-\(.*\)/\1/")"
+	if use berkdb && [[ -f "${EROOT}usr/bin/svn" ]]; then
+		OLD_BDB_VERSION="$(scanelf -nq "${EROOT}usr/$(get_libdir)/libsvn_subr-1.so.0" | grep -Eo "libdb-[[:digit:]]+\.[[:digit:]]+" | sed -e "s/libdb-\(.*\)/\1/")"
+		NEW_BDB_VERSION="$(scanelf -nq "${ED}usr/$(get_libdir)/libsvn_subr-1.so.0" | grep -Eo "libdb-[[:digit:]]+\.[[:digit:]]+" | sed -e "s/libdb-\(.*\)/\1/")"
 		if [[ "${OLD_BDB_VERSION}" != "${NEW_BDB_VERSION}" ]]; then
 			CHANGED_BDB_VERSION="1"
 		fi
@@ -864,20 +907,20 @@ pkg_postrm() {
 }
 
 pkg_config() {
-	einfo ">>> Initializing the database in ${ROOT}${SVN_REPOS_LOC} ..."
-	if [[ -e "${ROOT}${SVN_REPOS_LOC}/repos" ]]; then
+	einfo "Initializing the database in ${EROOT}${SVN_REPOS_LOC}..."
+	if [[ -e "${EROOT}${SVN_REPOS_LOC}/repos" ]]; then
 		echo "A Subversion repository already exists and I will not overwrite it."
-		echo "Delete \"${ROOT}${SVN_REPOS_LOC}/repos\" first if you're sure you want to have a clean version."
+		echo "Delete \"${EROOT}${SVN_REPOS_LOC}/repos\" first if you're sure you want to have a clean version."
 	else
-		mkdir -p "${ROOT}${SVN_REPOS_LOC}/conf"
+		mkdir -p "${EROOT}${SVN_REPOS_LOC}/conf"
 
-		einfo ">>> Populating repository directory ..."
+		einfo "Populating repository directory..."
 		# Create initial repository.
-		"${ROOT}usr/bin/svnadmin" create "${ROOT}${SVN_REPOS_LOC}/repos"
+		"${EROOT}usr/bin/svnadmin" create "${EROOT}${SVN_REPOS_LOC}/repos"
 
-		einfo ">>> Setting repository permissions ..."
-		SVNSERVE_USER="$(. "${ROOT}etc/conf.d/svnserve"; echo "${SVNSERVE_USER}")"
-		SVNSERVE_GROUP="$(. "${ROOT}etc/conf.d/svnserve"; echo "${SVNSERVE_GROUP}")"
+		einfo "Setting repository permissions..."
+		SVNSERVE_USER="$(. "${EROOT}etc/conf.d/svnserve"; echo "${SVNSERVE_USER}")"
+		SVNSERVE_GROUP="$(. "${EROOT}etc/conf.d/svnserve"; echo "${SVNSERVE_GROUP}")"
 		if use apache2; then
 			[[ -z "${SVNSERVE_USER}" ]] && SVNSERVE_USER="apache"
 			[[ -z "${SVNSERVE_GROUP}" ]] && SVNSERVE_GROUP="apache"
@@ -887,8 +930,8 @@ pkg_config() {
 			enewgroup "${SVNSERVE_GROUP}"
 			enewuser "${SVNSERVE_USER}" -1 -1 "${SVN_REPOS_LOC}" "${SVNSERVE_GROUP}"
 		fi
-		chown -Rf "${SVNSERVE_USER}:${SVNSERVE_GROUP}" "${ROOT}${SVN_REPOS_LOC}/repos"
-		chmod -Rf go-rwx "${ROOT}${SVN_REPOS_LOC}/conf"
-		chmod -Rf o-rwx "${ROOT}${SVN_REPOS_LOC}/repos"
+		chown -Rf "${SVNSERVE_USER}:${SVNSERVE_GROUP}" "${EROOT}${SVN_REPOS_LOC}/repos"
+		chmod -Rf go-rwx "${EROOT}${SVN_REPOS_LOC}/conf"
+		chmod -Rf o-rwx "${EROOT}${SVN_REPOS_LOC}/repos"
 	fi
 }
