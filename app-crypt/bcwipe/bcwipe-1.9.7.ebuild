@@ -1,14 +1,14 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/bcwipe/bcwipe-1.9.1.ebuild,v 1.4 2009/06/02 17:03:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/bcwipe/bcwipe-1.9.7.ebuild,v 1.1 2010/10/16 16:24:27 arfrever Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit eutils versionator
 
 MY_PV="$(replace_version_separator 2 -)"
 
-DESCRIPTION="BCWipe secure file removal utility"
+DESCRIPTION="Secure file removal utility"
 HOMEPAGE="http://www.jetico.com/"
 SRC_URI="http://www.jetico.com/linux/BCWipe-${MY_PV}.tar.gz
 	doc? ( http://www.jetico.com/linux/BCWipe.doc.tgz )"
@@ -16,7 +16,7 @@ SRC_URI="http://www.jetico.com/linux/BCWipe-${MY_PV}.tar.gz
 LICENSE="bestcrypt"
 SLOT="0"
 IUSE="doc"
-KEYWORDS="amd64 ppc sparc x86"
+KEYWORDS="~amd64 ~ppc ~sparc ~x86"
 
 DEPEND=""
 RDEPEND=""
@@ -30,7 +30,7 @@ src_prepare() {
 src_test() {
 	echo "abc123" >> testfile
 	./bcwipe -f testfile || die "bcwipe test failed"
-	[ -f testfile ] && die "test file still exists. bcwipe should have deleted it"
+	[[ -f testfile ]] && die "test file still exists. bcwipe should have deleted it"
 }
 
 src_install() {
