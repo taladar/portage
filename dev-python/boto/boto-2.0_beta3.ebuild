@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/boto/boto-2.0_beta2.ebuild,v 1.1 2010/09/27 11:18:03 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/boto/boto-2.0_beta3.ebuild,v 1.1 2010/10/16 20:49:38 arfrever Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2:2.5"

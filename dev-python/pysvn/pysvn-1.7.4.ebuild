@@ -1,11 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pysvn/pysvn-1.7.2.ebuild,v 1.6 2010/09/30 08:47:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pysvn/pysvn-1.7.4.ebuild,v 1.1 2010/10/16 19:24:48 arfrever Exp $
 
 EAPI="3"
+PYTHON_DEPEND="*"
 SUPPORT_PYTHON_ABIS="1"
 
-inherit eutils multilib python toolchain-funcs
+inherit eutils python toolchain-funcs
 
 DESCRIPTION="Object-oriented python bindings for subversion"
 HOMEPAGE="http://pysvn.tigris.org/"
@@ -16,10 +17,10 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~x86-freebsd ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="doc examples"
 
-DEPEND="dev-lang/python
-	dev-vcs/subversion
-	>=dev-python/pycxx-6.1.0"
-RDEPEND="${DEPEND}"
+RDEPEND=">=dev-python/pycxx-6.1.1
+	dev-vcs/subversion"
+DEPEND="${RDEPEND}
+	dev-python/setuptools"
 
 src_prepare() {
 	# Skip test test-06 if executed as root to avoid failure.
@@ -43,18 +44,17 @@ src_configure() {
 	configuration() {
 		cd Source
 		"$(PYTHON)" setup.py configure \
-			--pycxx-src-dir="${EPREFIX}/usr/share/python${PYTHON_ABI}/CXX" \
+			--pycxx-src-dir="${EPREFIX}/usr/share/python$(python_get_version)/CXX" \
 			--apr-inc-dir="${EPREFIX}/usr/include/apr-1" \
-			--svn-root-dir="${EPREFIX}/usr" \
-			|| die "Configuration failed with Python {PYTHON_ABI}"
+			--svn-root-dir="${EPREFIX}/usr" || return 1
 
-		sed -e 's:^\(CCFLAGS=\)\(.*\):\1$(CFLAGS) \2:g' \
+		sed \
+			-e 's:^\(CCFLAGS=\)\(.*\):\1$(CFLAGS) \2:g' \
 			-e 's:^\(CCCFLAGS=\)\(.*\):\1$(CXXFLAGS) \2:g' \
 			-e "/^CCC=/s:g++:$(tc-getCXX):" \
 			-e "/^CC=/s:gcc:$(tc-getCC):" \
-			-e "/^LDSHARED=/s:g++:$(tc-getCXX):" \
-			-i Makefile \
-			|| die "sed failed in Makefile"
+			-e "/^LDSHARED=/s:g++:$(tc-getCXX) ${LDFLAGS}:" \
+			-i Makefile || die "sed failed"
 	}
 	python_execute_function -s configuration
 }
@@ -70,8 +70,8 @@ src_compile() {
 src_test() {
 	testing() {
 		cd Source
-		emake test || die "test-pysvn.so failed with Python ${PYTHON_ABI}"
-		emake -C ../Tests || die "Tests failed with Python ${PYTHON_ABI}"
+		emake test || return 1
+		emake -C ../Tests || return 1
 	}
 	python_execute_function -s testing
 }

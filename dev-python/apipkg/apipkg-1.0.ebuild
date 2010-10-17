@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/apipkg/apipkg-1.0_beta6.ebuild,v 1.1 2010/10/02 23:18:01 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/apipkg/apipkg-1.0.ebuild,v 1.1 2010/10/16 20:41:30 arfrever Exp $
 
 EAPI="3"
 SUPPORT_PYTHON_ABIS="1"
@@ -29,12 +29,6 @@ PYTHON_MODNAME="apipkg.py"
 
 src_prepare() {
 	distutils_src_prepare
-
-	# Fix tests with Python 3.
-	sed \
-		-e "s/print (realtest.x.module.__map__)/print((realtest.x.module.__map__))/" \
-		-e "s/print mod.__dict__.keys()/print(list(mod.__dict__.keys()))/" \
-		-i test_apipkg.py
 
 	# Disable failing test.
 	sed -e "s/test_onfirstaccess_setsnewattr/_&/" -i test_apipkg.py
