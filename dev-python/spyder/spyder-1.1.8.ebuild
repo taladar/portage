@@ -1,11 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/spyder/spyder-1.1.3.ebuild,v 1.3 2010/09/14 16:14:29 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/spyder/spyder-1.1.8.ebuild,v 1.1 2010/10/23 20:41:01 arfrever Exp $
 
 EAPI="3"
-SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.*"
 PYTHON_DEPEND="2:2.5"
+SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="2.4 3.*"
 
 inherit distutils
 
@@ -25,3 +25,5 @@ RDEPEND=">=dev-python/PyQt4-4.4[webkit]
 	numpy? ( dev-python/numpy )
 	pylint? ( dev-python/pylint )
 	scipy? ( sci-libs/scipy )"
+
+PYTHON_MODNAME="spyderlib spyderplugins"

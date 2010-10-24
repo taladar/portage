@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-testrunner/zope-testrunner-4.0.0_beta5.ebuild,v 1.1 2010/09/11 21:39:27 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-testrunner/zope-testrunner-4.0.0.ebuild,v 1.1 2010/10/23 20:36:39 arfrever Exp $
 
 EAPI="3"
 SUPPORT_PYTHON_ABIS="1"
@@ -8,7 +8,7 @@ SUPPORT_PYTHON_ABIS="1"
 inherit distutils
 
 MY_PN="${PN/-/.}"
-MY_P="${MY_PN}-${PV/_beta/b}"
+MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Zope testrunner script."
 HOMEPAGE="http://pypi.python.org/pypi/zope.testrunner"
