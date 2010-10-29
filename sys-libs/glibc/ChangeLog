@@ -1,6 +1,15 @@
 # ChangeLog for sys-libs/glibc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.721 2010/10/26 15:05:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.724 2010/10/29 00:33:27 halcy0n Exp $
+
+  29 Oct 2010; Mark Loeser <halcy0n@gentoo.org> glibc-2.11.2-r2.ebuild:
+  Mark stable for ppc64; bug #341755
+
+  28 Oct 2010; Markos Chandras <hwoarang@gentoo.org> glibc-2.11.2-r2.ebuild:
+  Stable on amd64 wrt bug #341755
+
+  28 Oct 2010; Jeroen Roovers <jer@gentoo.org> glibc-2.11.2-r2.ebuild:
+  Stable for HPPA (bug #341755).
 
 *glibc-2.12.1-r2 (26 Oct 2010)
 *glibc-2.11.2-r2 (26 Oct 2010)
