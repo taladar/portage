@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-error/zope-error-3.7.1.ebuild,v 1.1 2010/09/25 19:14:19 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-error/zope-error-3.7.2.ebuild,v 1.1 2010/10/30 17:55:33 arfrever Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
