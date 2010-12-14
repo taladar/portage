@@ -8,7 +8,7 @@
  import os, os.path as osp, sys
  
  
-@@ -36,24 +35,6 @@
+@@ -36,27 +35,6 @@
              splist.append(".".join(dirpath.split(os.sep)))
      return splist
  
@@ -25,7 +25,10 @@
 -        sys.path.insert(0, os.path.abspath(build.build_lib))
 -        dirname = self.distribution.get_command_obj('build').build_purelib
 -        self.builder_target_dir = osp.join(dirname, 'spyderlib', 'doc')
--        setup_command.BuildDoc.run(self)
+-        try:
+-            setup_command.BuildDoc.run(self)
+-        except UnicodeDecodeError:
+-            print >>sys.stderr, "ERROR: unable to build documentation because Sphinx do not handle source path with non-ASCII characters. Please try to move the source package to another location (path with *only* ASCII characters)."        
 -        sys.path.pop(0)
 -
 -cmdclass = {'build': MyBuild, 'build_doc': MyBuildDoc}
@@ -33,16 +36,16 @@
  
  NAME = 'spyder'
  LIBNAME = 'spyderlib'
-@@ -80,7 +61,7 @@
+@@ -83,7 +61,7 @@
                      get_package_data(LIBNAME, ('.qm', '.svg', '.png', '.css')),
                      'spyderplugins':
                      get_package_data('spyderplugins', ('.qm', '.svg', '.png'))},
 -      requires=["pyflakes (>0.3.0)", "rope (>0.9.0)", "sphinx (>0.6.0)",
 +      requires=["pyflakes (>0.3.0)", "rope (>0.9.0)",
                  "PyQt4 (>4.3)"],
-       scripts=['spyder.pyw', 'spyder.py'] if os.name == 'nt' else ['spyder'],
+       scripts=['spyder', 'spyder.bat'] if os.name == 'nt' else ['spyder'],
        classifiers=['License :: OSI Approved :: MIT License',
-@@ -94,5 +75,4 @@
+@@ -97,5 +75,4 @@
                     'Programming Language :: Python :: 2.7',
                     'Development Status :: 5 - Production/Stable',
                     'Topic :: Scientific/Engineering',

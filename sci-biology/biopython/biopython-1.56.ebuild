@@ -1,11 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/biopython/biopython-1.54.ebuild,v 1.6 2010/10/15 18:50:24 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/biopython/biopython-1.56.ebuild,v 1.1 2010/12/13 21:29:02 arfrever Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.*"
+RESTRICT_PYTHON_ABIS="3.* *-jython"
 
 inherit distutils eutils
 
@@ -15,7 +15,7 @@ SRC_URI="http://www.biopython.org/DIST/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="alpha amd64 ppc sparc x86"
+KEYWORDS="~alpha ~amd64 ~ppc ~sparc ~x86"
 IUSE="mysql postgres"
 
 RDEPEND="dev-python/numpy
@@ -24,6 +24,8 @@ RDEPEND="dev-python/numpy
 	postgres? ( dev-python/psycopg )"
 DEPEND="${RDEPEND}
 	sys-devel/flex"
+
+PYTHON_CFLAGS=("2.* + -fno-strict-aliasing")
 
 DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES="1"
 DOCS="CONTRIB DEPRECATED NEWS README"
@@ -45,12 +47,8 @@ src_test() {
 src_install() {
 	distutils_src_install
 
-	dodir "/usr/share/doc/${PF}"
-	cp -r Doc/* "${D}/usr/share/doc/${PF}/" || \
-			die "Failed to install documentation."
-	dodir "/usr/share/${PN}"
-	rm -f Tests/*.pyc || \
-			die "Failed to remove precompiled test files."
-	cp -r --preserve=mode Scripts Tests "${D}/usr/share/${PN}/" || \
-			die "Failed to install shared files."
+	insinto /usr/share/doc/${PF}
+	doins -r Doc/* || die "Installation of documentation failed"
+	insinto /usr/share/${PN}
+	cp -r --preserve=mode Scripts Tests "${ED}usr/share/${PN}" || die "Installation of shared files failed"
 }
