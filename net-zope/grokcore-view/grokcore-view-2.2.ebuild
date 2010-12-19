@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/grokcore-view/grokcore-view-2.1.ebuild,v 1.2 2010/11/29 02:02:02 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/grokcore-view/grokcore-view-2.2.ebuild,v 1.1 2010/12/19 18:08:14 arfrever Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"

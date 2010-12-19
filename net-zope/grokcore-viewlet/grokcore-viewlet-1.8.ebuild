@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/grokcore-viewlet/grokcore-viewlet-1.7.ebuild,v 1.2 2010/11/29 02:03:27 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/grokcore-viewlet/grokcore-viewlet-1.8.ebuild,v 1.1 2010/12/19 18:23:38 arfrever Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
@@ -24,7 +24,7 @@ IUSE=""
 RDEPEND=">=dev-python/martian-0.13
 	>=net-zope/grokcore-component-2.1
 	>=net-zope/grokcore-security-1.5
-	>=net-zope/grokcore-view-2.0
+	>=net-zope/grokcore-view-2.2
 	net-zope/zope-browserpage
 	net-zope/zope-component
 	net-zope/zope-contentprovider
