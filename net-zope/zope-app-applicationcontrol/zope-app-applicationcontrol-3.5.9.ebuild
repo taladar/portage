@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-app-applicationcontrol/zope-app-applicationcontrol-3.5.8.ebuild,v 1.2 2010/11/29 02:22:40 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-app-applicationcontrol/zope-app-applicationcontrol-3.5.9.ebuild,v 1.1 2010/12/19 18:44:00 arfrever Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
@@ -14,7 +14,7 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Zope applicationcontrol"
 HOMEPAGE="http://pypi.python.org/pypi/zope.app.applicationcontrol"
-SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_P}.zip"
+SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_P}.tar.gz"
 
 LICENSE="ZPL"
 SLOT="0"
@@ -32,7 +32,6 @@ RDEPEND="net-zope/zodb
 	net-zope/zope-size
 	net-zope/zope-traversing"
 DEPEND="${RDEPEND}
-	app-arch/unzip
 	dev-python/setuptools"
 
 S="${WORKDIR}/${MY_P}"
