@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.11.2.ebuild,v 1.1 2010/10/16 00:11:43 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.10.4.ebuild,v 1.1 2010/12/27 17:48:15 arfrever Exp $
 
 EAPI="3"
 
@@ -27,14 +27,12 @@ fi
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
-IUSE="bindist +cxx doc examples guile lzo +nettle nls test zlib"
+IUSE="bindist +cxx doc examples guile lzo nls test zlib"
 
-# lib/m4/hooks.m4 says that GnuTLS uses a fork of PaKChoiS.
-RDEPEND=">=dev-libs/libtasn1-0.3.4
+RDEPEND=">=dev-libs/libgcrypt-1.4.0
+	>=dev-libs/libtasn1-0.3.4
 	nls? ( virtual/libintl )
-	guile? ( dev-scheme/guile[networking] )
-	nettle? ( >=dev-libs/nettle-2.1[gmp] )
-	!nettle? ( >=dev-libs/libgcrypt-1.4.0 )
+	guile? ( >=dev-scheme/guile-1.8[networking] )
 	zlib? ( >=sys-libs/zlib-1.1 )
 	!bindist? ( lzo? ( >=dev-libs/lzo-2 ) )"
 DEPEND="${RDEPEND}
@@ -72,11 +70,12 @@ src_prepare() {
 src_configure() {
 	local myconf
 	use bindist && myconf="--without-lzo" || myconf="$(use_with lzo)"
+	[[ "${VALGRIND_TESTS}" == "0" ]] && myconf+=" --disable-valgrind-tests"
+
 	econf --htmldir=/usr/share/doc/${P}/html \
 		$(use_enable cxx) \
 		$(use_enable doc gtk-doc) \
 		$(use_enable guile) \
-		$(use_with !nettle libgcrypt) \
 		$(use_enable nls) \
 		$(use_with zlib) \
 		${myconf}
@@ -85,15 +84,15 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 
-	dodoc AUTHORS ChangeLog NEWS README THANKS doc/TODO
+	dodoc AUTHORS ChangeLog NEWS README THANKS doc/TODO || die "dodoc failed"
 
 	if use doc; then
-		dodoc doc/gnutls.{pdf,ps}
-		dohtml doc/gnutls.html
+		dodoc doc/gnutls.{pdf,ps} || die "dodoc failed"
+		dohtml doc/gnutls.html || die "dohtml failed"
 	fi
 
 	if use examples; then
 		docinto examples
-		dodoc doc/examples/*.c
+		dodoc doc/examples/*.c || die "dodoc failed"
 	fi
 }

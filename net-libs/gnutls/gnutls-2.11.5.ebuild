@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.11.1.ebuild,v 1.2 2010/09/30 14:46:42 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.11.5.ebuild,v 1.1 2010/12/27 17:49:56 arfrever Exp $
 
 EAPI="3"
 
@@ -32,8 +32,8 @@ IUSE="bindist +cxx doc examples guile lzo +nettle nls test zlib"
 # lib/m4/hooks.m4 says that GnuTLS uses a fork of PaKChoiS.
 RDEPEND=">=dev-libs/libtasn1-0.3.4
 	nls? ( virtual/libintl )
-	guile? ( dev-scheme/guile[networking] )
-	nettle? ( >=dev-libs/nettle-2.1 )
+	guile? ( >=dev-scheme/guile-1.8[networking] )
+	nettle? ( >=dev-libs/nettle-2.1[gmp] )
 	!nettle? ( >=dev-libs/libgcrypt-1.4.0 )
 	zlib? ( >=sys-libs/zlib-1.1 )
 	!bindist? ( lzo? ( >=dev-libs/lzo-2 ) )"
@@ -47,12 +47,15 @@ S="${WORKDIR}/${P%_pre*}"
 
 pkg_setup() {
 	if use lzo && use bindist; then
-		ewarn "lzo support was disabled for binary distribution of GnuTLS"
-		ewarn "due to licensing issues. See Bug #202381 for details."
+		ewarn "lzo support is disabled for binary distribution of GnuTLS due to licensing issues."
 	fi
 }
 
 src_prepare() {
+	# tests/suite directory is not distributed.
+	sed -e 's|AC_CONFIG_FILES(\[tests/suite/Makefile\])|:|' -i configure.ac
+	sed -e 's/\[ -d suite \] && $(MAKE) -C suite check/:/' -i tests/Makefile.am
+
 	sed -e 's/imagesdir = $(infodir)/imagesdir = $(htmldir)/' -i doc/Makefile.am
 
 	local dir
@@ -66,12 +69,15 @@ src_prepare() {
 		popd > /dev/null
 	done
 
-	elibtoolize # for sane .so versioning on FreeBSD
+	# Use sane .so versioning on FreeBSD.
+	elibtoolize
 }
 
 src_configure() {
 	local myconf
 	use bindist && myconf="--without-lzo" || myconf="$(use_with lzo)"
+	[[ "${VALGRIND_TESTS}" == "0" ]] && myconf+=" --disable-valgrind-tests"
+
 	econf --htmldir=/usr/share/doc/${P}/html \
 		$(use_enable cxx) \
 		$(use_enable doc gtk-doc) \
@@ -85,15 +91,15 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 
-	dodoc AUTHORS ChangeLog NEWS README THANKS doc/TODO
+	dodoc AUTHORS ChangeLog NEWS README THANKS doc/TODO || die "dodoc failed"
 
 	if use doc; then
-		dodoc doc/gnutls.{pdf,ps}
-		dohtml doc/gnutls.html
+		dodoc doc/gnutls.{pdf,ps} || die "dodoc failed"
+		dohtml doc/gnutls.html || die "dohtml failed"
 	fi
 
 	if use examples; then
 		docinto examples
-		dodoc doc/examples/*.c
+		dodoc doc/examples/*.c || die "dodoc failed"
 	fi
 }
