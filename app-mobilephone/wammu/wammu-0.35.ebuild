@@ -1,13 +1,15 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/wammu/wammu-0.32.1.ebuild,v 1.1 2010/02/01 21:55:28 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/wammu/wammu-0.35.ebuild,v 1.1 2010/12/29 20:56:05 fauli Exp $
 
-EAPI="2"
+EAPI="3"
+
+PYTHON_DEPEND="2"
 
 inherit distutils
 
-DESCRIPTION="front-end for gammu (Nokia and other mobiles)"
-HOMEPAGE="http://www.cihar.com/gammu/wammu/"
+DESCRIPTION="Front-end for gammu to access mobile phones easily"
+HOMEPAGE="http://www.wammu.eu/"
 SRC_URI="http://dl.cihar.com/wammu/v0/${P}.tar.bz2"
 
 LICENSE="GPL-2"
@@ -30,6 +32,11 @@ DEPEND="${RDEPEND}"
 MY_AVAILABLE_LINGUAS=" af bg ca cs da de el es et fi fr gl he hu id it ko nl pl pt_BR ru sk sv zh_CN zh_TW"
 IUSE="${IUSE} ${MY_AVAILABLE_LINGUAS// / linguas_}"
 
+pkg_setup() {
+	python_set_active_version 2
+	python_pkg_setup
+}
+
 src_prepare() {
 	local lang support_linguas=no
 	for lang in ${MY_AVAILABLE_LINGUAS} ; do
@@ -46,6 +53,8 @@ src_prepare() {
 			fi
 		done
 	fi
+
+	python_convert_shebangs -r 2 .
 }
 
 src_compile() {
