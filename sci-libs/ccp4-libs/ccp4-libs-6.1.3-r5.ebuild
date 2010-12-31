@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/ccp4-libs/ccp4-libs-6.1.3-r3.ebuild,v 1.6 2010/12/16 14:28:58 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/ccp4-libs/ccp4-libs-6.1.3-r5.ebuild,v 1.1 2010/12/31 12:24:48 jlec Exp $
 
 EAPI="3"
 
@@ -41,13 +41,14 @@ done
 
 LICENSE="ccp4"
 SLOT="0"
-KEYWORDS="~amd64 x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="
 	virtual/jpeg
 	app-shells/tcsh
 	!<sci-chemistry/ccp4-6.1.3
+	!<sci-chemistry/ccp4-apps-6.1.3-r6
 	sci-libs/cbflib
 	=sci-libs/fftw-2*
 	sci-libs/mmdb
@@ -74,6 +75,9 @@ src_prepare() {
 	[[ -n ${PATCHDATE} ]] && epatch "${WORKDIR}"/${PV}-${PATCHDATE}-updates.patch
 
 	einfo "Applying Gentoo patches ..."
+	# fix buffer overflows wrt bug 339706
+	ccp_patch "${FILESDIR}"/${PV}-overflows.patch
+
 	# it tries to create libdir, bindir etc on live system in configure
 	ccp_patch "${FILESDIR}"/${PV}-dont-make-dirs-in-configure.patch
 
@@ -184,7 +188,7 @@ src_configure() {
 
 src_compile() {
 	emake -j1 \
-		DESTDIR="${ED}" onlylib || die "emake failed"
+		DESTDIR="${D}" onlylib || die "emake failed"
 }
 
 src_install() {
@@ -192,7 +196,7 @@ src_install() {
 	source "${S}"/include/ccp4.setup
 
 	emake -j1 \
-		DESTDIR="${ED}" \
+		DESTDIR="${D}" \
 		includedir="${EPREFIX}"/usr/include \
 		library_includedir="${EPREFIX}"/usr/include \
 		install || die
@@ -217,6 +221,12 @@ src_install() {
 	# Data
 	insinto /usr/share/ccp4/data/
 	doins -r "${S}"/lib/data/{*.PARM,*.prt,*.lib,*.dic,*.idl,*.cif,*.resource,*.york,*.hist,fraglib,reference_structures} || die
+
+	# Environment files, setup scripts, etc.
+	rm -rf "${S}"/include/{ccp4.setup*,COPYING,cpp_c_headers} || die
+	insinto /usr/share/ccp4/
+	doins -r "${S}"/include || die
+
 	dodoc "${S}"/lib/data/*.doc || die
 	newdoc "${S}"/lib/data/README DATA-README || die
 }
