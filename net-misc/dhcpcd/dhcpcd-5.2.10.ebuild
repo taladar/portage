@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/dhcpcd/dhcpcd-5.2.8.ebuild,v 1.9 2011/01/03 18:49:18 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/dhcpcd/dhcpcd-5.2.10.ebuild,v 1.2 2011/01/03 18:49:18 williamh Exp $
 
 EAPI=1
 
@@ -16,7 +16,7 @@ HOMEPAGE="http://roy.marples.name/projects/dhcpcd/"
 SRC_URI="http://roy.marples.name/downloads/${PN}/${MY_P}.tar.bz2"
 LICENSE="BSD-2"
 
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ~ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
 
 SLOT="0"
 IUSE="+zeroconf elibc_glibc"
@@ -76,11 +76,15 @@ pkg_postinst() {
 	fi
 
 	elog
-	elog "Users transfering from 4.0 series should pay attention to removal"
+	elog "Users upgrading from 4.0 series should pay attention to removal"
 	elog "of compat useflag. This changes behavior of dhcp in wide manner:"
 	elog "dhcpcd no longer sends a default ClientID for ethernet interfaces."
 	elog "This is so we can re-use the address the kernel DHCP client found."
 	elog "To retain the old behaviour of sending a default ClientID based on the"
 	elog "hardware address for interface, simply add the keyword clientid"
 	elog "to dhcpcd.conf or use commandline parameter -I ''"
+	elog
+	elog "Also, users upgrading from 4.0 series should be aware that"
+	elog "the -N, -R and -Y command line options no longer exist."
+	elog "These are controled now by nohook options in dhcpcd.conf."
 }
