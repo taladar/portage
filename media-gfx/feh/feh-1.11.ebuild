@@ -1,14 +1,13 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/feh/feh-1.10.ebuild,v 1.1 2010/11/25 01:19:16 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/feh/feh-1.11.ebuild,v 1.1 2011/01/22 23:19:26 hwoarang Exp $
 
 EAPI=2
 inherit toolchain-funcs
 
 DESCRIPTION="A fast, lightweight imageviewer using imlib2"
 HOMEPAGE="https://derf.homelinux.org/~derf/projects/feh/"
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
-#SRC_URI="http://www.chaosdorf.de/~derf/feh/${P}.tar.bz2"
+SRC_URI="http://www.chaosdorf.de/~derf/feh/${P}.tar.bz2"
 
 LICENSE="as-is"
 SLOT="0"
