@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-app-appsetup/zope-app-appsetup-3.15.0.ebuild,v 1.2 2010/11/29 02:25:42 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-app-appsetup/zope-app-appsetup-3.16.0.ebuild,v 1.1 2011/01/27 21:41:35 arfrever Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
