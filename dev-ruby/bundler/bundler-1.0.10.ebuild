@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bundler/bundler-1.0.7.ebuild,v 1.1 2010/12/04 19:37:31 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bundler/bundler-1.0.10.ebuild,v 1.1 2011/02/02 18:47:54 graaff Exp $
 
 EAPI=2
 
@@ -38,7 +38,7 @@ RUBY_PATCHES=( "${FILESDIR}"/${PN}-1.0.3-gentoo.patch )
 
 all_ruby_prepare() {
 	# Reported upstream: http://github.com/carlhuda/bundler/issues/issue/738
-	sed -i -e '575s/should/should_not/' spec/runtime/setup_spec.rb || die
+	sed -i -e '685s/should/should_not/' spec/runtime/setup_spec.rb || die
 
 	# Fails randomly and no clear cause can be found. Might be related
 	# to bug 346357. This was broken in previous releases without a

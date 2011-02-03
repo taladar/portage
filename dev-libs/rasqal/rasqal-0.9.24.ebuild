@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/rasqal/rasqal-0.9.22.ebuild,v 1.1 2011/01/25 19:23:54 spatz Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/rasqal/rasqal-0.9.24.ebuild,v 1.1 2011/02/02 19:59:43 ssuominen Exp $
 
 EAPI=3
 inherit libtool
