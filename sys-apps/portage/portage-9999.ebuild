@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-9999.ebuild,v 1.17 2011/02/06 19:36:59 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-9999.ebuild,v 1.19 2011/02/08 23:00:59 zmedico Exp $
 
 # Require EAPI 2 since we now require at least python-2.6 (for python 3
 # syntax support) which also requires EAPI 2.
@@ -13,13 +13,14 @@ LICENSE="GPL-2"
 KEYWORDS=""
 PROVIDE="virtual/portage"
 SLOT="0"
-IUSE="build doc epydoc +ipc python3 selinux"
+IUSE="build doc epydoc +ipc python2 python3 selinux"
 
 python_dep="python3? ( =dev-lang/python-3* )
-	!python3? (
-		build? ( || ( dev-lang/python:2.8 dev-lang/python:2.7 dev-lang/python:2.6 ) )
-		!build? ( || ( dev-lang/python:2.8 dev-lang/python:2.7 dev-lang/python:2.6 >=dev-lang/python-3 ) )
-	)"
+	!python2? ( !python3? (
+		build? ( || ( dev-lang/python:2.7 dev-lang/python:2.6 ) )
+		!build? ( || ( dev-lang/python:2.7 dev-lang/python:2.6 >=dev-lang/python-3 ) )
+	) )
+	python2? ( !python3? ( || ( dev-lang/python:2.7 dev-lang/python:2.6 ) ) )"
 
 # The pysqlite blocker is for bug #282760.
 DEPEND="${python_dep}
@@ -64,7 +65,11 @@ compatible_python_is_selected() {
 }
 
 pkg_setup() {
-	if ! use python3 && ! compatible_python_is_selected ; then
+	if use python2 && use python3 ; then
+		ewarn "Both python2 and python3 USE flags are enabled, but only one"
+		ewarn "can be in the shebangs. Using python3."
+	fi
+	if ! use python2 && ! use python3 && ! compatible_python_is_selected ; then
 		ewarn "Attempting to select a compatible default python interpreter"
 		local x success=0
 		for x in /usr/bin/python2.* ; do
@@ -86,6 +91,8 @@ pkg_setup() {
 
 	if use python3; then
 		python_set_active_version 3
+	elif use python2; then
+		python_set_active_version 2
 	fi
 }
 
@@ -110,6 +117,9 @@ src_prepare() {
 	if use python3; then
 		einfo "Converting shebangs for python3..."
 		python_convert_shebangs -r 3 .
+	elif use python2; then
+		einfo "Converting shebangs for python2..."
+		python_convert_shebangs -r 2 .
 	fi
 }
 
