@@ -1,11 +1,11 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zodb/zodb-3.9.7.ebuild,v 1.2 2010/11/29 02:15:49 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zodb/zodb-3.10.2.ebuild,v 1.1 2011/02/12 19:53:13 arfrever Exp $
 
 EAPI="3"
-PYTHON_DEPEND="2"
+PYTHON_DEPEND="2:2.5"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.* *-jython"
+RESTRICT_PYTHON_ABIS="2.4 3.* *-jython"
 DISTUTILS_SRC_TEST="setup.py"
 
 inherit distutils
@@ -13,26 +13,26 @@ inherit distutils
 MY_PN="ZODB3"
 MY_P="${MY_PN}-${PV}"
 
-DESCRIPTION="Zope Object DataBase"
+DESCRIPTION="Zope Object Database"
 HOMEPAGE="http://pypi.python.org/pypi/ZODB3 https://launchpad.net/zodb"
 SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_P}.tar.gz"
 
 LICENSE="ZPL"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~ppc ~sparc ~x86"
-IUSE="test"
+IUSE=""
 
-RDEPEND="net-zope/transaction
+RDEPEND="dev-python/manuel
+	>=net-zope/transaction-1.1.0
 	net-zope/zc-lockfile
 	net-zope/zconfig
 	net-zope/zdaemon
 	net-zope/zope-event
 	net-zope/zope-interface
-	net-zope/zope-proxy
+	net-zope/zope-testing
 	!media-libs/FusionSound"
 DEPEND="${RDEPEND}
-	dev-python/setuptools
-	test? ( net-zope/zope-testing )"
+	dev-python/setuptools"
 
 S="${WORKDIR}/${MY_P}"
 
