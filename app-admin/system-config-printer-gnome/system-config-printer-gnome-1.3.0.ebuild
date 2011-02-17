@@ -1,10 +1,11 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/system-config-printer-gnome/system-config-printer-gnome-1.2.5.ebuild,v 1.3 2010/10/28 18:50:55 reavertm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/system-config-printer-gnome/system-config-printer-gnome-1.3.0.ebuild,v 1.1 2011/02/16 20:01:09 reavertm Exp $
 
 EAPI="3"
 
 PYTHON_DEPEND="2"
+PYTHON_USE_WITH="xml"
 WANT_AUTOMAKE="1.11"
 inherit python autotools
 
@@ -12,10 +13,10 @@ MY_P="${PN%-gnome}-${PV}"
 
 DESCRIPTION="GNOME frontend for a Red Hat's printer administration tool"
 HOMEPAGE="http://cyberelk.net/tim/software/system-config-printer/"
-SRC_URI="http://cyberelk.net/tim/data/system-config-printer/1.2/${MY_P}.tar.xz"
+SRC_URI="http://cyberelk.net/tim/data/system-config-printer/1.3/${MY_P}.tar.xz"
 
 LICENSE="GPL-2"
-KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~sh ~sparc ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86"
 SLOT="0"
 IUSE="gnome-keyring"
 
@@ -23,10 +24,9 @@ IUSE="gnome-keyring"
 RESTRICT="test"
 
 RDEPEND="
-	>=app-admin/system-config-printer-common-${PV}
+	~app-admin/system-config-printer-common-${PV}
 	dev-python/notify-python
 	>=dev-python/pygtk-2.4
-	dev-python/pyxml
 	gnome-keyring? ( dev-python/gnome-keyring-python )
 "
 DEPEND="${RDEPEND}
@@ -50,7 +50,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-1.2.3-split.patch"
+	epatch "${FILESDIR}/${PN}-1.3.0-split.patch"
 
 	eautoreconf
 }
@@ -74,9 +74,9 @@ src_configure() {
 src_install() {
 	dodoc AUTHORS ChangeLog README || die "dodoc failed"
 
-	emake DESTDIR="${D}" install || die "emake install failed"
+	emake DESTDIR="${ED}" install || die "emake install failed"
 
-	python_convert_shebangs -q -r $(python_get_version) "${D}"
+	python_convert_shebangs -q -r $(python_get_version) "${ED}"
 }
 
 pkg_postrm() {

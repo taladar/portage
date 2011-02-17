@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/kmess/kmess-2.0.6.ebuild,v 1.1 2011/02/11 19:17:09 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/kmess/kmess-2.0.6-r1.ebuild,v 1.1 2011/02/16 18:56:14 hwoarang Exp $
 
 EAPI=3
 
@@ -37,6 +37,10 @@ RDEPEND="${COMMONDEPEND}
 "
 
 S="${WORKDIR}/${MY_P}"
+
+PATCHES=(
+	"${FILESDIR}"/${P}-login-fix.patch
+)
 
 src_configure() {
 	mycmakeargs="${mycmakeargs}
