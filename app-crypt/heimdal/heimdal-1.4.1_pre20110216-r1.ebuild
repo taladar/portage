@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/heimdal/heimdal-1.4.1_pre20110216.ebuild,v 1.2 2011/02/17 17:06:20 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/heimdal/heimdal-1.4.1_pre20110216-r1.ebuild,v 1.2 2011/02/20 18:16:10 eras Exp $
 
 EAPI=2
 # PYTHON_BDEPEND="2"
@@ -51,6 +51,12 @@ src_prepare() {
 }
 
 src_configure() {
+	local myconf=""
+	if use berkdb; then
+		myconf="--with-berkeley-db --with-berkeley-db-include=$(db_includedir)"
+	else
+		myconf="--without-berkeley-db"
+	fi
 	econf \
 		--enable-kcm \
 		--disable-osfc2 \
@@ -64,13 +70,12 @@ src_configure() {
 		$(use_enable pkinit kx509) \
 		$(use_enable pkinit pk-init) \
 		$(use_enable threads pthread-support) \
-		$(use_with berkdb berkeley-db) \
-		$(use_with berkdb berkeley-db-include=$(db_includedir)) \
 		$(use_with caps capng) \
 		$(use_with hdb-ldap openldap /usr) \
 		$(use_with ipv6) \
 		$(use_with ssl openssl /usr) \
-		$(use_with X x)
+		$(use_with X x) \
+		${myconf}
 }
 
 src_compile() {
@@ -126,12 +131,19 @@ src_install() {
 }
 
 pkg_preinst() {
-
 	if has_version "=${CATEGORY}/${PN}-1.3.2*" ; then
 		if use hdb-ldap ; then
 			ewarn "Schema name changed to hdb.schema to follow upstream."
 			ewarn "Please check your slapd conf file to make sure"
 			ewarn "that the correct schema file is included."
 		fi
+	fi
+
+	if has_version "<=${CATEGORY}/${PN}-1.4.1_pre20110216"; then
+		ewarn "Unfortunately, libgssapi has functional changes but keeps the"
+		ewarn "same version number. Please run"
+		ewarn "\n		revdep-rebuild --library libgssapi.so.2\n"
+		ewarn "to avoid breaking your packages that depend on libgssapi.so"
+		ewarn "revdep-rebuild is part of app-portage/gentoolkit package."
 	fi
 }

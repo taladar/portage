@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/linksys-tftp/linksys-tftp-1.2.1-r1.ebuild,v 1.1 2010/10/04 15:57:22 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/linksys-tftp/linksys-tftp-1.2.1-r2.ebuild,v 1.1 2011/02/20 17:46:19 vapier Exp $
 
-EAPI=2
+EAPI="2"
 
 inherit eutils toolchain-funcs
 
@@ -15,9 +15,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
-DEPEND="sys-devel/gcc"
-RDEPEND=""
-
 src_prepare() {
 	epatch "${FILESDIR}"/${PF}-Makefile.patch
 }
@@ -27,6 +24,6 @@ src_compile() {
 }
 
 src_install() {
-	doexe linksys-tftp || die
-	dodoc README || die
+	dobin linksys-tftp || die
+	dodoc README
 }
