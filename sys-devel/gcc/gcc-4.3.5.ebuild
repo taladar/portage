@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.5.ebuild,v 1.3 2010/10/17 09:08:30 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.5.ebuild,v 1.5 2011/03/11 07:06:37 vapier Exp $
 
 PATCH_VER="1.1"
 UCLIBC_VER="1.0"
@@ -26,7 +26,7 @@ inherit toolchain
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
 LICENSE="GPL-3 LGPL-3 || ( GPL-3 libgcc libstdc++ ) FDL-1.2"
-KEYWORDS="~alpha ~amd64 ~arm -hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm -hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	>=sys-devel/gcc-config-1.4
@@ -41,7 +41,7 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 				x11-libs/libXtst
 				x11-proto/xproto
 				x11-proto/xextproto
-				>=x11-libs/gtk+-2.2
+				=x11-libs/gtk+-2*
 				x11-libs/pango
 			)
 			>=media-libs/libart_lgpl-2.1

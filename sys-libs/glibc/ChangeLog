@@ -1,6 +1,55 @@
 # ChangeLog for sys-libs/glibc
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.749 2011/03/03 06:29:05 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.759 2011/03/11 07:43:19 vapier Exp $
+
+*glibc-2.13-r2 (11 Mar 2011)
+
+  11 Mar 2011; Mike Frysinger <vapier@gentoo.org> +glibc-2.13-r2.ebuild:
+  Update many ports, more static fixes, and work around sigaction bad code
+  #283470.
+
+  11 Mar 2011; Mike Frysinger <vapier@gentoo.org>
+  files/eblits/src_compile.eblit, files/eblits/src_install.eblit,
+  files/eblits/src_unpack.eblit:
+  Get header-only install working for mips systems #235551 by Joshua Kinard.
+
+  10 Mar 2011; Mike Frysinger <vapier@gentoo.org> files/eblits/common.eblit:
+  Split out the target-specific flag munging into its own func to make the
+  common logic easier to understand, and skip it altogether for headers targets
+  since we wont have a compiler which can accept the flags in the first place.
+
+  10 Mar 2011; Mike Frysinger <vapier@gentoo.org> files/eblits/common.eblit:
+  Handle "default" ABI for sparc64 targets without falling back to a sparc32
+  CTARGET.
+
+  10 Mar 2011; Mike Frysinger <vapier@gentoo.org> files/eblits/common.eblit:
+  Drop old sparc64 tls test #340773 by Alex Buell.
+
+  09 Mar 2011; Mike Frysinger <vapier@gentoo.org> -glibc-2.5-r4.ebuild,
+  glibc-2.5.1.ebuild, files/eblits/src_install-2.6.eblit,
+  files/eblits/src_install-2.11.2.eblit, files/eblits/src_install.eblit:
+  Kill off usage of prep_ml_includes since the func is going away, and glibc
+  itself takes care of multilib include paths.
+
+  09 Mar 2011; Mike Frysinger <vapier@gentoo.org> files/eblits/common.eblit:
+  Always get multilib info via multilib_env and move the CFLAGS_abi value from
+  that explicitly into CFLAGS (rather than letting gcc-config do it magically
+  in the backend via the env).  This avoids ugly issues like distcc in a cross
+  or multilib setup freaking out (#330423) as well as ccache pollution of wrong
+  ELF types (such as #79519).  Further, it fixes multilib building for glibc
+  targets where the configure script detects the desired multilib based purely
+  on the compiler flags since the target is the same (e.g. mips64-xxx and n32
+  vs n64, and probably others).
+
+  09 Mar 2011; Mike Frysinger <vapier@gentoo.org> files/eblits/pkg_setup.eblit:
+  Do not bail out of sanity compile tests when building from a binary package
+  #324685 by Diego Elio Pettenò.
+
+  07 Mar 2011; Raúl Porcel <armin76@gentoo.org> glibc-2.11.3.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #350744
+
+  04 Mar 2011; Markos Chandras <hwoarang@gentoo.org> glibc-2.11.3.ebuild:
+  Stable on amd64 wrt bug #350744
 
   03 Mar 2011; Jeroen Roovers <jer@gentoo.org> glibc-2.11.3.ebuild:
   Stable for HPPA (bug #350744).
