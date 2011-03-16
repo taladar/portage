@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-accessibility/espeak/espeak-1.43.ebuild,v 1.1 2010/02/17 06:03:31 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-accessibility/espeak/espeak-1.45.02.ebuild,v 1.1 2011/03/16 17:40:33 williamh Exp $
 
-EAPI="3"
+EAPI="4"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 MY_P="${P}-source"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}.zip"
@@ -14,43 +14,36 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="portaudio pulseaudio"
-RDEPEND="portaudio? ( >=media-libs/portaudio-19_pre20071207 )
-	pulseaudio? ( media-sound/pulseaudio )"
+REQUIRED_USE="portaudio? ( !pulseaudio )
+	pulseaudio? ( !portaudio )"
+	RDEPEND=" pulseaudio? ( media-sound/pulseaudio )
+	portaudio? ( >=media-libs/portaudio-19_pre20071207 )"
 DEPEND="${RDEPEND}
 	app-arch/unzip"
 
 S=${WORKDIR}/${MY_P}
 
 get_audio() {
-	local MY_AUDIO
-
 	if use portaudio; then
-		MY_AUDIO=portaudio
+		echo portaudio
 	elif use pulseaudio; then
-		MY_AUDIO=pulseaudio
+		echo pulseaudio
 	else
-		MY_AUDIO=none
-	fi
-	echo ${MY_AUDIO}
-}
-
-pkg_setup() {
-	if use portaudio && use pulseaudio; then
-		die "You must choose either portaudio or pulseaudio, but not both."
+		echo none
 	fi
 }
 
 src_prepare() {
 	cd src
 	# gentoo uses portaudio 19.
-	if use portaudio; then
-		mv -f portaudio19.h portaudio.h
-	fi
+	mv -f portaudio19.h portaudio.h
+	epatch "${FILESDIR}"/${P}-fix-libname.patch
 }
 
 src_compile() {
 	cd src
-	emake PREFIX="${EPREFIX}/usr" AUDIO="$(get_audio)" CXXFLAGS="${CXXFLAGS}" all || die "Compilation failed"
+	emake PREFIX="${EPREFIX}/usr" AUDIO="$(get_audio)" \
+	CXX="$(tc-getCXX)" CXXFLAGS="${CXXFLAGS}" all
 
 	einfo "Fixing byte order of phoneme data files"
 	cd "${S}/platforms/big_endian"
@@ -61,12 +54,12 @@ src_compile() {
 
 src_install() {
 	cd src
-	make DESTDIR="${D}" PREFIX="${EPREFIX}/usr" LIBDIR="\$(PREFIX)/$(get_libdir)" AUDIO="$(get_audio)" install || die "Installation failed"
+	make DESTDIR="${D}" PREFIX="${EPREFIX}/usr" LIBDIR="\$(PREFIX)/$(get_libdir)" AUDIO="$(get_audio)" install
 
 	cd ..
 	insinto /usr/share/espeak-data
 	doins -r dictsource
-	dodoc ChangeLog ReadMe
+	dodoc ChangeLog.txt ReadMe
 	dohtml -r docs/*
 }
 
