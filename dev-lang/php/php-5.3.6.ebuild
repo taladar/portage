@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.3.4.ebuild,v 1.10 2011/03/14 22:31:20 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.3.6.ebuild,v 1.1 2011/03/17 16:36:51 olemarkus Exp $
 
 EAPI=2
 
@@ -9,11 +9,10 @@ PHPCONFUTILS_MISSING_DEPS="adabas birdstep db2 dbmaker empress empress-bcs esoob
 inherit eutils autotools flag-o-matic versionator depend.apache apache-module db-use phpconfutils php-common-r1 libtool
 
 SUHOSIN_VERSION=""
-#SUHOSIN_VERSION="${PV}-0.9.10"
 FPM_VERSION="builtin"
 EXPECTED_TEST_FAILURES=""
 
-KEYWORDS="alpha amd64 ~arm hppa ~ia64 ppc64 ~s390 ~sh ~sparc x86"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 
 function php_get_uri ()
 {
@@ -47,7 +46,7 @@ PHP_PV="${PV/_rc/RC}"
 PHP_RELEASE="php"
 PHP_P="${PN}-${PHP_PV}"
 
-PHP_PATCHSET_LOC="gentoo"
+PHP_PATCHSET_LOC="olemarkus"
 
 PHP_SRC_URI="$(php_get_uri "${PHP_RELEASE}" "${PHP_P}.tar.bz2")"
 
@@ -81,8 +80,11 @@ DESCRIPTION="The PHP language runtime engine: CLI, CGI, FPM/FastCGI, Apache2 and
 HOMEPAGE="http://php.net/"
 LICENSE="PHP-3"
 
+SLOT="$(get_version_component_range 1-2)"
+S="${WORKDIR}/${PHP_P}"
+
 # We can build the following SAPIs in the given order
-SAPIS="cli cgi fpm embed apache2"
+SAPIS="embed cli cgi fpm apache2"
 
 # Gentoo-specific, common features
 IUSE="kolab"
@@ -96,7 +98,7 @@ IUSE="${IUSE} adabas bcmath berkdb birdstep bzip2 calendar cdb cjk
 	crypt +ctype curl curlwrappers db2 dbmaker debug doc empress
 	empress-bcs enchant esoob exif frontbase +fileinfo +filter firebird
 	flatfile ftp gd gd-external gdbm gmp +hash +iconv imap inifile
-	interbase intl iodbc ipv6 +json kerberos ldap ldap-sasl libedit
+	interbase intl iodbc ipv6 +json kerberos ldap ldap-sasl libedit mhash
 	mssql mysql mysqlnd mysqli nls oci8
 	oci8-instant-client odbc pcntl pdo +phar pic +posix postgres qdbm
 	readline recode sapdb +session sharedext sharedmem
@@ -108,8 +110,8 @@ IUSE="${IUSE} adabas bcmath berkdb birdstep bzip2 calendar cdb cjk
 [[ -n $SUHOSIN_VERSION ]] && IUSE="${IUSE} suhosin"
 
 DEPEND="!dev-lang/php:5
-	>=app-admin/eselect-php-0.6
-	>=dev-libs/libpcre-7.9[unicode]
+	>=app-admin/eselect-php-0.6.2
+	>=dev-libs/libpcre-8.11[unicode]
 	adabas? ( >=dev-db/unixODBC-1.8.13 )
 	apache2? ( www-servers/apache[threads=] )
 	berkdb? ( =sys-libs/db-4* )
@@ -135,13 +137,12 @@ DEPEND="!dev-lang/php:5
 		sys-libs/zlib
 	) ) )
 	firebird? ( dev-db/firebird )
-	fpm? ( >=dev-libs/libevent-1.4.12 )
 	gd? ( virtual/jpeg media-libs/libpng sys-libs/zlib )
 	gd-external? ( media-libs/gd )
 	gdbm? ( >=sys-libs/gdbm-1.8.0 )
 	gmp? ( >=dev-libs/gmp-4.1.2 )
 	iconv? ( virtual/libiconv )
-	imap? ( virtual/imap-c-client )
+	imap? ( virtual/imap-c-client[ssl=] )
 	intl? ( dev-libs/icu )
 	iodbc? ( dev-db/libiodbc )
 	kerberos? ( virtual/krb5 )
@@ -168,8 +169,8 @@ DEPEND="!dev-lang/php:5
 	soap? ( >=dev-libs/libxml2-2.6.8 )
 	solid? ( >=dev-db/unixODBC-1.8.13 )
 	spell? ( >=app-text/aspell-0.50 )
-	sqlite? ( =dev-db/sqlite-2* pdo? ( =dev-db/sqlite-3* ) )
-	sqlite3? ( =dev-db/sqlite-3* )
+	sqlite? ( =dev-db/sqlite-2* pdo? ( >=dev-db/sqlite-3.7.4 ) )
+	sqlite3? ( =dev-db/sqlite-3.7.4 )
 	ssl? ( >=dev-libs/openssl-0.9.7 )
 	sybase-ct? ( dev-db/freetds )
 	tidy? ( app-text/htmltidy )
@@ -222,6 +223,7 @@ RDEPEND="${DEPEND}
 	sapdb? ( $php[odbc] )
 	solid? ( $php[odbc] )
 	kolab? ( $php[imap] )
+	mhash? ( $php[hash] )
 	phar? ( $php[hash] )
 	mysqlnd? ( || (
 		$php[mysql]
@@ -247,7 +249,8 @@ RDEPEND="${DEPEND}
 	phar? ( !dev-php${PHP_MV}/pecl-phar )
 	zip? ( !dev-php${PHP_MV}/pecl-zip )"
 
-[[ -n $SUHOSIN_VERSION ]] && DEPEND="${DEPEND} suhosin? ( $php[unicode] )"
+[[ -n $SUHOSIN_VERSION ]] && RDEPEND="${RDEPEND} suhosin? (
+=${CATEGORY}/${PN}-${SLOT}*[unicode] )"
 
 DEPEND="${DEPEND}
 	sys-devel/flex
@@ -257,10 +260,9 @@ DEPEND="${DEPEND}
 # They are in PDEPEND because we need PHP installed first!
 PDEPEND="doc? ( app-doc/php-docs )"
 
-[[ -n $SUHOSIN_VERSION ]] && PDEPEND="${PDEPEND} suhosin? ( dev-php${PHP_MV}/suhosin )"
-
-SLOT="$(get_version_component_range 1-2)"
-S="${WORKDIR}/${PHP_P}"
+# No longer depend on the extension. The suhosin USE flag only installs the
+# patch
+#[[ -n $SUHOSIN_VERSION ]] && PDEPEND="${PDEPEND} suhosin? ( dev-php${PHP_MV}/suhosin )"
 
 # Allow users to install production version if they want to
 
@@ -339,7 +341,7 @@ eblit-pkg() {
 
 eblit-pkg pkg_setup v2
 
-src_prepare() { eblit-run src_prepare v2 ; }
+src_prepare() { eblit-run src_prepare v3 ; }
 src_configure() { eblit-run src_configure v2 ; }
 src_compile() { eblit-run src_compile v1 ; }
 src_install() { eblit-run src_install v2 ; }
