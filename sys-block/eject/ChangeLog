@@ -1,6 +1,6 @@
-# ChangeLog for sys-apps/eject
+# ChangeLog for sys-block/eject
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/eject/ChangeLog,v 1.82 2010/09/12 21:15:31 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-block/eject/ChangeLog,v 1.1 2011/03/31 15:31:52 ssuominen Exp $
 
   12 Sep 2010; Jonathan Callen <abcd@gentoo.org> eject-2.1.5-r2.ebuild:
   Add prefix support and keywords, switch to EAPI=3, add missing dep on
