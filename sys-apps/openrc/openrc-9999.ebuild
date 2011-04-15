@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/openrc/openrc-9999.ebuild,v 1.79 2011/03/24 18:49:34 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/openrc/openrc-9999.ebuild,v 1.81 2011/04/15 03:43:47 williamh Exp $
 
 EAPI="1"
 
@@ -132,6 +132,11 @@ src_install() {
 
 	# Cater to the norm
 	set_config_yes_no /etc/conf.d/keymaps windowkeys '(' use x86 '||' use amd64 ')'
+
+	# On HPPA, do not run consolefont by default (bug #222889)
+	if use hppa; then
+		rm -f "${D}"/usr/share/openrc/runlevels/boot/consolefont
+	fi
 
 	# Support for logfile rotation
 	insinto /etc/logrotate.d
@@ -340,11 +345,12 @@ migrate_from_baselayout_1() {
 	fi
 
 	# Handle the conf.d/local.{start,stop} -> local.d transition
-	if path_exists -o "${ROOT}"/etc/conf.d/local.{start,stop} ; then
-		elog "Moving your /etc/conf.d/local.{start,stop} files to /etc/local.d"
-		mv "${ROOT}"/etc/conf.d/local.start "${ROOT}"/local.d/baselayout1.start
-		mv "${ROOT}"/etc/conf.d/local.stop "${ROOT}"/local.d/baselayout1.stop
-		chmod +x "${ROOT}"/local.d/*{start,stop}
+	if path_exists -o "${ROOT}"etc/conf.d/local.{start,stop} ; then
+		elog "Moving your ${ROOT}etc/conf.d/local.{start,stop}"
+		elog "files to ${ROOT}etc/local.d"
+		mv "${ROOT}"etc/conf.d/local.start "${ROOT}"etc/local.d/baselayout1.start
+		mv "${ROOT}"etc/conf.d/local.stop "${ROOT}"etc/local.d/baselayout1.stop
+		chmod +x "${ROOT}"etc/local.d/*{start,stop}
 	fi
 }
 
@@ -406,6 +412,12 @@ pkg_postinst() {
 	if [[ -d ${ROOT}/etc/modules.autoload.d ]] ; then
 		ewarn "/etc/modules.autoload.d is no longer used.  Please convert"
 		ewarn "your files to /etc/conf.d/modules and delete the directory."
+	fi
+
+	if use hppa; then
+		elog "Setting the console font does not work on all HPPA consoles."
+		elog "You can still enable it by running:"
+		elog "# rc-update add consolefont boot"
 	fi
 
 	# update the dependency tree after touching all files #224171
