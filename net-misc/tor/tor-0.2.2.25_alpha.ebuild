@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tor/tor-0.2.2.23_alpha-r1.ebuild,v 1.1 2011/03/25 03:02:12 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/tor/tor-0.2.2.25_alpha.ebuild,v 1.1 2011/04/29 20:11:45 blueness Exp $
 
 EAPI=3
 
@@ -34,7 +34,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.2.1.19-logrotate.patch
 
 	einfo "Regenerating autotools files ..."
-	epatch "${FILESDIR}"/${PN}-0.2.2.23_alpha-respect-CFLAGS.patch
+	epatch "${FILESDIR}"/${PN}-0.2.2.24_alpha-respect-CFLAGS.patch
 	eautoreconf || die "eautoreconf failed"
 }
 
@@ -53,7 +53,7 @@ src_install() {
 
 	dodoc README ChangeLog ReleaseNotes \
 		doc/{HACKING,TODO} \
-		doc/spec/*.txt
+		doc/spec/README
 
 	fperms 750 /var/lib/tor /var/log/tor
 	fperms 755 /var/run/tor

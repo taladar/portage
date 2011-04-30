@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-14.2.ebuild,v 1.2 2010/11/11 13:44:58 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-14.2.2.ebuild,v 1.1 2011/04/29 18:35:24 djc Exp $
 
 EAPI=3
 WX_GTK_VER="2.8"
@@ -16,7 +16,7 @@ inherit elisp-common eutils multilib versionator wxwidgets
 
 # the next line selects the right source.
 ERL_VER=($(get_version_components))
-MY_PV="R$(get_major_version)B${ERL_VER[2]}"
+MY_PV="R$(get_major_version)B0${ERL_VER[2]}"
 
 # ATTN!! Take care when processing the C, etc version!
 MY_P=otp_src_${MY_PV}
@@ -62,18 +62,12 @@ src_prepare() {
 		rm -rf lib/wx
 	fi
 
-	if use hipe; then
-		ewarn
-		ewarn "You enabled High performance Erlang. Be aware that this extension"
-		ewarn "can break the compilation in many ways, especially on hardened systems."
-		ewarn "Don't cry, don't file bugs, just disable it! If you have a fix, tell us though on Bugzilla."
-		ewarn
-	fi
-
 	# Nasty workaround, reported upstream
 	cp "${S}"/lib/configure.in.src "${S}"/lib/configure.in || die
+	epatch "${FILESDIR}/${P}-interface.patch" || die
 
 	# prevent configure from injecting -m32 by default on Darwin, bug #334155
+	# Nasty hack
 	sed -i -e 's/Darwin-i386/Darwin-NO/' configure.in || die
 	sed -i -e '/\<\(LD\|C\)FLAGS="-m32/s/-m32//' erts/configure.in || die
 }
