@@ -1,26 +1,23 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1.3.ebuild,v 1.12 2011/01/10 19:30:03 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.2.0.ebuild,v 1.2 2011/04/30 21:13:19 djc Exp $
 
-EAPI=2
+EAPI=4
 
 inherit eutils multilib toolchain-funcs autotools flag-o-matic
 
-IPV6_VERSION="0.4.11"
+IPV6_VERSION="2.2RC2-ipv6-20110424-2"
 DESCRIPTION="OpenVPN is a robust and highly flexible tunneling application compatible with many OSes."
-SRC_URI="http://openvpn.net/release/${P}.tar.gz
+SRC_URI="http://swupdate.openvpn.net/community/releases/${P}.tar.gz
 		ipv6? (
-			http://cloud.github.com/downloads/jjo/openvpn-ipv6/${PN}-2.1.1-ipv6-${IPV6_VERSION}.patch.gz
-		)
-		eurephia? (
-			mirror://sourceforge/eurephia/${PN}-2.1.0_eurephia.patch
+			http://www.greenie.net/ipv6/openvpn-${IPV6_VERSION}.patch.gz
 		)"
 HOMEPAGE="http://openvpn.net/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd"
-IUSE="eurephia examples iproute2 ipv6 minimal pam passwordsave selinux ssl static pkcs11 userland_BSD"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
+IUSE="examples iproute2 ipv6 minimal pam passwordsave selinux ssl static pkcs11 userland_BSD"
 
 DEPEND=">=dev-libs/lzo-1.07
 	kernel_linux? (
@@ -33,15 +30,13 @@ DEPEND=">=dev-libs/lzo-1.07
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-2.1_rc13-peercred.patch"
 	epatch "${FILESDIR}/${PN}-2.1_rc20-pkcs11.patch"
-	use ipv6 && epatch "${WORKDIR}/${PN}-2.1.1-ipv6-${IPV6_VERSION}.patch"
-	use eurephia && epatch "${DISTDIR}/${PN}-2.1.0_eurephia.patch"
+	use ipv6 && epatch "${WORKDIR}/${PN}-${IPV6_VERSION}.patch"
 	sed -i \
 		-e "s/gcc \${CC_FLAGS}/\${CC} \${CFLAGS} -Wall/" \
 		-e "s/-shared/-shared \${LDFLAGS}/" \
 		plugin/*/Makefile || die "sed failed"
-	if use ipv6 || use eurephia; then
+	if use ipv6; then
 		eautoreconf
 	fi
 }
@@ -115,7 +110,6 @@ src_install() {
 		# dodoc does not supportly support directory traversal, #15193
 		insinto /usr/share/doc/${PF}/examples
 		doins -r sample-{config-files,keys,scripts} contrib
-		prepalldocs
 	fi
 
 	# Install plugins and easy-rsa
