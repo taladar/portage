@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-security/zope-security-3.8.0.ebuild,v 1.1 2010/12/19 17:43:11 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-security/zope-security-3.8.1.ebuild,v 1.1 2011/05/04 20:11:14 arfrever Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
@@ -14,7 +14,7 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Zope Security Framework"
 HOMEPAGE="http://pypi.python.org/pypi/zope.security"
-SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_P}.zip"
+SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_P}.tar.gz"
 
 LICENSE="ZPL"
 SLOT="0"
@@ -32,7 +32,6 @@ RDEPEND="dev-python/pytz
 	net-zope/zope-proxy
 	net-zope/zope-schema"
 DEPEND="${RDEPEND}
-	app-arch/unzip
 	dev-python/setuptools"
 
 S="${WORKDIR}/${MY_P}"
