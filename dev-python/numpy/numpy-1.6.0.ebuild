@@ -1,24 +1,23 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.6.0_beta2.ebuild,v 1.2 2011/04/09 21:20:34 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.6.0.ebuild,v 1.1 2011/05/14 23:19:13 arfrever Exp $
 
 EAPI="3"
 PYTHON_DEPEND="*"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="*-jython"
 
-inherit distutils eutils flag-o-matic toolchain-funcs versionator
+inherit distutils flag-o-matic toolchain-funcs versionator
 
-MYP=${P/_beta/b}
-NP="${PN}-1.5"
+DOC_P="${PN}-1.5"
 
 DESCRIPTION="Fast array and numerical python library"
 HOMEPAGE="http://numpy.scipy.org/ http://pypi.python.org/pypi/numpy"
-SRC_URI="mirror://sourceforge/numpy/${MYP}.tar.gz
+SRC_URI="mirror://sourceforge/numpy/${P}.tar.gz
 	doc? (
-		http://docs.scipy.org/doc/${NP}.x/numpy-html.zip -> ${NP}-html.zip
-		http://docs.scipy.org/doc/${NP}.x/numpy-ref.pdf -> ${NP}-ref.pdf
-		http://docs.scipy.org/doc/${NP}.x/numpy-user.pdf -> ${NP}-user.pdf
+		http://docs.scipy.org/doc/${DOC_P}.x/numpy-html.zip -> ${DOC_P}-html.zip
+		http://docs.scipy.org/doc/${DOC_P}.x/numpy-ref.pdf -> ${DOC_P}-ref.pdf
+		http://docs.scipy.org/doc/${DOC_P}.x/numpy-user.pdf -> ${DOC_P}-user.pdf
 	)"
 
 LICENSE="BSD"
@@ -35,9 +34,10 @@ DEPEND="${RDEPEND}
 
 PYTHON_CFLAGS=("* + -fno-strict-aliasing")
 
-DOCS="COMPATIBILITY DEV_README.txt THANKS.txt"
+# Build system installs f2py${Python_version} scripts.
+PYTHON_NONVERSIONED_EXECUTABLES=("/usr/bin/f2py[[:digit:]]+\.[[:digit:]]+")
 
-S=${WORKDIR}/${MYP}
+DOCS="COMPATIBILITY DEV_README.txt THANKS.txt"
 
 pkg_setup() {
 	python_pkg_setup
@@ -45,34 +45,31 @@ pkg_setup() {
 	# See progress in http://projects.scipy.org/scipy/numpy/ticket/573
 	# with the subtle difference that we don't want to break Darwin where
 	# -shared is not a valid linker argument
-	if [[ ${CHOST} != *-darwin* ]] ; then
+	if [[ ${CHOST} != *-darwin* ]]; then
 		append-ldflags -shared
 	fi
 
 	# only one fortran to link with:
 	# linking with cblas and lapack library will force
 	# autodetecting and linking to all available fortran compilers
-	use lapack || return
-	[[ -z ${FC} ]] && FC=$(tc-getFC)
-	# when fortran flags are set, pic is removed.
-	FFLAGS="${FFLAGS} -fPIC"
-	NUMPY_FCONFIG="config_fc --noopt --noarch"
-	# workaround bug 335908
-	[[ ${FC} == *gfortran* ]] && NUMPY_FCONFIG="${NUMPY_FCONFIG} --fcompiler=gnu95"
-	export NUMPY_FCONFIG
+	if use lapack; then
+		[[ -z ${FC} ]] && FC=$(tc-getFC)
+		# when fortran flags are set, pic is removed.
+		FFLAGS="${FFLAGS} -fPIC"
+		NUMPY_FCONFIG="config_fc --noopt --noarch"
+		# workaround bug 335908
+		[[ ${FC} == *gfortran* ]] && NUMPY_FCONFIG+=" --fcompiler=gnu95"
+	fi
 }
 
 src_unpack() {
-	unpack ${MYP}.tar.gz
+	unpack ${P}.tar.gz
 	if use doc; then
-		unzip -qo "${DISTDIR}"/${NP}-html.zip -d html || die
+		unzip -qo "${DISTDIR}"/${DOC_P}-html.zip -d html || die
 	fi
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-1.1.0-f2py.patch"
-	#epatch "${FILESDIR}/${PN}-1.3.0-fenv-freebsd.patch" # Bug #279487
-
 	# Gentoo patch for ATLAS library names
 	sed -i \
 		-e "s:'f77blas':'blas':g" \
@@ -126,7 +123,7 @@ src_test() {
 			--home="${S}/test-${PYTHON_ABI}" --no-compile || die "install test failed"
 		pushd "${S}/test-${PYTHON_ABI}/"lib* > /dev/null
 		PYTHONPATH=python "$(PYTHON)" -c "import numpy; numpy.test()" 2>&1 | tee test.log
-		grep -Eq '^(ERROR|FAIL):' test.log && return 1
+		grep -Eq "^(ERROR|FAIL):" test.log && return 1
 		popd > /dev/null
 		rm -fr test-${PYTHON_ABI}
 	}
@@ -148,6 +145,6 @@ src_install() {
 	if use doc; then
 		insinto /usr/share/doc/${PF}
 		doins -r "${WORKDIR}"/html || die
-		doins  "${DISTDIR}"/${NP}*pdf || die
+		doins  "${DISTDIR}"/${DOC_P}*pdf || die
 	fi
 }
