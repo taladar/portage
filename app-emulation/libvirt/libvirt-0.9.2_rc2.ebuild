@@ -1,43 +1,39 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/libvirt/libvirt-9999.ebuild,v 1.5 2011/06/03 22:21:55 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/libvirt/libvirt-0.9.2_rc2.ebuild,v 1.2 2011/06/03 22:21:55 cardoe Exp $
 
 #BACKPORTS=1
+#AUTOTOOLIZE=yes
 
 EAPI="2"
 
-if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://libvirt.org/libvirt.git"
-	GIT_ECLASS="git"
-	AUTOTOOLIZE=yes
-fi
+MY_P="${P/_rc/-rc}"
 
 PYTHON_DEPEND="python? 2:2.4"
 #RESTRICT_PYTHON_ABIS="3.*"
 #SUPPORT_PYTHON_ABIS="1"
 
-inherit eutils python ${AUTOTOOLIZE+autotools} ${GIT_ECLASS}
-
-if [[ ${PV} = *9999* ]]; then
-	SRC_URI=""
-	KEYWORDS=""
-else
-	SRC_URI="http://libvirt.org/sources/${P}.tar.gz
-	${BACKPORTS:+
-		http://dev.gentoo.org/~flameeyes/${PN}/${P}-backports-${BACKPORTS}.tar.bz2
-		http://dev.gentoo.org/~cardoe/${PN}/${P}-backports-${BACKPORTS}.tar.bz2}"
-	KEYWORDS="~amd64 ~x86"
-fi
+inherit eutils python ${AUTOTOOLIZE+autotools}
 
 DESCRIPTION="C toolkit to manipulate virtual machines"
 HOMEPAGE="http://www.libvirt.org/"
+SRC_URI="http://libvirt.org/sources/${MY_P}.tar.gz
+	ftp://libvirt.org/libvirt/${MY_P}.tar.gz
+	${BACKPORTS:+
+		http://dev.gentoo.org/~flameeyes/${PN}/${MY_P}-backports-${BACKPORTS}.tar.bz2
+		http://dev.gentoo.org/~cardoe/${PN}/${MY_P}-backports-${BACKPORTS}.tar.bz2}"
+S="${WORKDIR}/${P%_rc*}"
+
 LICENSE="LGPL-2.1"
 SLOT="0"
+KEYWORDS="~amd64 ~x86"
 IUSE="avahi caps debug iscsi +json +libvirtd lvm +lxc macvtap nfs \
 	nls numa openvz parted pcap phyp policykit python qemu sasl selinux udev \
 	uml virtualbox virt-network xen"
 # IUSE=one : bug #293416 & bug #299011
 
+# gettext.sh command is used by the libvirt command wrappers, and it's
+# non-optional, so put it into RDEPEND.
 RDEPEND="sys-libs/readline
 	sys-libs/ncurses
 	>=net-misc/curl-7.18.0
@@ -46,11 +42,12 @@ RDEPEND="sys-libs/readline
 	>=net-libs/gnutls-1.0.25
 	sys-fs/sysfsutils
 	sys-apps/util-linux
+	sys-devel/gettext
 	>=net-analyzer/netcat6-1.0-r2
 	avahi? ( >=net-dns/avahi-0.6[dbus] )
 	caps? ( sys-libs/libcap-ng )
 	iscsi? ( sys-block/open-iscsi )
-	json? ( dev-libs/yajl )
+	json? ( =dev-libs/yajl-1* )
 	libvirtd? ( net-misc/bridge-utils )
 	lvm? ( >=sys-fs/lvm2-2.02.48-r2 )
 	macvtap? ( >=dev-libs/libnl-1.1 )
@@ -76,8 +73,7 @@ RDEPEND="sys-libs/readline
 		sys-apps/iproute2 )"
 # one? ( dev-libs/xmlrpc-c )
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
-	nls? ( sys-devel/gettext )"
+	dev-util/pkgconfig"
 
 pkg_setup() {
 	python_set_active_version 2
@@ -87,16 +83,6 @@ src_prepare() {
 	[[ -n ${BACKPORTS} ]] && \
 		EPATCH_FORCE=yes EPATCH_SUFFIX="patch" EPATCH_SOURCE="${S}/patches" \
 			epatch
-
-	# This is required to be able to run the tests when using the sandbox
-	if [[ ${LD_PRELOAD} == libsandbox.so ]]; then
-		sed -i -e '/LOGNAME/iENV:LD_PRELOAD=libsandbox.so' \
-			"${S}"/tests/commanddata/*.log || die
-		sed -i -e '/DISPLAY/aENV:LD_PRELOAD=libsandbox.so' \
-			"${S}"/tests/commanddata/test6.log || die
-		sed -i -e '/LANG/aENV:LD_PRELOAD=libsandbox.so' \
-			"${S}"/tests/commanddata/test8.log || die
-	fi
 
 	[[ -n ${AUTOTOOLIZE} ]] && eautoreconf
 }
@@ -153,7 +139,7 @@ src_configure() {
 	myconf="${myconf} $(use_with policykit polkit)"
 	myconf="${myconf} $(use_with sasl)"
 
-	# network biits
+	# network bits
 	myconf="${myconf} $(use_with macvtap)"
 	myconf="${myconf} $(use_with pcap libpcap)"
 
