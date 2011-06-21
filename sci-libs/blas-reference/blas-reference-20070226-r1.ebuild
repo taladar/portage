@@ -1,10 +1,10 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/blas-reference-20070226-r1.ebuild,v 1.6 2011/05/28 11:10:33 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/blas-reference-20070226-r1.ebuild,v 1.9 2011/06/21 15:41:52 jlec Exp $
 
-EAPI="3"
+EAPI=3
 
-inherit eutils autotools multilib flag-o-matic toolchain-funcs
+inherit eutils fortran-2 autotools multilib flag-o-matic toolchain-funcs
 
 LAPACKPV="3.1.1"
 LAPACKPN="lapack-lite"
@@ -19,8 +19,8 @@ KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sparc ~x86 ~x86-fbsd ~amd
 IUSE="doc"
 
 DEPEND="
-	app-admin/eselect-blas
-	virtual/fortran"
+	virtual/fortran
+	app-admin/eselect-blas"
 RDEPEND="${DEPEND}
 	doc? ( app-doc/blas-docs )"
 
