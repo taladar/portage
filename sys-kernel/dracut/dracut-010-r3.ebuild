@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/dracut/dracut-010-r1.ebuild,v 1.3 2011/06/23 10:38:17 aidecoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/dracut/dracut-010-r3.ebuild,v 1.1 2011/06/30 21:23:39 aidecoe Exp $
 
 EAPI=2
 
@@ -40,7 +40,8 @@ IUSE_DRACUT_MODULES="${COMMON_MODULES} ${DM_MODULES} ${NETWORK_MODULES}"
 IUSE="debug selinux ${IUSE_DRACUT_MODULES}"
 RESTRICT="test"
 
-NETWORK_DEPS="net-misc/bridge-utils >=net-misc/dhcp-4.2.1-r1 sys-apps/iproute2"
+NETWORK_DEPS="net-misc/bridge-utils >=net-misc/dhcp-4.2.1-r1 sys-apps/iproute2
+	net-misc/ifenslave"
 DM_DEPS="|| ( sys-fs/device-mapper >=sys-fs/lvm2-2.02.33 )"
 
 RDEPEND="
@@ -129,6 +130,8 @@ base_sys_maj_ver() {
 src_prepare() {
 	epatch "${FILESDIR}/${P}-multipath-udev-rules.patch"
 	epatch "${FILESDIR}/${P}-empty-etc-ld.so.conf.d.patch"
+	epatch "${FILESDIR}/${P}-rd.driver.post-fixed.patch"
+	epatch "${FILESDIR}/${P}-rd.driver.pre-and-blacklist-fix.patch"
 }
 
 src_compile() {
