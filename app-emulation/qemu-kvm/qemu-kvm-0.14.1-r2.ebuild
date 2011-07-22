@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/qemu-kvm-0.14.1-r1.ebuild,v 1.4 2011/06/11 04:29:39 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/qemu-kvm-0.14.1-r2.ebuild,v 1.1 2011/07/21 20:52:11 cardoe Exp $
 
-BACKPORTS=1
+BACKPORTS=2
 
 EAPI="2"
 
@@ -34,16 +34,21 @@ png pulseaudio qemu-ifup rbd sasl sdl spice ssl threads vde \
 # static, depends on libsdl being built with USE=static-libs, which can not
 # be expressed in current EAPI's
 
-COMMON_TARGETS="i386 x86_64 arm cris m68k microblaze mips mipsel ppc ppc64 sh4 sh4eb sparc sparc64"
+COMMON_TARGETS="arm cris m68k microblaze mips mipsel ppc ppc64 sh4 sh4eb sparc sparc64"
 IUSE_SOFTMMU_TARGETS="${COMMON_TARGETS} mips64 mips64el ppcemb"
-IUSE_USER_TARGETS="${COMMON_TARGETS} alpha armeb ppc64abi32 sparc32plus"
+IUSE_USER_TARGETS="${COMMON_TARGETS} i386 x86_64 alpha armeb ppc64abi32 sparc32plus"
+
+# Setup the default SoftMMU targets, while using the loops
+# below to setup the other targets. i386 & x86_64 should be the only
+# defaults on for qemu-kvm
+IUSE="${IUSE} +qemu_softmmu_targets_i386 +qemu_softmmu_targets_x86_64"
 
 for target in ${IUSE_SOFTMMU_TARGETS}; do
-	IUSE="${IUSE} +qemu_softmmu_targets_${target}"
+	IUSE="${IUSE} qemu_softmmu_targets_${target}"
 done
 
 for target in ${IUSE_USER_TARGETS}; do
-	IUSE="${IUSE} +qemu_user_targets_${target}"
+	IUSE="${IUSE} qemu_user_targets_${target}"
 done
 
 RESTRICT="test"
