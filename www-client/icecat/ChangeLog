@@ -1,6 +1,14 @@
 # ChangeLog for www-client/icecat
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/icecat/ChangeLog,v 1.96 2011/08/22 07:57:13 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/icecat/ChangeLog,v 1.98 2011/08/23 22:21:44 polynomial-c Exp $
+
+  23 Aug 2011; Lars Wendler <polynomial-c@gentoo.org> icecat-6.0.ebuild:
+  Added ${EPREFIX} where necessary.
+
+  23 Aug 2011; Lars Wendler <polynomial-c@gentoo.org> icecat-3.6.16-r1.ebuild,
+  icecat-3.6.16-r2.ebuild, icecat-3.6.16-r3.ebuild:
+  Fixed dependency on dev-db/sqlite. Thanks to John Gibson who reported this in
+  bug #375217.
 
 *icecat-6.0 (22 Aug 2011)
 
