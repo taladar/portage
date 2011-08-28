@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-2.1.10.11.ebuild,v 1.3 2011/08/27 11:29:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-2.1.10.11.ebuild,v 1.5 2011/08/27 19:23:49 jer Exp $
 
 # Require EAPI 2 since we now require at least python-2.6 (for python 3
 # syntax support) which also requires EAPI 2.
@@ -10,7 +10,7 @@ inherit eutils multilib python
 DESCRIPTION="Portage is the package management and distribution system for Gentoo"
 HOMEPAGE="http://www.gentoo.org/proj/en/portage/index.xml"
 LICENSE="GPL-2"
-KEYWORDS="alpha amd64 arm ~hppa ia64 m68k ~mips ~ppc ~ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ~ppc ~ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd"
 SLOT="0"
 IUSE="build doc epydoc +ipc +less linguas_pl python2 python3 selinux"
 
@@ -317,6 +317,17 @@ pkg_preinst() {
 	fi
 	if [ -f "${ROOT}/etc/make.globals" ]; then
 		rm "${ROOT}/etc/make.globals"
+	fi
+
+	if [[ -d ${ROOT}var/log/portage && \
+		$(ls -ld "${ROOT}var/log/portage") != *" portage portage "* ]] && \
+		has_version '<sys-apps/portage-2.1.10.11' ; then
+		# Initialize permissions for bug #378451 and bug #377177, since older
+		# portage does not create /var/log/portage with the desired default
+		# permissions.
+		einfo "Applying portage group permission to ${ROOT}var/log/portage for bug #378451"
+		chown portage:portage "${ROOT}var/log/portage"
+		chmod g+ws "${ROOT}var/log/portage"
 	fi
 
 	[[ -n $PORTDIR_OVERLAY ]] && has_version "<${CATEGORY}/${PN}-2.1.6.12"
