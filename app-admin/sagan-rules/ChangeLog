@@ -1,0 +1,18 @@
+# ChangeLog for app-admin/sagan-rules
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/sagan-rules/ChangeLog,v 1.2 2011/08/31 12:00:09 maksbotan Exp $
+
+  31 Aug 2011; Maxim Koltsov <maksbotan@gentoo.org>
+  sagan-rules-22082011.ebuild:
+  Modify sagan-rules ebuild to fetch them from my devspace, not from always
+  changing upstream location.
+
+*sagan-rules-999999999999 (31 Aug 2011)
+*sagan-rules-22082011 (31 Aug 2011)
+*sagan-rules-03172011 (31 Aug 2011)
+
+  31 Aug 2011; Maxim Koltsov <maksbotan@gentoo.org>
+  +sagan-rules-03172011.ebuild, +sagan-rules-22082011.ebuild,
+  +sagan-rules-999999999999.ebuild, +metadata.xml:
+  Copy app-admin/sagan-rules from rion-overlay, thanks to slepnoga. Bug 341465
+
