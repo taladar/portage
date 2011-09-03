@@ -1,6 +1,20 @@
 # ChangeLog for app-misc/ca-certificates
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.46 2011/09/01 14:14:07 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.48 2011/09/02 19:08:32 darkside Exp $
+
+  02 Sep 2011; Jeremy Olexa <darkside@gentoo.org>
+  ca-certificates-20110502-r2.ebuild:
+  Add Gentoo Prefix support, convert to EAPI3, use prefix variables, modify
+  ROOT variable in update-ca-certificates script. Signed off by maintainer with
+  discussion
+
+*ca-certificates-20110502-r2 (02 Sep 2011)
+
+  02 Sep 2011; Mike Frysinger <vapier@gentoo.org>
+  +files/ca-certificates-20090709-root.patch,
+  +ca-certificates-20110502-r2.ebuild:
+  Move the config file generation to src_compile for most people to make
+  binpkgs easier to deploy.
 
   01 Sep 2011; Tony Vroon <chainsaw@gentoo.org>
   ca-certificates-20110502-r1.ebuild:
