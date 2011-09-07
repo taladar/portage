@@ -1,6 +1,15 @@
 # ChangeLog for sys-boot/unetbootin
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/unetbootin/ChangeLog,v 1.62 2011/06/08 16:34:25 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/unetbootin/ChangeLog,v 1.64 2011/09/06 18:48:30 jer Exp $
+
+  06 Sep 2011; Jeroen Roovers <jer@gentoo.org> unetbootin-549.ebuild,
+  unetbootin-555.ebuild:
+  Install icons in the right directories by Cyril (bug #382063).
+
+*unetbootin-555 (06 Sep 2011)
+
+  06 Sep 2011; Jeroen Roovers <jer@gentoo.org> +unetbootin-555.ebuild:
+  Version bump.
 
   08 Jun 2011; Jeroen Roovers <jer@gentoo.org> -unetbootin-502.ebuild:
   ^^^^
