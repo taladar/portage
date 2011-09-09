@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/chromium/chromium-15.0.861.0.ebuild,v 1.1 2011/08/26 20:56:05 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/chromium/chromium-14.0.835.159.ebuild,v 1.1 2011/09/09 02:36:29 floppym Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2:2.6"
@@ -15,7 +15,7 @@ SRC_URI="http://build.chromium.org/official/${P}.tar.bz2"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="chromedriver cups gnome gnome-keyring kerberos pulseaudio"
+IUSE="cups gnome gnome-keyring kerberos"
 
 # en_US is ommitted on purpose from the list below. It must always be available.
 LANGS="am ar bg bn ca cs da de el en_GB es es_LA et fa fi fil fr gu he hi hr
@@ -40,7 +40,6 @@ RDEPEND="app-arch/bzip2
 	media-libs/libpng
 	>=media-libs/libwebp-0.1.2
 	media-libs/speex
-	pulseaudio? ( media-sound/pulseaudio )
 	cups? (
 		dev-libs/libgcrypt
 		>=net-print/cups-1.3.11
@@ -49,8 +48,7 @@ RDEPEND="app-arch/bzip2
 	x11-libs/gtk+:2
 	x11-libs/libXinerama
 	x11-libs/libXScrnSaver
-	x11-libs/libXtst
-	kerberos? ( virtual/krb5 )"
+	x11-libs/libXtst"
 DEPEND="${RDEPEND}
 	dev-lang/perl
 	>=dev-util/gperf-3.0.3
@@ -61,8 +59,10 @@ DEPEND="${RDEPEND}
 	test? (
 		dev-python/pyftpdlib
 		dev-python/simplejson
+		virtual/krb5
 	)"
 RDEPEND+="
+	kerberos? ( virtual/krb5 )
 	x11-misc/xdg-utils
 	virtual/ttf-fonts"
 
@@ -116,13 +116,11 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# bug #374903 - ICU 4.8 compatibility
+	epatch "${FILESDIR}/${PN}-icu-compatibility-r0.patch"
+
 	# Fix build with system libevent, to be upstreamed.
-	epatch "${FILESDIR}/${PN}-system-libevent-r1.patch"
-
-	# Backport upstream fix for using system Kerberos header.
-	epatch "${FILESDIR}/${PN}-kerberos-r0.patch"
-
-	cp "${FILESDIR}/nacl.gypi" chrome/ || die
+	epatch "${FILESDIR}/${PN}-system-libevent-r0.patch"
 
 	# Remove most bundled libraries. Some are still needed.
 	find third_party -type f \! -iname '*.gyp*' \
@@ -139,13 +137,11 @@ src_prepare() {
 		\! -path 'third_party/iccjpeg/*' \
 		\! -path 'third_party/launchpad_translations/*' \
 		\! -path 'third_party/leveldb/*' \
-		\! -path 'third_party/leveldatabase/*' \
 		\! -path 'third_party/libjingle/*' \
 		\! -path 'third_party/libphonenumber/*' \
 		\! -path 'third_party/libvpx/*' \
 		\! -path 'third_party/mesa/*' \
 		\! -path 'third_party/modp_b64/*' \
-		\! -path 'third_party/mongoose/*' \
 		\! -path 'third_party/npapi/*' \
 		\! -path 'third_party/openmax/*' \
 		\! -path 'third_party/ots/*' \
@@ -157,8 +153,6 @@ src_prepare() {
 		\! -path 'third_party/tcmalloc/*' \
 		\! -path 'third_party/tlslite/*' \
 		\! -path 'third_party/undoview/*' \
-		\! -path 'third_party/v8-i18n/*' \
-		\! -path 'third_party/webdriver/*' \
 		\! -path 'third_party/webgl_conformance/*' \
 		\! -path 'third_party/webrtc/*' \
 		\! -path 'third_party/yasm/*' \
@@ -204,14 +198,11 @@ src_configure() {
 		-Duse_system_zlib=1"
 
 	# Optional dependencies.
-	# TODO: linux_link_kerberos
 	myconf+="
 		$(gyp_use cups use_cups)
 		$(gyp_use gnome use_gconf)
 		$(gyp_use gnome-keyring use_gnome_keyring)
-		$(gyp_use gnome-keyring linux_link_gnome_keyring)
-		$(gyp_use kerberos use_kerberos)
-		$(gyp_use pulseaudio use_pulseaudio)"
+		$(gyp_use gnome-keyring linux_link_gnome_keyring)"
 
 	# Enable sandbox.
 	myconf+="
@@ -257,9 +248,6 @@ src_configure() {
 src_compile() {
 	emake chrome chrome_sandbox BUILDTYPE=Release V=1 || die
 	pax-mark m out/Release/chrome
-	if use chromedriver; then
-		emake chromedriver BUILDTYPE=Release V=1 || die
-	fi
 	if use test; then
 		emake {base,crypto,googleurl,net}_unittests BUILDTYPE=Release V=1 || die
 		pax-mark m out/Release/{base,crypto,googleurl,net}_unittests
@@ -290,21 +278,16 @@ src_test() {
 	LC_ALL="${mylocale}" VIRTUALX_COMMAND=out/Release/googleurl_unittests virtualmake
 
 	# NetUtilTest: bug #361885.
-	# NetUtilTest.GenerateFileName: some locale-related mismatch.
 	# UDP: unstable, active development. We should revisit this later.
 	LC_ALL="${mylocale}" VIRTUALX_COMMAND=out/Release/net_unittests virtualmake \
-		'--gtest_filter=-NetUtilTest.IDNToUnicode*:NetUtilTest.FormatUrl*:NetUtilTest.GenerateFileName:*UDP*'
+		'--gtest_filter=-NetUtilTest.IDNToUnicode*:NetUtilTest.FormatUrl*:*UDP*'
 }
 
 src_install() {
 	exeinto "${CHROMIUM_HOME}"
-	doexe out/Release/chrome || die
+	doexe out/Release/chrome
 	doexe out/Release/chrome_sandbox || die
 	fperms 4755 "${CHROMIUM_HOME}/chrome_sandbox"
-
-	if use chromedriver; then
-		doexe out/Release/chromedriver || die
-	fi
 
 	# Install Native Client files on platforms that support it.
 	# insinto "${CHROMIUM_HOME}"
@@ -385,11 +368,11 @@ src_install() {
 	# dosym /usr/$(get_libdir)/libavcodec.so.52 "${CHROMIUM_HOME}" || die
 	# dosym /usr/$(get_libdir)/libavformat.so.52 "${CHROMIUM_HOME}" || die
 	# dosym /usr/$(get_libdir)/libavutil.so.50 "${CHROMIUM_HOME}" || die
+	doexe out/Release/ffmpegsumo_nolink || die
 	doexe out/Release/libffmpegsumo.so || die
 
 	# Install icons and desktop entry.
-	# size 64: bug #378777.
-	for SIZE in 16 22 24 32 48 128 256 ; do
+	for SIZE in 16 22 24 32 48 64 128 256 ; do
 		insinto /usr/share/icons/hicolor/${SIZE}x${SIZE}/apps
 		newins chrome/app/theme/chromium/product_logo_${SIZE}.png \
 			chromium-browser.png || die
