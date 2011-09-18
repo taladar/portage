@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5707 2011/09/17 14:24:25 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5710 2011/09/18 03:20:10 volkmar Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  18 Sep 2011; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  pmask www-plugins/weave for removal.
+
+  17 Sep 2011; Joerg Bornkessel <hd_brummy@gentoo.org> package.mask:
+  pmask live ebuild media-plugins/xbmc-addon-xvdr-9999
+
+  17 Sep 2011; Aaron W. Swenson <titanofold@gentoo.org> package.mask:
+  Pre-release versions removed from tree.
 
   17 Sep 2011; Samuli Suominen <ssuominen@gentoo.org> package.mask:
   Insert app-pda/gtkpod >= 2.1.0 mask next to required dev-util/anjuta >= 3
