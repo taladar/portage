@@ -1,6 +1,14 @@
 # ChangeLog for media-video/vlc
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/ChangeLog,v 1.739 2011/09/08 18:57:26 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/ChangeLog,v 1.741 2011/09/21 15:52:18 aballier Exp $
+
+  21 Sep 2011; Alexis Ballier <aballier@gentoo.org> vlc-1.1.11.ebuild:
+  fix zlib dep, bug #383351; for now we will force to use the older version
+  until bug #383179 is sorted out with respective upstreams
+
+  21 Sep 2011; Michał Górny <mgorny@gentoo.org> vlc-1.1.9999.ebuild,
+  vlc-9999.ebuild:
+  Migrate to git-2.
 
   08 Sep 2011; Alexis Ballier <aballier@gentoo.org> vlc-9999.ebuild:
   add libsamplerate useflag
