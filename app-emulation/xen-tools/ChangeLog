@@ -1,6 +1,17 @@
 # ChangeLog for app-emulation/xen-tools
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen-tools/ChangeLog,v 1.94 2011/09/25 19:45:22 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen-tools/ChangeLog,v 1.96 2011/09/27 22:50:08 chainsaw Exp $
+
+  27 Sep 2011; Tony Vroon <chainsaw@gentoo.org> xen-tools-3.4.2-r5.ebuild:
+  Patch by Ian "idella4" Delaney closes bug #384349 by Agostino "ago" Sarubbo.
+
+*xen-tools-3.4.2-r5 (27 Sep 2011)
+
+  27 Sep 2011; Tony Vroon <chainsaw@gentoo.org> -xen-tools-3.4.2-r4.ebuild,
+  +xen-tools-3.4.2-r5.ebuild, +files/xen-tools-3.4.2-ldflags-respect.patch:
+  Proxy commit for Ian "idella4" Delaney. LDFLAGS respect closes bug #384351.
+  Removal of static libraries closes bug #384355. Use toolchain function
+  instead of calling LD directly, closes bug #384359.
 
 *xen-tools-3.4.2-r4 (25 Sep 2011)
 
