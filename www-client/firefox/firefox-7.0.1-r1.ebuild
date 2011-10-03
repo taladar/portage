@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/icecat/icecat-6.0.ebuild,v 1.3 2011/09/28 11:15:25 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/firefox/firefox-7.0.1-r1.ebuild,v 1.1 2011/10/02 21:40:28 anarchy Exp $
 
 EAPI="3"
 VIRTUALX_REQUIRED="pgo"
@@ -12,20 +12,20 @@ MAJ_FF_PV="$(get_version_component_range 1-2)" # 3.5, 3.6, 4.0, etc.
 FF_PV="${PV/_alpha/a}" # Handle alpha for SRC_URI
 FF_PV="${FF_PV/_beta/b}" # Handle beta for SRC_URI
 FF_PV="${FF_PV/_rc/rc}" # Handle rc for SRC_URI
-PATCH="firefox-6.0-patches-0.1"
+CHANGESET="e56ecd8b3a68"
+PATCH="${PN}-7.0-patches-0.5"
 
-DESCRIPTION="GNU project's edition of Mozilla Firefox"
-HOMEPAGE="http://www.gnu.org/software/gnuzilla/"
+DESCRIPTION="Firefox Web Browser"
+HOMEPAGE="http://www.mozilla.com/firefox"
 
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="+crashreporter +methodjit +ipc pgo system-sqlite +webm"
+IUSE="bindist +crashreporter +ipc pgo system-sqlite +webm"
 
+FTP_URI="ftp://ftp.mozilla.org/pub/firefox/releases/"
 # More URIs appended below...
-SRC_URI="mirror://gnu/gnuzilla/${FF_PV}/${PN}-${FF_PV}.tar.bz2
-	http://dev.gentoo.org/~anarchy/mozilla/patchsets/${PATCH}.tar.bz2"
-LANGPACK_URI="http://gnuzilla.gnu.org/download/langpacks/${FF_PV}"
+SRC_URI="http://dev.gentoo.org/~anarchy/mozilla/patchsets/${PATCH}.tar.xz"
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
@@ -34,7 +34,7 @@ RDEPEND="
 	>=sys-devel/binutils-2.16.1
 	>=dev-libs/nss-3.12.10
 	>=dev-libs/nspr-4.8.8
-	>=dev-libs/glib-2.26
+	>=dev-libs/glib-2.26:2
 	>=media-libs/mesa-7.10
 	media-libs/libpng[apng]
 	virtual/libffi
@@ -51,54 +51,74 @@ DEPEND="${RDEPEND}
 	webm? ( x86? ( ${ASM_DEPEND} )
 		amd64? ( ${ASM_DEPEND} ) )"
 
+# No source releases for alpha|beta
+if [[ ${PV} =~ alpha ]]; then
+	SRC_URI="${SRC_URI}
+		http://dev.gentoo.org/~anarchy/mozilla/firefox/firefox-${FF_PV}_${CHANGESET}.source.tar.bz2"
+	S="${WORKDIR}/mozilla-central"
+elif [[ ${PV} =~ beta ]]; then
+	SRC_URI="${SRC_URI}
+		${FTP_URI}/${FF_PV}/source/firefox-${FF_PV}.source.tar.bz2"
+	S="${WORKDIR}/mozilla-beta"
+else
+	SRC_URI="${SRC_URI}
+		${FTP_URI}/${FF_PV}/source/firefox-${FF_PV}.source.tar.bz2"
+	S="${WORKDIR}/mozilla-release"
+fi
+
 # No language packs for alphas
 if ! [[ ${PV} =~ alpha|beta ]]; then
 	# This list can be updated with scripts/get_langs.sh from mozilla overlay
-	LANGS="af ak ar ast be bg bn-BD bn-IN br bs ca cs cy da de
-	el en eo es-ES et eu fa fi fr fy-NL ga-IE gd gl gu-IN
-	he hi-IN hr hu hy-AM id is it ja kk kn ko ku lg lt lv mai mk
-	ml mr nb-NO nl nn-NO nso or pa-IN pl pt-PT rm ro ru si sk sl
-	son sq sr sv-SE ta ta-LK te th tr uk vi zu"
-	NOSHORTLANGS="en-GB en-ZA es-AR es-CL es-MX pt-BR zh-CN zh-TW"
+	LANGS=(af ak ar ast be bg bn-BD bn-IN br bs ca cs cy da de el en en-GB en-US
+	en-ZA eo es-AR es-CL es-ES es-MX et eu fa fi fr fy-NL ga-IE gd gl gu-IN he
+	hi-IN hr hu hy-AM id is it ja kk kn ko ku lg lt lv mai mk ml mr nb-NO nl
+	nn-NO nso or pa-IN pl pt-BR pt-PT rm ro ru si sk sl son sq sr sv-SE ta ta-LK
+	te th tr uk vi zh-CN zh-TW zu)
 
-	for X in ${LANGS} ; do
-		if [ "${X}" != "en" ] && [ "${X}" != "en-US" ]; then
+	for X in "${LANGS[@]}" ; do
+		# en and en_US are handled internally
+		if [[ ${X} != en ]] && [[ ${X} != en-US ]]; then
 			SRC_URI="${SRC_URI}
-				linguas_${X/-/_}? ( ${LANGPACK_URI}/${X}.xpi -> ${P}-${X}.xpi )"
+				linguas_${X/-/_}? ( ${FTP_URI}/${FF_PV}/linux-i686/xpi/${X}.xpi -> ${P}-${X}.xpi )"
 		fi
 		IUSE="${IUSE} linguas_${X/-/_}"
-		# english is handled internally
-		if [ "${#X}" == 5 ] && ! has ${X} ${NOSHORTLANGS}; then
-			if [ "${X}" != "en-US" ]; then
-				SRC_URI="${SRC_URI}
-					linguas_${X%%-*}? ( ${LANGPACK_URI}/${X}.xpi -> ${P}-${X}.xpi )"
-			fi
+		# Install all the specific locale xpis if there's no generic locale xpi
+		# Example: there's no pt.xpi, so install all pt-*.xpi
+		if ! has ${X%%-*} "${LANGS[@]}"; then
+			SRC_URI="${SRC_URI}
+				linguas_${X%%-*}? ( ${FTP_URI}/${FF_PV}/linux-i686/xpi/${X}.xpi -> ${P}-${X}.xpi )"
 			IUSE="${IUSE} linguas_${X%%-*}"
 		fi
 	done
 fi
 
-QA_PRESTRIPPED="usr/$(get_libdir)/${PN}/${PN}"
+QA_PRESTRIPPED="usr/$(get_libdir)/${PN}/firefox"
 
+# TODO: Move all the linguas crap to an eclass
 linguas() {
-	local LANG SLANG
-	for LANG in ${LINGUAS}; do
-		if has ${LANG} en en_US; then
-			has en ${linguas} || linguas="${linguas:+"${linguas} "}en"
+	# Generate the list of language packs called "linguas"
+	# This list is used to install the xpi language packs
+	local LINGUA
+	for LINGUA in ${LINGUAS}; do
+		if has ${LINGUA} en en_US; then
+			# For mozilla products, en and en_US are handled internally
 			continue
-		elif has ${LANG} ${LANGS//-/_}; then
-			has ${LANG//_/-} ${linguas} || linguas="${linguas:+"${linguas} "}${LANG//_/-}"
+		# If this language is supported by ${P},
+		elif has ${LINGUA} "${LANGS[@]//-/_}"; then
+			# Add the language to linguas, if it isn't already there
+			has ${LINGUA//_/-} "${linguas[@]}" || linguas+=(${LINGUA//_/-})
 			continue
-		elif [[ " ${LANGS} " == *" ${LANG}-"* ]]; then
-			for X in ${LANGS}; do
-				if [[ "${X}" == "${LANG}-"* ]] && \
-					[[ " ${NOSHORTLANGS} " != *" ${X} "* ]]; then
-					has ${X} ${linguas} || linguas="${linguas:+"${linguas} "}${X}"
+		# For each short LINGUA that isn't in LANGS,
+		# add *all* long LANGS to the linguas list
+		elif ! has ${LINGUA%%-*} "${LANGS[@]}"; then
+			for LANG in "${LANGS[@]}"; do
+				if [[ ${LANG} == ${LINGUA}-* ]]; then
+					has ${LANG} "${linguas[@]}" || linguas+=(${LANG})
 					continue 2
 				fi
 			done
 		fi
-		ewarn "Sorry, but ${P} does not support the ${LANG} LINGUA"
+		ewarn "Sorry, but ${P} does not support the ${LINGUA} locale"
 	done
 }
 
@@ -114,13 +134,15 @@ pkg_setup() {
 		XDG_SESSION_COOKIE \
 		XAUTHORITY
 
-	if ! use methodjit ; then
+	if ! use bindist; then
 		einfo
-		ewarn "You are disabling the method-based JIT in JägerMonkey."
-		ewarn "This will greatly slowdown JavaScript in ${PN}!"
+		elog "You are enabling official branding. You may not redistribute this build"
+		elog "to any users on your network or the internet. Doing so puts yourself into"
+		elog "a legal problem with Mozilla Foundation"
+		elog "You can disable it by emerging ${PN} _with_ the bindist USE-flag"
 	fi
 
-	if use pgo ; then
+	if use pgo; then
 		einfo
 		ewarn "You will do a double build for profile guided optimization."
 		ewarn "This will result in your build taking at least twice as long as before."
@@ -131,31 +153,20 @@ src_unpack() {
 	unpack ${A}
 
 	linguas
-	for X in ${linguas}; do
+	for X in "${linguas[@]}"; do
 		# FIXME: Add support for unpacking xpis to portage
-		[[ ${X} != "en" ]] && xpi_unpack "${P}-${X}.xpi"
+		xpi_unpack "${P}-${X}.xpi"
 	done
 }
 
 src_prepare() {
-	# Fix preferences location
-	sed -i 's|defaults/pref/|defaults/preferences/|' browser/installer/packages-static || die "sed failed"
-
 	# Apply our patches
-	#
-	EPATCH_EXCLUDE="2000-firefox_gentoo_install_dirs.patch" \
 	EPATCH_SUFFIX="patch" \
 	EPATCH_FORCE="yes" \
-	epatch "${WORKDIR}"
-
-	epatch "${FILESDIR}"/2000-icecat-6_gentoo_install_dirs.patch \
-		"${FILESDIR}"/${PN}-5.0-curl7217-includes-fix.patch
+	epatch "${WORKDIR}/firefox"
 
 	# Allow user to apply any additional patches without modifing ebuild
 	epatch_user
-
-	# Fix rebranding
-	sed -i 's|\$(DIST)/bin/firefox|\$(DIST)/bin/icecat|' browser/app/Makefile.in
 
 	# Enable gnomebreakpad
 	if use debug ; then
@@ -179,6 +190,13 @@ src_prepare() {
 		-i "${S}"/nsprpub/configure{.in,} \
 		|| die
 
+	#Fix compilation with curl-7.21.7 bug 376027
+	sed -e '/#include <curl\/types.h>/d'  \
+		-i "${S}"/toolkit/crashreporter/google-breakpad/src/common/linux/http_upload.cc \
+		-i "${S}"/toolkit/crashreporter/google-breakpad/src/common/linux/libcurl_wrapper.cc \
+		-i "${S}"/config/system-headers \
+		-i "${S}"/js/src/config/system-headers || die "Sed failed"
+
 	eautoreconf
 
 	cd js/src
@@ -186,9 +204,6 @@ src_prepare() {
 }
 
 src_configure() {
-	# We will build our own .mozconfig
-	rm "${S}"/.mozconfig
-
 	MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
 	MEXTENSIONS="default"
 
@@ -204,13 +219,6 @@ src_configure() {
 	# It doesn't compile on alpha without this LDFLAGS
 	use alpha && append-ldflags "-Wl,--no-relax"
 
-	# Specific settings for icecat
-	echo "export MOZ_PHOENIX=1" >> "${S}"/.mozconfig
-	echo "mk_add_options MOZ_PHOENIX=1" "${S}"/.mozconfig
-	mozconfig_annotate '' --with-branding=browser/branding/unofficial
-	mozconfig_annotate '' --disable-official-branding
-	mozconfig_annotate '' --with-user-appdir=.icecat
-
 	mozconfig_annotate '' --prefix="${EPREFIX}"/usr
 	mozconfig_annotate '' --libdir="${EPREFIX}"/usr/$(get_libdir)
 	mozconfig_annotate '' --enable-extensions="${MEXTENSIONS}"
@@ -219,15 +227,16 @@ src_configure() {
 	mozconfig_annotate '' --enable-canvas
 	mozconfig_annotate '' --enable-safe-browsing
 	mozconfig_annotate '' --with-system-png
+	mozconfig_annotate '' --enable-system-ffi
 
-	# Other browser-specific settings
+	# Other ff-specific settings
 	mozconfig_annotate '' --with-default-mozilla-five-home=${MOZILLA_FIVE_HOME}
+	mozconfig_annotate '' --target="${CTARGET:-${CHOST}}"
 
 	mozconfig_use_enable system-sqlite
-	mozconfig_use_enable methodjit
 
 	# Allow for a proper pgo build
-	if use pgo ; then
+	if use pgo; then
 		echo "mk_add_options PROFILE_GEN_SCRIPT='\$(PYTHON) \$(OBJDIR)/_profile/pgo/profileserver.py'" >> "${S}"/.mozconfig
 	fi
 
@@ -247,7 +256,12 @@ src_compile() {
 	if use pgo; then
 		addpredict /root
 		addpredict /etc/gconf
-		addpredict /dev/dri
+		# Firefox tries to dri stuff when it's run, see bug 380283
+		shopt -s nullglob
+		local cards=$(echo -n /dev/{dri,ati}/card* /dev/nvidiactl* | sed 's/ /:/g')
+		shopt -u nullglob
+		test -n "${cards}" && addpredict "${cards}"
+
 		CC="$(tc-getCC)" CXX="$(tc-getCXX)" LD="$(tc-getLD)" \
 		MOZ_MAKE_FLAGS="${MAKEOPTS}" \
 		Xemake -f client.mk profiledbuild || die "Xemake failed"
@@ -267,6 +281,9 @@ src_install() {
 	obj_dir="${obj_dir%/*}"
 	cd "${S}/${obj_dir}"
 
+	# Pax mark xpcshell for hardened support, only used for startupcache creation.
+	pax-mark m "${S}/${obj_dir}"/dist/bin/xpcshell
+
 	# Add our default prefs for firefox + xulrunner
 	cp "${FILESDIR}"/gentoo-default-prefs.js \
 		"${S}/${obj_dir}/dist/bin/defaults/pref/all-gentoo.js" || die
@@ -275,26 +292,37 @@ src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 
 	linguas
-	for X in ${linguas}; do
-		[[ ${X} != "en" ]] && xpi_install "${WORKDIR}/${P}-${X}"
+	for X in "${linguas[@]}"; do
+		xpi_install "${WORKDIR}/${P}-${X}"
 	done
 
 	local size sizes icon_path icon name
-	sizes="16 32 48"
-	icon_path="${S}/browser/branding/unofficial"
+	if use bindist; then
+		sizes="16 32 48"
+		icon_path="${S}/browser/branding/unofficial"
+		# Firefox's new rapid release cycle means no more codenames
+		# Let's just stick with this one...
+		icon="tumucumaque"
+		name="Tumucumaque"
+	else
+		sizes="16 22 24 32 256"
+		icon_path="${S}/browser/branding/official"
+		icon="${PN}"
+		name="Mozilla Firefox"
+	fi
 
 	# Install icons and .desktop for menu entry
 	for size in ${sizes}; do
 		insinto "/usr/share/icons/hicolor/${size}x${size}/apps"
-		newins "${icon_path}/default${size}.png" "${PN}.png" || die
+		newins "${icon_path}/default${size}.png" "${icon}.png" || die
 	done
 	# The 128x128 icon has a different name
 	insinto "/usr/share/icons/hicolor/128x128/apps"
-	newins "${icon_path}/mozicon128.png" "${PN}.png" || die
+	newins "${icon_path}/mozicon128.png" "${icon}.png" || die
 	# Install a 48x48 icon into /usr/share/pixmaps for legacy DEs
-	newicon "${icon_path}/content/icon48.png" "${PN}.png" || die
+	newicon "${icon_path}/content/icon48.png" "${icon}.png" || die
 	newmenu "${FILESDIR}/icon/${PN}.desktop" "${PN}.desktop" || die
-	sed -e "/^Icon/s:${PN}-icon:${PN}:" -i \
+	sed -i -e "s:@NAME@:${name}:" -e "s:@ICON@:${icon}:" \
 		"${ED}/usr/share/applications/${PN}.desktop" || die
 
 	# Add StartupNotify=true bug 237317
@@ -302,13 +330,18 @@ src_install() {
 		echo "StartupNotify=true" >> "${ED}/usr/share/applications/${PN}.desktop"
 	fi
 
-	pax-mark m "${ED}"/${MOZILLA_FIVE_HOME}/${PN}
-	pax-mark m "${ED}"/${MOZILLA_FIVE_HOME}/plugin-container
+	# Required in order to use plugins and even run firefox on hardened.
+	pax-mark m "${ED}"/${MOZILLA_FIVE_HOME}/{firefox,firefox-bin,plugin-container}
 
 	# Plugins dir
 	dosym ../nsbrowser/plugins "${MOZILLA_FIVE_HOME}"/plugins \
 		|| die "failed to symlink"
 
+	# very ugly hack to make firefox not sigbus on sparc
+	# FIXME: is this still needed??
+	use sparc && { sed -e 's/Firefox/FirefoxGentoo/g' \
+					 -i "${ED}/${MOZILLA_FIVE_HOME}/application.ini" || \
+					 die "sparc sed failed"; }
 }
 
 pkg_preinst() {
