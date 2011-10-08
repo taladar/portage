@@ -1,6 +1,29 @@
 # ChangeLog for dev-tcltk/tkimg
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tkimg/ChangeLog,v 1.30 2011/10/03 20:04:57 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tkimg/ChangeLog,v 1.35 2011/10/08 14:21:42 jlec Exp $
+
+*tkimg-1.4-r3 (08 Oct 2011)
+
+  08 Oct 2011; Justin Lecher <jlec@gentoo.org> -tkimg-1.4-r2.ebuild,
+  +tkimg-1.4-r3.ebuild:
+  Corrected patch and fix pnd version to 1.5*
+
+  08 Oct 2011; Justin Lecher <jlec@gentoo.org> tkimg-1.4-r2.ebuild:
+  Added missing deps
+
+  08 Oct 2011; Justin Lecher <jlec@gentoo.org> tkimg-1.4-r2.ebuild:
+  Fixed missing URI pointer
+
+*tkimg-1.4-r2 (08 Oct 2011)
+
+  08 Oct 2011; Justin Lecher <jlec@gentoo.org> +tkimg-1.4-r2.ebuild:
+  Unbundle libs and respect *FLAGS, #386003, #378261
+
+  08 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> -tkimg-1.4.ebuild,
+  -tkimg-1.4-r1.ebuild, -tkimg-1.4.20100510.ebuild,
+  -files/tkimg-1.4.20100510-gentoo.patch, -files/tkimg-1.4-nojbig.patch:
+  Remove vulnerable copies bundling all of zlib, tiff, jpeg and png. Revert
+  back to ~arch only.
 
 *tkimg-1.4.20100510-r1 (03 Oct 2011)
 
