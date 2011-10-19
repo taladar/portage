@@ -1,10 +1,26 @@
 # ChangeLog for profile directory
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5795 2011/10/17 20:14:08 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5800 2011/10/19 02:15:35 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  19 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Unmask x11-misc/notification-daemon using x11-libs/gtk+:3.
+
+  19 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org> package.mask:
+  Mask gtk+-3.2 with dependencies, and pygobject:3 and compatible
+  pygobject-2.28.6-r50, in preparation for move from gnome overlay.
+
+  18 Oct 2011; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Masking new snapshots for openbox and obconf
+
+  18 Oct 2011; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Fix removal date.
+
+  18 Oct 2011; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Mask sys-apps/lsparisc (bug #377695).
 
   17 Oct 2011; Andreas K. Huettel <dilfridge@gentoo.org> package.mask:
   Remove obsolete pmask of kde-misc/kcm_gtk, see bug 369361
