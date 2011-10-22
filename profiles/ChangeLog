@@ -1,10 +1,31 @@
 # ChangeLog for profile directory
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5811 2011/10/20 18:19:57 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5817 2011/10/22 03:14:18 mattst88 Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  22 Oct 2011; Matt Turner <mattst88@gentoo.org> use.desc:
+  Add ARM's iwmmxt USE flag to use.desc.
+
+  22 Oct 2011; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask qemu-kvm/seabios: they should not use egit for an ~arch ebuild.
+
+  21 Oct 2011; Alexandre Rostovtsev (tetromino) <tetromino@gmail.com>
+  package.mask:
+  Mask >=vte-0.30 (requires gtk+-3.2).
+
+  21 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Change =pciutils-3.1.7-r1 mask to >=pciutils-3.1.7-r1 wrt #388027.
+
+  21 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask notify-osd >= 0.9.32 next to required gtk+ >= 3.2.
+
+  21 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
+  targets/desktop/gnome/package.use:
+  Default to USE="-gnutls nss" for curl (needed for liboauth with default
+  flags, which in turn is needed for gnome-3.2).
 
   20 Oct 2011; Markos Chandras <hwoarang@gentoo.org> package.mask:
   unmask boost-1.47.0
