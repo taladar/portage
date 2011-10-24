@@ -1,10 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5820 2011/10/23 08:47:54 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5824 2011/10/23 23:27:35 tetromino Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  23 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org> package.mask:
+  Mask office-runner (requires gnome-settings-daemon-3).
+
+  23 Oct 2011; Robin H. Johnson <robbat2@gentoo.org> license_groups:
+  Intel-SDP should be in @EULA license group.
+
+  23 Oct 2011; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  Remove dnetc mask, verbump and works here.
+
+  23 Oct 2011; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  Lift mask for app-misc/gramps, well tested now
 
   23 Oct 2011; Fabian Groffen <grobian@gentoo.org> updates/4Q-2011:
   Drop move dev-php5/dev-php5/pecl-ssh2 dev-php/dev-php5/pecl-ssh2 from
