@@ -1,6 +1,15 @@
 # ChangeLog for app-misc/gnote
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/gnote/ChangeLog,v 1.11 2011/05/02 21:02:38 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/gnote/ChangeLog,v 1.13 2011/10/27 08:02:25 tetromino Exp $
+
+*gnote-0.8.1 (27 Oct 2011)
+
+  27 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org> +gnote-0.8.1.ebuild:
+  Add gtk3-based gnote-0.8.1 from the gnome overlay.
+
+  27 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org> gnote-0.7.3.ebuild,
+  gnote-0.7.4.ebuild:
+  Slot gtkspell dependency to 2 in preparation for gtkspell-3.
 
 *gnote-0.7.4 (02 May 2011)
 
