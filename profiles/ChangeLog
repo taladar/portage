@@ -1,10 +1,31 @@
 # ChangeLog for profile directory
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5864 2011/11/04 12:13:55 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5870 2011/11/04 23:51:31 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  04 Nov 2011; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Remove entries for removed pkgs like xfce4-xfapplet-plugin and some
+  GTK+-1.2.x reverse dependencies.
+
+  04 Nov 2011; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Unmask jdk-7 and jre-7 now that icedtea-7 is in tree.
+
+  04 Nov 2011; Robin H. Johnson <robbat2@gentoo.org> license_groups:
+  Document why arj/freedist/lha cannot be in MISC-FREE.
+
+  04 Nov 2011; Ulrich Mueller <ulm@gentoo.org> license_groups:
+  Remove arj, freedist, and lha from MISC_FREE license group, as these are not
+  free software licenses.
+
+  04 Nov 2011; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask xfce4-weather-plugin because the datafeed is no longer available.
+
+  04 Nov 2011; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Masked www-client/opera snapshots.
+  http://my.opera.com/desktopteam/blog/2011/11/04/opera-11-60
 
   04 Nov 2011; Alexis Ballier <aballier@gentoo.org> package.mask:
   mask prerelease of vlc 1.2
