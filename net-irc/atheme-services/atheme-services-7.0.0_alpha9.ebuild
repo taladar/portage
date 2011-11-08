@@ -1,10 +1,10 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/atheme-services/atheme-services-7.0.0_alpha6.ebuild,v 1.1 2011/07/27 15:11:36 binki Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/atheme-services/atheme-services-7.0.0_alpha9.ebuild,v 1.1 2011/11/08 02:47:43 binki Exp $
 
 EAPI=4
 
-inherit eutils flag-o-matic perl-module prefix
+inherit flag-o-matic perl-module
 
 MY_P=${P/_/-}
 
@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~sparc ~x86 ~x86-fbsd ~amd64-linux"
 IUSE="largenet ldap nls +pcre perl profile ssl"
 
-RDEPEND=">=dev-libs/libmowgli-0.9.50
+RDEPEND=">=dev-libs/libmowgli-0.9.95
 	ldap? ( net-nds/openldap )
 	nls? ( sys-devel/gettext )
 	perl? ( dev-lang/perl )
@@ -45,8 +45,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-destdir-perl.patch
-
 	# fix docdir
 	sed -i -e 's/\(^DOCDIR.*=.\)@DOCDIR@/\1@docdir@/' extra.mk.in || die
 
@@ -54,7 +52,7 @@ src_prepare() {
 	sed -i -e '/^logfile/s;var/\(.*\.log\);'"${EPREFIX}"'/var/log/atheme/\1;g' dist/* || die
 
 	# QA against bundled libs
-	rm -rf libmowgli || die
+	rm -rf libmowgli libmowgli-2 || die
 
 	# Get useful information into build.log
 	sed -i -e '/^\.SILENT:$/d' buildsys.mk.in || die
@@ -62,10 +60,12 @@ src_prepare() {
 
 src_configure() {
 	econf \
+		atheme_cv_c_gcc_w_error_implicit_function_declaration=no \
 		--sysconfdir="${EPREFIX}"/etc/${PN} \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		--localstatedir="${EPREFIX}"/var \
 		--enable-fhs-paths \
+		--disable-warnings \
 		--enable-contrib \
 		$(use_enable largenet large-net) \
 		$(use_with ldap) \
