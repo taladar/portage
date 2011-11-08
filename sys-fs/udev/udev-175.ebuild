@@ -1,13 +1,13 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-174-r1.ebuild,v 1.1 2011/11/07 04:19:01 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-175.ebuild,v 1.1 2011/11/08 07:43:34 williamh Exp $
 
 EAPI=4
 
 KV_min=2.6.34
-patchversion=1
+#patchversion=1
 scriptversion=5
-udev_rules_md5=f7ceae528475742f75516c532ec95a88
+udev_rules_md5=7a7180a394e5bdea9011f68582b94fe8
 
 EGIT_REPO_URI="git://git.kernel.org/pub/scm/linux/hotplug/udev.git"
 
@@ -18,7 +18,7 @@ scriptname=${PN}-gentoo-scripts
 if [[ ${PV} != "9999" ]]
 then
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-linux"
-	SRC_URI="http://people.freedesktop.org/~kay/${P}.tar.bz2"
+	SRC_URI="http://people.freedesktop.org/~kay/${PN}/${P}.tar.bz2"
 	if [[ -n "${patchversion}" ]]
 	then
 		patchset=${P}-patchset-${patchversion}
