@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.4.0_beta2.ebuild,v 1.3 2011/11/08 18:14:08 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.4.0_rc1.ebuild,v 1.1 2011/11/11 13:14:36 olemarkus Exp $
 
 EAPI=4
 
@@ -44,8 +44,8 @@ PHP_MV="$(get_major_version)"
 # alias, so we can handle different types of releases (finals, rcs, alphas,
 # betas, ...) w/o changing the whole ebuild
 PHP_PV="${PV/_rc/RC}"
-PHP_PV="${PV/_alpha/alpha}"
-PHP_PV="${PV/_beta/beta}"
+PHP_PV="${PHP_PV/_alpha/alpha}"
+PHP_PV="${PHP_PV/_beta/beta}"
 PHP_RELEASE="php-stas"
 PHP_P="${PN}-${PHP_PV}"
 
