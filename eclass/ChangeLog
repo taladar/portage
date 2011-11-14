@@ -1,6 +1,15 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.11 2011/11/12 20:46:39 pesa Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.13 2011/11/14 15:54:08 nirbheek Exp $
+
+  14 Nov 2011; Nirbheek Chauhan <nirbheek@gentoo.org> mozconfig-3.eclass:
+  Remove obsolete xorg-x11 dep from mozconfig-3
+
+  14 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org> gnome2-utils.eclass,
+  gnome2.eclass:
+  Add gnome2_environment_reset() to reset env variables that often cause build
+  or test failures (most recently bug #380639). The XDG_* resetting code had
+  been tested in the gnome overlay for months with good results.
 
   12 Nov 2011; Davide Pesavento <pesa@gentoo.org> qt4-r2.eclass:
   Restore ${S} fallback, but with a deprecation notice saying that it will be

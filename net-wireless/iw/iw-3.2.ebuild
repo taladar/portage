@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/iw/iw-3.1.ebuild,v 1.4 2011/11/02 10:45:02 gurligebis Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/iw/iw-3.2.ebuild,v 1.4 2011/11/14 13:14:45 gurligebis Exp $
 
 EAPI="2"
 
@@ -15,13 +15,12 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm ~ppc ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
-RDEPEND="dev-libs/libnl:1.1"
+RDEPEND="dev-libs/libnl"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 src_prepare() {
-	# Commented out until we are able to build against libnl 3.x
-	# epatch "${FILESDIR}/${P}_libnl-3-support.patch"
+	epatch "${FILESDIR}/${P}_libnl-3x-compile.diff"
 	tc-export CC LD
 }
 
