@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5910 2011/11/14 15:54:43 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5913 2011/11/14 20:15:44 vapier Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  14 Nov 2011; Mike Frysinger <vapier@gentoo.org> use.desc:
+  Mark USE=nocxx as "do not use anymore".
+
+  14 Nov 2011; Markos Chandras <hwoarang@gentoo.org> license_groups:
+  Add BSD-1 to MISC-FREE group
+
+  14 Nov 2011; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  fix bug number for kmuddy
 
   14 Nov 2011; Lars Wendler <polynomial-c@gentoo.org> package.mask:
   www-client/seamonkey-bin: Masked for removal in 30 days due to lack of active
