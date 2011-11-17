@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xlockmore/xlockmore-5.34.ebuild,v 1.1 2011/08/01 23:02:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xlockmore/xlockmore-5.35.ebuild,v 1.1 2011/11/16 17:39:16 ssuominen Exp $
 
-EAPI=2
+EAPI=4
 inherit autotools eutils flag-o-matic pam
 
 DESCRIPTION="Just another screensaver application for X"
@@ -12,21 +12,24 @@ SRC_URI="http://ftp.tux.org/pub/tux/bagleyd/${PN}/${P}/${P}.tar.bz2"
 LICENSE="BSD GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc ~x86"
-IUSE="crypt debug esd gtk motif nas opengl pam truetype xinerama xlockrc"
+IUSE="crypt debug esd gtk imagemagick motif nas opengl pam truetype xinerama xlockrc"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXext
+	x11-libs/libXmu
 	x11-libs/libXpm
 	x11-libs/libXt
-	x11-libs/libXmu
-	opengl? ( media-libs/mesa
-		truetype? ( >=media-libs/ftgl-2.1.3_rc5 ) )
-	truetype? ( media-libs/freetype:2 )
-	pam? ( virtual/pam )
-	nas? ( media-libs/nas )
 	esd? ( media-sound/esound )
-	motif? ( >=x11-libs/openmotif-2.3:0 )
 	gtk? ( x11-libs/gtk+:2 )
+	imagemagick? ( media-gfx/imagemagick )
+	motif? ( >=x11-libs/openmotif-2.3:0 )
+	nas? ( media-libs/nas )
+	opengl? (
+		media-libs/mesa
+		truetype? ( >=media-libs/ftgl-2.1.3_rc5 )
+		)
+	pam? ( virtual/pam )
+	truetype? ( media-libs/freetype:2 )
 	xinerama? ( x11-libs/libXinerama )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
@@ -38,6 +41,7 @@ src_prepare() {
 	epatch \
 		"${FILESDIR}"/${PN}-5.31-configure.in.patch \
 		"${FILESDIR}"/${PN}-5.31-ldflags.patch
+
 	eautoreconf
 }
 
@@ -59,6 +63,7 @@ src_configure() {
 		--disable-use-mb \
 		--enable-appdefaultdir=/usr/share/X11/app-defaults \
 		$(use_with motif) \
+		$(use_with imagemagick magick) \
 		$(use_with debug editres) \
 		$(use_with truetype ttf) \
 		$(use_with truetype freetype) \
@@ -75,8 +80,7 @@ src_configure() {
 
 src_install() {
 	einstall xapploaddir="${D}/usr/share/X11/app-defaults" \
-		mandir="${D}/usr/share/man/man1" INSTPGMFLAGS="" \
-		|| die "einstall failed"
+		mandir="${D}/usr/share/man/man1" INSTPGMFLAGS=""
 
 	pamd_mimic_system xlock auth
 
