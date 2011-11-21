@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/postfix/postfix-2.9_pre20111119.ebuild,v 1.1 2011/11/20 10:32:42 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/postfix/postfix-2.9_pre20111120.ebuild,v 1.2 2011/11/21 08:18:00 eras Exp $
 
 EAPI=4
 
@@ -128,15 +128,17 @@ src_configure() {
 	fi
 
 	if ! use berkdb; then
-		# change default hash format from Berkeley DB to cdb
-		sed -i -e "s|#define HAS_DB$|//#define HAS_DB|g" -e "s/hash/cdb/" \
+		sed -i -e "s|#define HAS_DB$|//#define HAS_DB|g" \
 			src/util/sys_defs.h || die
+		if use cdb; then
+			# change default hash format from Berkeley DB to cdb
+			sed -i -e "s/hash/cdb/" src/util/sys_defs.h || die
+		fi
 	fi
 
-	if use cdb ; then
+	if use cdb; then
 		mycc="${mycc} -DHAS_CDB -I/usr/include/cdb"
 		CDB_LIBS=""
-
 		# Tinycdb is preferred.
 		if has_version dev-db/tinycdb ; then
 			einfo "Building with dev-db/tinycdb"
@@ -148,7 +150,6 @@ src_configure() {
 				CDB_LIBS="${CDB_LIBS} ${CDB_PATH}/${i}"
 			done
 		fi
-
 		mylibs="${mylibs} ${CDB_LIBS}"
 	fi
 
@@ -238,7 +239,7 @@ src_install () {
 	fperms 600 /etc/postfix/saslpass
 
 	newinitd "${FILESDIR}"/postfix.rc6.${RC_VER} postfix
-	# bug #359913
+	# do not start mysql/postgres unnecessarily - bug #359913
 	use mysql || sed -i -e "s/mysql //" "${D}/etc/init.d/postfix"
 	use postgres || sed -i -e "s/postgresql //" "${D}/etc/init.d/postfix"
 
