@@ -1,6 +1,14 @@
-# ChangeLog for x11-misc/remind
+# ChangeLog for app-misc/remind
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/remind/ChangeLog,v 1.55 2011/03/27 20:02:53 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/remind/ChangeLog,v 1.1 2011/11/22 18:48:36 tove Exp $
+
+  22 Nov 2011; Torsten Veller <tove@gentoo.org> +remind-03.01.10.ebuild,
+  +metadata.xml:
+  Move remind from x11-misc to app-misc (#391221)
+
+  22 Nov 2011; Torsten Veller <tove@gentoo.org> -remind-03.01.07.ebuild,
+  -remind-03.01.08.ebuild, -remind-03.01.09.ebuild:
+  Cleanup
 
   27 Mar 2011; Brent Baude <ranger@gentoo.org> remind-03.01.10.ebuild:
   stable ppc, bug 350453

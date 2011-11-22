@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/remind/remind-03.01.08.ebuild,v 1.2 2010/03/10 12:51:04 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/remind/remind-03.01.10.ebuild,v 1.1 2011/11/22 18:48:36 tove Exp $
 
 MY_P=${P/_beta/-BETA-}
 S=${WORKDIR}/${MY_P}
@@ -11,7 +11,7 @@ SRC_URI="http://www.roaringpenguin.com/files/download/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="amd64 ppc sparc x86 ~x86-fbsd"
 IUSE="tk"
 
 RDEPEND="tk? ( dev-lang/tk dev-tcltk/tcllib )"
@@ -22,11 +22,11 @@ src_unpack() {
 }
 
 src_test() {
-	if [[ $UID -eq 0 ]] ; then
+	if [[ ${EUID} -eq 0 ]] ; then
 		ewarn "Testing fails if run as root. Skipping tests."
 		return
 	fi
-	TZ=America/New_York make test || die
+	make test || die
 }
 
 src_install() {
