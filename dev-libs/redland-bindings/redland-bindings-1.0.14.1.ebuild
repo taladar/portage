@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland-bindings/redland-bindings-1.0.13.1.ebuild,v 1.1 2011/07/29 11:14:04 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland-bindings/redland-bindings-1.0.14.1.ebuild,v 1.1 2011/11/25 00:08:43 ssuominen Exp $
 
-EAPI=3
+EAPI=4
 PYTHON_DEPEND="python? 2:2.7"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="3.* *-jython"
@@ -18,14 +18,14 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux ~ppc-macos"
 IUSE="lua perl python php ruby"
 
-RDEPEND=">=dev-libs/redland-1.0.10-r2
+RDEPEND=">=dev-libs/redland-1.0.14
 	lua? ( >=dev-lang/lua-5.1 )
 	perl? ( dev-lang/perl )
 	php? ( dev-lang/php )
 	ruby? ( dev-lang/ruby dev-ruby/log4r )"
 DEPEND="${RDEPEND}
-	>=dev-lang/swig-1.3.26
 	dev-util/pkgconfig
+	>=dev-lang/swig-2
 	sys-apps/sed"
 
 pkg_setup() {
@@ -34,7 +34,6 @@ pkg_setup() {
 
 src_configure() {
 	econf \
-		--disable-dependency-tracking \
 		$(use_with lua) \
 		$(use_with perl) \
 		$(use_with python) \
@@ -74,7 +73,7 @@ src_test() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" INSTALLDIRS=vendor luadir=/usr/$(get_libdir)/lua/5.1 install || die
+	emake DESTDIR="${D}" INSTALLDIRS=vendor luadir=/usr/$(get_libdir)/lua/5.1 install
 
 	if use perl; then
 		find "${ED}" -type f -name perllocal.pod -delete
