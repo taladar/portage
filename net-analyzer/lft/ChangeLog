@@ -1,6 +1,13 @@
 # ChangeLog for net-analyzer/lft
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/lft/ChangeLog,v 1.32 2011/11/26 16:46:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/lft/ChangeLog,v 1.34 2011/11/28 11:33:11 phajdan.jr Exp $
+
+  28 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> lft-3.33.ebuild:
+  x86 stable wrt bug #358787
+
+  28 Nov 2011; Tony Vroon <chainsaw@gentoo.org> lft-3.33.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo &
+  Elijah "Armageddon" El Lazkani in security bug #358787.
 
   26 Nov 2011; Jeroen Roovers <jer@gentoo.org> lft-3.33.ebuild:
   Move from dodoc to DOCS / remove src_install() by ago.
