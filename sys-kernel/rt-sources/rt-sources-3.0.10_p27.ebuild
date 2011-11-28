@@ -4,26 +4,28 @@
 
 EAPI="2"
 
-COMPRESSTYPE=".bz2"
-K_WANT_GENPATCHES="base"
-K_GENPATCHES_VER="4"
+inherit versionator
+
+COMPRESSTYPE=".gz"
+K_USEPV="yes"
+UNIPATCH_STRICTORDER="yes"
 K_SECURITY_UNSUPPORTED="yes"
 K_DEBLOB_AVAILABLE="1"
 
+CKV="$(get_version_component_range 1-3)"
 ETYPE="sources"
 inherit kernel-2
 detect_version
-detect_arch
 
 RT_PATCHSET="${PV/*_p}"
 RT_KERNEL="${PV/_p[0-9]*}"
 RT_KERNEL="${RT_KERNEL/_/-}"
 RT_FILE="patch-${RT_KERNEL}-rt${RT_PATCHSET}.patch${COMPRESSTYPE}"
-RT_URI="mirror://kernel/linux/kernel/projects/rt/${RT_FILE}"
+RT_URI="mirror://kernel/linux/kernel/projects/rt/${KV_MAJOR}.${KV_MINOR}/${RT_FILE}"
 
 DESCRIPTION="Real-time patchset for the Linux Kernel"
 HOMEPAGE="http://www.kernel.org/pub/linux/kernel/projects/rt/"
-SRC_URI="${KERNEL_URI} ${GENPATCHES_URI} ${ARCH_URI} ${RT_URI}"
+SRC_URI="${KERNEL_URI} ${RT_URI}"
 
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86"
 IUSE="deblob"
