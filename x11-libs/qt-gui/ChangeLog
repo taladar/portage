@@ -1,6 +1,21 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.154 2011/11/26 20:01:20 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.157 2011/11/28 23:49:33 pesa Exp $
+
+  28 Nov 2011; Davide Pesavento <pesa@gentoo.org> -qt-gui-4.7.3-r1.ebuild,
+  -qt-gui-4.7.3.ebuild:
+  Remove Qt 4.7.3
+
+  28 Nov 2011; Davide Pesavento <pesa@gentoo.org> qt-gui-4.7.4.ebuild,
+  qt-gui-4.7.4-r1.ebuild:
+  Fix bug #368515.
+
+*qt-gui-4.7.4-r1 (28 Nov 2011)
+
+  28 Nov 2011; Theo Chatzimichos <tampakrap@gentoo.org>
+  +qt-gui-4.7.4-r1.ebuild, +files/qt-gui-4.7.4-fix-libreoffice-crash.patch:
+  Backport patch from Qt 4.8 to fix crash in LibreOffice, as pointed out by
+  scarabeus. FreeDesktop bug 40298
 
   26 Nov 2011; Robin H. Johnson <robbat2@gentoo.org> Manifest:
   Bug 385719: upstream altered qt-everywhere-opensource-src-4.7.4.tar.gz, mass
