@@ -1,6 +1,19 @@
 # ChangeLog for net-misc/ps3mediaserver
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ps3mediaserver/ChangeLog,v 1.3 2011/11/04 04:16:52 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ps3mediaserver/ChangeLog,v 1.6 2011/11/30 07:31:44 floppym Exp $
+
+  30 Nov 2011; Mike Gilbert <floppym@gentoo.org> metadata.xml:
+  Make myself the primary maintainer so I get bugs assigned to me.
+
+  30 Nov 2011; Mike Gilbert <floppym@gentoo.org> +files/ps3mediaserver.confd,
+  +files/ps3mediaserver.initd, ps3mediaserver-1.50.0.ebuild:
+  Install init script, bug 357665. Thanks to Milan Berger and Christian Kaps.
+
+*ps3mediaserver-1.50.0 (30 Nov 2011)
+
+  30 Nov 2011; Mike Gilbert <floppym@gentoo.org> +ps3mediaserver-1.50.0.ebuild,
+  metadata.xml:
+  Version bump. Add multiuser use flag to control launcher behavior.
 
 *ps3mediaserver-1.40.0 (04 Nov 2011)
 

@@ -1,25 +1,28 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/redis/redis-2.2.6.ebuild,v 1.4 2011/11/02 21:40:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/redis/redis-2.4.4.ebuild,v 1.1 2011/11/30 12:09:36 djc Exp $
 
-EAPI="2"
+EAPI="4"
 
 inherit autotools eutils flag-o-matic
 
 DESCRIPTION="A persistent caching system, key-value and data structures database."
-HOMEPAGE="http://code.google.com/p/redis/"
-SRC_URI="http://redis.googlecode.com/files/${PN}-${PV/_/-}.tar.gz"
+HOMEPAGE="http://redis.io/"
+SRC_URI="http://redis.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="BSD"
-KEYWORDS="amd64 x86 ~x86-macos ~x86-solaris"
-IUSE="tcmalloc test"
+KEYWORDS="~amd64 ~x86 ~x86-macos ~x86-solaris"
+IUSE="+jemalloc tcmalloc test"
 SLOT="0"
 
 RDEPEND=""
 DEPEND=">=sys-devel/autoconf-2.63
 	tcmalloc? ( dev-util/google-perftools )
+	jemalloc? ( dev-libs/jemalloc )
 	test? ( dev-lang/tcl )
 	${RDEPEND}"
+REQUIRED_USE="tcmalloc? ( !jemalloc )
+	jemalloc? ( !tcmalloc )"
 
 S="${WORKDIR}/${PN}-${PV/_/-}"
 
@@ -36,10 +39,21 @@ pkg_setup() {
 	# https://github.com/antirez/redis/blob/2.2/README. If build system gets
 	# better integrated into autotools, replace with append-flags and
 	# append-ldflags in src_configure()
-	use tcmalloc && export EXTRA_EMAKE="${EXTRA_EMAKE} USE_TCMALLOC=yes"
+	if use tcmalloc ; then
+		export EXTRA_EMAKE="${EXTRA_EMAKE} USE_TCMALLOC=yes"
+	elif use jemalloc ; then
+		export EXTRA_EMAKE="${EXTRA_EMAKE} JEMALLOC_SHARED=yes"
+	else
+		export EXTRA_EMAKE="${EXTRA_EMAKE} FORCE_LIBC_MALLOC=yes"
+	fi
 }
 
 src_prepare() {
+	epatch "${FILESDIR}/redis-2.4.3-shared.patch"
+	epatch "${FILESDIR}/${P}-tcmalloc.patch"
+	if use jemalloc ; then
+		sed -i -e "s/je_/j/" src/zmalloc.c
+	fi
 	# now we will rewrite present Makefiles
 	local makefiles=""
 	for MKF in $(find -name 'Makefile' | cut -b 3-); do
@@ -83,11 +97,7 @@ src_install() {
 	newconfd "${FILESDIR}/redis.confd" redis
 	newinitd "${FILESDIR}/redis.initd" redis
 
-	dodoc 00-RELEASENOTES BUGS Changelog CONTRIBUTING README TODO
-	dodoc design-documents/*
-	newdoc client-libraries/README README.client-libraries
-	docinto html
-	dodoc doc/*
+	dodoc 00-RELEASENOTES BUGS CONTRIBUTING README TODO
 
 	dobin src/redis-cli || die "redis-cli could not be found"
 	dosbin src/redis-benchmark src/redis-server src/redis-check-aof src/redis-check-dump \
@@ -100,11 +110,4 @@ src_install() {
 	        diropts -m0750 -o redis -g redis
 	fi
 	keepdir ${REDIS_DATAPATH} ${REDIS_LOGPATH} ${REDIS_PIDDIR}
-}
-
-pkg_postinst() {
-	einfo "New features of Redis you want to consider enabling in redis.conf:"
-	einfo " * unix sockets (using this is highly recommended)"
-	einfo " * logging to syslog"
-	einfo " * VM aka redis' own swap mechanism"
 }
