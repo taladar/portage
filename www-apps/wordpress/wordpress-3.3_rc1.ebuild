@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/wordpress/wordpress-3.3_beta4.ebuild,v 1.1 2011/11/25 07:09:00 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/wordpress/wordpress-3.3_rc1.ebuild,v 1.1 2011/12/02 06:21:49 radhermit Exp $
 
 EAPI="4"
 
@@ -8,7 +8,7 @@ inherit webapp depend.php
 
 DESCRIPTION="Wordpress php and mysql based CMS system"
 HOMEPAGE="http://wordpress.org/"
-SRC_URI="http://wordpress.org/${P/_/-}.tar.gz"
+SRC_URI="http://wordpress.org/${P/_rc/-RC}.tar.gz"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
