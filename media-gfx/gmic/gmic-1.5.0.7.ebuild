@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gmic/gmic-1.5.0.5.ebuild,v 1.1 2011/10/26 19:25:08 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gmic/gmic-1.5.0.7.ebuild,v 1.1 2011/12/06 10:10:56 radhermit Exp $
 
 EAPI="4"
 
@@ -37,7 +37,8 @@ DEPEND="${RDEPEND}"
 S="${WORKDIR}/${P}/src"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.5.0.4-makefile.patch
+	epatch "${FILESDIR}"/${P}-makefile.patch
+	epatch "${FILESDIR}"/${P}-ffmpeg.patch
 
 	for i in ffmpeg fftw jpeg opencv png tiff zlib ; do
 		use $i || { sed -i -r -e "s/^(${i}_(C|LD)FLAGS =).*/\1/I" Makefile || die ; }

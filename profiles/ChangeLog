@@ -1,10 +1,26 @@
 # ChangeLog for profile directory
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5983 2011/12/05 14:04:56 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.5989 2011/12/06 16:02:33 ulm Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  06 Dec 2011; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Unmask netpbm-10.56.00, the distfile has made it to mirrors now. Bug 393231.
+
+  06 Dec 2011; Ulrich Mueller <ulm@gentoo.org> license_groups:
+  Add Emacs-23-CEDET-grammars to FSF-APPROVED license group. Add mplus-fonts
+  and vlgothic to MISC-FREE, bugs 393303 and 393305.
+
+  06 Dec 2011; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask for removal lyx2html, bug #388987
+
+  06 Dec 2011; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Remove ruby-activeldap mask since the problematic version has been removed.
+
+  06 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> thirdpartymirrors:
+  Remove unused mirror://transcode with only listing 404's.
 
   05 Dec 2011; Tomáš Chvátal <scarabeus@gentoo.org> updates/4Q-2011:
   Move app-misc/{dsgui,datovka}
