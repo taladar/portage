@@ -1,10 +1,11 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/bombono-dvd/bombono-dvd-1.2.0.ebuild,v 1.2 2011/12/02 19:36:13 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/bombono-dvd/bombono-dvd-1.2.0-r2.ebuild,v 1.1 2011/12/06 22:34:58 dilfridge Exp $
 
 EAPI=4
+SCONS_MIN_VERSION="0.96.1"
 
-inherit base scons-utils toolchain-funcs flag-o-matic
+inherit base scons-utils toolchain-funcs flag-o-matic virtualx
 
 DESCRIPTION="GUI DVD authoring program"
 HOMEPAGE="http://www.bombono.org/"
@@ -18,7 +19,6 @@ KEYWORDS="~amd64 ~x86"
 IUSE="gnome"
 
 COMMONDEPEND="
-	app-cdr/cdrkit
 	app-i18n/enca
 	app-cdr/dvd+rw-tools
 	dev-cpp/gtkmm:2.4
@@ -27,6 +27,7 @@ COMMONDEPEND="
 	media-libs/libdvdread
 	media-sound/twolame
 	media-video/dvdauthor
+	virtual/cdrtools
 	virtual/ffmpeg
 	>=media-video/mjpegtools-1.8.0
 	x11-libs/gtk+:2
@@ -35,20 +36,36 @@ RDEPEND="${COMMONDEPEND}
 	gnome?	( gnome-base/gvfs )
 "
 DEPEND="${COMMONDEPEND}
-	>=dev-util/scons-0.96.1
+	dev-util/pkgconfig
 "
 
-PATCHES=( "${FILESDIR}/${PN}-1.0.1-cflags.patch" )
+PATCHES=(
+	"${FILESDIR}/${PN}-1.0.1-cflags.patch"
+	"${FILESDIR}/${PN}-1.2.0-cdrtools.patch"
+	"${FILESDIR}/${PN}-1.2.0-libav.patch"
+)
+
+src_configure() {
+	append-flags -DBOOST_SYSTEM_NO_DEPRECATED -DBOOST_FILESYSTEM_VERSION=2 
+	myesconsargs=(
+		CC="$(tc-getCC)"
+		CXX="$(tc-getCXX)"
+		CFLAGS="${CFLAGS}"
+		CXXFLAGS="${CXXFLAGS}"
+		DESTDIR="${D}"
+		LDFLAGS="${LDFLAGS}"
+		USE_EXT_BOOST=1
+		PREFIX="${EPREFIX}/usr"
+	)
+}
 
 src_compile() {
-	append-flags -DBOOST_FILESYSTEM_VERSION=2
-
-	tc-export CC CXX
-
-	nonfatal escons CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" \
-		DESTDIR="${D}" PREFIX="/usr" \
-		CPPFLAGS='-UBOOST_SYSTEM_NO_DEPRECATED' USE_EXT_BOOST=1 \
+	nonfatal escons \
 		|| die 'Please add "${S}/config.opts" when filing bugs reports!'
+}
+
+src_test() {
+	VIRTUALX_COMMAND="escons TEST=1" virtualmake
 }
 
 src_install() {
