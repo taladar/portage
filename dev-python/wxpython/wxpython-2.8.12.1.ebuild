@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/wxpython-2.8.10.1.ebuild,v 1.20 2011/04/21 01:20:09 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/wxpython-2.8.12.1.ebuild,v 1.1 2011/12/09 05:04:54 dirtyepic Exp $
 
-EAPI="2"
+EAPI="4"
 PYTHON_DEPEND="2"
 WX_GTK_VER="2.8"
 SUPPORT_PYTHON_ABIS="1"
@@ -20,20 +20,20 @@ SRC_URI="mirror://sourceforge/wxpython/${MY_P}.tar.bz2
 
 LICENSE="wxWinLL-3"
 SLOT="2.8"
-KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 sh sparc x86 ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd"
 IUSE="cairo doc examples opengl"
 
 RDEPEND="
-	dev-python/setuptools
-	>=x11-libs/wxGTK-${PV}:2.8[X,opengl?]
-	x11-libs/gtk+:2
-	>=x11-libs/pango-1.2
+	>=x11-libs/wxGTK-${PV}:2.8[opengl?,tiff,X]
 	dev-libs/glib:2
-	media-libs/libpng
+	dev-python/setuptools
+	media-libs/libpng:0
+	media-libs/tiff:0
 	virtual/jpeg
-	media-libs/tiff
+	x11-libs/gtk+:2
+	x11-libs/pango[X]
 	cairo?	( >=dev-python/pycairo-1.8.4 )
-	opengl?	( >=dev-python/pyopengl-2.0.0.44 )"
+	opengl?	( dev-python/pyopengl )"
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
@@ -48,7 +48,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-2.8.9-wxversion-scripts.patch
 	# drop editra - we have it as a separate package now
-	epatch "${FILESDIR}"/${PN}-${SLOT}-drop-editra.patch
+	epatch "${FILESDIR}"/${PN}-2.8.12-drop-editra.patch
 
 	if use doc; then
 		cd "${DOC_S}"
@@ -84,7 +84,7 @@ src_compile() {
 }
 
 src_install() {
-	local mypyconf
+	local docdir mypyconf
 
 	mypyconf="${mypyconf} WX_CONFIG=${WX_CONFIG}"
 	use opengl \
@@ -117,18 +117,22 @@ src_install() {
 	newins "${S}"/wx/py/PyCrust_32.png PyCrust.png
 	newins "${S}"/wx/tools/XRCed/XRCed_32.png XRCed.png
 
+	docdir=${D}usr/share/doc/${PF}
+
 	if use doc; then
 		dodir /usr/share/doc/${PF}/docs
-		cp -R "${DOC_S}"/docs/* "${D}"usr/share/doc/${PF}/docs/
-		# For some reason 2.8.10.1 api docs are not available, so use 2.8.9.2's
-		cp -R "${WORKDIR}"/wxPython-2.8.9.2/docs/* "${D}"usr/share/doc/${PF}/docs/
+		cp -R "${DOC_S}"/docs/* "${docdir}"/docs/
+		# For some reason newer API docs aren't available so use 2.8.9.2's
+		cp -R "${WORKDIR}"/wxPython-2.8.9.2/docs/* "${docdir}"/docs/
 	fi
 
 	if use examples; then
 		dodir /usr/share/doc/${PF}/demo
+		cp -R "${DOC_S}"/demo/* "${docdir}"/demo
 		dodir /usr/share/doc/${PF}/samples
-		cp -R "${DOC_S}"/demo/* "${D}"/usr/share/doc/${PF}/demo/
-		cp -R "${DOC_S}"/samples/* "${D}"/usr/share/doc/${PF}/samples/
+		cp -R "${DOC_S}"/samples/* "${docdir}"/samples
+		[[ -e ${docdir}/samples/embedded/embedded ]] \
+			&& rm -f "${docdir}"/samples/embedded/embedded
 	fi
 }
 
@@ -148,26 +152,26 @@ pkg_postinst() {
 	elog "Developers, see this site for instructions on using"
 	elog "2.6 or 2.8 with your apps:"
 	elog "http://wiki.wxpython.org/index.cgi/MultiVersionInstalls"
-	elog
+	echo
 	if use doc; then
 		elog "To access the general wxWidgets documentation, run"
 		elog "/usr/share/doc/${PF}/docs/viewdocs.py"
 		elog
 		elog "wxPython documentation is available by pointing a browser"
 		elog "at /usr/share/doc/${PF}/docs/api/index.html"
-		elog
 	fi
 	if use examples; then
+		elog
 		elog "The demo.py app which contains hundreds of demo modules"
 		elog "with documentation and source code has been installed at"
 		elog "/usr/share/doc/${PF}/demo/demo.py"
 		elog
 		elog "Many more example apps and modules can be found in"
 		elog "/usr/share/doc/${PF}/samples/"
+		echo
 	fi
-	echo
-	ewarn "Editra is no longer packaged with wxpython in Gentoo."
-	ewarn "You can find it in the tree as app-editors/editra"
+	elog "Editra is not packaged with wxpython in Gentoo."
+	elog "You can find it in the tree as app-editors/editra"
 	echo
 }
 

@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.10.1-r5.ebuild,v 1.13 2011/11/12 13:55:52 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.12.1.ebuild,v 1.1 2011/12/09 04:40:06 dirtyepic Exp $
 
-EAPI="2"
+EAPI="4"
 
 inherit eutils versionator flag-o-matic
 
@@ -16,8 +16,8 @@ BASE_P="${PN}-${BASE_PV}"
 # docs, and are released more frequently than wxGTK.
 SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
 
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86 ~x86-fbsd"
-IUSE="X doc debug gnome gstreamer odbc opengl pch sdl"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+IUSE="X aqua doc debug gnome gstreamer odbc opengl pch sdl tiff"
 
 RDEPEND="
 	dev-libs/expat
@@ -29,7 +29,6 @@ RDEPEND="
 		sys-libs/zlib
 		virtual/jpeg
 		x11-libs/gtk+:2
-		media-libs/tiff:0
 		x11-libs/libSM
 		x11-libs/libXinerama
 		x11-libs/libXxf86vm
@@ -37,8 +36,15 @@ RDEPEND="
 		gnome?  ( gnome-base/libgnomeprintui:2.2 )
 		gstreamer? (
 			gnome-base/gconf:2
-			>=media-libs/gstreamer-0.10 )
+			>=media-libs/gstreamer-0.10
+			>=media-libs/gst-plugins-base-0.10 )
 		opengl? ( virtual/opengl )
+		tiff?   ( media-libs/tiff:0 )
+		)
+	aqua? (
+		>=x11-libs/gtk+-2.4[aqua=]
+		virtual/jpeg
+		tiff?   ( media-libs/tiff:0 )
 		)"
 
 DEPEND="${RDEPEND}
@@ -60,17 +66,10 @@ LICENSE="wxWinLL-3
 S="${WORKDIR}/wxPython-src-${PV}"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.6.3-unicode-odbc.patch
-	epatch "${FILESDIR}"/${PN}-2.8.10-collision.patch
+	epatch "${FILESDIR}"/${PN}-2.8.11-unicode-odbc.patch
+	epatch "${FILESDIR}"/${PN}-2.8.11-collision.patch
 	epatch "${FILESDIR}"/${PN}-2.8.7-mmedia.patch              # Bug #174874
 	epatch "${FILESDIR}"/${PN}-2.8.10.1-odbc-defines.patch     # Bug #310923
-	# this version only:
-	epatch "${FILESDIR}"/${P}-CVE-2009-2369.patch              # Bug #277722
-	epatch "${FILESDIR}"/${P}-gsocket.patch                    # Bug #278778
-	epatch "${FILESDIR}"/${P}-wxTimer-unbounded-hook.patch     # Bug #301143
-
-	# Fix for >=libpng-1.4.0  Bug #305119.
-	sed -i -e 's:png_check_sig:png_sig_cmp:g' "${S}"/configure{,.in}
 }
 
 src_configure() {
@@ -87,11 +86,9 @@ src_configure() {
 			--with-expat=sys
 			$(use_enable debug)
 			$(use_enable pch precomp-headers)
-			$(use_with sdl)"
-
-	use odbc \
-		&& myconf="${myconf} --with-odbc=sys" \
-		|| myconf="${myconf} $(use_with odbc)"
+			$(use_with odbc odbc sys)
+			$(use_with sdl)
+			$(use_with tiff libtiff sys)"
 
 	# wxGTK options
 	#   --enable-graphics_ctx - needed for webkit, editra
@@ -104,17 +101,27 @@ src_configure() {
 			--with-libpng=sys
 			--with-libxpm=sys
 			--with-libjpeg=sys
-			--with-libtiff=sys
 			$(use_enable gstreamer mediactrl)
 			$(use_enable opengl)
 			$(use_with opengl)
 			$(use_with gnome gnomeprint)
 			--without-gnomevfs"
 
+	use aqua && \
+		myconf="${myconf}
+			--enable-graphics_ctx
+			--enable-gui
+			--with-libpng=sys
+			--with-libxpm=sys
+			--with-libjpeg=sys
+			--with-mac
+			--with-opengl"
+			# cocoa toolkit seems to be broken
 	# wxBase options
-	use X || \
+	if use !X && use !aqua ; then
 		myconf="${myconf}
 			--disable-gui"
+	fi
 
 	mkdir "${S}"/wxgtk_build
 	cd "${S}"/wxgtk_build
@@ -125,22 +132,22 @@ src_configure() {
 src_compile() {
 	cd "${S}"/wxgtk_build
 
-	emake || die "make failed."
+	emake
 
 	if [[ -d contrib/src ]]; then
 		cd contrib/src
-		emake || die "make contrib failed."
+		emake
 	fi
 }
 
 src_install() {
 	cd "${S}"/wxgtk_build
 
-	emake DESTDIR="${D}" install || die "install failed."
+	emake DESTDIR="${D}" install
 
 	if [[ -d contrib/src ]]; then
 		cd contrib/src
-		emake DESTDIR="${D}" install || die "install contrib failed."
+		emake DESTDIR="${D}" install
 	fi
 
 	cd "${S}"/docs
@@ -153,7 +160,8 @@ src_install() {
 	fi
 
 	# We don't want this
-	rm "${D}"usr/share/locale/it/LC_MESSAGES/wxmsw.mo
+	local wxmsw="${ED}usr/share/locale/it/LC_MESSAGES/wxmsw.mo"
+	[[ -e ${wxmsw} ]] && rm "${wxmsw}"
 }
 
 pkg_postinst() {
