@@ -1,10 +1,10 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tor/tor-0.2.3.7_alpha.ebuild,v 1.1 2011/10/31 10:16:33 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/tor/tor-0.2.3.9_alpha.ebuild,v 1.1 2011/12/09 22:19:52 blueness Exp $
 
 EAPI=4
 
-inherit autotools eutils flag-o-matic versionator
+inherit eutils flag-o-matic versionator
 
 MY_PV="$(replace_version_separator 4 -)"
 MY_PF="${PN}-${MY_PV}"
@@ -31,10 +31,6 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/torrc.sample.patch
-
-	einfo "Regenerating autotools files ..."
-	epatch "${FILESDIR}"/${PN}-0.2.2.24_alpha-respect-CFLAGS.patch
-	eautoreconf
 }
 
 src_configure() {
