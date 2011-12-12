@@ -1,6 +1,14 @@
 # ChangeLog for media-fonts/sil-doulos
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/sil-doulos/ChangeLog,v 1.9 2009/09/27 10:05:44 volkmar Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/sil-doulos/ChangeLog,v 1.11 2011/12/12 13:03:30 jer Exp $
+
+  12 Dec 2011; Jeroen Roovers <jer@gentoo.org> sil-doulos-4.106.ebuild:
+  Stable for HPPA (bug #393709).
+
+*sil-doulos-4.110 (12 Dec 2011)
+
+  12 Dec 2011; Peter Volkov <pva@gentoo.org> +sil-doulos-4.110.ebuild:
+  Version bump.
 
   27 Sep 2009; Mounir Lamouri <volkmar@gentoo.org> sil-doulos-4.104.ebuild:
   Stable for ppc. Fix bug 283915
