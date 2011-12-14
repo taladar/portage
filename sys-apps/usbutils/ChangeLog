@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/usbutils
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/ChangeLog,v 1.124 2011/08/26 11:34:05 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/ChangeLog,v 1.126 2011/12/13 18:23:22 jer Exp $
+
+  13 Dec 2011; Jeroen Roovers <jer@gentoo.org> usbutils-004.ebuild:
+  Stable for HPPA (bug #394577).
+
+*usbutils-005 (13 Dec 2011)
+
+  13 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> +usbutils-005.ebuild:
+  Version bump wrt #394513 by Rafał Mużyło
 
 *usbutils-004 (26 Aug 2011)
 
