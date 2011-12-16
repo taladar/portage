@@ -1,9 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-2.2.ebuild,v 1.3 2011/11/13 10:56:24 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-2.3.ebuild,v 1.1 2011/12/16 15:45:34 ssuominen Exp $
 
 EAPI=4
-inherit eutils
 
 DESCRIPTION="A lightweight, speed optimized color management engine"
 HOMEPAGE="http://www.littlecms.com/"
@@ -20,10 +19,6 @@ RDEPEND="jpeg? ( virtual/jpeg )
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/lcms2-${PV}
-
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-header.patch
-}
 
 src_configure() {
 	econf \
@@ -55,5 +50,5 @@ src_install() {
 		dodoc doc/*.pdf
 	fi
 
-	find "${ED}" -name '*.la' -exec rm -f {} +
+	rm -f "${ED}"usr/lib*/liblcms2.la
 }
