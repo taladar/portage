@@ -1,6 +1,36 @@
 # ChangeLog for net-misc/tor
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tor/ChangeLog,v 1.301 2011/12/09 22:24:20 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/tor/ChangeLog,v 1.307 2011/12/17 00:06:13 blueness Exp $
+
+  17 Dec 2011; Anthony G. Basile <blueness@gentoo.org> tor-0.2.1.32.ebuild,
+  tor-0.2.2.35.ebuild:
+  Minor cleanup to ebuilds
+
+  16 Dec 2011; Anthony G. Basile <blueness@gentoo.org> -tor-0.2.2.34-r1.ebuild,
+  -files/tor-0.2.2.34_disable-stats-requiring-geoip.patch,
+  -tor-0.2.3.8_alpha.ebuild, -tor-0.2.3.9_alpha.ebuild:
+  Removed deprecated versions
+
+*tor-0.2.3.10_alpha (16 Dec 2011)
+
+  16 Dec 2011; Anthony G. Basile <blueness@gentoo.org>
+  +tor-0.2.3.10_alpha.ebuild:
+  Version bump 0.2.3 alpha branch
+
+*tor-0.2.2.35 (16 Dec 2011)
+
+  16 Dec 2011; Anthony G. Basile <blueness@gentoo.org> +tor-0.2.2.35.ebuild:
+  Version bump upstream stable 0.2.2
+
+  16 Dec 2011; Anthony G. Basile <blueness@gentoo.org>
+  -files/torrc.sample-0.1.2.6.patch, -files/tor-0.2.1.19-logrotate.patch,
+  -tor-0.2.1.31-r1.ebuild, -files/torrc:
+  Removed older 0.2.1 version
+
+*tor-0.2.1.32 (16 Dec 2011)
+
+  16 Dec 2011; Anthony G. Basile <blueness@gentoo.org> +tor-0.2.1.32.ebuild:
+  Version bump 0.2.1 branch, switch to syslog
 
   09 Dec 2011; Anthony G. Basile <blueness@gentoo.org>
   -tor-0.2.3.7_alpha.ebuild:
