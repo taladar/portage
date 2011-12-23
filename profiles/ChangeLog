@@ -1,10 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6036 2011/12/22 16:16:52 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6040 2011/12/23 16:02:17 jer Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  23 Dec 2011; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Actually, let's just have one mask entry for both opera and opera-next.
+
+  23 Dec 2011; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Mask www-client/opera-11.61* snapshots.
+
+  22 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Lastrite media-radio/fldigi.
+
+  22 Dec 2011; Andreas K. Huettel <dilfridge@gentoo.org> package.mask:
+  Calligra-2.3.85 has been released.
 
   22 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> package.mask:
   Mask games-strategy/savage-bin for security wrt #294253
