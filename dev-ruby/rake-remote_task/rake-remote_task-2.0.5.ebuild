@@ -1,9 +1,9 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake-remote_task/rake-remote_task-2.0.4.ebuild,v 1.1 2011/07/20 05:43:37 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake-remote_task/rake-remote_task-2.0.5.ebuild,v 1.1 2011/12/24 13:16:03 graaff Exp $
 
-EAPI=2
-USE_RUBY="ruby18"
+EAPI=4
+USE_RUBY="ruby18 ree18"
 
 RUBY_FAKEGEM_TASK_DOC="docs"
 RUBY_FAKEGEM_DOCDIR="doc"
@@ -21,10 +21,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 ruby_add_bdepend ">=dev-ruby/hoe-2.9.2 test? ( dev-ruby/minitest )"
-ruby_add_rdepend ">=dev-ruby/open4-0.9.0"
+ruby_add_rdepend ">=dev-ruby/open4-1.0"
 
-ruby_all_install() {
-	ruby_fakegem_install
-
-	dodoc doco/* || die
+all_ruby_prepare() {
+	sed -i -e '/isolate/ s:^:#:' Rakefile
 }
