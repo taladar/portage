@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-2.1.9.42.ebuild,v 1.12 2011/11/12 16:16:11 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-2.1.10.42.ebuild,v 1.1 2011/12/23 18:54:48 zmedico Exp $
 
 # Require EAPI 2 since we now require at least python-2.6 (for python 3
 # syntax support) which also requires EAPI 2.
@@ -10,36 +10,38 @@ inherit eutils multilib python
 DESCRIPTION="Portage is the package management and distribution system for Gentoo"
 HOMEPAGE="http://www.gentoo.org/proj/en/portage/index.xml"
 LICENSE="GPL-2"
-KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
 SLOT="0"
-IUSE="build doc epydoc +ipc +less linguas_pl python2 python3 selinux"
+IUSE="build doc epydoc +ipc linguas_pl python2 python3 selinux"
 
+# Import of the io module in python-2.6 raises ImportError for the
+# thread module if threading is disabled.
 python_dep="python3? ( =dev-lang/python-3* )
 	!python2? ( !python3? (
-		build? ( || ( dev-lang/python:2.7 dev-lang/python:2.6 ) )
-		!build? ( || ( dev-lang/python:2.7 dev-lang/python:2.6 >=dev-lang/python-3 ) )
+		build? ( || ( dev-lang/python:2.7 dev-lang/python:2.6[threads] ) )
+		!build? ( || ( dev-lang/python:2.7 dev-lang/python:2.6[threads] >=dev-lang/python-3 ) )
 	) )
-	python2? ( !python3? ( || ( dev-lang/python:2.7 dev-lang/python:2.6 ) ) )"
+	python2? ( !python3? ( || ( dev-lang/python:2.7 dev-lang/python:2.6[threads] ) ) )"
 
 # The pysqlite blocker is for bug #282760.
 DEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5 )
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
 	epydoc? ( >=dev-python/epydoc-2.0 !<=dev-python/pysqlite-2.4.1 )"
-
+# Require sandbox-2.2 for bug #288863.
 RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
 		>=app-shells/bash-3.2_p17
 		>=app-admin/eselect-1.2 )
 	elibc_FreeBSD? ( sys-freebsd/freebsd-bin )
-	elibc_glibc? ( >=sys-apps/sandbox-1.6 )
-	elibc_uclibc? ( >=sys-apps/sandbox-1.6 )
+	elibc_glibc? ( >=sys-apps/sandbox-2.2 )
+	elibc_uclibc? ( >=sys-apps/sandbox-2.2 )
 	>=app-misc/pax-utils-0.1.17
 	selinux? ( || ( >=sys-libs/libselinux-2.0.94[python] <sys-libs/libselinux-2.0.94 ) )
-	!<app-shells/bash-3.2_p17"
+	!<app-shells/bash-3.2_p17
+	!<app-admin/logrotate-3.8.0"
 PDEPEND="
 	!build? (
-		less? ( sys-apps/less )
 		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
 	)"
@@ -175,8 +177,7 @@ src_compile() {
 src_test() {
 	# make files executable, in case they were created by patch
 	find bin -type f | xargs chmod +x
-	PYTHONPATH=${S}/pym:${PYTHONPATH:+:}${PYTHONPATH} \
-		./pym/portage/tests/runTests || die "test(s) failed"
+	./pym/portage/tests/runTests || die "test(s) failed"
 }
 
 src_install() {
@@ -229,7 +230,7 @@ src_install() {
 	done
 
 	cd "$S" || die "cd failed"
-	for x in $(find pym/* -type d) ; do
+	for x in $(find pym/* -type d ! -path "pym/portage/tests*") ; do
 		insinto $portage_base/$x || die "insinto failed"
 		cd "$S"/$x || die "cd failed"
 		# __pycache__ directories contain no py files
@@ -241,15 +242,24 @@ src_install() {
 		fi
 	done
 
+	# We install some minimal tests for use as a preinst sanity check.
+	# These tests must be able to run without a full source tree and
+	# without relying on a previous portage instance being installed.
+	cd "$S" || die "cd failed"
+	exeinto $portage_base/pym/portage/tests || die
+	doexe pym/portage/tests/runTests || die
+	insinto $portage_base/pym/portage/tests || die
+	doins pym/portage/tests/*.py || die
+	insinto $portage_base/pym/portage/tests/lint || die
+	doins pym/portage/tests/lint/*.py || die
+	doins pym/portage/tests/lint/__test__ || die
+
 	# Symlinks to directories cause up/downgrade issues and the use of these
 	# modules outside of portage is probably negligible.
 	for x in "${D}${portage_base}/pym/"{cache,elog_modules} ; do
 		[ ! -L "${x}" ] && continue
 		die "symlink to directory will cause upgrade/downgrade issues: '${x}'"
 	done
-
-	exeinto ${portage_base}/pym/portage/tests
-	doexe  "${S}"/pym/portage/tests/runTests
 
 	doman "${S}"/man/*.[0-9]
 	if use linguas_pl; then
@@ -287,6 +297,15 @@ src_install() {
 }
 
 pkg_preinst() {
+	if [[ $ROOT == / ]] ; then
+		# Run some minimal tests as a sanity check.
+		local test_runner=$(find "$D" -name runTests)
+		if [[ -n $test_runner && -x $test_runner ]] ; then
+			einfo "Running preinst sanity tests..."
+			"$test_runner" || die "preinst sanity tests failed"
+		fi
+	fi
+
 	if ! use build && ! has_version dev-python/pycrypto && \
 		! has_version '>=dev-lang/python-2.6[ssl]' ; then
 		ewarn "If you are an ebuild developer and you plan to commit ebuilds"
@@ -299,8 +318,19 @@ pkg_preinst() {
 		rm "${ROOT}/etc/make.globals"
 	fi
 
-	[[ -n $PORTDIR_OVERLAY ]] && has_version "<${CATEGORY}/${PN}-2.1.6.12"
-	REPO_LAYOUT_CONF_WARN=$?
+	if [[ -d ${ROOT}var/log/portage && \
+		$(ls -ld "${ROOT}var/log/portage") != *" portage portage "* ]] && \
+		has_version '<sys-apps/portage-2.1.10.11' ; then
+		# Initialize permissions for bug #378451 and bug #377177, since older
+		# portage does not create /var/log/portage with the desired default
+		# permissions.
+		einfo "Applying portage group permission to ${ROOT}var/log/portage for bug #378451"
+		chown portage:portage "${ROOT}var/log/portage"
+		chmod g+ws "${ROOT}var/log/portage"
+	fi
+
+	[[ -n $PORTDIR_OVERLAY ]] && has_version "<${CATEGORY}/${PN}-2.1.6.12" \
+		&& REPO_LAYOUT_CONF_WARN=true || REPO_LAYOUT_CONF_WARN=false
 }
 
 pkg_postinst() {
@@ -308,7 +338,7 @@ pkg_postinst() {
 	# will be identified and removed in postrm.
 	python_mod_optimize /usr/$(get_libdir)/portage/pym
 
-	if [ $REPO_LAYOUT_CONF_WARN = 0 ] ; then
+	if $REPO_LAYOUT_CONF_WARN ; then
 		ewarn
 		echo "If you want overlay eclasses to override eclasses from" \
 			"other repos then see the portage(5) man page" \

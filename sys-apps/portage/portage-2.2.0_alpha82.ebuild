@@ -1,10 +1,10 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-2.2.0_alpha51.ebuild,v 1.3 2011/11/12 16:16:11 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-2.2.0_alpha82.ebuild,v 1.1 2011/12/23 18:55:59 zmedico Exp $
 
 # Require EAPI 2 since we now require at least python-2.6 (for python 3
 # syntax support) which also requires EAPI 2.
-EAPI=2
+EAPI=3
 inherit eutils multilib python
 
 DESCRIPTION="Portage is the package management and distribution system for Gentoo"
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gentoo.org/proj/en/portage/index.xml"
 LICENSE="GPL-2"
 KEYWORDS="~sparc-fbsd ~x86-fbsd"
 SLOT="0"
-IUSE="build doc epydoc +ipc +less linguas_pl python2 python3 selinux"
+IUSE="build doc epydoc +ipc linguas_pl python2 python3 selinux xattr"
 
 # Import of the io module in python-2.6 raises ImportError for the
 # thread module if threading is disabled.
@@ -29,6 +29,10 @@ DEPEND="${python_dep}
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
 	epydoc? ( >=dev-python/epydoc-2.0 !<=dev-python/pysqlite-2.4.1 )"
 # Require sandbox-2.2 for bug #288863.
+# For xattr, we can spawn getfattr and setfattr from sys-apps/attr, but that's
+# quite slow, so it's not considered in the dependencies as an alternative to
+# to python-3.3 / pyxattr. Also, xattr support is only tested with Linux, so
+# for now, don't pull in xattr deps for other kernels.
 RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
 		>=app-shells/bash-3.2_p17
@@ -37,12 +41,12 @@ RDEPEND="${python_dep}
 	elibc_glibc? ( >=sys-apps/sandbox-2.2 )
 	elibc_uclibc? ( >=sys-apps/sandbox-2.2 )
 	>=app-misc/pax-utils-0.1.17
+	xattr? ( kernel_linux? ( || ( >=dev-lang/python-3.3_pre20110902 dev-python/pyxattr ) ) )
 	selinux? ( || ( >=sys-libs/libselinux-2.0.94[python] <sys-libs/libselinux-2.0.94 ) )
 	!<app-shells/bash-3.2_p17
 	!<app-admin/logrotate-3.8.0"
 PDEPEND="
 	!build? (
-		less? ( sys-apps/less )
 		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
 	)"
@@ -62,7 +66,7 @@ prefix_src_archives() {
 
 PV_PL="2.1.2"
 PATCHVER_PL=""
-TARBALL_PV=$PV
+TARBALL_PV=2.2.0_alpha82
 SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.bz2
 	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)
 	linguas_pl? ( mirror://gentoo/${PN}-man-pl-${PV_PL}.tar.bz2
@@ -141,6 +145,12 @@ src_prepare() {
 			die "failed to patch AbstractEbuildProcess.py"
 	fi
 
+	if use xattr && use kernel_linux ; then
+		einfo "Adding FEATURES=xattr to make.globals ..."
+		echo -e '\nFEATURES="${FEATURES} xattr"' >> cnf/make.globals \
+			|| die "failed to append to make.globals"
+	fi
+
 	if use python3; then
 		einfo "Converting shebangs for python3..."
 		python_convert_shebangs -r 3 .
@@ -148,6 +158,39 @@ src_prepare() {
 		einfo "Converting shebangs for python2..."
 		python_convert_shebangs -r 2 .
 	fi
+
+	if [[ -n ${EPREFIX} ]] ; then
+		einfo "Setting portage.const.EPREFIX ..."
+		sed -e "s|^\(SANDBOX_BINARY[[:space:]]*=[[:space:]]*\"\)\(/usr/bin/sandbox\"\)|\\1${EPREFIX}\\2|" \
+			-e "s|^\(FAKEROOT_BINARY[[:space:]]*=[[:space:]]*\"\)\(/usr/bin/fakeroot\"\)|\\1${EPREFIX}\\2|" \
+			-e "s|^\(BASH_BINARY[[:space:]]*=[[:space:]]*\"\)\(/bin/bash\"\)|\\1${EPREFIX}\\2|" \
+			-e "s|^\(MOVE_BINARY[[:space:]]*=[[:space:]]*\"\)\(/bin/mv\"\)|\\1${EPREFIX}\\2|" \
+			-e "s|^\(PRELINK_BINARY[[:space:]]*=[[:space:]]*\"\)\(/usr/sbin/prelink\"\)|\\1${EPREFIX}\\2|" \
+			-e "s|^\(EPREFIX[[:space:]]*=[[:space:]]*\"\).*|\\1${EPREFIX}\"|" \
+			-i pym/portage/const.py || \
+			die "Failed to patch portage.const.EPREFIX"
+
+		einfo "Prefixing shebangs ..."
+		find . -type f -print0 | \
+		while read -r -d $'\0' ; do
+			local shebang=$(head -n1 "$REPLY")
+			if [[ ${shebang} == "#!"* && ! ${shebang} == "#!${EPREFIX}/"* ]] ; then
+				sed -i -e "1s:.*:#!${EPREFIX}${shebang:2}:" "$REPLY" || \
+					die "sed failed"
+			fi
+		done
+
+		einfo "Adjusting make.globals ..."
+		sed -e 's|^SYNC=.*|SYNC="rsync://rsync.prefix.freens.org/gentoo-portage-prefix"|' \
+			-e "s|^\(PORTDIR=\)\(/usr/portage\)|\\1\"${EPREFIX}\\2\"|" \
+			-e "s|^\(PORTAGE_TMPDIR=\)\(/var/tmp\)|\\1\"${EPREFIX}\\2\"|" \
+			-i cnf/make.globals || die "sed failed"
+
+		einfo "Adding FEATURES=force-prefix to make.globals ..."
+		echo -e '\nFEATURES="${FEATURES} force-prefix"' >> cnf/make.globals \
+			|| die "failed to append to make.globals"
+	fi
+
 }
 
 src_compile() {
@@ -228,7 +271,7 @@ src_install() {
 		fi
 		symlinks=$(find . -mindepth 1 -maxdepth 1 -type l)
 		if [ -n "$symlinks" ] ; then
-			cp -P $symlinks "$D$portage_base/$x" || die "cp failed"
+			cp -P $symlinks "$ED$portage_base/$x" || die "cp failed"
 		fi
 	done
 
@@ -241,7 +284,7 @@ src_install() {
 		doins *.py || die "doins failed"
 		symlinks=$(find . -mindepth 1 -maxdepth 1 -type l)
 		if [ -n "$symlinks" ] ; then
-			cp -P $symlinks "$D$portage_base/$x" || die "cp failed"
+			cp -P $symlinks "$ED$portage_base/$x" || die "cp failed"
 		fi
 	done
 
@@ -259,7 +302,7 @@ src_install() {
 
 	# Symlinks to directories cause up/downgrade issues and the use of these
 	# modules outside of portage is probably negligible.
-	for x in "${D}${portage_base}/pym/"{cache,elog_modules} ; do
+	for x in "${ED}${portage_base}/pym/"{cache,elog_modules} ; do
 		[ ! -L "${x}" ] && continue
 		die "symlink to directory will cause upgrade/downgrade issues: '${x}'"
 	done
@@ -302,7 +345,7 @@ src_install() {
 pkg_preinst() {
 	if [[ $ROOT == / ]] ; then
 		# Run some minimal tests as a sanity check.
-		local test_runner=$(find "$D" -name runTests)
+		local test_runner=$(find "$ED" -name runTests)
 		if [[ -n $test_runner && -x $test_runner ]] ; then
 			einfo "Running preinst sanity tests..."
 			"$test_runner" || die "preinst sanity tests failed"
@@ -317,25 +360,25 @@ pkg_preinst() {
 		ewarn "to enable RMD160 hash support."
 		ewarn "See bug #198398 for more information."
 	fi
-	if [ -f "${ROOT}/etc/make.globals" ]; then
-		rm "${ROOT}/etc/make.globals"
+	if [ -f "${EROOT}/etc/make.globals" ]; then
+		rm "${EROOT}/etc/make.globals"
 	fi
 
-	has_version "<${CATEGORY}/${PN}-2.2_alpha"
-	MINOR_UPGRADE=$?
+	has_version "<${CATEGORY}/${PN}-2.2_alpha" \
+		&& MINOR_UPGRADE=true || MINOR_UPGRADE=false
 
-	has_version "<=${CATEGORY}/${PN}-2.2_pre5"
-	WORLD_MIGRATION_UPGRADE=$?
+	has_version "<=${CATEGORY}/${PN}-2.2_pre5" \
+		&& WORLD_MIGRATION_UPGRADE=true || WORLD_MIGRATION_UPGRADE=false
 
 	# If portage-2.1.6 is installed and the preserved_libs_registry exists,
 	# assume that the NEEDED.ELF.2 files have already been generated.
 	has_version "<=${CATEGORY}/${PN}-2.2_pre7" && \
-		! ( [ -e "$ROOT"var/lib/portage/preserved_libs_registry ] && \
-		has_version ">=${CATEGORY}/${PN}-2.1.6_rc" )
-	NEEDED_REBUILD_UPGRADE=$?
+		! ( [ -e "${EROOT}"var/lib/portage/preserved_libs_registry ] && \
+		has_version ">=${CATEGORY}/${PN}-2.1.6_rc" ) \
+		&& NEEDED_REBUILD_UPGRADE=true || NEEDED_REBUILD_UPGRADE=false
 
-	[[ -n $PORTDIR_OVERLAY ]] && has_version "<${CATEGORY}/${PN}-2.1.6.12"
-	REPO_LAYOUT_CONF_WARN=$?
+	[[ -n $PORTDIR_OVERLAY ]] && has_version "<${CATEGORY}/${PN}-2.1.6.12" \
+		&& REPO_LAYOUT_CONF_WARN=true || REPO_LAYOUT_CONF_WARN=false
 }
 
 pkg_postinst() {
@@ -343,16 +386,16 @@ pkg_postinst() {
 	# will be identified and removed in postrm.
 	python_mod_optimize /usr/$(get_libdir)/portage/pym
 
-	if [ $WORLD_MIGRATION_UPGRADE = 0 ] ; then
+	if $WORLD_MIGRATION_UPGRADE ; then
 		einfo "moving set references from the worldfile into world_sets"
-		cd "${ROOT}/var/lib/portage/"
+		cd "${EROOT}/var/lib/portage/"
 		grep "^@" world >> world_sets
 		sed -i -e '/^@/d' world
 	fi
 
-	if [ $NEEDED_REBUILD_UPGRADE = 0 ] ; then
+	if $NEEDED_REBUILD_UPGRADE ; then
 		einfo "rebuilding NEEDED.ELF.2 files"
-		for cpv in "${ROOT}/var/db/pkg"/*/*; do
+		for cpv in "${EROOT}/var/db/pkg"/*/*; do
 			if [ -f "${cpv}/NEEDED" ]; then
 				rm -f "${cpv}/NEEDED.ELF.2"
 				while read line; do
@@ -369,7 +412,7 @@ pkg_postinst() {
 		done
 	fi
 
-	if [ $REPO_LAYOUT_CONF_WARN = 0 ] ; then
+	if $REPO_LAYOUT_CONF_WARN ; then
 		ewarn
 		echo "If you want overlay eclasses to override eclasses from" \
 			"other repos then see the portage(5) man page" \
@@ -379,7 +422,7 @@ pkg_postinst() {
 		ewarn
 	fi
 
-	if [ $MINOR_UPGRADE = 0 ] ; then
+	if $MINOR_UPGRADE ; then
 		elog "If you're upgrading from a pre-2.2 version of portage you might"
 		elog "want to remerge world (emerge -e world) to take full advantage"
 		elog "of some of the new features in 2.2."
