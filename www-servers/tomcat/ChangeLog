@@ -1,6 +1,46 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.271 2011/12/15 21:31:15 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.277 2011/12/24 22:52:49 ago Exp $
+
+  24 Dec 2011; Agostino Sarubbo <ago@gentoo.org> tomcat-6.0.35.ebuild:
+  Stable for AMD64, wrt bug #395933
+
+  24 Dec 2011; Agostino Sarubbo <ago@gentoo.org> tomcat-7.0.23-r3.ebuild:
+  Stable for AMD64, wrt bug #395923
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  -files/5.5/26-main_tomcat_catalina_jasper_build_xml.patch,
+  -tomcat-5.5.27-r5.ebuild, -files/5.5/5.5.27-dynamic-JSSE13Factory.patch,
+  -files/5.5/build-jspc-classpath.patch, -files/5.5/catalina.policy,
+  -files/5.5/examples-cal.patch,
+  -files/5.5/jsr152_jsr154_examples_build_xml.patch, -files/5.5/tomcat.conf.2,
+  -files/5.5/tomcat.init.2, -tomcat-5.5.27-r4.ebuild, metadata.xml:
+  Tomcat 5.5 moved from main tree to java-overlay because it's heading towards
+  its EOL in 2012-09-30. Also the current version (5.5.27) is affected by
+  several security issues and it is unmaintained in our main tree. If you need
+  to use Tomcat 5.5, please use the ebuilds from java-overlay.
+
+*tomcat-7.0.23-r3 (24 Dec 2011)
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-7.0.23-r2.ebuild,
+  +tomcat-7.0.23-r3.ebuild:
+  Removed the doc symlink because copying of doc is handled in post_inst.
+
+*tomcat-6.0.35 (24 Dec 2011)
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> +files/6/tomcat.init.4,
+  +tomcat-6.0.35.ebuild:
+  Version bump. This release fixes CVE-2011-3190. Also fixed issue with
+  documentation installation (bug #357437, thanks to Matt O
+  <locke105@gmail.com> for the fix). Also fixed warnings from init script.
+
+*tomcat-7.0.23-r2 (24 Dec 2011)
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-7.0.23-r1.ebuild,
+  +tomcat-7.0.23-r2.ebuild:
+  Fixed installation of documentation (bug #393511, thanks to ron widler
+  <ron@einfach.org> for the fix). Also added symlink to docs to catalina base
+  webapps which fixes display of documentation from Tomcat default web app.
 
 *tomcat-7.0.23-r1 (15 Dec 2011)
 

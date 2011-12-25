@@ -1,16 +1,11 @@
 #!/sbin/runscript
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/files/5.5/tomcat.init.2,v 1.8 2008/12/20 18:12:23 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/files/6/tomcat.init.4,v 1.1 2011/12/24 19:43:50 fordfrog Exp $
+
+extra_commands="forcestop"
 
 init_env_vars() {
-	if [ "$(gjl -p tomcat-5.5 --get-vm)" ] ; then
-		eerror "Tomcat has been compiled with java5 USE flag set."
-		eerror "Tomcat now requires a VM >=1.5 to run."
-		eerror "Please check your VM version, and restart Tomcat."
-		eend 1
-	fi
-
 	# Populate JAVA_HOME
 	JAVA_HOME=`java-config --jre-home`
 
@@ -29,15 +24,14 @@ init_env_vars() {
 	fi
 
 	# Populate the classpath
-	CLASSPATH="${CLASSPATH}:${CATALINA_HOME}/server/lib:${JAVA_HOME}/lib/tools.jar"
+	unset CLASSPATH
+	CLASSPATH="${CATALINA_HOME}/lib:${JAVA_HOME}/lib/tools.jar"
 	if [ -n "${JSSE_HOME}" ]; then
 		CLASSPATH="${CLASSPATH}:${JSSE_HOME}/lib/jcert.jar:${JSSE_HOME}/lib/jnet.jar:${JSSE_HOME}/lib/jsse.jar"
 	fi
-	CLASSPATH="${CLASSPATH}:${CATALINA_HOME}/bin/bootstrap.jar:${CATALINA_HOME}/bin/commons-logging-api.jar"
+	CLASSPATH="${CLASSPATH}:${CATALINA_HOME}/bin/bootstrap.jar:${CATALINA_HOME}/bin/tomcat-juli.jar"
 
-	OPTS_CP="${JAVA_OPTS} ${CATALINA_OPTS} \
-			 -Djava.endorsed.dirs=${CATALINA_HOME}/common/endorsed \
-			 -classpath ${CLASSPATH}"
+	OPTS_CP="${JAVA_OPTS} ${CATALINA_OPTS} -classpath ${CLASSPATH}"
 
 	CATALINA_ARGS="-Dcatalina.base=${CATALINA_BASE} \
 			-Dcatalina.home=${CATALINA_HOME} \
@@ -46,19 +40,28 @@ init_env_vars() {
 
 	if [ ! -f "${CATALINA_BASE}logs/catalina.out" ]; then
 		touch "${CATALINA_BASE}logs/catalina.out"
-		chown tomcat:tomcat "${CATALINA_BASE}logs/catalina.out"
+		chown "${CATALINA_USER}:${CATALINA_GROUP}" "${CATALINA_BASE}logs/catalina.out"
 	fi
 }
 
-start_helper() {
-	local executor=${1}
+ssd() {
+	local exec=${1}
 	shift
-	local arguments="--start --quiet \
+	local args="--start --quiet \
 		--chdir "${CATALINA_TMPDIR}" \
-		--chuid ${CATALINA_USER}:${CATALINA_GROUP} \
-		--make-pidfile --pidfile /var/run/tomcat-5.5.pid"
-	start-stop-daemon ${arguments} --exec ${executor} -- ${OPTS_CP} "$@" \
-		${CATALINA_ARGS} ${TOMCAT_START} >> "${CATALINA_BASE}"/logs/catalina.out 2>&1 &
+		--user ${CATALINA_USER}:${CATALINA_GROUP} \
+		--make-pidfile --pidfile /var/run/tomcat-6.pid"
+
+	# bug #243348
+	if [ -e /etc/init.d/sysfs ] ; then
+		args="${args} --background \
+			 --stdout ${CATALINA_BASE}/logs/catalina.out \
+			 --stderr ${CATALINA_BASE}/logs/catalina.out"
+		start-stop-daemon ${args} --exec ${exec} -- ${OPTS_CP} "$@" ${CATALINA_ARGS} ${TOMCAT_START}
+	else
+		start-stop-daemon ${args} --name ${exec} --exec ${exec} -- ${OPTS_CP} "$@" ${CATALINA_ARGS} ${TOMCAT_START} >> \
+			"${CATALINA_BASE}/logs/catalina.out" 2>&1 &
+	fi
 	return $?
 }
 
@@ -76,26 +79,26 @@ start()	{
 		eend 1
 	fi
 
-	# Figure out what arguments to pass start_helper based on TOMCAT_START
+	# Figure out what args to pass start_helper based on TOMCAT_START
 	if [ "${TOMCAT_START}" = "debug" ] ; then
-		start_helper ${JAVA_HOME}/bin/jdb \
+		ssd ${JAVA_HOME}/bin/jdb \
 			-sourcepath ${CATALINA_HOME}/../../jakarta-tomcat-catalina/catalina/src/share
 	elif [ "${TOMCAT_START}" = "-security debug" ] ; then
-		start_helper ${JAVA_HOME}/bin/jdb \
+		ssd ${JAVA_HOME}/bin/jdb \
 			-sourcepath ${CATALINA_HOME}/../../jakarta-tomcat-catalina/catalina/src/share \
 			-Djava.security.manager \
 			-Djava.security.policy=${CATALINA_BASE}/conf/catalina.policy
 	elif [ "${TOMCAT_START}" = "jpda start" ] ; then
-		start_helper ${JAVA_HOME}/bin/java ${JPDA_OPTS}
+		ssd ${JAVA_HOME}/bin/java ${JPDA_OPTS}
 	elif [ "${TOMCAT_START}" = "start" ] ; then
-		start_helper ${JAVA_HOME}/bin/java
+		ssd ${JAVA_HOME}/bin/java
 	elif [ "${TOMCAT_START}" = "-security start" ] ; then
-		start_helper ${JAVA_HOME}/bin/java \
+		ssd ${JAVA_HOME}/bin/java \
 			-Djava.security.manager \
 			-Djava.security.policy=${CATALINA_BASE}/conf/catalina.policy
 	else
 		eerror "Invalid TOMCAT_START variable value, or one is not set"
-		eerror "Please see /etc/conf.d/tomcat-5.5 for more information"
+		eerror "Please see /etc/conf.d/tomcat-6 for more information"
 		eend 1
 	fi
 	eend $?
@@ -104,8 +107,17 @@ start()	{
 stop()	{
 	ebegin "Stopping Tomcat"
 	init_env_vars
-	start-stop-daemon --stop --quiet \
-	       	--pidfile /var/run/tomcat-5.5.pid \
-			--exec ${JAVA_HOME}/bin/java -- ${OPTS_CP} ${CATALINA_ARGS} ${STD_OUT} stop
+	start-stop-daemon --stop --quiet --retry=60 \
+	       	--pidfile /var/run/tomcat-6.pid \
+		--exec ${JAVA_HOME}/bin/java -- ${OPTS_CP} ${CATALINA_args} stop ${STD_OUT}
+	eend $?
+}
+forcestop()	{
+	ebegin "Forcing Tomcat to Stop"
+	start-stop-daemon --stop --quiet --retry=60 \
+		--pidfile /var/run/tomcat-6.pid --signal=9
+	if service_started "${SVCNAME}"; then
+		mark_service_stopped "${SVCNAME}"
+	fi
 	eend $?
 }

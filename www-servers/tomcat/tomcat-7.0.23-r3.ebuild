@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-7.0.23-r1.ebuild,v 1.1 2011/12/15 21:31:15 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-7.0.23-r3.ebuild,v 1.2 2011/12/24 22:47:45 ago Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="doc examples source test"
@@ -14,7 +14,7 @@ MY_P="apache-${P}-src"
 SLOT="7"
 SRC_URI="mirror://apache/${PN}/${PN}-${SLOT}/v${PV}/src/${MY_P}.tar.gz"
 HOMEPAGE="http://tomcat.apache.org/"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~x86-fbsd"
+KEYWORDS="amd64 ~ppc ~ppc64 ~x86 ~x86-fbsd"
 LICENSE="Apache-2.0"
 
 IUSE=""
@@ -143,7 +143,7 @@ src_install() {
 	cp -pR host-manager "${D}"/usr/share/${TOMCAT_NAME}/webapps || die
 	cp -pR manager "${D}"/usr/share/${TOMCAT_NAME}/webapps || die
 	if use doc; then
-		cp -pR docs "${D}"/usr/share/${TOMCAT_NAME}/webapps || die
+		cp -pR "${S}"/output/build/webapps/docs "${D}"/usr/share/${TOMCAT_NAME}/webapps || die
 	fi
 	if use examples; then
 		cd "${S}"/webapps/examples/WEB-INF/lib
@@ -194,8 +194,7 @@ pkg_postinst() {
 		elog "${ROOT}usr/share/${TOMCAT_NAME}/webapps instead"
 		elog
 		elog "Manager Symbolic Links NOT created."
-
-		else
+	else
 		einfo "Installing latest webroot to ${ROOT}/${WEBAPPS_DIR}"
 		cp -pR "${ROOT}"/usr/share/${TOMCAT_NAME}/webapps/* \
 			"${ROOT}""${WEBAPPS_DIR}"
