@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jdbc-mysql/jdbc-mysql-5.1.11.ebuild,v 1.5 2010/10/14 16:49:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdbc-mysql/jdbc-mysql-5.1.18.ebuild,v 1.1 2011/12/25 20:46:35 fordfrog Exp $
 
 EAPI="2"
 
@@ -18,15 +18,15 @@ HOMEPAGE="http://www.mysql.com/products/connector/j/"
 SRC_URI="mirror://mysql/Downloads/Connector-J/${MY_P}.tar.gz"
 LICENSE="GPL-2-with-MySQL-FLOSS-exception"
 SLOT="0"
-KEYWORDS="amd64 ppc ppc64 x86"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE="c3p0 log4j"
 COMMON_DEP="
+	dev-java/slf4j-api:0
 	log4j? ( dev-java/log4j )
-	c3p0? ( dev-java/c3p0 )
-	dev-java/commons-logging"
+	c3p0? ( dev-java/c3p0 )"
 RDEPEND=">=virtual/jre-1.6
 	${COMMON_DEP}"
-DEPEND=">=virtual/jdk-1.6
+DEPEND="virtual/jdk:1.6
 	${COMMON_DEP}"
 
 S="${WORKDIR}/${MY_P}"
@@ -36,7 +36,7 @@ java_prepare() {
 	# http://bugs.mysql.com/bug.php?id=28286
 	epatch "${FILESDIR}/5.0.5-dist-target-depends.patch"
 	# use java6 for everything except jdbc3 - #283848
-	epatch "${FILESDIR}/5.1.11-java6.patch"
+	epatch "${FILESDIR}/5.1.14-java6.patch"
 
 	rm -v *.jar || die
 
@@ -44,7 +44,7 @@ java_prepare() {
 
 	cd src/lib
 	rm -v *.jar || die
-	java-pkg_jar-from commons-logging
+	java-pkg_jar-from slf4j-api
 	use log4j && java-pkg_jar-from log4j
 	use c3p0 && java-pkg_jar-from c3p0
 }
@@ -69,7 +69,7 @@ src_test() {
 
 src_install() {
 	# Skip bytecode check because we want two versions there
-	JAVA_PKG_STRICT= java-pkg_newjar build/${MY_P}/${MY_P}-bin.jar ${PN}.jar
+	JAVA_PKG_STRICT= java-pkg_newjar build/${MY_P}-SNAPSHOT/${MY_P}-SNAPSHOT-bin.jar ${PN}.jar
 	dodoc README CHANGES || die
 	dohtml docs/*.html || die
 	use source && java-pkg_dosrc src/com src/org
