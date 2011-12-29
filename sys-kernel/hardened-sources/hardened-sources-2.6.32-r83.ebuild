@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/hardened-sources/hardened-sources-2.6.32-r82.ebuild,v 1.1 2011/12/27 02:11:25 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/hardened-sources/hardened-sources-2.6.32-r83.ebuild,v 1.1 2011/12/29 14:38:11 blueness Exp $
 
 EAPI="4"
 
@@ -12,7 +12,7 @@ K_DEBLOB_AVAILABLE="1"
 inherit kernel-2
 detect_version
 
-HGPV="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}-84"
+HGPV="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}-85"
 HGPV_URI="http://dev.gentoo.org/~blueness/hardened-sources/hardened-patches/hardened-patches-${HGPV}.extras.tar.bz2"
 SRC_URI="${KERNEL_URI} ${HGPV_URI} ${GENPATCHES_URI} ${ARCH_URI}"
 
@@ -25,8 +25,6 @@ IUSE="deblob"
 
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 
-RDEPEND=">=sys-devel/gcc-4.5"
-
 pkg_postinst() {
 	kernel-2_pkg_postinst
 
@@ -34,11 +32,12 @@ pkg_postinst() {
 
 	ewarn
 	ewarn "Hardened Gentoo provides three different predefined grsecurity level:"
-	ewarn "[server], [workstation], and [virtualization].  Those who intend to"
-	ewarn "use one of these predefined grsecurity levels should read the help"
-	ewarn "associated with the level.  Because some options require >=gcc-4.5,"
-	ewarn "users with more, than one version of gcc installed should use gcc-config"
-	ewarn "to select a compatible version."
+	ewarn "[server], [workstation], and [virtualization]."
+	ewarn
+	ewarn "Those who intend to use one of these predefined grsecurity levels"
+	ewarn "should read the help associated with the level.  Users importing a"
+	ewarn "kernel configuration from a kernel prior to ${PN}-2.6.32,"
+	ewarn "should review their selected grsecurity/PaX options carefully."
 	ewarn
 	ewarn "Users of grsecurity's RBAC system must ensure they are using"
 	ewarn "${GRADM_COMPAT}, which is compatible with ${PF}."
