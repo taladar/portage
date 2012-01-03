@@ -1,6 +1,17 @@
 # ChangeLog for net-irc/scrollz
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/scrollz/ChangeLog,v 1.33 2011/06/30 17:12:32 binki Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/scrollz/ChangeLog,v 1.35 2012/01/03 04:33:31 binki Exp $
+
+*scrollz-2.2.1 (03 Jan 2012)
+
+  03 Jan 2012; Nathan Phillip Brink <binki@gentoo.org> +scrollz-2.2.1.ebuild:
+  Bump to scrollz-2.2.1.
+
+  03 Jan 2012; Nathan Phillip Brink <binki@gentoo.org> scrollz-2.2.ebuild,
+  +files/scrollz-2.2-cppflags.patch, +files/scrollz-2.2-make-install.patch:
+  Use ${CHOST}-gcc instead of gcc when compiling (fixes bug #397441 by ago).
+  Don't use einstall() (fixes bug #397445 by ago). Add patches for parallel
+  make install and respecting CPPFLAGS.
 
 *scrollz-2.2 (30 Jun 2011)
 
