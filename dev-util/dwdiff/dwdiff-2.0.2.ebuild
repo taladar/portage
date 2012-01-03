@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dwdiff/dwdiff-1.9.ebuild,v 1.2 2011/06/05 13:32:40 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dwdiff/dwdiff-2.0.2.ebuild,v 1.1 2012/01/03 09:49:23 ssuominen Exp $
 
 EAPI=4
 inherit toolchain-funcs
@@ -33,9 +33,9 @@ src_configure() {
 }
 
 src_compile() {
-	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" || die
+	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}"
 }
 
 src_install() {
-	emake prefix="${D}/usr" docdir="${D}/usr/share/doc/${PF}" install || die
+	emake prefix="${D}/usr" docdir="${D}/usr/share/doc/${PF}" install
 }

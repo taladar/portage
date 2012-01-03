@@ -1,15 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gmtk/gmtk-1.0.5_beta1.ebuild,v 1.2 2011/11/18 15:28:16 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gmtk/gmtk-1.0.5.ebuild,v 1.1 2012/01/03 15:45:55 ssuominen Exp $
 
 EAPI=4
 inherit flag-o-matic toolchain-funcs
 
-MY_P=${PN}-${PV/_beta/b}
-
 DESCRIPTION="GTK+ widget and function libraries for gnome-mplayer"
 HOMEPAGE="http://code.google.com/p/gmtk/"
-SRC_URI="http://${PN}.googlecode.com/files/${MY_P}.tar.gz"
+SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -30,9 +28,8 @@ DEPEND="${COMMON_DEPEND}
 
 DOCS=( ChangeLog )
 
-S=${WORKDIR}/${MY_P}
-
 src_configure() {
+	# http://code.google.com/p/gmtk/issues/detail?id=5
 	append-cppflags "$($(tc-getPKG_CONFIG) --cflags gtk+-3.0)"
 
 	econf \
