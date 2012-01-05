@@ -1,10 +1,20 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6072 2012/01/04 17:24:37 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6075 2012/01/05 16:13:48 tomjbe Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  05 Jan 2012; Thomas Beierlein <tomjbe@gentoo.org> package.mask:
+  Drop mask for media-radio/fldigi as a version supporting fltk-1.3 is in the
+  tree
+
+  05 Jan 2012; Maxim Koltsov <maksbotan@gentoo.org> package.mask:
+  Unmask app-emulation/libguestfs
+
+  05 Jan 2012; Matthew Marlowe <mattm@gentoo.org> package.mask:
+  Taking maintainership for net-libs/wt
 
   04 Jan 2012; Nirbheek Chauhan <nirbheek@gentoo.org> package.mask:
   Add two more packages that need esound, found by Mr_Bones_
