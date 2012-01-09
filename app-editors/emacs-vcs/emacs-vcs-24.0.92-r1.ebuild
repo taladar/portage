@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/emacs-vcs-24.0.91.ebuild,v 1.8 2012/01/08 21:29:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/emacs-vcs-24.0.92-r1.ebuild,v 1.1 2012/01/09 12:59:24 ulm Exp $
 
 EAPI=4
 
@@ -15,8 +15,10 @@ if [[ ${PV##*.} = 9999 ]]; then
 	inherit bzr
 	SRC_URI=""
 else
+	# emacs-23.3 patchball added for EDE security fix #398227
 	SRC_URI="mirror://gentoo/emacs-${PV}.tar.gz
-		ftp://alpha.gnu.org/gnu/emacs/pretest/emacs-${PV}.tar.gz"
+		ftp://alpha.gnu.org/gnu/emacs/pretest/emacs-${PV}.tar.gz
+		mirror://gentoo/emacs-23.3-patches-4.tar.bz2"
 	# FULL_VERSION keeps the full version number, which is needed in
 	# order to determine some path information correctly for copy/move
 	# operations later on
@@ -103,6 +105,8 @@ src_prepare() {
 		[[ ${FULL_VERSION} =~ ^${PV%.*}(\..*)?$ ]] \
 			|| die "Upstream version number changed to ${FULL_VERSION}"
 	fi
+
+	epatch "${WORKDIR}"/patch/08_all_ede_security_fix.patch	#398227
 
 	if ! use alsa; then
 		# ALSA is detected even if not requested by its USE flag.

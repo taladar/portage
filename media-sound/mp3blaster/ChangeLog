@@ -1,6 +1,28 @@
 # ChangeLog for media-sound/mp3blaster
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mp3blaster/ChangeLog,v 1.50 2010/11/01 01:53:47 xmw Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mp3blaster/ChangeLog,v 1.55 2012/01/09 18:47:03 ssuominen Exp $
+
+  09 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  mp3blaster-3.2.5-r1.ebuild:
+  Install missing mp3tag(1) manpage.
+
+  09 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  mp3blaster-3.2.5-r1.ebuild:
+  Move all documentation except commands.txt to the default documentation
+  directory; commands.txt is used at runtime (by src/main.cc)
+
+*mp3blaster-3.2.5-r1 (09 Jan 2012)
+
+  09 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +mp3blaster-3.2.5-r1.ebuild:
+  Import Debian patchset; to fix number of issues ranging from endianess to
+  memory leaks. Upstream seems quiet.
+
+  09 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> mp3blaster-3.2.5.ebuild,
+  +files/mp3blaster-3.2.5-gcc44.patch:
+  Fix building with USE="sid" and sys-devel/gcc >= 4.4.x wrt #362347 by
+  "Boris". Remove deprecated media-sound/esound support. One of USE oss or sdl
+  must be enabled; use REQUIRED_USE
 
   01 Nov 2010; Michael Weber <xmw@gentoo.org> mp3blaster-3.2.5.ebuild:
   arm stable

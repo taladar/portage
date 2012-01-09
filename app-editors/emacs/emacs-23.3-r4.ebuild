@@ -1,37 +1,22 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/emacs-vcs-23.3.9999.ebuild,v 1.19 2012/01/08 21:29:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-23.3-r4.ebuild,v 1.1 2012/01/09 10:14:52 ulm Exp $
 
 EAPI=4
 WANT_AUTOMAKE="none"
 
 inherit autotools elisp-common eutils flag-o-matic multilib
 
-if [[ ${PV##*.} = 9999 ]]; then
-	EBZR_PROJECT="emacs"
-	EBZR_BRANCH="emacs-23"
-	EBZR_REPO_URI="bzr://bzr.savannah.gnu.org/emacs/${EBZR_BRANCH}/"
-	# "Nosmart" is much faster for initial branching.
-	EBZR_INITIAL_URI="nosmart+${EBZR_REPO_URI}"
-	inherit bzr
-	SRC_URI=""
-else
-	SRC_URI="mirror://gentoo/emacs-${PV}.tar.gz
-		ftp://alpha.gnu.org/gnu/emacs/pretest/emacs-${PV}.tar.gz"
-	# FULL_VERSION keeps the full version number, which is needed in
-	# order to determine some path information correctly for copy/move
-	# operations later on
-	FULL_VERSION="${PV%%_*}"
-	S="${WORKDIR}/emacs-${FULL_VERSION}"
-fi
-
 DESCRIPTION="The extensible, customizable, self-documenting real-time display editor"
 HOMEPAGE="http://www.gnu.org/software/emacs/"
+SRC_URI="mirror://gnu/emacs/${P}a.tar.bz2
+	mirror://gentoo/${P}-patches-4.tar.bz2"
 
 LICENSE="GPL-3 FDL-1.3 BSD as-is MIT W3C unicode PSF-2"
 SLOT="23"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
-IUSE="alsa athena dbus gconf gif gpm gtk gzip-el hesiod jpeg kerberos m17n-lib motif png sound source svg tiff toolkit-scroll-bars X Xaw3d xft +xpm"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+IUSE="alsa aqua athena dbus gconf gif gpm gtk gzip-el hesiod jpeg kerberos livecd m17n-lib motif png sound source svg tiff toolkit-scroll-bars X Xaw3d xft +xpm"
+REQUIRED_USE="aqua? ( !X )"
 
 RDEPEND="sys-libs/ncurses
 	>=app-admin/eselect-emacs-1.2
@@ -78,22 +63,20 @@ DEPEND="${RDEPEND}
 	gzip-el? ( app-arch/gzip )"
 
 RDEPEND="${RDEPEND}
+	!<app-editors/emacs-vcs-${PV}
 	>=app-emacs/emacs-common-gentoo-1.3[X?]"
 
-EMACS_SUFFIX="emacs-${SLOT}-vcs"
+EMACS_SUFFIX="emacs-${SLOT}"
 SITEFILE="20${PN}-${SLOT}-gentoo.el"
+# FULL_VERSION keeps the full version number, which is needed in
+# order to determine some path information correctly for copy/move
+# operations later on
+FULL_VERSION="${PV%%_*}"
+S="${WORKDIR}/emacs-${FULL_VERSION}"
 
 src_prepare() {
-	if [[ ${PV##*.} = 9999 ]]; then
-		FULL_VERSION=$(grep 'defconst[	 ]*emacs-version' lisp/version.el \
-			| sed -e 's/^[^"]*"\([^"]*\)".*$/\1/')
-		[[ ${FULL_VERSION} ]] || die "Cannot determine current Emacs version"
-		einfo "Emacs branch: ${EBZR_BRANCH}"
-		einfo "Revision: ${EBZR_REVISION:-${EBZR_REVNO}}"
-		einfo "Emacs version number: ${FULL_VERSION}"
-		[[ ${FULL_VERSION} =~ ^${PV%.*}(\..*)?$ ]] \
-			|| die "Upstream version number changed to ${FULL_VERSION}"
-	fi
+	EPATCH_SUFFIX=patch epatch
+	epatch_user
 
 	sed -i \
 		-e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
@@ -142,7 +125,7 @@ src_configure() {
 	fi
 
 	if use X; then
-		myconf="${myconf} --with-x"
+		myconf="${myconf} --with-x --without-ns"
 		myconf="${myconf} $(use_with gconf)"
 		myconf="${myconf} $(use_with toolkit-scroll-bars)"
 		myconf="${myconf} $(use_with gif) $(use_with jpeg)"
@@ -184,15 +167,12 @@ src_configure() {
 				&& ewarn "USE flag \"${f}\" ignored (superseded by \"${tk}\")"
 			tk="${tk}${tk:+ }${f}"
 		done
-	else
+	elif use aqua; then
+		einfo "Configuring to build with Cocoa support"
+		myconf="${myconf} --with-ns --disable-ns-self-contained"
 		myconf="${myconf} --without-x"
-	fi
-
-	if [[ ${PV##*.} = 9999 ]]; then
-		# These variables are not needed for building. We add them to
-		# configure options because they are stored in the Emacs binary
-		# and available in variable "system-configuration-options".
-		myconf="${myconf} EBZR_BRANCH=${EBZR_BRANCH} EBZR_REVNO=${EBZR_REVNO}"
+	else
+		myconf="${myconf} --without-x --without-ns"
 	fi
 
 	# According to configure, this option is only used for GNU/Linux
@@ -207,6 +187,7 @@ src_configure() {
 		--infodir="${EPREFIX}"/usr/share/info/${EMACS_SUFFIX} \
 		--enable-locallisppath="${EPREFIX}/etc/emacs:${EPREFIX}${SITELISP}" \
 		--with-crt-dir="${crtdir}" \
+		--with-gameuser="${GAMES_USER_DED:-games}" \
 		$(use_with hesiod) \
 		$(use_with kerberos) $(use_with kerberos kerberos5) \
 		$(use_with gpm) \
@@ -216,11 +197,6 @@ src_configure() {
 
 src_compile() {
 	export SANDBOX_ON=0			# for the unbelievers, see Bug #131505
-	if [[ ${PV##*.} = 9999 ]]; then
-		emake CC="$(tc-getCC)" bootstrap
-		# cleanup, otherwise emacs will be dumped again in src_install
-		(cd src; emake versionclean)
-	fi
 	# set last component of emacs-version to (package revision + 1)
 	touch src/emacs-${FULL_VERSION}.${PR#r}
 	emake CC="$(tc-getCC)"
@@ -289,6 +265,15 @@ src_install () {
 	elisp-site-file-install "${T}/${SITEFILE}" || die
 
 	dodoc README BUGS
+
+	if use aqua; then
+		dodir /Applications/Gentoo
+		rm -rf "${ED}"/Applications/Gentoo/Emacs${EMACS_SUFFIX#emacs}.app
+		mv nextstep/Emacs.app \
+			"${ED}"/Applications/Gentoo/Emacs${EMACS_SUFFIX#emacs}.app || die
+		elog "Emacs${EMACS_SUFFIX#emacs}.app is in ${EPREFIX}/Applications/Gentoo."
+		elog "You may want to copy or symlink it into /Applications by yourself."
+	fi
 }
 
 pkg_preinst() {
@@ -314,10 +299,17 @@ pkg_postinst() {
 	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
 		[[ -e ${f} ]] || touch "${f}"
 	done
-	chown games "${EROOT}"/var/lib/games/emacs
+	chown "${GAMES_USER_DED:-games}" "${EROOT}"/var/lib/games/emacs
 
 	elisp-site-regen
-	eselect emacs update ifunset
+
+	if use livecd; then
+		# force an update of the emacs symlink for the livecd/dvd,
+		# because some microemacs packages set it with USE=livecd
+		eselect emacs update
+	else
+		eselect emacs update ifunset
+	fi
 
 	if use X; then
 		elog "You need to install some fonts for Emacs."
