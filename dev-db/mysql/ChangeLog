@@ -1,6 +1,18 @@
 # ChangeLog for dev-db/mysql
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.592 2012/01/06 21:28:19 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.594 2012/01/09 02:22:40 jmbsvicetto Exp $
+
+*mysql-5.0.91 (09 Jan 2012)
+
+  09 Jan 2012; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  +mysql-5.0.91.ebuild:
+  [dev-db/mysql-5.0.91] Restore stable 5.0 version.
+
+  08 Jan 2012; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  mysql-5.0.92.ebuild, mysql-5.1.51.ebuild, mysql-5.1.52.ebuild,
+  mysql-5.1.52-r1.ebuild, mysql-5.1.53.ebuild, mysql-5.1.56.ebuild:
+  [dev-db/mysql] Bumping EAPI to 4 on ebuilds using mysql.eclass - fixes bug
+  398025.
 
   06 Jan 2012; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   -mysql-5.0.54.ebuild, -mysql-5.0.91.ebuild, mysql-5.1.56-r1.ebuild,
