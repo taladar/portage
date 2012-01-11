@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/libxml2
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.321 2011/10/30 15:13:37 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.323 2012/01/10 22:36:48 ago Exp $
+
+  10 Jan 2012; Agostino Sarubbo <ago@gentoo.org> libxml2-2.7.8-r4.ebuild:
+  Stable for AMD64, wrt security bug #398361
+
+*libxml2-2.7.8-r4 (10 Jan 2012)
+
+  10 Jan 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +libxml2-2.7.8-r4.ebuild,
+  +files/libxml2-2.7.8-allocation-error-copying-entities.patch:
+  Fix heap-based overflow in parsing long entity references (CVE-2011-3919, bug
+  #398361, thanks to Agostino Sarubbo for reporting).
 
   30 Oct 2011; Raúl Porcel <armin76@gentoo.org> libxml2-2.7.8-r3.ebuild:
   alpha/ia64/m68k/s390/sh/sparc stable wrt #385699

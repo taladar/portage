@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/ristretto/ristretto-0.3.0.ebuild,v 1.2 2012/01/06 10:53:18 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/ristretto/ristretto-0.3.1.ebuild,v 1.1 2012/01/10 18:21:08 ssuominen Exp $
 
 EAPI=4
 inherit xfconf
@@ -30,7 +30,6 @@ DEPEND="${RDEPEND}
 
 pkg_setup() {
 	XFCONF=(
-		--docdir=/usr/share/doc/${PF}
 		$(xfconf_use_debug)
 		)
 
