@@ -1,6 +1,19 @@
 # ChangeLog for sys-kernel/dracut
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/dracut/ChangeLog,v 1.39 2012/01/11 09:58:12 aidecoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/dracut/ChangeLog,v 1.42 2012/01/12 16:41:30 aidecoe Exp $
+
+  12 Jan 2012; Amadeusz Żołnowski <aidecoe@gentoo.org> dracut-013-r2.ebuild,
+  dracut-014-r1.ebuild:
+  Removed unused variables.
+
+  12 Jan 2012; Amadeusz Żołnowski <aidecoe@gentoo.org> -dracut-014.ebuild:
+  Removed old 014 revision.
+
+*dracut-014-r1 (12 Jan 2012)
+
+  12 Jan 2012; Amadeusz Żołnowski <aidecoe@gentoo.org> +dracut-014-r1.ebuild,
+  +files/dracut-014-usrmount-fsck-fix.patch:
+  Fixed fsck usage error on /usr mount wrt bug #396575.
 
   11 Jan 2012; Amadeusz Żołnowski <aidecoe@gentoo.org> +dracut-010-r3.ebuild,
   +files/dracut-010-empty-etc-ld.so.conf.d.patch,
