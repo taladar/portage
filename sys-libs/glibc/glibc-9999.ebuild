@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-9999.ebuild,v 1.3 2011/11/16 16:07:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-9999.ebuild,v 1.4 2012/01/13 21:18:30 vapier Exp $
 
 inherit eutils versionator libtool toolchain-funcs flag-o-matic gnuconfig multilib
 
@@ -190,20 +190,6 @@ for x in setup {pre,post}inst ; do
 		eval "pkg_${x}() { eblit-run pkg_${x} ; }"
 	fi
 done
-
-pkg_setup() {
-	eblit-run pkg_setup
-
-	# Static binary sanity check #332927
-	if [[ ${ROOT} == "/" ]] && \
-	   has_version "<${CATEGORY}/${P}" && \
-	   built_with_use sys-apps/coreutils static
-	then
-		eerror "Please rebuild coreutils with USE=-static, then install"
-		eerror "glibc, then you may rebuild coreutils with USE=static."
-		die "Avoiding system meltdown #332927"
-	fi
-}
 
 eblit-src_unpack-post() {
 	if use hardened ; then
