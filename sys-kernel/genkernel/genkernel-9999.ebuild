@@ -1,19 +1,19 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/genkernel/genkernel-9999.ebuild,v 1.28 2011/09/21 09:04:41 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/genkernel/genkernel-9999.ebuild,v 1.29 2012/01/15 00:35:11 sping Exp $
 
 # genkernel-9999        -> latest Git branch "master"
 # genkernel-VERSION     -> normal genkernel release
 
-VERSION_BUSYBOX='1.18.1'
+VERSION_BUSYBOX='1.19.3'
 VERSION_DMAP='1.02.22'
 VERSION_DMRAID='1.0.0.rc14'
-VERSION_MDADM='3.1.4'
-VERSION_E2FSPROGS='1.41.14'
-VERSION_FUSE='2.7.4'
+VERSION_MDADM='3.1.5'
+VERSION_E2FSPROGS='1.42'
+VERSION_FUSE='2.8.6'
 VERSION_ISCSI='2.0-872'
-VERSION_LVM='2.02.74'
-VERSION_UNIONFS_FUSE='0.22'
+VERSION_LVM='2.02.88'
+VERSION_UNIONFS_FUSE='0.24'
 VERSION_GPG='1.4.11'
 
 MY_HOME="http://wolf31o2.org"
