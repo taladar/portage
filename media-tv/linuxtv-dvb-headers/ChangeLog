@@ -1,6 +1,21 @@
 # ChangeLog for media-tv/linuxtv-dvb-headers
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/linuxtv-dvb-headers/ChangeLog,v 1.21 2011/10/22 17:47:51 hd_brummy Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-tv/linuxtv-dvb-headers/ChangeLog,v 1.24 2012/01/19 14:55:16 jer Exp $
+
+  19 Jan 2012; Jeroen Roovers <jer@gentoo.org> linuxtv-dvb-headers-5.ebuild,
+  linuxtv-dvb-headers-5.3.ebuild:
+  Drop HPPA keywording.
+
+  17 Jan 2012; Christian Ruppert <idl0r@gentoo.org>
+  -linuxtv-dvb-headers-3.1.ebuild, linuxtv-dvb-headers-5.ebuild:
+  Remove 3.1. Adjust sys-kernel/linux-headers dependency. Remove useless eutils
+  inherit.
+
+*linuxtv-dvb-headers-5.3 (16 Jan 2012)
+
+  16 Jan 2012; Christian Ruppert <idl0r@gentoo.org>
+  +linuxtv-dvb-headers-5.3.ebuild:
+  Version bump
 
   22 Oct 2011; Joerg Bornkessel <hd_brummy@gentoo.org>
   linuxtv-dvb-headers-5.ebuild:

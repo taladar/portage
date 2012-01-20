@@ -1,10 +1,35 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6106 2012/01/16 12:57:09 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6114 2012/01/19 16:25:38 eras Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  19 Jan 2012; Eray Aslan <eras@gentoo.org> package.mask:
+  Mask experimental mail-mta/postfix-2.10 versions
+
+  18 Jan 2012; Matti Bickel <mabi@gentoo.org> package.mask:
+  Lastrite dev-php/PEAR-PHP_Archive
+
+  17 Jan 2012; Matti Bickel <mabi@gentoo.org> package.mask:
+  Lastrite dev-php/PEAR-HTML_Select_Common
+
+  17 Jan 2012; Johannes Huber <johu@gentoo.org> package.mask:
+  Mask not yet released media-libs/opengtl-0.9.16.
+
+  17 Jan 2012; Johannes Huber <johu@gentoo.org> base/use.mask, use.desc:
+  Remove kdeenablefinal. Build feature is gone.
+
+  17 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> package.mask:
+  Mask dev-util/chromium-tools for removal. Determined by the maintaining team
+  to be no longer useful.
+
+  16 Jan 2012; Johannes Huber <johu@gentoo.org> package.mask:
+  Update package mask entry for phonon-xine
+
+  16 Jan 2012; Matti Bickel <mabi@gentoo.org> package.mask:
+  Lastrite dev-php/PEAR-I18N, bug #396975.
 
   16 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> package.mask:
   Lastrite dev-dotnet/gnome-panel-sharp.

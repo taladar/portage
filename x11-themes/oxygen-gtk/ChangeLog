@@ -1,6 +1,27 @@
 # ChangeLog for x11-themes/oxygen-gtk
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/oxygen-gtk/ChangeLog,v 1.20 2012/01/13 23:00:09 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/oxygen-gtk/ChangeLog,v 1.24 2012/01/18 17:22:30 johu Exp $
+
+  18 Jan 2012; Johannes Huber <johu@gentoo.org> oxygen-gtk-1.0.0-r1.ebuild:
+  Move blocker to RDEPEND, thx zmedico. Fixes bug #399285.
+
+  18 Jan 2012; Zac Medico <zmedico@gentoo.org> oxygen-gtk-1.2.0-r1.ebuild:
+  Move !x11-themes/oxygen-gtk:0 blocker to RDEPEND due to file collision.
+
+*oxygen-gtk-1.2.0-r1 (17 Jan 2012)
+*oxygen-gtk-1.0.0-r1 (17 Jan 2012)
+
+  17 Jan 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -oxygen-gtk-1.0.0.ebuild, +oxygen-gtk-1.0.0-r1.ebuild,
+  -oxygen-gtk-1.2.0.ebuild, +oxygen-gtk-1.2.0-r1.ebuild:
+  Revision bump to rename env files. Fixes bug #399171.
+
+*oxygen-gtk-1.2.0 (17 Jan 2012)
+
+  17 Jan 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +oxygen-gtk-1.0.0.ebuild, +oxygen-gtk-1.2.0.ebuild:
+  Version bump introduce slotted gtk3 and gtk2 versions in slot 2 and 3
+  respectively.
 
   13 Jan 2012; Johannes Huber <johu@gentoo.org> -oxygen-gtk-1.0.5.ebuild,
   -oxygen-gtk-1.1.5.ebuild:
