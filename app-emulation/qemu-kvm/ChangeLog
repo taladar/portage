@@ -1,6 +1,31 @@
 # ChangeLog for app-emulation/qemu-kvm
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/ChangeLog,v 1.83 2012/01/20 10:54:04 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/ChangeLog,v 1.88 2012/01/22 22:49:21 jmbsvicetto Exp $
+
+  22 Jan 2012; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  qemu-kvm-9999.ebuild:
+  [app-emulation/qemu-kvm-9999] Whitespace changes.
+
+  22 Jan 2012; Sergei Trofimovich <slyfox@gentoo.org> qemu-kvm-0.14.1-r2.ebuild,
+  qemu-kvm-0.15.0.ebuild, qemu-kvm-0.15.1-r1.ebuild, qemu-kvm-1.0.ebuild:
+  Backport xen vs. xen-tools depend to older ebuilds. Fixes bug #389727 by Ian
+  Delaney.
+
+  22 Jan 2012; Sergei Trofimovich <slyfox@gentoo.org>
+  +files/qemu-kvm-1.0-fix-qemu-system-ppc.patch, qemu-kvm-1.0.ebuild:
+  Fix build failure of qemu-system-ppc* targets.
+
+  22 Jan 2012; Sergei Trofimovich <slyfox@gentoo.org>
+  +files/qemu-kvm-1.0-fix-nonkvm-arches.patch,
+  +files/qemu-kvm-9999-fix-nonkvm-arches.patch, qemu-kvm-1.0.ebuild,
+  qemu-kvm-9999.ebuild:
+  Fix build failure on non-KVM targets.
+
+  22 Jan 2012; Sergei Trofimovich <slyfox@gentoo.org>
+  +files/65-gentoo-kvm.rules, qemu-kvm-9999.ebuild:
+  Updated live ebuild. Synced with qemu ebuild: fixed USE=xen depend; dropped
+  USE="opengl qemu-ifup"; fixed udev rule installation; added more targets from
+  upstream.
 
   20 Jan 2012; Agostino Sarubbo <ago@gentoo.org> qemu-kvm-0.15.1-r1.ebuild:
   Stable for amd64, wrt bug #399221
