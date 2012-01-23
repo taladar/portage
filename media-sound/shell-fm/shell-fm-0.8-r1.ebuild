@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/shell-fm/shell-fm-0.8.ebuild,v 1.1 2011/05/24 21:12:43 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/shell-fm/shell-fm-0.8-r1.ebuild,v 1.1 2012/01/23 16:04:21 ssuominen Exp $
 
 EAPI=4
 inherit flag-o-matic toolchain-funcs eutils
@@ -14,8 +14,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux"
 IUSE=""
 
-RDEPEND="media-libs/libmad
-	media-libs/libao
+RDEPEND="media-libs/libao
+	media-libs/libmad
 	media-libs/taglib"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
@@ -27,12 +27,12 @@ src_unpack() {
 }
 
 src_prepare() {
-	sed -i -e "s:-Os::" source/Makefile || die "sed failed"
+	epatch "${FILESDIR}"/${P}-doublefree.patch #392413
+
+	sed -i -e 's:-Os::' source/Makefile || die
 
 	tc-export CC AR
-	if use ppc; then
-		append-flags -DWORDS_BIGENDIAN=1
-	fi
+	use ppc && append-flags -DWORDS_BIGENDIAN=1
 }
 
 src_install() {

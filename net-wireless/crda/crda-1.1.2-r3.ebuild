@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/crda/crda-1.1.2-r2.ebuild,v 1.4 2011/12/15 22:17:59 gurligebis Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/crda/crda-1.1.2-r3.ebuild,v 1.1 2012/01/23 18:08:50 ssuominen Exp $
 
 EAPI=4
 inherit eutils toolchain-funcs python
@@ -34,7 +34,7 @@ src_prepare() {
 }
 
 src_compile() {
-	emake UDEV_RULE_DIR=/etc/udev/rules.d/ REG_BIN=/usr/$(get_libdir)/crda/regulatory.bin USE_OPENSSL=1 CC="$(tc-getCC)" all_noverify
+	emake UDEV_RULE_DIR=/lib/udev/rules.d/ REG_BIN=/usr/$(get_libdir)/crda/regulatory.bin USE_OPENSSL=1 CC="$(tc-getCC)" all_noverify
 }
 
 src_test() {
@@ -42,6 +42,6 @@ src_test() {
 }
 
 src_install() {
-	emake UDEV_RULE_DIR=/etc/udev/rules.d/ REG_BIN=/usr/$(get_libdir)/crda/regulatory.bin USE_OPENSSL=1 DESTDIR="${D}" install
+	emake UDEV_RULE_DIR=/lib/udev/rules.d/ REG_BIN=/usr/$(get_libdir)/crda/regulatory.bin USE_OPENSSL=1 DESTDIR="${D}" install
 	keepdir /etc/wireless-regdb/pubkeys
 }

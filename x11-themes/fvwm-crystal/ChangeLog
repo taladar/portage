@@ -1,6 +1,23 @@
 # ChangeLog for x11-themes/fvwm-crystal
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/fvwm-crystal/ChangeLog,v 1.64 2011/11/11 17:08:24 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/fvwm-crystal/ChangeLog,v 1.68 2012/01/23 17:40:44 ssuominen Exp $
+
+*fvwm-crystal-3.0.6-r2 (23 Jan 2012)
+
+  23 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +fvwm-crystal-3.0.6-r2.ebuild, +files/fvwm-crystal-build.patch:
+  Fix bad initialization of generate-menu wrt #345985. Use "emake install" with
+  DESTDIR instead of "einstall". Thanks to Jan Vereecke, David Abbott and
+  Dominique Michel.
+
+  23 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  fvwm-crystal-3.0.6-r1.ebuild:
+  Use python.eclass and convert shebang(s) wrt #317041 by Ian Delaney
+
+  23 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  fvwm-crystal-3.0.6-r1.ebuild:
+  Fix *magick dependencies (import command is used) wrt #314413 by Wojciech
+  Porczyk
 
   11 Nov 2011; Samuli Suominen <ssuominen@gentoo.org>
   -fvwm-crystal-3.0.5-r1.ebuild:
