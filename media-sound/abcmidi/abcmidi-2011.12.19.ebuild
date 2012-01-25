@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/abcmidi/abcmidi-2011.10.19.ebuild,v 1.2 2011/10/21 20:18:20 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/abcmidi/abcmidi-2011.12.19.ebuild,v 1.1 2012/01/25 10:31:02 radhermit Exp $
 
 EAPI="4"
 
-inherit eutils versionator
+inherit eutils versionator autotools
 
 MY_P="abcMIDI-$(replace_all_version_separators '-')"
 DESCRIPTION="Programs for processing ABC music notation files"
@@ -21,8 +21,10 @@ DEPEND="app-arch/unzip"
 S="${WORKDIR}/${PN}"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-install.patch
+	epatch "${FILESDIR}"/${PN}-2011.10.19-install.patch
 	rm makefile || die
+	sed -i -e "s:-O2::" configure.ac || die
+	eautoreconf
 }
 
 src_install() {

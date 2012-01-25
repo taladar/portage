@@ -1,23 +1,24 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/phpBB/phpBB-3.0.8.ebuild,v 1.1 2011/02/07 23:36:43 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/phpBB/phpBB-3.0.10.ebuild,v 1.1 2012/01/25 09:53:36 radhermit Exp $
 
-EAPI=3
+EAPI=4
 
-inherit webapp depend.php
+inherit webapp
 
 DESCRIPTION="phpBB is an open-source bulletin board package"
 HOMEPAGE="http://www.phpbb.com/"
-SRC_URI="mirror://sourceforge/phpbb/${P}.tar.bz2"
+SRC_URI="http://download.phpbb.com/pub/release/${PV:0:3}/${PV}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 KEYWORDS="~alpha ~amd64 ~ppc ~sparc ~x86"
 IUSE=""
 
-need_httpd_cgi
-need_php_httpd
+RDEPEND="virtual/httpd-php"
 
-S="${WORKDIR}"/${PN}3
+need_httpd_cgi
+
+S=${WORKDIR}/${PN}3
 
 src_install() {
 	webapp_src_preinst
