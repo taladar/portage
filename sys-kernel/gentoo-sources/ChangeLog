@@ -1,6 +1,36 @@
 # ChangeLog for sys-kernel/gentoo-sources
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/gentoo-sources/ChangeLog,v 1.931 2012/01/24 15:20:37 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/gentoo-sources/ChangeLog,v 1.936 2012/01/25 02:02:09 mpagano Exp $
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-2.6.39-r3.ebuild, -gentoo-sources-2.6.39-r4.ebuild:
+  Remove vulnerable kernel versions. CVE-2012-0056. Bug #399243.
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.2.0.ebuild, -gentoo-sources-3.2.0-r1.ebuild,
+  -gentoo-sources-3.2.1.ebuild:
+  Remove vulnerable kernel versions. CVE-2012-0056. Bug #399243.
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.6.ebuild, -gentoo-sources-3.0.13.ebuild,
+  -gentoo-sources-3.0.14.ebuild, -gentoo-sources-3.0.15.ebuild,
+  -gentoo-sources-3.0.17.ebuild, -gentoo-sources-3.1.6.ebuild,
+  -gentoo-sources-3.1.7.ebuild, -gentoo-sources-3.1.9.ebuild:
+  Remove vulnerable kernel versions. CVE-2012-0056. Bug #399243.
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.6.ebuild, -gentoo-sources-3.0.13.ebuild,
+  -gentoo-sources-3.0.14.ebuild, -gentoo-sources-3.0.15.ebuild,
+  -gentoo-sources-3.0.17.ebuild:
+  Remove vulnerable kernel versions. CVE-2012-0056. Bug #399243.
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  gentoo-sources-3.0.17-r2.ebuild:
+  Security stablization for root exploit. CVE-2012-0056. bug #399243
+
+  25 Jan 2012; Michael Pagano <mpagano@gentoo.org>
+  gentoo-sources-3.1.10-r1.ebuild:
+  Security stablization for root exploit. CVE-2012-0056. bug #399243
 
 *gentoo-sources-3.0.17-r2 (24 Jan 2012)
 

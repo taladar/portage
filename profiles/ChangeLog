@@ -1,10 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6130 2012/01/24 10:50:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6134 2012/01/24 21:59:49 dilfridge Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  24 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org> package.mask:
+  Finally mask media-fonts/gnu-gs-fonts-* for last-riting, ending 
+  year-long annoyance in bug 247657. Replaced by media-fonts/urw-fonts.
+
+  24 Jan 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  lift mask on app-admin/webmin
+
+  24 Jan 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Add dev-python/cgkit-2.0.0_alpha9-r1 to the boost-1.48 rdeps
+
+  24 Jan 2012; Johannes Huber <johu@gentoo.org> updates/1Q-2012:
+  Rename net-libs/telepathy-qt4 to net-libs/telepathy-qt
 
   24 Jan 2012; Jeroen Roovers <jer@gentoo.org> package.mask:
   Unmask www-client/opera-11.61.
