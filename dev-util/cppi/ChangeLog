@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/cppi
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cppi/ChangeLog,v 1.3 2010/03/22 03:38:32 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cppi/ChangeLog,v 1.5 2012/01/26 06:27:40 jer Exp $
+
+  26 Jan 2012; Jeroen Roovers <jer@gentoo.org> cppi-1.16.ebuild:
+  Marked ~amd64 too.
+
+*cppi-1.16 (26 Jan 2012)
+
+  26 Jan 2012; Jeroen Roovers <jer@gentoo.org> +cppi-1.16.ebuild:
+  Version bump.
 
 *cppi-1.15 (22 Mar 2010)
 

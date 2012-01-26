@@ -1,6 +1,22 @@
 # ChangeLog for kde-base/kdelibs
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/ChangeLog,v 1.818 2012/01/17 13:28:51 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/ChangeLog,v 1.820 2012/01/25 23:01:47 johu Exp $
+
+  25 Jan 2012; Johannes Huber <johu@gentoo.org>
+  files/kdelibs-4.3.2-solaris-fileunix.patch,
+  files/kdelibs-4.3.2-solaris-getgrouplist.patch,
+  files/kdelibs-4.3.2-solaris-ksyscoca.patch,
+  files/kdelibs-4.3.80-kdeui_util_kkeyserver_mac.patch,
+  files/kdelibs-4.4.90-xslt.patch, files/kdelibs-4.6.2-armlinking.patch,
+  files/kdelibs-4.6.3-bytecode.patch, files/kdelibs-4.6.3-no_suid_kdeinit.patch,
+  kdelibs-4.8.0.ebuild:
+  Fix comment requested by Arfrever.
+
+*kdelibs-4.8.0 (25 Jan 2012)
+
+  25 Jan 2012; Johannes Huber <johu@gentoo.org>
+  +files/kdelibs-4.7.96-mimetypes.patch, +kdelibs-4.8.0.ebuild:
+  Version bump KDE SC 4.8.0
 
   17 Jan 2012; Johannes Huber <johu@gentoo.org> -kdelibs-4.7.3-r1.ebuild,
   -kdelibs-4.7.3-r11.ebuild:

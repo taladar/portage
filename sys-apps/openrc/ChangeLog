@@ -1,6 +1,20 @@
 # ChangeLog for sys-apps/openrc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/openrc/ChangeLog,v 1.196 2012/01/23 13:58:37 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/openrc/ChangeLog,v 1.201 2012/01/25 19:50:17 jdhore Exp $
+
+  25 Jan 2012; Agostino Sarubbo <ago@gentoo.org> openrc-0.9.8.2.ebuild:
+  Stable for AMD64, wrt bug #399793
+
+  25 Jan 2012; Jeff Horelick <jdhore@gentoo.org> openrc-0.9.8.2.ebuild:
+  x86 stable per bug 399793
+
+  25 Jan 2012; Jeroen Roovers <jer@gentoo.org> openrc-0.9.8.2.ebuild:
+  Stable for HPPA (bug #399793).
+
+*openrc-0.9.8.2 (25 Jan 2012)
+
+  25 Jan 2012; Robin H. Johnson <robbat2@gentoo.org> +openrc-0.9.8.2.ebuild:
+  Bugfix release with two oldnet fixes: ethtool (#399037) and bonding (#400613).
 
   23 Jan 2012; Agostino Sarubbo <ago@gentoo.org> openrc-0.9.8.1.ebuild:
   Stable for AMD64, wrt bug #399793
