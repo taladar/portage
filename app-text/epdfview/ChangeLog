@@ -1,6 +1,27 @@
 # ChangeLog for app-text/epdfview
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/epdfview/ChangeLog,v 1.44 2012/01/26 21:14:22 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/epdfview/ChangeLog,v 1.48 2012/01/28 15:33:44 phajdan.jr Exp $
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> epdfview-0.1.8.ebuild:
+  x86 stable wrt bug #400807
+
+  28 Jan 2012; Fabio Erculiani <lxnay@gentoo.org> epdfview-0.1.8.ebuild,
+  epdfview-0.1.8-r1.ebuild:
+  add ~arm keyword, looks good
+
+*epdfview-0.1.8-r1 (28 Jan 2012)
+
+  28 Jan 2012; Daniel Pielmeier <billie@gentoo.org> +epdfview-0.1.8-r1.ebuild,
+  +files/epdfview-0.1.8-swap-blue-red-channels.patch:
+  Add patch from upstream to fix bug #387125. Thanks to Vladimir for the report
+  and Fab for the link to the upstream patch. Possible endian issues still have
+  to be sorted out.
+
+  28 Jan 2012; Daniel Pielmeier <billie@gentoo.org>
+  -files/epdfview-0.1.7-mouse-scrolling.patch,
+  -files/epdfview-0.1.7-poppler-changeset_r354.patch,
+  -files/epdfview-0.1.7-poppler-changeset_r357.patch:
+  Remove unneeded patches.
 
   26 Jan 2012; Markos Chandras <hwoarang@gentoo.org> epdfview-0.1.8.ebuild:
   Stable on amd64 wrt bug #400807
