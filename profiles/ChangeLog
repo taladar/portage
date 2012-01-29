@@ -1,10 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6153 2012/01/29 02:39:51 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6157 2012/01/29 16:14:15 titanofold Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  29 Jan 2012; Aaron W. Swenson <titanofold@gentoo.org> thirdpartymirrors:
+  PostgreSQL revamped their download network.
+  http://pgsnake.blogspot.com/2011/12/updated-postgresql-download.html
+
+  29 Jan 2012; Alex Alexander <wired@gentoo.org> package.mask:
+  masked new revbump of cairo, will unmask it together with new Qt
+
+  29 Jan 2012; Alex Alexander <wired@gentoo.org> package.mask:
+  Getting ready to push qt-4.8.0
+
+  29 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org> package.mask:
+  Improve xpdf mask message
 
   29 Jan 2012; Mike Gilbert <floppym@gentoo.org> package.mask:
   Mask another boost python revdep.
