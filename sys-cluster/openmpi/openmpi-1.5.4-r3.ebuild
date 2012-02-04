@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/openmpi/openmpi-1.5.4.ebuild,v 1.1 2011/08/31 17:26:17 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/openmpi/openmpi-1.5.4-r3.ebuild,v 1.1 2012/02/03 21:55:52 jsbronder Exp $
 
 EAPI=4
 inherit eutils fortran-2 multilib flag-o-matic toolchain-funcs
@@ -10,30 +10,32 @@ S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="A high-performance message passing library (MPI)"
 HOMEPAGE="http://www.open-mpi.org"
-SRC_URI="http://www.open-mpi.org/software/ompi/v1.5/downloads/${MY_P}.tar.bz2"
+SRC_URI="http://www.open-mpi.org/software/ompi/v${P%.*}/downloads/${MY_P}.tar.bz2"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux"
-IUSE="+cxx elibc_FreeBSD fortran heterogeneous infiniband ipv6 mpi-threads pbs
-	romio sctp slurm threads vt"
+IUSE="+cxx elibc_FreeBSD fortran heterogeneous infiniband ipv6 knem mpi-threads
+	+numa open-mx pbs psm romio sctp slurm threads vt"
 
-REQUIRED_USE="^^ (
-					( !slurm !pbs )
-					( slurm !pbs )
-					( !slurm pbs )
-				)"
+REQUIRED_USE="slurm? ( !pbs )
+	pbs? ( !slurm )
+	psm? ( infiniband )"
 
 RDEPEND="
+	elibc_FreeBSD? ( dev-libs/libexecinfo )
 	fortran? ( virtual/fortran )
-	pbs? ( sys-cluster/torque )
 	infiniband? ( sys-infiniband/openib )
+	knem? ( sys-cluster/knem )
+	numa? ( sys-process/numactl )
+	open-mx? ( sys-cluster/open-mx )
+	pbs? ( sys-cluster/torque )
+	psm? ( sys-infiniband/infinipath-psm )
 	sctp? ( net-misc/lksctp-tools )
 	vt? (
 		!dev-libs/libotf
 		!app-text/lcdf-typetools
 	)
-	elibc_FreeBSD? ( dev-libs/libexecinfo )
-	>=sys-apps/hwloc-1.1.1
+	>=sys-apps/hwloc-1.3
 	!sys-cluster/mpich
 	!sys-cluster/lam-mpi
 	!sys-cluster/mpich2
@@ -77,8 +79,7 @@ src_configure() {
 		)
 
 	if use mpi-threads; then
-		myconf+=(
-			--enable-mpi-thread-multiple
+		myconf+=(--enable-mpi-thread-multiple
 			--enable-opal-multi-threads
 			)
 	fi
@@ -96,26 +97,35 @@ src_configure() {
 
 	! use vt && myconf+=(--enable-contrib-no-build=vt)
 
+	use numa && myconf+=( --with-libnuma="${EPREFIX}/usr" )
+	use infiniband && myconf+=( --with-openib="${EPREFIX}/usr" )
+	use open-mx && myconf+=( --with-mx="${EPREFIX}/usr" )
+	use psm && myconf+=( --with-psm="${EPREFIX}/usr" )
+	use knem && myconf+=( --with-knem="${EPREFIX}/usr" )
+
 	econf "${myconf[@]}" \
 		$(use_enable cxx mpi-cxx) \
 		$(use_enable romio io-romio) \
 		$(use_enable heterogeneous) \
-		$(use_with pbs tm) \
-		$(use_with slurm) \
 		$(use_enable ipv6) \
-		$(use_with infiniband openib) \
-		$(use_with sctp sctp)
+		$(use_with infiniband openib "${EPREFIX}"/usr) \
+		$(use_with knem knem "${EPREFIX}"/usr) \
+		$(use_with numa libnuma "${EPREFIX}"/usr) \
+		$(use_with open-mx mx "${EPREFIX}"/usr) \
+		$(use_with pbs tm) \
+		$(use_with psm psm "${EPREFIX}"/usr) \
+		$(use_with sctp sctp) \
+		$(use_with slurm)
 }
 
 src_install () {
 	emake DESTDIR="${D}" install || die "make install failed"
 	# From USE=vt see #359917
-	rm "${D}"/usr/share/libtool &> /dev/null
+	rm "${ED}"/usr/share/libtool &> /dev/null
 	dodoc README AUTHORS NEWS VERSION || die
 }
 
 src_test() {
 	# Doesn't work with the default src_test as the dry run (-n) fails.
-	cd "${S}"
 	emake -j1 check || die "emake check failed"
 }

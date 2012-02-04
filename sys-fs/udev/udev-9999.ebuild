@@ -1,20 +1,18 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.67 2011/12/29 19:32:46 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.68 2012/02/03 19:22:43 williamh Exp $
 
 EAPI=4
 
 KV_min=2.6.34
 # patchversion=1
-scriptversion=6
-udev_rules_md5=7a7180a394e5bdea9011f68582b94fe8
+udev_rules_md5=ebc2cf422aa9e46cf7d9a555670412ba
 
 EGIT_REPO_URI="git://git.kernel.org/pub/scm/linux/hotplug/udev.git"
 
 [[ ${PV} == "9999" ]] && vcs="git-2 autotools"
 inherit ${vcs} eutils flag-o-matic multilib toolchain-funcs linux-info systemd libtool
 
-scriptname=${PN}-gentoo-scripts
 if [[ ${PV} != "9999" ]]
 then
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
@@ -24,8 +22,6 @@ then
 		patchset=${P}-patchset-${patchversion}
 		SRC_URI="${SRC_URI} mirror://gentoo/${patchset}.tar.bz2"
 	fi
-	scriptname="${scriptname}-${scriptversion}"
-	SRC_URI="${SRC_URI} mirror://gentoo/${scriptname}.tar.bz2"
 fi
 
 DESCRIPTION="Linux dynamic and persistent device naming support (aka userspace devfs)"
@@ -34,7 +30,7 @@ HOMEPAGE="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev.html"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="build selinux debug +rule_generator hwdb acl gudev introspection
-	keymap floppy edd doc"
+	keymap floppy edd doc static-libs"
 
 COMMON_DEPEND="selinux? ( sys-libs/libselinux )
 	acl? ( sys-apps/acl dev-libs/glib:2 )
@@ -58,20 +54,22 @@ then
 		test? ( app-text/tree )"
 else
 	DEPEND="${DEPEND}
-		doc? ( dev-util/gtk-doc )"
+	doc? ( dev-util/gtk-doc )"
 fi
 
 RDEPEND="${COMMON_DEPEND}
 	hwdb? ( >=sys-apps/usbutils-0.82 sys-apps/pciutils[-zlib] )
 	acl? ( sys-apps/coreutils[acl] )
+	sys-fs/udev-init-scripts
 	!sys-apps/coldplug
 	!<sys-fs/lvm2-2.02.45
 	!sys-fs/device-mapper
 	>=sys-apps/baselayout-1.12.5"
 
 # required kernel options
-CONFIG_CHECK="~INOTIFY_USER ~SIGNALFD ~!SYSFS_DEPRECATED ~!SYSFS_DEPRECATED_V2
-	~!IDE ~BLK_DEV_BSG ~TMPFS_POSIX_ACL"
+CONFIG_CHECK="~BLK_DEV_BSG ~DEVTMPFS ~HOTPLUG ~INOTIFY_USER ~NET ~PROC_FS
+	~SIGNALFD ~SYSFS ~TMPFS_POSIX_ACL
+	~!IDE ~!SYSFS_DEPRECATED ~!SYSFS_DEPRECATED_V2"
 
 udev_check_KV()
 {
@@ -107,22 +105,6 @@ pkg_setup()
 	fi
 }
 
-if [[ $PV == 9999 ]]
-then
-	src_unpack()
-	{
-		git-2_src_unpack
-		unset EGIT_BRANCH
-		unset EGIT_COMMIT
-		unset EGIT_DIR
-		unset EGIT_MASTER
-		EGIT_PROJECT="${scriptname}"
-		EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/${scriptname}.git"
-		EGIT_SOURCEDIR="${WORKDIR}/${scriptname}"
-		git-2_src_unpack
-	}
-fi
-
 src_prepare()
 {
 	# backport some patches
@@ -137,9 +119,12 @@ src_prepare()
 		-i rules/{rules.d,arch}/*.rules \
 	|| die "failed to change group dialout to uucp"
 
-	if [[ ${PV} != 9999 ]]
+	if [ ! -e configure ]
 	then
-		# Make sure there is no sudden changes to upstream rules file
+		gtkdocize --copy || die "gtkdocize failed"
+		eautoreconf
+	else
+		# Make sure there are no sudden changes to upstream rules file
 		# (more for my own needs than anything else ...)
 		MD5=$(md5sum < "${S}/rules/rules.d/50-udev-default.rules")
 		MD5=${MD5/  -/}
@@ -149,13 +134,6 @@ src_prepare()
 			eerror "md5sum: ${MD5}"
 			die "50-udev-default.rules has been updated, please validate!"
 		fi
-	fi
-
-	if [[ ${PV} == 9999 ]]
-	then
-		gtkdocize --copy || die "gtkdocize failed"
-		eautoreconf
-	else
 		elibtoolize
 	fi
 }
@@ -164,12 +142,10 @@ src_configure()
 {
 	filter-flags -fprefetch-loop-arrays
 	econf \
-		--exec-prefix=/ \
+		--with-rootprefix=/ \
 		--libdir=/usr/$(get_libdir) \
-		--with-rootlibdir=/$(get_libdir) \
-		--libexecdir=/lib/udev \
-		--enable-logging \
-		--enable-static \
+		--libexecdir=/lib \
+		$(use_enable static-libs static) \
 		$(use_with selinux) \
 		$(use_enable debug) \
 		$(use_enable rule_generator) \
@@ -195,21 +171,15 @@ src_install()
 
 	if use keymap
 	then
-		dodoc extras/keymap/README.keymap.txt
+		dodoc src/extras/keymap/README.keymap.txt
 	fi
 
-	# compatibility symlinks:
-	# udevadm is now in /bin and udevd is in /lib/udev.
-	dosym "/bin/udevadm" /sbin/udevadm
-	dosym "/lib/udev/udevd" /sbin/udevd
+	# udevadm is now in /usr/bin.
+	dosym /usr/bin/udevadm /sbin/udevadm
 
 	# create symlinks for these utilities to /sbin
 	# where multipath-tools expect them to be (Bug #168588)
-	dosym "../lib/udev/scsi_id" /sbin/scsi_id
-
-	# Add gentoo stuff to udev.conf
-	echo "# If you need to change mount-options, do it in /etc/fstab" \
-	>> "${D}"/etc/udev/udev.conf
+	dosym "/lib/udevd/scsi_id" /sbin/scsi_id
 
 	# Now install rules
 	insinto /lib/udev/rules.d/
@@ -222,16 +192,6 @@ src_install()
 	then
 		doins "rules/arch/40-${ARCH}.rules"
 	fi
-
-	cd "${WORKDIR}/${scriptname}"
-	doconfd conf.d/*
-	exeinto /lib/udev
-	doexe helpers/*
-	doinitd init.d/*
-	insinto /etc/modprobe.d
-	doins modprobe.d/*
-	insinto /lib/udev/rules.d
-	doins rules.d/*
 }
 
 # 19 Nov 2008
@@ -270,8 +230,8 @@ restart_udevd()
 	# abort if there is no udevd running
 	[[ -n $(pidof udevd) ]] || return
 
-	# abort if no /dev/.udev exists
-	[[ -e /dev/.udev ]] || return
+	# abort if no /run/udev exists
+	[[ -e /run/udev ]] || return
 
 	elog
 	elog "restarting udevd now."
@@ -280,7 +240,7 @@ restart_udevd()
 	sleep 1
 	killall -9 udevd &>/dev/null
 
-	/sbin/udevd --daemon
+	/lib/udev/udevd --daemon
 	sleep 3
 	if [[ ! -n $(pidof udevd) ]]
 	then
@@ -289,64 +249,6 @@ restart_udevd()
 		eerror
 		eerror "Please have a look at this before rebooting."
 		eerror "If in doubt, please downgrade udev back to your old version"
-	fi
-}
-
-postinst_init_scripts()
-{
-	local enable_postmount=false
-
-	# FIXME: inconsistent handling of init-scripts here
-	#  * udev is added to sysinit in openrc-ebuild
-	#  * we add udev-postmount to default in here
-	#
-
-	# If we are building stages, add udev to the sysinit runlevel automatically.
-	if use build
-	then
-		if [[ -x "${ROOT}"/etc/init.d/udev  \
-			&& -d "${ROOT}"/etc/runlevels/sysinit ]]
-		then
-			ln -s /etc/init.d/udev "${ROOT}"/etc/runlevels/sysinit/udev
-		fi
-		enable_postmount=true
-	fi
-
-	# migration to >=openrc-0.4
-	if [[ -e "${ROOT}"/etc/runlevels/sysinit && ! -e "${ROOT}"/etc/runlevels/sysinit/udev ]]
-	then
-		ewarn
-		ewarn "You need to add the udev init script to the runlevel sysinit,"
-		ewarn "else your system will not be able to boot"
-		ewarn "after updating to >=openrc-0.4.0"
-		ewarn "Run this to enable udev for >=openrc-0.4.0:"
-		ewarn "\trc-update add udev sysinit"
-		ewarn
-	fi
-
-	# add udev-postmount to default runlevel instead of that ugly injecting
-	# like a hotplug event, 2009/10/15
-
-	# already enabled?
-	[[ -e "${ROOT}"/etc/runlevels/default/udev-postmount ]] && return
-
-	[[ -e "${ROOT}"/etc/runlevels/sysinit/udev ]] && enable_postmount=true
-	[[ "${ROOT}" = "/" && -d /dev/.udev/ ]] && enable_postmount=true
-
-	if $enable_postmount
-	then
-		local initd=udev-postmount
-
-		if [[ -e ${ROOT}/etc/init.d/${initd} ]] && \
-			[[ ! -e ${ROOT}/etc/runlevels/default/${initd} ]]
-		then
-			ln -snf /etc/init.d/${initd} "${ROOT}"/etc/runlevels/default/${initd}
-			elog "Auto-adding '${initd}' service to your default runlevel"
-		fi
-	else
-		elog "You should add the udev-postmount service to default runlevel."
-		elog "Run this to add it:"
-		elog "\trc-update add udev-postmount default"
 	fi
 }
 
@@ -362,6 +264,7 @@ ismounted()
 
 pkg_postinst()
 {
+	mkdir -p "${ROOT}"/run
 	fix_old_persistent_net_rules
 
 	# "losetup -f" is confused if there is an empty /dev/loop/, Bug #338766
@@ -374,8 +277,6 @@ pkg_postinst()
 	fi
 
 	restart_udevd
-
-	postinst_init_scripts
 
 	# people want reminders, I'll give them reminders.  Odds are they will
 	# just ignore them anyway...
@@ -418,7 +319,7 @@ pkg_postinst()
 
 	ewarn
 	ewarn "If you build an initramfs including udev, then please"
-	ewarn "make sure that the /sbin/udevadm binary gets included,"
+	ewarn "make sure that the /usr/bin/udevadm binary gets included,"
 	ewarn "and your scripts changed to use it,as it replaces the"
 	ewarn "old helper apps udevinfo, udevtrigger, ..."
 
