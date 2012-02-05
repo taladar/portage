@@ -1,5 +1,12 @@
 
 
+  05 Feb 2012; Anthony G. Basile <blueness@gentoo.org>
+  xapian-omega-1.2.8.ebuild:
+  Removed DEPEND on sys-apps/file since its in @system
+
+  05 Feb 2012; Agostino Sarubbo <ago@gentoo.org> xapian-omega-1.2.8.ebuild:
+  Stable for amd64, wrt bug #402189
+
 *xapian-omega-1.2.8 (24 Dec 2011)
 
   24 Dec 2011; Anthony G. Basile <blueness@gentoo.org>
