@@ -87,6 +87,7 @@ app-admin/collectd:collectd_plugins_powerdns - Build the powerdns input plugin (
 app-admin/collectd:collectd_plugins_processes - Build the processes input plugin (statistics about processes)
 app-admin/collectd:collectd_plugins_protocols - Build the protocols input plugin (network protocols)
 app-admin/collectd:collectd_plugins_python - Build the python language binding plugin (embeds a Python interpreter into collectd for writing plugins)
+app-admin/collectd:collectd_plugins_routeros - Build the routeros input plugin (collect information on devices running RouterOS)
 app-admin/collectd:collectd_plugins_rrdcached - Build the rrdcached input/output plugin (connects to rrdcached and submits updates for RRD files)
 app-admin/collectd:collectd_plugins_rrdtool - Build the rrdtool output plugin (writes values to RRD-files)
 app-admin/collectd:collectd_plugins_sensors - Build the sensors input plugin (uses lm-sensors to read hardware sensors)
@@ -2806,6 +2807,7 @@ media-sound/rhythmbox:lastfm - Build a plugin for Last.fm and Librefm scrobbling
 media-sound/rhythmbox:udev - Enable hardware detection via sys-fs/udev replacing the deprecated sys-apps/hal code
 media-sound/rhythmbox:upnp - Build a plugin for local network music sharing which uses UPnP protocols using media-video/coherence, dev-python/louie, and dev-python/twisted
 media-sound/rhythmbox:webkit - Enable context panel plugin
+media-sound/rhythmbox:zeitgeist - Build the plugin to inject events to gnome-extra/zeitgeist
 media-sound/rubyripper:cdrdao - Add support for advanced toc scanning using app-cdr/cdrdao
 media-sound/rubyripper:cli - Build command line interface rubyripper
 media-sound/rubyripper:normalize - Add support for normalizing audio file volume levels
@@ -2930,6 +2932,8 @@ media-tv/xmltv:tv_pick_cgi - enable CGI support
 media-tv/xmltv:uk_bleb - Britain tv listing grabber
 media-tv/xmltv:uk_rt - Britain alternative tv listing grabber
 media-tv/xmltv:za - South Africa tv listing grabber
+media-video/aravis:X - Build the GTK+-based video viewer for aravis. This requires GStreamer and a few plugins but technically not the GST plugin for aravis.
+media-video/aravis:gstreamer - Build the GStreamer plugin for aravis, but not the video viewer.
 media-video/arista:faac - Use external faac library for AAC encoding
 media-video/arista:nautilus - Add an entry in the Nautilus context menu to transcode media files for a specified device.
 media-video/avidemux:aften - Enable A/52 (AC-3) audio encoder support
@@ -4179,8 +4183,10 @@ net-p2p/amule:daemon - Enable amule daemon
 net-p2p/amule:remote - Enable remote controlling of the client
 net-p2p/amule:stats - Enable statistic reporting
 net-p2p/amule:upnp - Enables support for Intel UPnP stack.
+net-p2p/bitcoin-qt:bip17 - Enable validation of new P2SH transactions
 net-p2p/bitcoin-qt:eligius - Enable using lower fees accepted by Eligius
 net-p2p/bitcoin-qt:upnp - Enable Universal Plug and Play
+net-p2p/bitcoind:bip17 - Enable validation of new P2SH transactions
 net-p2p/bitcoind:eligius - Enable using lower fees accepted by Eligius
 net-p2p/bitcoind:upnp - Enable Universal Plug and Play
 net-p2p/dbhub:switch_user - Enable support for switching user
@@ -5384,6 +5390,7 @@ x11-misc/bmpanel:libevent - Use the libevent event loop interface
 x11-misc/colord:gusb - Enable dev-libs/libgusb support, needed for colorimeter drivers
 x11-misc/colord:introspection - Use dev-libs/gobject-introspection for introspection
 x11-misc/colord:vala - Generate bindings for dev-lang/vala
+x11-misc/dmenu:xft - Enable unofficial x11-libs/libXft support
 x11-misc/etm:ical - Enable export of ical format files by depending on dev-python/icalendar
 x11-misc/fbpager:xrender - Enable transparency support via x11-libs/libXrender
 x11-misc/google-gadgets:soup - Enables XML HTTP request extension based on net-libs/libsoup
