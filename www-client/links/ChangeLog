@@ -1,6 +1,18 @@
 # ChangeLog for www-client/links
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.153 2012/01/15 19:34:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/links/ChangeLog,v 1.156 2012/02/11 15:43:51 ssuominen Exp $
+
+  11 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> links-2.5.ebuild:
+  Convert export to ac_cv_lib_gpm_Gpm_Open usex from eutils.eclass and
+  USE_REQUIRED for gpm in USE fbcon and livecd.
+
+  11 Feb 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -links-2.3_pre1-r1.ebuild, -files/links-2.3_pre1-libpng-1.5.patch,
+  -files/links-2.3_pre1-verify-ssl-certs.patch:
+  old
+
+  11 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> links-2.4-r2.ebuild:
+  ppc/ppc64 stable wrt #396519
 
   15 Jan 2012; Raúl Porcel <armin76@gentoo.org> links-2.4-r2.ebuild:
   alpha/ia64/s390/sh/sparc stable wrt #396519
