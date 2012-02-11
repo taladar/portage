@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/monkeyd/monkeyd-0.21.0.ebuild,v 1.1 2011/11/16 07:18:38 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/monkeyd/monkeyd-0.32.0.ebuild,v 1.1 2012/02/11 03:05:12 radhermit Exp $
 
 EAPI="4"
 
