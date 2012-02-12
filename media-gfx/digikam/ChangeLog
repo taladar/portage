@@ -1,6 +1,17 @@
 # ChangeLog for media-gfx/digikam
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/ChangeLog,v 1.210 2012/01/16 23:56:54 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/ChangeLog,v 1.213 2012/02/12 16:01:42 dilfridge Exp $
+
+  12 Feb 2012; Andreas K. Huettel <dilfridge@gentoo.org> digikam-2.3.0.ebuild,
+  digikam-2.4.1.ebuild, digikam-2.5.0.ebuild:
+  Add Boost to DEPEND, bug 400545
+
+  12 Feb 2012; Andreas K. Huettel <dilfridge@gentoo.org> digikam-2.5.0.ebuild,
+  +files/digikam-2.5.0-boost148.patch:
+  Add compatibility patch for Boost 1.48, bug 399727
+
+  12 Feb 2012; Andreas K. Huettel <dilfridge@gentoo.org> digikam-2.5.0.ebuild:
+  Install handbooks, bug 338757
 
   16 Jan 2012; Agostino Sarubbo <ago@gentoo.org> digikam-2.4.1.ebuild:
   Stable for amd64, wrt bug #396359
