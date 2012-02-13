@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.13483 2012/02/12 16:50:21 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.13486 2012/02/13 02:08:05 xmw Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Michael Weber <xmw@gentoo.org (13 Feb 2012)
+# Maked for testing
+>=app-laptop/thinkfan-0.8_alpha2
 
 # Pacho Ramos <pacho@gentoo.org (12 Feb 2012)
 # Unmaintained, segfaults, bug #353556
@@ -80,11 +84,6 @@ dev-php/pecl-enchant
 app-laptop/thinkpad
 app-laptop/tpctl
 app-laptop/configure-thinkpad
-
-# Markos Chandras <hwoarang@gentoo.org> (10 Feb 2012)
-# Unmaintained. If you want it take and bump it
-# Bug #386339
-app-shells/ksh
 
 # Markos Chandras <hwoarang@gentoo.org> (10 Feb 2012)
 # No maintainer. Does not build. Bug #402857
@@ -1175,10 +1174,6 @@ net-libs/libinfinity
 # Due to popular demand and no suitable replacement, it will stay in the tree
 # in a masked status until it completely breaks or is replaced.
 app-portage/udept
-
-# Matti Bickel <mabi@gentoo.org> (1 Mar 2009)
-# Mask testing branch
-=x11-libs/fox-1.7*
 
 # Diego E. Pettenò <flameeyes@gentoo.org> (03 Jan 2009)
 # These packages are not supposed to be merged directly, instead

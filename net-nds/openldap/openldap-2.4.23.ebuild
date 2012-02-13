@@ -1,9 +1,9 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.23.ebuild,v 1.10 2012/02/12 00:54:14 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.23.ebuild,v 1.12 2012/02/12 21:29:26 robbat2 Exp $
 
 EAPI="2"
-WANT_AUTOMAKE=none
+WANT_AUTOMAKE=1.9
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator toolchain-funcs autotools
 
 DESCRIPTION="LDAP suite of application and development tools"
@@ -24,6 +24,7 @@ IUSE="${IUSE_DAEMON} ${IUSE_BACKEND} ${IUSE_OVERLAY} ${IUSE_OPTIONAL} ${IUSE_CON
 
 # openssl is needed to generate lanman-passwords required by samba
 RDEPEND="sys-libs/ncurses
+	sys-devel/libtool
 	icu? ( dev-libs/icu )
 	tcpd? ( sys-apps/tcp-wrappers )
 	ssl? ( !gnutls? ( dev-libs/openssl )
@@ -253,9 +254,7 @@ src_prepare() {
 		"${S}"/tests/scripts/* || die "sed failed"
 
 	cd "${S}"
-	#sed '/AM_INIT_AUTOMAKE/s,^,#,g' -i configure.in || die "sed failed"
-	eautoreconf
-	#sed '/AM_INIT_AUTOMAKE/s,^#,,g' -i configure.in || die "sed failed"
+	WANT_AUTOMAKE=none eautoreconf
 }
 
 build_contrib_module() {

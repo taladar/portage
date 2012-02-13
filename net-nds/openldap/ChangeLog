@@ -1,6 +1,45 @@
 # ChangeLog for net-nds/openldap
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.391 2012/02/12 01:02:33 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.398 2012/02/13 00:43:46 robbat2 Exp $
+
+  13 Feb 2012; Robin H. Johnson <robbat2@gentoo.org> Manifest:
+  Maybe repoman should detect files not in the VCS in the Manifest?
+
+  12 Feb 2012; Robin H. Johnson <robbat2@gentoo.org> Manifest:
+  Manifest fix.
+
+  12 Feb 2012; Robin H. Johnson <robbat2@gentoo.org> openldap-2.4.28-r1.ebuild:
+  Bug #326175: Help users with very old LDAP deploys (without the tags) to
+  upgrade.
+
+  12 Feb 2012; Robin H. Johnson <robbat2@gentoo.org>
+  files/slapd-confd-2.4.28-r1, files/slapd-initd-2.4.28-r1:
+  Bug #376699: Multi-instance slapd support.
+
+  12 Feb 2012; Robin H. Johnson <robbat2@gentoo.org> metadata.xml,
+  openldap-2.4.19-r1.ebuild, openldap-2.4.21.ebuild, openldap-2.4.23.ebuild,
+  openldap-2.4.24.ebuild, openldap-2.4.25-r1.ebuild, openldap-2.4.25.ebuild,
+  openldap-2.4.28-r1.ebuild, openldap-2.4.28.ebuild:
+  Bug #378847: OpenLDAP has a run-time dependency on libtool for loading
+  overlays/modules.
+
+*openldap-2.4.28-r1 (12 Feb 2012)
+
+  12 Feb 2012; Robin H. Johnson <robbat2@gentoo.org>
+  +files/openldap-2.4.6-evolution-ntlm.patch, +files/slapd-confd-2.4.28-r1,
+  +files/slapd-initd-2.4.28-r1, +openldap-2.4.28-r1.ebuild, metadata.xml:
+  Bug #322787: Fix false positve on USE=minimal build safety. Bug #322535:
+  Samba4 overlay support. Bug #337717: missing groff DEPEND. Bug #340987: back-
+  ldbm was removed in the 2.4.x branch. Bug #342439: Connectionless LDAP
+  support. Bug #350295: Clarify slapd.conf vs slapd.d configuration methods. Bug
+  #294350: NTLM auth support for evolution client. Bug #302310: rfc2307bis
+  schema. Bug #302960: slaptest the configuration on startup.
+
+  12 Feb 2012; Robin H. Johnson <robbat2@gentoo.org> openldap-2.4.21.ebuild,
+  openldap-2.4.23.ebuild, openldap-2.4.24.ebuild, openldap-2.4.25-r1.ebuild,
+  openldap-2.4.25.ebuild, openldap-2.4.28.ebuild:
+  Bug #403261: no direct automake need, but OpenLDAP still needs a specific
+  version of aclocal which comes from automake
 
   12 Feb 2012; Robin H. Johnson <robbat2@gentoo.org> files/slapd-confd,
   files/slapd-initd:

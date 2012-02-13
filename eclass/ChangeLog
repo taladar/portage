@@ -1,6 +1,22 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.129 2012/02/12 14:17:33 zorry Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.134 2012/02/13 01:31:50 pesa Exp $
+
+  13 Feb 2012; Davide Pesavento <pesa@gentoo.org> qt4-r2.eclass:
+  Minor code style cleanup and quoting fixes.
+
+  13 Feb 2012; Davide Pesavento <pesa@gentoo.org> qt4-r2.eclass:
+  Finally remove ${S} fallback, it was deprecated 3 months ago.
+
+  13 Feb 2012; Davide Pesavento <pesa@gentoo.org> qt4-r2.eclass:
+  eqmake4: make CONFIG manipulation more robust by using gsub in the awk
+  script. Fixes bug #372719.
+
+  12 Feb 2012; Matti Bickel <mabi@gentoo.org> php-lib-r1.eclass:
+  always install stuff into /usr/share/php
+
+  12 Feb 2012; Matti Bickel <mabi@gentoo.org> fox.eclass:
+  fix eclass to also support building apps with fox:1.7
 
   12 Feb 2012; Magnus Granberg <zorry@gentoo.org> toolchain.eclass:
   PaX mark cc1 and cc1plus for bug 301299
@@ -99,6 +115,9 @@
 
   19 Jan 2012; Michał Górny <mgorny@gentoo.org> git-2.eclass:
   Strip .git from storedir; wrt bug #386845.
+
+  19 Jan 2012; Matti Bickel <mabi@gentoo.org> php-pear-lib-r1.eclass:
+  Removed superflous call to has_php from php-pear-lib-r1
 
   19 Jan 2012; Matti Bickel <mabi@gentoo.org> php-ext-source-r2.eclass:
   Added addpredict to src_configure phase because of bug #385403
