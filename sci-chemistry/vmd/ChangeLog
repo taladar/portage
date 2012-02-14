@@ -1,6 +1,14 @@
 # ChangeLog for sci-chemistry/vmd
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/vmd/ChangeLog,v 1.44 2012/01/10 14:44:42 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/vmd/ChangeLog,v 1.46 2012/02/14 15:26:56 alexxy Exp $
+
+  14 Feb 2012; Alexey Shvetsov <alexxy@gentoo.org> vmd-1.9.1.ebuild:
+  Fix plugin install
+
+*vmd-1.9.1 (14 Feb 2012)
+
+  14 Feb 2012; Alexey Shvetsov <alexxy@gentoo.org> +vmd-1.9.1.ebuild:
+  Version bump =D
 
   10 Jan 2012; Justin Lecher <jlec@gentoo.org> vmd-1.9.ebuild:
   Remove USE=static-libs beacuse this breaks build, #365051

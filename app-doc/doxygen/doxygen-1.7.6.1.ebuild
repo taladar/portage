@@ -1,35 +1,86 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.7.4.ebuild,v 1.3 2011/09/03 02:02:28 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.7.6.1.ebuild,v 1.4 2012/02/14 14:06:32 xarthisius Exp $
 
-EAPI=3
+EAPI=4
 
-inherit eutils flag-o-matic toolchain-funcs qt4-r2 fdo-mime
+PYTHON_DEPEND="doc? 2"
 
-DESCRIPTION="documentation system for C++, C, Java, Objective-C, Python, IDL, and other languages"
+inherit eutils fdo-mime flag-o-matic python qt4-r2 toolchain-funcs
+
+DESCRIPTION="Documentation system for most programming languages"
 HOMEPAGE="http://www.doxygen.org/"
 SRC_URI="ftp://ftp.stack.nl/pub/users/dimitri/${P}.src.tar.gz
-	tcl? ( mirror://gentoo/${PN}-1.7-tcl_support.patch.bz2 )"
+	http://dev.gentoo.org/~xarthisius/distfiles/doxywizard.png"
 
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-
-IUSE="debug doc nodot qt4 latex tcl elibc_FreeBSD"
 LICENSE="GPL-2"
 SLOT="0"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
+	~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+IUSE="debug doc dot qt4 latex elibc_FreeBSD"
+
+#missing SerbianCyrilic, JapaneseEn, KoreanEn, Chinesetraditional
+
+LANGS=(hy ar pt_BR ca zh cs de da eo es fa fi fr el hr hu id it ja ko lt mk
+nl nb pl pt ro ru sl sk sr sv tr uk vi af)
+for X in "${LANGS[@]}" ; do
+	IUSE="${IUSE} linguas_${X}"
+done
 
 RDEPEND="qt4? ( x11-libs/qt-gui:4 )
-	latex? ( >=app-text/texlive-2008[extra] )
-	dev-lang/python
+	latex? ( app-text/texlive[extra] )
+	dev-lang/perl
 	virtual/libiconv
 	media-libs/libpng
 	app-text/ghostscript-gpl
-	!nodot? ( >=media-gfx/graphviz-2.20.0
-		media-libs/freetype )"
-DEPEND=">=sys-apps/sed-4
+	dot? (
+		media-gfx/graphviz
+		media-libs/freetype
+	)"
+
+DEPEND="sys-apps/sed
 	sys-devel/flex
+	sys-devel/bison
 	${RDEPEND}"
 
+RESTRICT="mirror"
 EPATCH_SUFFIX="patch"
+
+get_langs() {
+	# using only user set linguas also fixes #263641
+	my_linguas=()
+	for lingua in ${LINGUAS}; do
+		if has ${lingua} "${LANGS[@]}"; then
+			case ${lingua} in
+				hy) lingua=am ;;
+			    pt_BR) lingua=br ;;
+				zh*) lingua=cn ;;
+				cs) lingua=cz ;;
+				da) lingua=dk ;;
+				el*) lingua=gr ;;
+				ja*) lingua=jp ;;
+				ko) lingua=kr ;;
+				nb) lingua=no ;;
+				sl) lingua=si ;;
+			    tr*) lingua=tr ;;
+			    uk) lingua=ua ;;
+			    af) lingua=za ;;
+			esac
+			has ${lingua} "${my_linguas[@]}" ||
+				my_linguas+=(${lingua})
+		fi
+	done
+	f_langs="${my_linguas[@]}"
+	echo ${f_langs// /,}
+}
+
+pkg_setup() {
+	tc-export CC CXX
+	if use doc; then
+		python_set_active_version 2
+		python_pkg_setup
+	fi
+}
 
 src_prepare() {
 	# use CFLAGS, CXXFLAGS, LDFLAGS
@@ -38,8 +89,12 @@ src_prepare() {
 	sed -i.orig -e 's:^\(TMAKE_CFLAGS_RELEASE\t*\)= .*$:\1= $(ECFLAGS):' \
 		-e 's:^\(TMAKE_CXXFLAGS_RELEASE\t*\)= .*$:\1= $(ECXXFLAGS):' \
 		-e 's:^\(TMAKE_LFLAGS_RELEASE\s*\)=.*$:\1= $(ELDFLAGS):' \
+		-e "s:^\(TMAKE_CXX\s*\)=.*$:\1= $(tc-getCXX):" \
+		-e "s:^\(TMAKE_LINK\s*\)=.*$:\1= $(tc-getCXX):" \
+		-e "s:^\(TMAKE_LINK_SHLIB\s*\)=.*$:\1= $(tc-getCXX):" \
+		-e "s:^\(TMAKE_CXX\s*\)=.*$:\1= $(tc-getCC):" \
 		tmake/lib/{{linux,gnu,freebsd,netbsd,openbsd,solaris}-g++,macosx-c++,linux-64}/tmake.conf \
-		|| die "sed 1 failed"
+		|| die
 
 	# Ensure we link to -liconv
 	if use elibc_FreeBSD; then
@@ -49,21 +104,19 @@ src_prepare() {
 	fi
 
 	# Call dot with -Teps instead of -Tps for EPS generation - bug #282150
-	epatch "${FILESDIR}"/${PN}-1.7.1-dot-eps.patch
+	sed -i -e '/addJob("ps"/ s/"ps"/"eps"/g' src/dot.cpp || die
 
 	# prefix search tools patch, plus OSX fixes
 	epatch "${FILESDIR}"/${PN}-1.5.6-prefix-misc-alt.patch
 
 	# fix final DESTDIR issue
 	sed -i.orig -e "s:\$(INSTALL):\$(DESTDIR)/\$(INSTALL):g" \
-		addon/doxywizard/Makefile.in || die "sed 2 failed"
+		-e "s/all: Makefile.doxywizard/all:/g" \
+		addon/doxywizard/Makefile.in || die
 
 	# fix pdf doc
 	sed -i.orig -e "s:g_kowal:g kowal:" \
-		doc/maintainers.txt || die "sed 3 failed"
-
-	# add native TCL support
-	use tcl && epatch "${WORKDIR}"/${PN}-1.7-tcl_support.patch
+		doc/maintainers.txt || die
 
 	if is-flagq "-O3" ; then
 		echo
@@ -79,7 +132,7 @@ src_prepare() {
 src_configure() {
 	# set ./configure options (prefix, Qt based wizard, docdir)
 
-	local my_conf="--shared"
+	local my_conf="--shared --enable-langs $(get_langs)"
 
 	if use debug ; then
 		my_conf="${my_conf} --debug"
@@ -91,31 +144,30 @@ src_configure() {
 
 	use qt4 && my_conf="${my_conf} --with-doxywizard"
 
-	export CC="${QMAKE_CC}"
-	export CXX="${QMAKE_CXX}"
 	export LINK="${QMAKE_LINK}"
 	export LINK_SHLIB="${QMAKE_CXX}"
 
+	if use qt4 ; then
+		pushd addon/doxywizard &> /dev/null
+		eqmake4 doxywizard.pro -o Makefile.doxywizard
+		popd &> /dev/null
+	fi
+
 	./configure --prefix "${EPREFIX}/usr" ${my_conf} \
-			|| die 'configure failed'
+			|| die
 }
 
 src_compile() {
 
-	# force stupid qmake to behave - if it works...
-	if use qt4 ; then
-		qt4-r2_src_compile
-	else
-		CFLAGS+="${ECFLAGS}" CXXFLAGS+="${ECXXFLAGS}" LFLAGS+="${ELDFLAGS}" \
-			emake all || die 'emake failed'
-	fi
+	emake CFLAGS+="${ECFLAGS}" CXXFLAGS+="${ECXXFLAGS}" \
+		LFLAGS+="${ELDFLAGS}" all
 
 	# generate html and pdf (if tetex in use) documents.
 	# errors here are not considered fatal, hence the ewarn message
 	# TeX's font caching in /var/cache/fonts causes sandbox warnings,
 	# so we allow it.
 	if use doc; then
-		if use nodot; then
+		if ! use dot; then
 			sed -i -e "s/HAVE_DOT               = YES/HAVE_DOT    = NO/" \
 				{Doxyfile,doc/Doxyfile} \
 				|| ewarn "disabling dot failed"
@@ -134,17 +186,16 @@ src_compile() {
 			sed -i.orig -e "s/@epstopdf/# @epstopdf/" \
 				-e "s/@cp Makefile.latex/# @cp Makefile.latex/" \
 				-e "s/@sed/# @sed/" doc/Makefile
-			make docs || ewarn '"make html docs" failed.'
+			make docs || ewarn '"make docs" failed.'
 		fi
 	fi
 }
 
 src_install() {
-	make DESTDIR="${D}" MAN1DIR=share/man/man1 \
-		install || die '"make install" failed.'
+	emake DESTDIR="${D}" MAN1DIR=share/man/man1 install
 
 	if use qt4; then
-		doicon "${FILESDIR}/doxywizard.png"
+		doicon "${DISTDIR}/doxywizard.png"
 		make_desktop_entry doxywizard "DoxyWizard ${PV}" \
 			"/usr/share/pixmaps/doxywizard.png" \
 			"Application;Development"
@@ -155,10 +206,7 @@ src_install() {
 	# pdf and html manuals
 	if use doc; then
 		dohtml -r html/*
-		if use latex; then
-			insinto /usr/share/doc/"${PF}"
-			doins latex/doxygen_manual.pdf
-		fi
+		use latex && dodoc latex/doxygen_manual.pdf
 	fi
 }
 
@@ -172,7 +220,7 @@ pkg_postinst() {
 	elog "output, run doxygen on the doxygen source using the Doxyfile"
 	elog "provided in the top-level source dir."
 	elog
-	elog "Enabling the nodot USE flag will remove the GraphViz dependency,"
+	elog "Disabling the dot USE flag will remove the GraphViz dependency,"
 	elog "along with Doxygen's ability to generate diagrams in the docs."
 	elog "See the Doxygen homepage for additional helper tools to parse"
 	elog "more languages."
