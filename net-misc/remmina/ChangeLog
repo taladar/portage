@@ -1,6 +1,28 @@
 # ChangeLog for net-misc/remmina
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/remmina/ChangeLog,v 1.11 2012/02/12 22:00:30 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/remmina/ChangeLog,v 1.17 2012/02/15 01:14:29 floppym Exp $
+
+*remmina-1.0.0 (15 Feb 2012)
+
+  15 Feb 2012; Mike Gilbert <floppym@gentoo.org> +remmina-1.0.0.ebuild:
+  Add official release.
+
+  15 Feb 2012; Mike Gilbert <floppym@gentoo.org> remmina-9999.ebuild:
+  Depend on GTK3 since the build system prefers that.
+
+  15 Feb 2012; Mike Gilbert <floppym@gentoo.org> remmina-9999.ebuild:
+  Remove invalid elog message.
+
+  15 Feb 2012; Mike Gilbert <floppym@gentoo.org> remmina-9999.ebuild:
+  Adjust freerdp dep.
+
+  15 Feb 2012; Mike Gilbert <floppym@gentoo.org> metadata.xml,
+  remmina-9999.ebuild:
+  Add several dependencies and clean up cmake bits.
+
+  14 Feb 2012; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
+  ayatana is now global per http://archives.gentoo.org/gentoo-
+  dev/msg_f2eb26947d0c86020625a9aeca6f25e4.xml
 
   12 Feb 2012; Mike Gilbert <floppym@gentoo.org> metadata.xml:
   Add myself to the maintainer list.
