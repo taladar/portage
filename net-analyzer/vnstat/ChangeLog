@@ -1,6 +1,12 @@
 # ChangeLog for net-analyzer/vnstat
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/vnstat/ChangeLog,v 1.54 2012/01/01 01:19:16 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/vnstat/ChangeLog,v 1.56 2012/02/21 23:44:13 jer Exp $
+
+  21 Feb 2012; Jeroen Roovers <jer@gentoo.org> vnstat-1.11-r2.ebuild:
+  Stable for HPPA (bug #403019).
+
+  21 Feb 2012; Agostino Sarubbo <ago@gentoo.org> vnstat-1.11-r2.ebuild:
+  Stable for amd64, wrt bug #403019
 
   01 Jan 2012; Christian Ruppert <idl0r@gentoo.org> files/vnstatd.initd:
   Forgot to remove a obsolete codeblock.
