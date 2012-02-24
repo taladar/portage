@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-9999.ebuild,v 1.27 2012/01/07 21:33:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-9999.ebuild,v 1.28 2012/02/24 16:35:39 vapier Exp $
 
 EAPI="3"
 
@@ -18,8 +18,8 @@ if [[ ${PV} == "9999" ]] ; then
 	SRC_URI=""
 	#KEYWORDS=""
 else
-	SRC_URI="mirror://kernel/linux/utils/util-linux/v${PV:0:4}/${MY_P}.tar.bz2
-		loop-aes? ( http://loop-aes.sourceforge.net/updates/util-linux-2.19.1-20110510.diff.bz2 )"
+	SRC_URI="mirror://kernel/linux/utils/util-linux/v${PV:0:4}/${MY_P}.tar.xz
+		loop-aes? ( http://loop-aes.sourceforge.net/updates/util-linux-2.20-20110905.diff.bz2 )"
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-linux"
 fi
 
@@ -66,7 +66,6 @@ lfs_fallocate_test() {
 	rm -f "${T}"/fallocate.c
 }
 
-usex() { use $1 && echo ${2:-yes} || echo ${3:-no} ; }
 src_configure() {
 	lfs_fallocate_test
 	econf \
@@ -88,7 +87,6 @@ src_configure() {
 		--enable-schedutils \
 		--disable-wall \
 		--enable-write \
-		--without-pam \
 		$(use_with selinux) \
 		$(use_with slang) \
 		$(use_enable static-libs static) \
@@ -96,8 +94,8 @@ src_configure() {
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die "install failed"
-	dodoc AUTHORS NEWS README* TODO docs/*
+	emake install DESTDIR="${D}" || die
+	dodoc AUTHORS NEWS README* Documentation/{TODO,*.txt}
 
 	if ! use perl ; then #284093
 		rm "${ED}"/usr/bin/chkdupexe || die
@@ -107,7 +105,7 @@ src_install() {
 	# need the libs in /
 	gen_usr_ldscript -a blkid mount uuid
 	# e2fsprogs-libs didnt install .la files, and .pc work fine
-	rm -f "${ED}"/usr/$(get_libdir)/*.la
+	find "${ED}" -name '*.la' -delete
 
 	if use crypt ; then
 		newinitd "${FILESDIR}"/crypto-loop.initd crypto-loop || die
