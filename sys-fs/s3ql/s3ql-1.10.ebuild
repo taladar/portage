@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/s3ql/s3ql-1.8.1.ebuild,v 1.2 2011/12/08 10:20:11 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/s3ql/s3ql-1.10.ebuild,v 1.1 2012/02/25 04:12:34 radhermit Exp $
 
 EAPI="4"
 
