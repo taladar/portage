@@ -1,6 +1,19 @@
 # ChangeLog for sys-fs/mtpfs
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/mtpfs/ChangeLog,v 1.3 2012/02/15 00:20:41 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/mtpfs/ChangeLog,v 1.6 2012/02/29 16:03:21 xarthisius Exp $
+
+  29 Feb 2012; Kacper Kowalik <xarthisius@gentoo.org> metadata.xml,
+  mtpfs-1.1.ebuild:
+  Dependency on libmad and libid3tag is now optional
+
+  29 Feb 2012; Kacper Kowalik <xarthisius@gentoo.org> mtpfs-1.0.ebuild,
+  mtpfs-1.1.ebuild:
+  Fix implicit function declarations
+
+*mtpfs-1.1 (29 Feb 2012)
+
+  29 Feb 2012; Bernard Cafarelli <voyageur@gentoo.org> +mtpfs-1.1.ebuild:
+  Version bump, adds support for multiple storage areas
 
 *mtpfs-1.0 (15 Feb 2012)
 
