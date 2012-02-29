@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.49 2012/01/30 09:14:59 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.50 2012/02/29 01:52:22 floppym Exp $
 
 EAPI=4
 
@@ -11,15 +11,19 @@ if [[ ${PV} == "9999" ]] ; then
 	DO_AUTORECONF="true"
 else
 	MY_P=${P/_/\~}
-	SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.xz
+	if [[ ${PV} == *_alpha* || ${PV} == *_beta* ]]; then
+		SRC_URI="http://alpha.gnu.org/gnu/${PN}/${MY_P}.tar.xz"
+	else
+		SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.xz
 		mirror://gentoo/${MY_P}.tar.xz"
+	fi
 	# Masked until documentation guys consolidate the guide and approve
 	# it for usage.
 	#KEYWORDS="~amd64 ~mips ~x86"
 	S=${WORKDIR}/${MY_P}
 fi
 
-inherit mount-boot eutils flag-o-matic pax-utils toolchain-funcs ${DO_AUTORECONF:+autotools} ${LIVE_ECLASS}
+inherit eutils flag-o-matic pax-utils toolchain-funcs ${DO_AUTORECONF:+autotools} ${LIVE_ECLASS}
 unset LIVE_ECLASS
 
 DESCRIPTION="GNU GRUB boot loader"
@@ -27,7 +31,7 @@ HOMEPAGE="http://www.gnu.org/software/grub/"
 
 LICENSE="GPL-3"
 SLOT="2"
-IUSE="custom-cflags debug device-mapper efiemu nls static sdl truetype"
+IUSE="custom-cflags debug device-mapper efiemu mount nls static sdl truetype libzfs"
 
 GRUB_PLATFORMS=(
 	# everywhere:
@@ -54,6 +58,8 @@ RDEPEND="
 		sdl? ( media-libs/libsdl )
 	)
 	device-mapper? ( >=sys-fs/lvm2-2.02.45 )
+	libzfs? ( sys-fs/zfs )
+	mount? ( sys-fs/fuse )
 	truetype? ( media-libs/freetype >=media-fonts/unifont-5 )"
 DEPEND="${RDEPEND}
 	>=dev-lang/python-2.5.2
@@ -67,27 +73,25 @@ else
 	DEPEND+=" app-arch/xz-utils"
 fi
 
-export STRIP_MASK="*/grub*/*/*.{mod,img}"
+export STRIP_MASK="*/grub/*/*.{mod,img}"
+
 QA_EXECSTACK="
-	lib64/grub2/*/setjmp.mod
-	lib64/grub2/*/kernel.img
-	sbin/grub2-probe
-	sbin/grub2-setup
-	sbin/grub2-mkdevicemap
-	bin/grub2-script-check
-	bin/grub2-fstest
-	bin/grub2-mklayout
-	bin/grub2-menulst2cfg
-	bin/grub2-mkrelpath
-	bin/grub2-mkpasswd-pbkdf2
-	bin/grub2-mkfont
-	bin/grub2-editenv
-	bin/grub2-mkimage
+	usr/bin/grub*
+	usr/sbin/grub*
+	usr/lib*/grub/*/*.mod
+	usr/lib*/grub/*/kernel.exec
+	usr/lib*/grub/*/kernel.img
+	usr/lib*/grub/*/setjmp.module
 "
 
 QA_WX_LOAD="
-	lib*/grub2/*/kernel.img
-	lib*/grub2/*/setjmp.mod
+	usr/lib*/grub/*/kernel.exec
+	usr/lib*/grub/*/kernel.img
+	usr/lib*/grub/*/*.image
+"
+
+QA_PRESTRIPPED="
+	usr/lib.*/grub/.*/kernel.img
 "
 
 grub_run_phase() {
@@ -110,50 +114,52 @@ grub_run_phase() {
 grub_src_configure() {
 	local platform=$1
 	local target
+	local transform="grub2"
+	local with_platform
 
 	[[ -z ${platform} ]] && die "${FUNCNAME} [platform]"
 
-	# if we have no platform then --with-platform=guessed does not work
-	[[ ${platform} == "guessed" ]] && platform=""
+	if [[ ${platform} != "guessed" ]]; then
+		transform="grub2-${platform}"
+	fi
 
 	# check if we have to specify the target (EFI)
 	# or just append correct --with-platform
-	if [[ -n ${platform} ]]; then
-		if [[ ${platform} == efi* ]]; then
-			# EFI platform hack
-			[[ ${platform/*-} == 32 ]] && target=i386
-			[[ ${platform/*-} == 64 ]] && target=x86_64
-			# program-prefix is required empty because otherwise it is equal to
-			# target variable, which we do not want at all
-			platform="
-				--with-platform=${platform/-*}
-				--target=${target}
-				--program-prefix=
-			"
-		else
-			platform=" --with-platform=${platform}"
-		fi
+	if [[ ${platform} == efi* ]]; then
+		# EFI platform hack
+		[[ ${platform/*-} == 32 ]] && target=i386
+		[[ ${platform/*-} == 64 ]] && target=x86_64
+		# program-prefix is required empty because otherwise it is equal to
+		# target variable, which we do not want at all
+		with_platform="
+			--with-platform=${platform/-*}
+			--target=${target}
+			--program-prefix=
+		"
+	elif [[ ${platform} != "guessed" ]]; then
+		with_platform=" --with-platform=${platform}"
 	fi
 
-	ECONF_SOURCE="${WORKDIR}/${P}/" \
+	ECONF_SOURCE="${S}" \
 	econf \
 		--disable-werror \
-		--sbindir=/sbin \
-		--bindir=/bin \
-		--libdir=/$(get_libdir) \
-		--program-transform-name=s,grub,grub2, \
+		--program-transform-name="s,grub,${transform}," \
+		--with-grubdir=grub2 \
 		$(use_enable debug mm-debug) \
 		$(use_enable debug grub-emu-usb) \
 		$(use_enable device-mapper) \
 		$(use_enable efiemu) \
+		$(use_enable mount grub-mount) \
 		$(use_enable nls) \
 		$(use_enable truetype grub-mkfont) \
+		$(use_enable libzfs) \
 		$(use sdl && use_enable debug grub-emu-sdl) \
-		${platform}
+		${with_platform}
 }
 
 grub_src_compile() {
 	default_src_compile
+	pax-mark -mpes "${grub_binaries[@]}"
 }
 
 grub_src_install() {
@@ -161,7 +167,7 @@ grub_src_install() {
 }
 
 src_prepare() {
-	local i j archs
+	local i j
 
 	epatch_user
 
@@ -170,7 +176,7 @@ src_prepare() {
 	sed -i \
 		-e '/setfilename/s:grub.info:grub2.info:' \
 		-e 's:(grub):(grub2):' \
-		"${S}"/docs/grub.texi
+		docs/grub.texi
 
 	# autogen.sh does more than just run autotools
 	if [[ -n ${DO_AUTORECONF} ]] ; then
@@ -196,6 +202,7 @@ src_configure() {
 	local i
 
 	use custom-cflags || unset CFLAGS CPPFLAGS LDFLAGS
+	use libzfs && addpredict /etc/dfs
 	use static && append-ldflags -static
 
 	for i in ${GRUB_ENABLED_PLATFORMS}; do
@@ -204,6 +211,24 @@ src_configure() {
 }
 
 src_compile() {
+	# Used for pax marking in grub_src_compile
+	local grub_binaries=(
+		grub-editenv
+		grub-fstest
+		grub-menulst2cfg
+		grub-mkimage
+		grub-mklayout
+		grub-mkpasswd-pbkdf2
+		grub-mkrelpath
+		grub-script-check
+		grub-bios-setup
+		grub-ofpathname
+		grub-probe
+		grub-sparc64-setup
+	)
+	use mount && grub_binaries+=( grub-mount )
+	use truetype && grub_binaries+=( grub-mkfont )
+
 	local i
 
 	for i in ${GRUB_ENABLED_PLATFORMS}; do
@@ -218,114 +243,16 @@ src_install() {
 		grub_run_phase ${FUNCNAME} ${i}
 	done
 
-	# No need to move the info file with the live ebuild since we
-	# already changed the generated file name during the preparation
-	# phase.
-	if [[ ${PV} != "9999" ]]; then
-		# slot all collisions with grub legacy
-		mv "${ED}"/usr/share/info/grub.info \
-			"${ED}"/usr/share/info/grub2.info || die
-	fi
-
-	# Do pax marking
-	local PAX=(
-		"sbin/grub2-probe"
-		"sbin/grub2-setup"
-		"sbin/grub2-mkdevicemap"
-		"bin/grub2-script-check"
-		"bin/grub2-fstest"
-		"bin/grub2-mklayout"
-		"bin/grub2-menulst2cfg"
-		"bin/grub2-mkrelpath"
-		"bin/grub2-mkpasswd-pbkdf2"
-		"bin/grub2-editenv"
-		"bin/grub2-mkimage"
-	)
-	for e in ${PAX[@]}; do
-		pax-mark -mpes "${ED}/${e}"
-	done
+	mv "${ED}"usr/share/info/grub{,2}.info || die
 
 	# can't be in docs array as we use default_src_install in different builddir
 	dodoc AUTHORS ChangeLog NEWS README THANKS TODO
 	insinto /etc/default
 	newins "${FILESDIR}"/grub.default grub
-	cat <<EOF >> "${ED}"/lib*/grub2/grub-mkconfig_lib
-	GRUB_DISTRIBUTOR="Gentoo"
-EOF
+}
 
-	elog
-	elog "To configure GRUB 2, check the defaults in /etc/default/grub and"
-	elog "then run 'emerge --config =${CATEGORY}/${PF}'."
-
+pkg_postinst() {
 	# display the link to guide
-	show_doc_url
-}
-
-show_doc_url() {
-	elog
-	elog "For informations how to configure grub-2 please refer to the guide:"
+	elog "For information on how to configure grub-2 please refer to the guide:"
 	elog "    http://dev.gentoo.org/~scarabeus/grub-2-guide.xml"
-}
-
-setup_boot_dir() {
-	local dir=$1
-	local use_legacy='n'
-
-	# Make sure target directory exists
-	mkdir -p "${dir}"
-
-	if [[ -e ${dir/2/}/menu.lst ]] ; then
-		# Legacy config exists, ask user what to do
-		einfo "Found legacy GRUB configuration.  Do you want to convert it"
-		einfo "instead of using autoconfig (y/N)?"
-		read use_legacy
-
-		use_legacy=${use_legacy,,[A-Z]}
-	fi
-
-	if [[ ${use_legacy} == y* ]] ; then
-		grub1_cfg=${dir/2/}/menu.lst
-		grub2_cfg=${dir}/grub.cfg
-
-		# GRUB legacy configuration exists.  Use it instead of doing
-		# our normal autoconfigure.
-		#
-
-		einfo "Converting legacy config at '${grub1_cfg}' for use by GRUB2."
-		ebegin "Running: grub2-menulst2cfg '${grub1_cfg}' '${grub2_cfg}'"
-		grub2-menulst2cfg "${grub1_cfg}" "${grub2_cfg}" &> /dev/null
-		eend $?
-
-		ewarn
-		ewarn "Even though the conversion above succeeded, you are STRONGLY"
-		ewarn "URGED to upgrade to the new GRUB2 configuration format."
-
-		# Remind the user about the documentation
-		show_doc_url
-	else
-		# Run GRUB 2 autoconfiguration
-		einfo "Running GRUB 2 autoconfiguration."
-		ebegin "grub2-mkconfig -o '${dir}/grub.cfg'"
-		grub2-mkconfig -o "${dir}/grub.cfg" &> /dev/null
-		eend $?
-	fi
-
-	einfo
-	einfo "Remember to run grub2-install to activate GRUB2 as your default"
-	einfo "bootloader."
-}
-
-pkg_config() {
-	local dir
-
-	mount-boot_mount_boot_partition
-
-	einfo "Enter the directory where you want to setup grub2 ('${ROOT}boot/grub2/'):"
-	read dir
-
-	[[ -z ${dir} ]] && dir="${ROOT}"boot/grub2
-
-	setup_boot_dir "${dir}"
-
-	mount-boot_pkg_postinst
 }
