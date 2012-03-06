@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.53 2012/03/04 21:23:33 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.55 2012/03/06 01:35:58 floppym Exp $
 
 EAPI=4
 
@@ -67,6 +67,10 @@ DEPEND="${RDEPEND}
 	virtual/yacc
 	sys-apps/texinfo
 "
+RDEPEND+="
+	grub_platforms_efi-32? ( sys-boot/efibootmgr )
+	grub_platforms_efi-64? ( sys-boot/efibootmgr )
+"
 if [[ -n ${DO_AUTORECONF} ]] ; then
 	DEPEND+=" >=sys-devel/autogen-5.10 sys-apps/help2man"
 else
@@ -114,14 +118,9 @@ grub_run_phase() {
 grub_src_configure() {
 	local platform=$1
 	local target
-	local transform="grub2"
 	local with_platform
 
 	[[ -z ${platform} ]] && die "${FUNCNAME} [platform]"
-
-	if [[ ${platform} != "guessed" ]]; then
-		transform="grub2-${platform}"
-	fi
 
 	# check if we have to specify the target (EFI)
 	# or just append correct --with-platform
@@ -143,7 +142,7 @@ grub_src_configure() {
 	ECONF_SOURCE="${S}" \
 	econf \
 		--disable-werror \
-		--program-transform-name="s,grub,${transform}," \
+		--program-transform-name="s,grub,grub2," \
 		--with-grubdir=grub2 \
 		$(use_enable debug mm-debug) \
 		$(use_enable debug grub-emu-usb) \

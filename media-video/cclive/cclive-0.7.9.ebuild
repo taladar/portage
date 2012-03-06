@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/cclive/cclive-0.7.7.ebuild,v 1.1 2011/10/21 18:51:09 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/cclive/cclive-0.7.9.ebuild,v 1.1 2012/03/06 05:53:15 radhermit Exp $
 
 EAPI=4
 
