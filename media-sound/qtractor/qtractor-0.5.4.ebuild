@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/qtractor/qtractor-0.5.3.ebuild,v 1.3 2012/03/01 13:45:13 tomka Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/qtractor/qtractor-0.5.4.ebuild,v 1.1 2012/03/07 09:25:34 aballier Exp $
 
 EAPI=2
 
