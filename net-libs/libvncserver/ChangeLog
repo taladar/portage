@@ -1,6 +1,22 @@
 # ChangeLog for net-libs/libvncserver
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libvncserver/ChangeLog,v 1.49 2011/11/16 02:17:31 xmw Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libvncserver/ChangeLog,v 1.52 2012/03/08 04:20:15 floppym Exp $
+
+*libvncserver-0.9.8.2-r2 (08 Mar 2012)
+
+  08 Mar 2012; Mike Gilbert <floppym@gentoo.org>
+  +libvncserver-0.9.8.2-r2.ebuild, -libvncserver-0.9.8.2-r1.ebuild,
+  files/libvncserver-memcpy.patch:
+  Adjust patch from previous commit so that we don't break the wire protocol.
+
+*libvncserver-0.9.8.2-r1 (08 Mar 2012)
+
+  08 Mar 2012; Mike Gilbert <floppym@gentoo.org>
+  +files/libvncserver-memcpy.patch, +libvncserver-0.9.8.2-r1.ebuild:
+  Add patch to resolve buffer overflow. Bug 329031.
+
+  08 Mar 2012; Mike Gilbert <floppym@gentoo.org> metadata.xml:
+  Make myself the maintainer.
 
   16 Nov 2011; Michael Weber <xmw@gentoo.org> -libvncserver-0.9.1.ebuild,
   libvncserver-0.9.8.2.ebuild:

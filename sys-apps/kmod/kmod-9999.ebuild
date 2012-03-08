@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/kmod-9999.ebuild,v 1.12 2012/02/25 07:08:25 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/kmod-9999.ebuild,v 1.13 2012/03/08 01:54:59 williamh Exp $
 
 EAPI=4
 
@@ -11,12 +11,12 @@ inherit ${vcs}  autotools eutils toolchain-funcs
 unset vcs
 
 if [[ "${PV}" != "9999" ]] ; then
-	SRC_URI="http://packages.profusion.mobi/kmod/${P}.tar.xz"
+	SRC_URI="mirror://kernel/linux/utils/kernel/kmod/${P}.tar.xz"
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 fi
 
 DESCRIPTION="library and tools for managing linux kernel modules"
-HOMEPAGE="http://git.profusion.mobi/cgit.cgi/kmod.git"
+HOMEPAGE="http://git.kernel.org/?p=utils/kernel/kmod/kmod.git"
 
 LICENSE="LGPL-2"
 SLOT="0"
