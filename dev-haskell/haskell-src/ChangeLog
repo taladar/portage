@@ -1,6 +1,13 @@
 # ChangeLog for dev-haskell/haskell-src
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haskell-src/ChangeLog,v 1.41 2012/03/06 21:03:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haskell-src/ChangeLog,v 1.43 2012/03/08 14:44:47 ranger Exp $
+
+  08 Mar 2012; Brent Baude <ranger@gentoo.org> haskell-src-1.0.1.4.ebuild:
+  Marking haskell-src-1.0.1.4 ppc64 for bug 399983
+
+  08 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  haskell-src-1.0.1.4.ebuild:
+  x86 stable wrt bug #399983
 
   06 Mar 2012; Brent Baude <ranger@gentoo.org> haskell-src-1.0.1.4.ebuild:
   Marking haskell-src-1.0.1.4 ppc for bug 399983
