@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.525 2012/03/10 17:49:56 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.529 2012/03/10 21:21:30 dirtyepic Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -15,9 +15,11 @@ if [[ ${PV} == *9999* ]] ; then
 	EGIT_REPO_URI="git://gcc.gnu.org/git/gcc.git"
 	# naming style:
 	# gcc-9999 -> master
-	# gcc-4.7_pre9999 -> 4.7 branch
+	# gcc-4.7.1_pre9999 -> gcc-4_7-branch
+	#  Note that we need the micro version in order for tc_version_is_at_least
+	#  to work.  gcc/BASE-VER also requires it.
 	if [[ ${PV} == *_pre9999* ]] ; then
-		EGIT_BRANCH="${PN}-${PV%_pre9999}-branch"
+		EGIT_BRANCH="${PN}-${PV%.?_pre9999}-branch"
 		EGIT_BRANCH=${EGIT_BRANCH//./_}
 	fi
 	inherit git-2
@@ -58,7 +60,7 @@ GCCMICRO=$(get_version_component_range 3 ${GCC_PV})
 GCC_CONFIG_VER=${GCC_CONFIG_VER:-$(replace_version_separator 3 '-' ${GCC_PV})}
 
 # Pre-release support
-if [[ ${GCC_PV} != ${GCC_PV/_pre/-} && ${GCC_PV} != *9999* ]] ; then
+if [[ ${GCC_PV} != ${GCC_PV/_pre/-} ]] ; then
 	PRERELEASE=${GCC_PV/_pre/-}
 fi
 # make _alpha and _beta ebuilds automatically use a snapshot
@@ -714,14 +716,15 @@ do_gcc_rename_java_bins() {
 	done
 }
 toolchain_src_unpack() {
-	[[ ${PV} == *9999* ]] && git-2_src_unpack
-
-	export BRANDING_GCC_PKGVERSION="Gentoo ${GCC_PVR}"
-
 	[[ -z ${UCLIBC_VER} ]] && [[ ${CTARGET} == *-uclibc* ]] && die "Sorry, this version does not support uClibc"
 
-	gcc_quick_unpack
+	if [[ ${PV} == *9999* ]]; then
+		git-2_src_unpack
+	else
+		gcc_quick_unpack
+	fi
 
+	export BRANDING_GCC_PKGVERSION="Gentoo ${GCC_PVR}"
 	cd "${S}"
 
 	if ! use vanilla ; then
@@ -764,7 +767,10 @@ toolchain_src_unpack() {
 
 	gcc_version_patch
 	if tc_version_is_at_least 4.1 ; then
-		if [[ -n ${SNAPSHOT} || -n ${PRERELEASE} || -n ${GCC_SVN} ]] ; then
+		if [[ -n ${SNAPSHOT} || -n ${PRERELEASE} ]] ; then
+			# BASE-VER must be a three-digit version number
+			# followed by an optional -pre string
+			#   eg. 4.5.1, 4.6.2-pre20120213, 4.7.0-pre9999
 			echo ${PV/_/-} > "${S}"/gcc/BASE-VER
 		fi
 	fi
