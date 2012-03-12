@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/genkernel/genkernel-9999.ebuild,v 1.31 2012/02/12 01:17:48 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/genkernel/genkernel-9999.ebuild,v 1.32 2012/03/11 22:56:37 robbat2 Exp $
 
 # genkernel-9999        -> latest Git branch "master"
 # genkernel-VERSION     -> normal genkernel release
@@ -129,6 +129,8 @@ src_install() {
 		"${D}"/var/cache/genkernel/src || die "Copying distfiles..."
 
 	dobashcompletion "${FILESDIR}"/genkernel.bash
+	insinto /etc
+	doins "${FILESDIR}"/initramfs.mounts
 }
 
 pkg_postinst() {
