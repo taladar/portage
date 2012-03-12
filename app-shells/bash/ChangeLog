@@ -1,6 +1,15 @@
 # ChangeLog for app-shells/bash
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.294 2011/11/24 00:06:53 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.296 2012/03/12 16:06:57 ranger Exp $
+
+  12 Mar 2012; Brent Baude <ranger@gentoo.org> bash-4.2_p20.ebuild:
+  Marking bash-4.2_p20 ppc64 for bug 407937
+
+*bash-4.2_p24 (12 Mar 2012)
+
+  12 Mar 2012; Mike Frysinger <vapier@gentoo.org> bash-4.2_p20.ebuild,
+  +bash-4.2_p24.ebuild:
+  Version bump #407927 by Lars Wendler (Polynomial-C).
 
 *bash-4.2_p20 (24 Nov 2011)
 
