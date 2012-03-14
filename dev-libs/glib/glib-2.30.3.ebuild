@@ -1,12 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.30.1-r2.ebuild,v 1.2 2011/12/31 21:26:59 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.30.3.ebuild,v 1.1 2012/03/14 01:40:28 tetromino Exp $
 
 EAPI="4"
 PYTHON_DEPEND="utils? 2"
 # Avoid runtime dependency on python when USE=test
 
-inherit autotools gnome.org libtool eutils flag-o-matic multilib pax-utils python virtualx
+inherit autotools gnome.org libtool eutils flag-o-matic multilib pax-utils python toolchain-funcs virtualx
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
@@ -29,6 +29,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.15
 	doc? (
 		>=dev-libs/libxslt-1.0
+		>=dev-util/gdbus-codegen-${PV}
 		>=dev-util/gtk-doc-1.15
 		~app-text/docbook-xml-dtd-4.1.2 )
 	systemtap? ( >=dev-util/systemtap-1.3 )
@@ -36,9 +37,8 @@ DEPEND="${RDEPEND}
 		sys-devel/gdb
 		=dev-lang/python-2*
 		>=dev-util/gdbus-codegen-${PV}
-		>=sys-apps/dbus-1.4.16-r2 )
-	!<dev-util/gtk-doc-1.15-r2
-	!<sys-apps/dbus-1.4.16-r2"
+		>=sys-apps/dbus-1.2.14 )
+	!<dev-util/gtk-doc-1.15-r2"
 PDEPEND="!<gnome-base/gvfs-1.6.4-r990" # Earlier versions do not work with glib
 
 pkg_setup() {
@@ -61,6 +61,9 @@ src_prepare() {
 		fi
 	fi
 
+	# Fix from upstream for building with C++ compilers.
+	epatch "${FILESDIR}/${PN}-2.30.2-missing-decls.patch"
+
 	# Don't fail gio tests when ran without userpriv, upstream bug 552912
 	# This is only a temporary workaround, remove as soon as possible
 #	epatch "${FILESDIR}/${PN}-2.18.1-workaround-gio-test-failure-without-userpriv.patch"
@@ -69,13 +72,14 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
 	# Fix test failure when upgrading from 2.22 to 2.24, upstream bug 621368
-	epatch "${FILESDIR}/${PN}-2.24-assert-test-failure.patch"
+	epatch "${FILESDIR}/${PN}-2.30.3-assert-test-failure.patch"
 
 	# Do not try to remove files on live filesystem, upstream bug #619274
 	sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
 		-i "${S}"/gio/tests/desktop-app-info.c || die "sed failed"
 
-	if ! use test; then
+	# need to build tests if USE=doc for bug #387385
+	if ! use test && ! use doc; then
 		# don't waste time building tests
 		sed 's/^\(.*\SUBDIRS .*\=.*\)tests\(.*\)$/\1\2/' -i $(find . -name Makefile.am -o -name Makefile.in) || die
 	else
@@ -112,10 +116,13 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-2.30.1-homedir-env.patch"
 
 	# Fix hardcoded path to machine-id wrt #390143
-	sed -i -e '/g_file_get_contents/s:/var/lib/dbus/machine-id:/etc/machine-id:' gio/gdbusprivate.c || die
+	epatch "${FILESDIR}/${PN}-2.30.2-machine-id.patch"
+
+	# Fix from glib-2.31 for ppc64
+	epatch "${FILESDIR}/${PN}-2.30.3-closure-64bit-be.patch"
 
 	# disable pyc compiling
-	echo '#!/bin/sh' > py-compile
+	use test && python_clean_py-compile_files
 
 	# Needed for the punt-python-check patch, disabling timeout test
 	# Also needed to prevent croscompile failures, see bug #267603
@@ -128,8 +135,10 @@ src_prepare() {
 }
 
 src_configure() {
-	# Avoid circular depend with dev-util/pkgconfig
-	if ! has_version dev-util/pkgconfig; then
+	# Avoid circular depend with dev-util/pkgconfig and
+	# native builds (cross-compiles won't need pkg-config
+	# in the target ROOT to work here)
+	if ! tc-is-cross-compiler && ! has_version dev-util/pkgconfig; then
 		if has_version sys-apps/dbus; then
 			export DBUS1_CFLAGS="-I/usr/include/dbus-1.0 -I/usr/$(get_libdir)/dbus-1.0/include"
 			export DBUS1_LIBS="-ldbus-1"
