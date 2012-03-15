@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.74 2012/03/11 23:38:27 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.78 2012/03/15 08:48:05 ssuominen Exp $
 
 EAPI=4
 
@@ -25,7 +25,7 @@ then
 fi
 
 DESCRIPTION="Linux dynamic and persistent device naming support (aka userspace devfs)"
-HOMEPAGE="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev.html"
+HOMEPAGE="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev/udev.html http://git.kernel.org/?p=linux/hotplug/udev.git;a=summary"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -58,12 +58,15 @@ else
 fi
 
 RDEPEND="${COMMON_DEPEND}
-	hwdb? ( >=sys-apps/usbutils-0.82 sys-apps/pciutils[-zlib] )
+	hwdb? (
+		>=sys-apps/usbutils-0.82
+		|| ( >=sys-apps/pciutils-3.1.9-r1[-compress-db]  <sys-apps/pciutils-3.1.9-r1[-zlib] )
+		)
 	sys-fs/udev-init-scripts
 	!sys-apps/coldplug
 	!<sys-fs/lvm2-2.02.45
 	!sys-fs/device-mapper
-	>=sys-apps/baselayout-1.12.5
+	>=sys-apps/baselayout-2
 	!<sys-apps/openrc-0.9.9
 	!<sys-kernel/dracut-017-r1
 	!<sys-kernel/genkernel-3.4.25"
@@ -151,7 +154,6 @@ src_configure()
 		$(use_with selinux) \
 		$(use_enable debug) \
 		$(use_enable rule_generator) \
-		$(use_enable hwdb) \
 		--with-pci-ids-path=/usr/share/misc/pci.ids \
 		--with-usb-ids-path=/usr/share/misc/usb.ids \
 		$(use_enable gudev) \
@@ -160,12 +162,14 @@ src_configure()
 		$(use_enable floppy) \
 		$(use_enable edd) \
 		$(use_enable doc gtk-doc) \
-		$(systemd_with_unitdir)
+		"$(systemd_with_unitdir)"
 }
 
 src_install()
 {
 	emake DESTDIR="${D}" docdir="/usr/share/doc/${P}" install
+
+	find "${ED}" -type f -name '*.la' -exec rm -f {} +
 
 	# documentation
 	dodoc ChangeLog README TODO
