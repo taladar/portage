@@ -1,6 +1,15 @@
 # ChangeLog for games-arcade/performous
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-arcade/performous/ChangeLog,v 1.4 2012/03/05 21:47:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-arcade/performous/ChangeLog,v 1.7 2012/03/15 03:54:46 mr_bones_ Exp $
+
+  15 Mar 2012; Michael Sterrett <mr_bones_@gentoo.org> performous-0.6.1.ebuild:
+  games-arcade/ultrastar-ng is gone
+
+  15 Mar 2012; Michael Sterrett <mr_bones_@gentoo.org> performous-0.6.1.ebuild:
+  use the lastest boost
+
+  14 Mar 2012; Tupone Alfredo <tupone@gentoo.org> performous-0.6.1.ebuild:
+  Fix install of songs. Bug #408167 by lexofleviafan@gmail.com
 
   05 Mar 2012; Mike Frysinger <vapier@gentoo.org> performous-0.6.1.ebuild,
   +files/performous-0.6.1-linguas.patch:
