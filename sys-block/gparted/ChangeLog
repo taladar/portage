@@ -1,6 +1,17 @@
 # ChangeLog for sys-block/gparted
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-block/gparted/ChangeLog,v 1.109 2012/03/08 21:33:43 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-block/gparted/ChangeLog,v 1.112 2012/03/15 21:30:58 ssuominen Exp $
+
+  15 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> gparted-0.11.0.ebuild,
+  gparted-0.12.0.ebuild:
+  Remove obsolete ntfsprogs from USE="ntfs" and force ntfs-3g.
+
+  15 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> -gparted-0.9.1.ebuild,
+  -gparted-0.10.0.ebuild:
+  old
+
+  15 Mar 2012; Jeff Horelick <jdhore@gentoo.org> gparted-0.11.0.ebuild:
+  marked x86 per bug 404857
 
   08 Mar 2012; Markos Chandras <hwoarang@gentoo.org> gparted-0.11.0.ebuild:
   Stable on amd64 wrt bug #404857
