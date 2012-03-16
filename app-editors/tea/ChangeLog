@@ -1,6 +1,18 @@
 # ChangeLog for app-editors/tea
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/tea/ChangeLog,v 1.51 2012/01/21 22:08:26 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/tea/ChangeLog,v 1.53 2012/03/16 15:17:52 pesa Exp $
+
+*tea-32.0.1 (16 Mar 2012)
+
+  16 Mar 2012; Davide Pesavento <pesa@gentoo.org> +tea-32.0.1.ebuild,
+  -files/tea-17.5.4-forced-cflags-and-compiler-warnings.patch,
+  -tea-17.6.6.ebuild, metadata.xml:
+  Version bump, #407915 by Michael (kensington). Remove old.
+
+*tea-32.0.0 (16 Mar 2012)
+
+  16 Mar 2012; Patrick Lauer <patrick@gentoo.org> +tea-32.0.0.ebuild:
+  Bump
 
 *tea-31.2.0 (21 Jan 2012)
 
