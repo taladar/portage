@@ -1,6 +1,30 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.336 2012/03/09 15:08:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.342 2012/03/17 03:20:38 naota Exp $
+
+  17 Mar 2012; Naohiro Aota <naota@gentoo.org> gnutls-2.12.18.ebuild:
+  Add ~x86-fbsd. #402959
+
+  17 Mar 2012; Tim Harder <radhermit@gentoo.org> gnutls-3.0.16.ebuild:
+  Use local variable.
+
+  16 Mar 2012; Tim Harder <radhermit@gentoo.org> -gnutls-2.12.16.ebuild,
+  -gnutls-3.0.13.ebuild, -files/gnutls-3.0.13-test-kill.patch,
+  -gnutls-3.0.14.ebuild:
+  Remove old.
+
+*gnutls-3.0.16 (16 Mar 2012)
+
+  16 Mar 2012; Tim Harder <radhermit@gentoo.org> +gnutls-3.0.16.ebuild:
+  Version bump.
+
+*gnutls-2.12.18 (16 Mar 2012)
+
+  16 Mar 2012; Tim Harder <radhermit@gentoo.org> +gnutls-2.12.18.ebuild:
+  Version bump.
+
+  16 Mar 2012; Tim Harder <radhermit@gentoo.org> gnutls-2.12.17.ebuild:
+  Keyword newer version for ~ppc64 as well.
 
   09 Mar 2012; Brent Baude <ranger@gentoo.org> gnutls-2.12.16.ebuild:
   Marking gnutls-2.12.16 ~ppc64 for bug 402959
