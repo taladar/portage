@@ -1,6 +1,35 @@
 # ChangeLog for app-office/libreoffice
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/ChangeLog,v 1.254 2012/03/17 18:17:31 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/ChangeLog,v 1.259 2012/03/18 13:36:48 scarabeus Exp $
+
+  18 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-3.5.9999.ebuild,
+  libreoffice-9999-r2.ebuild:
+  Once disable is enough. Thanks to iamnr3 on irc.
+
+  18 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-3.5.9999.ebuild,
+  libreoffice-9999-r2.ebuild:
+  Disable crashdump as it is usefull on windows only anyway.
+
+  18 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-3.5.1.2.ebuild,
+  libreoffice-3.5.9999.ebuild, libreoffice-9999-r2.ebuild:
+  Add qt-minimal with some sane value. Resolves bug#394767.
+
+  18 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/libreoffice-3.5-junit.patch, libreoffice-3.5.1.2.ebuild,
+  libreoffice-3.5.9999.ebuild:
+  Add junit fix. Wrt bug#402205.
+
+  18 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/libreoffice-3.5-propagate-gb_FULLDEPS.patch,
+  -files/enable-startup-notification.diff, -files/env_log.diff,
+  -files/fix-ooo-collision.diff, -files/gentoo-3.3.1.diff,
+  -files/gentoo-3.3.2.diff, -files/gentoo-pythonpath.diff,
+  -files/libreoffice-3.3-libpng-1.5.diff,
+  -files/libreoffice-3.3.0_libxmlsec_fix_extern_c.diff,
+  -files/libreoffice-3.3.2-bison25.diff,
+  -files/libreoffice-3.3.4-poppler-0.18.0.diff, -files/scrap-pixmap-links.diff,
+  -files/wrapper.in, libreoffice-3.5.1.2.ebuild, libreoffice-3.5.9999.ebuild:
+  Add gb_FULLDEPS patch. Clear up other patches.
 
   17 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org>
   +files/libreoffice-3.6-system-pyuno.patch, libreoffice-3.5.1.2.ebuild,
