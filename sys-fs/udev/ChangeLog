@@ -1,6 +1,20 @@
 # ChangeLog for sys-fs/udev
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/ChangeLog,v 1.658 2012/03/19 17:04:17 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/ChangeLog,v 1.661 2012/03/20 03:37:45 williamh Exp $
+
+  20 Mar 2012; William Hubbs <williamh@gentoo.org> udev-182.ebuild,
+  udev-9999.ebuild:
+  Fix location of default rules file for bug #408937
+
+*udev-182 (19 Mar 2012)
+
+  19 Mar 2012; William Hubbs <williamh@gentoo.org> +udev-182.ebuild,
+  udev-181.ebuild, udev-9999.ebuild:
+  version bump, also closes bug #398049 and bug #408379
+
+  19 Mar 2012; William Hubbs <williamh@gentoo.org> +files/40-gentoo.rules,
+  metadata.xml, udev-9999.ebuild:
+  Add 40-gentoo.rules and the openrc use flag for bug #408379.
 
   19 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> udev-181.ebuild,
   udev-9999.ebuild:
