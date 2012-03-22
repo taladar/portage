@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/csound/csound-5.16.6-r1.ebuild,v 1.4 2012/02/28 21:28:40 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/csound/csound-5.17.2.ebuild,v 1.1 2012/03/22 01:08:57 radhermit Exp $
 
 EAPI="4"
 PYTHON_DEPEND="python? 2"
@@ -26,8 +26,8 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+alsa beats chua csoundac +cxx debug double-precision dssi examples fltk +fluidsynth
-html +image jack java keyboard linear lua nls osc openmp doc portaudio portmidi pulseaudio
+IUSE="+alsa beats chua csoundac +cxx debug doc double-precision dssi examples fltk +fluidsynth
+html +image jack java keyboard linear lua luajit nls osc openmp portaudio portmidi pulseaudio
 python samples static-libs stk tcl test +threads +utils vim-syntax vst"
 
 LANGS=" de en_GB en_US es_CO fr it ro ru"
@@ -47,7 +47,10 @@ RDEPEND=">=media-libs/libsndfile-1.0.16
 	java? ( >=virtual/jdk-1.5 )
 	keyboard? ( x11-libs/fltk:1[threads?] )
 	linear? ( sci-mathematics/gmm )
-	lua? ( dev-lang/luajit:2 )
+	lua? (
+		luajit? ( dev-lang/luajit:2 )
+		!luajit? ( dev-lang/lua )
+	)
 	osc? ( media-libs/liblo )
 	portaudio? ( media-libs/portaudio )
 	portmidi? ( media-libs/portmidi )
@@ -89,8 +92,8 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-scons.patch
-	epatch "${FILESDIR}"/${P}-tests.patch
-	epatch "${FILESDIR}"/${P}-install.patch
+	epatch "${FILESDIR}"/${PN}-5.16.6-tests.patch
+	epatch "${FILESDIR}"/${PN}-5.16.6-install.patch
 
 	cat > custom.py <<-EOF
 		platform = 'linux'
@@ -135,6 +138,7 @@ src_compile() {
 		$(use_scons linear buildLinearOpcodes) \
 		$(use_scons lua buildLuaOpcodes) \
 		$(use_scons lua buildLuaWrapper) \
+		$(use_scons luajit useLuaJIT) \
 		$(use_scons nls useGettext) \
 		$(use_scons osc useOSC) \
 		$(use_scons openmp useOpenMP) \
