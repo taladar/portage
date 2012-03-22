@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.87 2012/03/21 05:22:24 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.91 2012/03/22 17:11:41 williamh Exp $
 
 EAPI=4
 
@@ -10,14 +10,14 @@ udev_rules_md5=ebc2cf422aa9e46cf7d9a555670412ba
 
 EGIT_REPO_URI="git://git.kernel.org/pub/scm/linux/hotplug/udev.git"
 
-[[ ${PV} == "9999" ]] && vcs="git-2 autotools"
+[[ ${PV} == 9999 ]] && vcs="git-2 autotools"
 inherit ${vcs} eutils flag-o-matic multilib toolchain-funcs linux-info systemd libtool
 
-if [[ ${PV} != "9999" ]]
+if [[ ${PV} != 9999 ]]
 then
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 	SRC_URI="mirror://kernel/linux/utils/kernel/hotplug/${P}.tar.bz2"
-	if [[ -n "${patchversion}" ]]
+	if [[ -n ${patchversion} ]]
 	then
 		patchset=${P}-patchset-${patchversion}
 		SRC_URI="${SRC_URI} mirror://gentoo/${patchset}.tar.bz2"
@@ -45,7 +45,7 @@ DEPEND="${COMMON_DEPEND}
 	virtual/os-headers
 	!<sys-kernel/linux-headers-2.6.34"
 
-if [[ $PV == "9999" ]]
+if [[ $PV == 9999 ]]
 then
 	RESTRICT="test? ( userpriv )"
 	IUSE="${IUSE} test"
@@ -64,7 +64,6 @@ RDEPEND="${COMMON_DEPEND}
 		)
 	openrc? ( >=sys-fs/udev-init-scripts-10
 		!<sys-apps/openrc-0.9.9 )
-	!<sys-fs/udev-init-scripts-10
 	!sys-apps/coldplug
 	!<sys-fs/lvm2-2.02.45
 	!sys-fs/device-mapper
@@ -113,10 +112,10 @@ pkg_setup()
 src_prepare()
 {
 	# backport some patches
-	if [[ -n "${patchset}" ]]
+	if [[ -n ${patchset} ]]
 	then
-		EPATCH_SOURCE="${WORKDIR}/${patchset}" EPATCH_SUFFIX="patch" \
-			EPATCH_FORCE="yes" epatch
+		EPATCH_SOURCE="${WORKDIR}"/${patchset} EPATCH_SUFFIX=patch \
+			EPATCH_FORCE=yes epatch
 	fi
 
 	# change rules back to group uucp instead of dialout for now
@@ -124,7 +123,7 @@ src_prepare()
 		-i rules/*.rules \
 	|| die "failed to change group dialout to uucp"
 
-	if [ ! -e configure ]
+	if [[ ! -e configure ]]
 	then
 		gtkdocize --copy || die "gtkdocize failed"
 		eautoreconf
@@ -147,46 +146,50 @@ src_configure()
 {
 	filter-flags -fprefetch-loop-arrays
 	econf \
-		--with-rootprefix=/ \
-		--libdir=/usr/$(get_libdir) \
 		--libexecdir=/lib \
+		--libdir=/usr/$(get_libdir) \
+		--docdir=/usr/share/doc/${PF} \
 		$(use_enable static-libs static) \
-		$(use_with selinux) \
+		$(use_enable doc gtk-doc) \
 		$(use_enable debug) \
-		$(use_enable rule_generator) \
-		--with-pci-ids-path=/usr/share/misc/pci.ids \
-		--with-usb-ids-path=/usr/share/misc/usb.ids \
 		$(use_enable gudev) \
 		$(use_enable introspection) \
 		$(use_enable keymap) \
+		$(use_enable rule_generator) \
 		$(use_enable floppy) \
-		$(use_enable doc gtk-doc) \
+		--with-html-dir=/usr/share/doc/${PF}/html \
+		--with-rootprefix=/ \
+		$(use_with selinux) \
+		--with-usb-ids-path=/usr/share/misc/usb.ids \
+		--with-pci-ids-path=/usr/share/misc/pci.ids \
 		"$(systemd_with_unitdir)"
 }
 
 src_install()
 {
-	emake DESTDIR="${D}" docdir="/usr/share/doc/${P}" install
+	emake DESTDIR="${D}" install
 
-	find "${ED}" -type f -name '*.la' -exec rm -f {} +
+	find "${D}" -type f -name '*.la' -exec rm -f {} +
 
-	# documentation
-	dodoc ChangeLog README TODO
+	dodoc ChangeLog NEWS README TODO
+	use keymap && dodoc src/keymap/README.keymap.txt
 
-	if use keymap
-	then
-		dodoc src/keymap/README.keymap.txt
-	fi
+	local htmldir
+	for htmldir in gudev libudev; do
+		[[ -d ${D}/usr/share/doc/${PF}/html/${htmldir} ]] &&
+			dosym /usr/share/doc/${PF}/html/${htmldir} \
+				/usr/share/gtk-doc/html/${htmldir}
+	done
 
 	# udevadm is now in /usr/bin.
 	dosym /usr/bin/udevadm /sbin/udevadm
 
 	# create symlinks for these utilities to /sbin
 	# where multipath-tools expect them to be (Bug #168588)
-	dosym "/lib/udevd/scsi_id" /sbin/scsi_id
+	dosym /lib/udevd/scsi_id /sbin/scsi_id
 
 	# Now install rules
-	insinto /lib/udev/rules.d/
+	insinto /lib/udev/rules.d
 	doins "${FILESDIR}"/40-gentoo.rules
 }
 
@@ -211,7 +214,7 @@ fix_old_persistent_net_rules()
 # See Bug #129204 for a discussion about restarting udevd
 restart_udevd()
 {
-	if [[ ${NO_RESTART} = "1" ]]
+	if [[ ${NO_RESTART} = 1 ]]
 	then
 		ewarn "Not restarting udevd, as your kernel is too old!"
 		return
@@ -253,7 +256,7 @@ restart_udevd()
 ismounted()
 {
 	while read a m a; do
-		[ "$m" = "$1" ] && return 0
+		[[ $m = $1 ]] && return 0
 	done < "${ROOT}"/proc/mounts
 	return 1
 }
@@ -266,7 +269,7 @@ pkg_postinst()
 	# "losetup -f" is confused if there is an empty /dev/loop/, Bug #338766
 	# So try to remove it here (will only work if empty).
 	rmdir "${ROOT}"/dev/loop 2>/dev/null
-	if [[ -d "${ROOT}"/dev/loop ]]
+	if [[ -d ${ROOT}/dev/loop ]]
 	then
 		ewarn "Please make sure your remove /dev/loop,"
 		ewarn "else losetup may be confused when looking for unused devices."

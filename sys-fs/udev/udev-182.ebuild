@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-182.ebuild,v 1.5 2012/03/21 05:22:24 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-182.ebuild,v 1.7 2012/03/22 15:25:22 williamh Exp $
 
 EAPI=4
 
@@ -64,7 +64,6 @@ RDEPEND="${COMMON_DEPEND}
 		)
 	openrc? ( >=sys-fs/udev-init-scripts-10
 		!<sys-apps/openrc-0.9.9 )
-	!<sys-fs/udev-init-scripts-10
 	!sys-apps/coldplug
 	!<sys-fs/lvm2-2.02.45
 	!sys-fs/device-mapper
@@ -161,32 +160,36 @@ src_configure()
 		$(use_enable keymap) \
 		$(use_enable floppy) \
 		$(use_enable doc gtk-doc) \
-		"$(systemd_with_unitdir)"
+		"$(systemd_with_unitdir)" \
+		--docdir=/usr/share/doc/${PF} \
+		--with-html-dir=/usr/share/doc/${PF}/html
 }
 
 src_install()
 {
-	emake DESTDIR="${D}" docdir="/usr/share/doc/${P}" install
+	emake DESTDIR="${D}" install
 
 	find "${ED}" -type f -name '*.la' -exec rm -f {} +
 
-	# documentation
-	dodoc ChangeLog README TODO
+	dodoc ChangeLog NEWS README TODO
+	use keymap && dodoc src/keymap/README.keymap.txt
 
-	if use keymap
-	then
-		dodoc src/keymap/README.keymap.txt
-	fi
+	local htmldir
+	for htmldir in gudev libudev; do
+		[[ -d ${ED}/usr/share/doc/${PF}/html/${htmldir} ]] &&
+			dosym /usr/share/doc/${PF}/html/${htmldir} \
+				/usr/share/gtk-doc/html/${htmldir}
+	done
 
 	# udevadm is now in /usr/bin.
 	dosym /usr/bin/udevadm /sbin/udevadm
 
 	# create symlinks for these utilities to /sbin
 	# where multipath-tools expect them to be (Bug #168588)
-	dosym "/lib/udevd/scsi_id" /sbin/scsi_id
+	dosym /lib/udevd/scsi_id /sbin/scsi_id
 
 	# Now install rules
-	insinto /lib/udev/rules.d/
+	insinto /lib/udev/rules.d
 	doins "${FILESDIR}"/40-gentoo.rules
 }
 
