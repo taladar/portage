@@ -1,6 +1,20 @@
 # ChangeLog for kde-base/kdelibs
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/ChangeLog,v 1.831 2012/03/16 12:27:01 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/ChangeLog,v 1.834 2012/03/23 09:06:46 johu Exp $
+
+*kdelibs-4.8.1-r2 (23 Mar 2012)
+
+  23 Mar 2012; Johannes Huber <johu@gentoo.org>
+  +files/kdelibs-4.8.1-sonnet-highlighter.patch, +kdelibs-4.8.1-r2.ebuild:
+  Revision bump adds upstream patch, which fixes crashes in kmail with sonnet
+  highlighter. Fixes bug #407709.
+
+  23 Mar 2012; Johannes Huber <johu@gentoo.org> -kdelibs-4.8.0-r1.ebuild:
+  Remove KDE SC 4.8.0
+
+  23 Mar 2012; Johannes Huber <johu@gentoo.org> -kdelibs-4.7.4-r10.ebuild,
+  -kdelibs-4.7.4-r11.ebuild, -kdelibs-4.8.1.ebuild:
+  Cleanup.
 
 *kdelibs-4.8.1-r1 (16 Mar 2012)
 
