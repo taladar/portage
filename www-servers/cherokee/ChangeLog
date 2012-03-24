@@ -1,6 +1,16 @@
 # ChangeLog for www-servers/cherokee
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/cherokee/ChangeLog,v 1.90 2012/03/21 11:28:58 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/cherokee/ChangeLog,v 1.92 2012/03/24 11:49:09 blueness Exp $
+
+  24 Mar 2012; Anthony G. Basile <blueness@gentoo.org> metadata.xml:
+  Adopt package
+
+*cherokee-1.2.101-r1 (24 Mar 2012)
+
+  24 Mar 2012; Pacho Ramos <pacho@gentoo.org> +cherokee-1.2.101-r1.ebuild,
+  +files/cherokee.logrotate-r1, -cherokee-1.2.101.ebuild,
+  -files/cherokee.logrotate:
+  Fix logrotate file, bug #400759 by Alan Swanson.
 
   21 Mar 2012; Pacho Ramos <pacho@gentoo.org> -cherokee-1.2.100.ebuild,
   -cherokee-1.2.99.ebuild, metadata.xml:
