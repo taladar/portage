@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-182.ebuild,v 1.7 2012/03/22 15:25:22 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-182-r2.ebuild,v 1.2 2012/03/24 03:48:30 williamh Exp $
 
 EAPI=4
 
@@ -60,7 +60,7 @@ fi
 RDEPEND="${COMMON_DEPEND}
 	hwdb? (
 		>=sys-apps/usbutils-0.82
-		|| ( >=sys-apps/pciutils-3.1.9-r1[-compress-db]  <sys-apps/pciutils-3.1.9-r1[-zlib] )
+		|| ( >=sys-apps/pciutils-3.1.9-r1[-compress-db] <sys-apps/pciutils-3.1.9-r1[-zlib] )
 		)
 	openrc? ( >=sys-fs/udev-init-scripts-10
 		!<sys-apps/openrc-0.9.9 )
@@ -174,23 +174,30 @@ src_install()
 	dodoc ChangeLog NEWS README TODO
 	use keymap && dodoc src/keymap/README.keymap.txt
 
-	local htmldir
-	for htmldir in gudev libudev; do
-		[[ -d ${ED}/usr/share/doc/${PF}/html/${htmldir} ]] &&
-			dosym /usr/share/doc/${PF}/html/${htmldir} \
-				/usr/share/gtk-doc/html/${htmldir}
-	done
-
 	# udevadm is now in /usr/bin.
 	dosym /usr/bin/udevadm /sbin/udevadm
 
 	# create symlinks for these utilities to /sbin
 	# where multipath-tools expect them to be (Bug #168588)
-	dosym /lib/udevd/scsi_id /sbin/scsi_id
+	dosym /lib/udev/scsi_id /sbin/scsi_id
 
 	# Now install rules
 	insinto /lib/udev/rules.d
 	doins "${FILESDIR}"/40-gentoo.rules
+}
+
+pkg_preinst()
+{
+	local htmldir
+	for htmldir in gudev libudev; do
+		if [[ -d ${ROOT}usr/share/gtk-doc/html/${htmldir} ]]; then
+			rm -rf "${ROOT}"usr/share/gtk-doc/html/${htmldir}
+		fi
+		if [[ -d ${D}/usr/share/doc/${PF}/html/${htmldir} ]]; then
+			dosym /usr/share/doc/${PF}/html/${htmldir} \
+				/usr/share/gtk-doc/html/${htmldir}
+		fi
+	done
 }
 
 # 19 Nov 2008
