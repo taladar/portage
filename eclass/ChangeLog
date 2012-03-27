@@ -1,6 +1,19 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.188 2012/03/26 16:24:31 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.191 2012/03/26 20:33:42 nelchael Exp $
+
+  26 Mar 2012; Krzysztof Pawlik <nelchael@gentoo.org>
+  python-distutils-ng.eclass:
+  _python-distutils-ng_generate_depend was used only in one place, inline it.
+
+  26 Mar 2012; Krzysztof Pawlik <nelchael@gentoo.org>
+  python-distutils-ng.eclass:
+  Avoid ${impl::-3} parameter expansion, this is not supported by older bash
+  and caused issues with cache generation.
+
+  26 Mar 2012; Krzysztof Pawlik <nelchael@gentoo.org>
+  python-distutils-ng.eclass:
+  Small fixes: use +=, cleanup used variables, white space.
 
   26 Mar 2012; Krzysztof Pawlik <nelchael@gentoo.org>
   python-distutils-ng.eclass:
