@@ -1,6 +1,22 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.344 2012/03/28 09:58:13 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.349 2012/03/29 05:00:02 radhermit Exp $
+
+  29 Mar 2012; Tim Harder <radhermit@gentoo.org> -gnutls-2.12.17.ebuild,
+  -gnutls-3.0.15.ebuild:
+  Remove old.
+
+  29 Mar 2012; Tim Harder <radhermit@gentoo.org> gnutls-3.0.16.ebuild:
+  Add pkgconfig build dependency.
+
+  28 Mar 2012; Brent Baude <ranger@gentoo.org> gnutls-2.12.18.ebuild:
+  Marking gnutls-2.12.18 ppc64 for bug 409287
+
+  28 Mar 2012; Jeroen Roovers <jer@gentoo.org> gnutls-2.12.18.ebuild:
+  Stable for HPPA (bug #409287).
+
+  28 Mar 2012; Diego E. Pettenò <flameeyes@gentoo.org> gnutls-2.12.18.ebuild:
+  Add missing pkgconfig dependency, thanks to Nikoli in bug #410015.
 
   28 Mar 2012; Agostino Sarubbo <ago@gentoo.org> gnutls-2.12.18.ebuild:
   Stable for amd64, wrt bug #409287
