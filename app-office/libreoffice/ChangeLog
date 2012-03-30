@@ -1,6 +1,23 @@
 # ChangeLog for app-office/libreoffice
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/ChangeLog,v 1.266 2012/03/28 15:23:59 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/ChangeLog,v 1.270 2012/03/30 13:22:45 scarabeus Exp $
+
+  30 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> metadata.xml:
+  Fix the usedesc for webdav.
+
+  30 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-3.5.2.2.ebuild,
+  libreoffice-3.5.9999.ebuild, libreoffice-9999-r2.ebuild:
+  Build with ppds as it is just 2 files anyway and debian does the same. Fixes
+  bug#407833.
+
+*libreoffice-3.5.2.2 (30 Mar 2012)
+
+  30 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> +libreoffice-3.5.2.2.ebuild,
+  -libreoffice-3.5.1.2.ebuild:
+  Add the 3.5.2 release. (actually just 2 weeks after 3.5.1)
+
+  30 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-3.4.5.2.ebuild:
+  The patchname for the kde-4.8.1 compat is bit different.
 
   28 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-3.4.5.2.ebuild:
   Apply the 4.8.1 patch to 3.4.5 too. As requested by Robert Cabrera.
