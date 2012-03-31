@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/vzctl/vzctl-3.0.28.3-r1.ebuild,v 1.2 2011/10/12 11:20:25 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/vzctl/vzctl-3.0.30.2.ebuild,v 1.2 2012/03/31 05:09:25 pva Exp $
 
 EAPI="4"
 
@@ -12,7 +12,7 @@ SRC_URI="http://download.openvz.org/utils/${PN}/${PV}/src/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~ia64 ~ppc64 ~sparc x86"
+KEYWORDS="~amd64 ~ia64 ~ppc64 ~sparc ~x86"
 IUSE=""
 
 RDEPEND="
@@ -24,9 +24,8 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 src_prepare() {
-	# Set default OSTEMPLATE on gentoo
+	# Set default OSTEMPLATE on gentoo added
 	sed -e 's:=redhat-:=gentoo-:' -i etc/dists/default || die
-	epatch "${FILESDIR}/${P}-vzeventd-stop.patch"
 }
 
 src_configure() {
@@ -50,26 +49,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	local conf_without_OSTEMPLATE
-	for file in \
-		$(find "${EROOT}/etc/vz/conf/" \( -name *.conf -a \! -name 0.conf \)); do
-		if ! grep '^OSTEMPLATE' $file > /dev/null; then
-			conf_without_OSTEMPLATE+=" $file"
-		fi
-	done
-
-	if [[ -n ${conf_without_OSTEMPLATE} ]]; then
-		ewarn
-		ewarn "OSTEMPLATE default was changed from redhat-like to gentoo."
-		ewarn "This means that any VEID.conf files without explicit or correct"
-		ewarn "OSTEMPLATE set will use gentoo scripts instead of redhat."
-		ewarn "Please check the following configs:"
-		for file in ${conf_without_OSTEMPLATE}; do
-			ewarn "${file}"
-		done
-		ewarn
-	fi
-
 	ewarn "To avoid loosing network to CTs on iface down/up, please, add the"
 	ewarn "following code to /etc/conf.d/net:"
 	ewarn " postup() {"
