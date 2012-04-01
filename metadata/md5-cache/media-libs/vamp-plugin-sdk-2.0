@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install postinst unpack
+DEPEND=media-libs/libsndfile doc? ( app-doc/doxygen )
+DESCRIPTION=Audio processing plugin system for plugins that extract descriptive information from audio data
+HOMEPAGE=http://www.vamp-plugins.org
+IUSE=doc
+KEYWORDS=amd64 hppa ppc ppc64 x86
+LICENSE=BSD
+RDEPEND=media-libs/libsndfile
+SLOT=0
+SRC_URI=mirror://sourceforge/vamp/vamp-plugin-sdk-2.0.tar.gz
+_eclasses_=eutils	0f008baa9552301d379ae5df233e9713	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e
+_md5_=5d382e6592bab75f32a439e0659090ef

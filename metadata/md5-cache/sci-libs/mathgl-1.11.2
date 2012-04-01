@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm prepare prerm setup test unpack
+DEPEND=media-libs/libpng sys-libs/zlib virtual/opengl fltk? ( x11-libs/fltk:1 ) gif? ( media-libs/giflib ) glut? ( media-libs/freeglut ) gsl? ( sci-libs/gsl ) hdf5? ( >=sci-libs/hdf5-1.8[mpi=] ) jpeg? ( virtual/jpeg ) octave? ( >=sci-mathematics/octave-3.4.0 ) python? ( dev-python/numpy ) qt4? ( x11-libs/qt-gui:4 ) wxwidgets? ( x11-libs/wxGTK:2.8 ) sys-devel/libtool:2 doc? ( app-text/texi2html virtual/texi2dvi ) octave? ( dev-lang/swig ) python? ( dev-lang/swig ) || ( >=sys-devel/automake-1.11.1:1.11 ) >=sys-devel/autoconf-2.68 sys-devel/libtool python? ( =dev-lang/python-2* )
+DESCRIPTION=Math Graphics Library
+EAPI=4
+HOMEPAGE=http://mathgl.sourceforge.net/
+IUSE=doc fltk gif glut gsl hdf5 jpeg mpi octave python qt4 wxwidgets static-libs
+KEYWORDS=~amd64 ~x86
+LICENSE=LGPL-3
+RDEPEND=media-libs/libpng sys-libs/zlib virtual/opengl fltk? ( x11-libs/fltk:1 ) gif? ( media-libs/giflib ) glut? ( media-libs/freeglut ) gsl? ( sci-libs/gsl ) hdf5? ( >=sci-libs/hdf5-1.8[mpi=] ) jpeg? ( virtual/jpeg ) octave? ( >=sci-mathematics/octave-3.4.0 ) python? ( dev-python/numpy ) qt4? ( x11-libs/qt-gui:4 ) wxwidgets? ( x11-libs/wxGTK:2.8 ) python? ( =dev-lang/python-2* )
+REQUIRED_USE=mpi? ( hdf5 )
+SLOT=0
+SRC_URI=mirror://sourceforge/mathgl/mathgl-1.11.2.tar.gz mirror://sourceforge/mathgl/STIX_font.tgz
+_eclasses_=autotools	addbdf6cce5024ac93ad2084ad5e1d2d	autotools-utils	748973db029ba52a1991320e1034bad9	eutils	0f008baa9552301d379ae5df233e9713	libtool	5f623f5a211fb1b2d84d88ee49959a54	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	python	36d7e2b7aa4dce62364c72eec96610cf	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e	versionator	6601b4c5b3f019a993db59a50e1854e4	wxwidgets	fb1a306837717dfa2af841ecdf929565
+_md5_=a4d1a6d5e2cb7c1df68e837930f56f68

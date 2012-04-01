@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install postinst preinst prepare setup unpack
+DEPEND=virtual/init kernel_FreeBSD? ( || ( >=sys-freebsd/freebsd-ubin-9.0_rc sys-process/fuser-bsd ) ) elibc_glibc? ( >=sys-libs/glibc-2.5 ) ncurses? ( sys-libs/ncurses ) pam? ( sys-auth/pambase ) >=sys-apps/baselayout-2.0.0 kernel_linux? ( sys-process/psmisc ) !<sys-fs/udev-133 virtual/os-headers dev-vcs/git
+DESCRIPTION=OpenRC manages the services, startup and shutdown of a host
+EAPI=4
+HOMEPAGE=http://www.gentoo.org/proj/en/base/openrc/
+IUSE=debug elibc_glibc ncurses pam selinux static-libs unicode kernel_linux kernel_FreeBSD
+LICENSE=BSD-2
+RDEPEND=virtual/init kernel_FreeBSD? ( || ( >=sys-freebsd/freebsd-ubin-9.0_rc sys-process/fuser-bsd ) ) elibc_glibc? ( >=sys-libs/glibc-2.5 ) ncurses? ( sys-libs/ncurses ) pam? ( sys-auth/pambase ) >=sys-apps/baselayout-2.0.0 kernel_linux? ( sys-process/psmisc ) !<sys-fs/udev-133
+SLOT=0
+_eclasses_=eutils	0f008baa9552301d379ae5df233e9713	flag-o-matic	66cb710a2aa184a5687fe1289d7973ab	git-2	6bb20ec18cca375571bcbe67bcf2e1d7	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	pam	3f746974e1cc47cabe3bd488c08cdc8e	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e
+_md5_=0b409a36b85f39598f99e6f756f85313

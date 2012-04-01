@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/pciutils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pciutils/ChangeLog,v 1.193 2012/03/25 15:43:46 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pciutils/ChangeLog,v 1.196 2012/04/01 16:31:46 naota Exp $
+
+  01 Apr 2012; Naohiro Aota <naota@gentoo.org> pciutils-3.1.9-r2.ebuild:
+  Add ~x86-fbsd. #410401
+
+  01 Apr 2012; Raúl Porcel <armin76@gentoo.org> pciutils-3.1.9-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #407831
+
+*pciutils-3.1.9-r2 (01 Apr 2012)
+
+  01 Apr 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  +pciutils-3.1.9-r2.ebuild:
+  Make use of the new hwids ebuild.
 
   25 Mar 2012; Markus Meier <maekke@gentoo.org> pciutils-3.1.9-r1.ebuild:
   arm stable, bug #407831

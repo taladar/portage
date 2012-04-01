@@ -1,0 +1,13 @@
+DEFINED_PHASES=install setup
+DEPEND==dev-lang/python-2* =dev-lang/python-2*[tk]
+DESCRIPTION=Decomposition-based analysis of NMR projections
+EAPI=3
+HOMEPAGE=http://www.lundberg.gu.se/nmr/software.php?program=PRODECOMP
+IUSE=examples
+KEYWORDS=~amd64 ~x86 ~amd64-linux ~x86-linux
+LICENSE=GPL-2
+RDEPEND=sci-libs/scipy =dev-lang/python-2* =dev-lang/python-2*[tk]
+SLOT=0
+SRC_URI=mirror://gentoo/prodecomp-3.0.tar.bz2
+_eclasses_=multilib	5f4ad6cf85e365e8f0c6050ddd21659e	python	36d7e2b7aa4dce62364c72eec96610cf	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68
+_md5_=7149330d0fe81279dd41fda0e6c90b32

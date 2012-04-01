@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install prepare
+DEPEND=>=sys-kernel/linux-headers-2.6.39
+DESCRIPTION=Utilities for TIPC (Transparent Inter-Process Communication)
+EAPI=4
+HOMEPAGE=http://tipc.sourceforge.net
+KEYWORDS=~amd64 ~x86
+LICENSE=as-is
+SLOT=0
+SRC_URI=mirror://sourceforge/tipc/tipcutils-2.0.0.tar.gz
+_eclasses_=eutils	0f008baa9552301d379ae5df233e9713	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e
+_md5_=9867816aae3be2595bf33921d936f091

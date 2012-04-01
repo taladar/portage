@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install postinst postrm preinst setup unpack
+DEPEND=!net-dialup/fritzcapi >=app-arch/rpm2targz-9.0.0.3g kernel_linux? ( virtual/modutils ) sys-apps/sed kernel_linux? ( virtual/linux-sources )
+DESCRIPTION=AVM kernel 2.6 modules for Fritz!Card PCI
+HOMEPAGE=http://opensuse.foehr-it.de/
+IUSE=kernel_linux
+KEYWORDS=~amd64 ~x86
+LICENSE=AVM-FC
+RDEPEND=!net-dialup/fritzcapi net-dialup/capi4k-utils kernel_linux? ( virtual/modutils )
+RESTRICT=mirror primaryuri
+SLOT=0
+SRC_URI=http://opensuse.foehr-it.de/rpms/11_2/src/fcpci-0.1-0.src.rpm
+_eclasses_=eutils	0f008baa9552301d379ae5df233e9713	linux-info	cc184ad3383ffb6ffbaa82f53608e77f	linux-mod	cba6b1240fca7886fe5c7297106aea80	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	rpm	b94b54b44f14d6bee3e966c8f5c86fba	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e	versionator	6601b4c5b3f019a993db59a50e1854e4
+_md5_=51afb2c990244f804a67293623e49746

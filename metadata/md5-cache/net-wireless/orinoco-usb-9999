@@ -1,0 +1,10 @@
+DEFINED_PHASES=compile install postinst postrm preinst setup unpack
+DEPEND=kernel_linux? ( virtual/modutils ) sys-apps/sed kernel_linux? ( virtual/linux-sources ) dev-vcs/subversion net-misc/rsync
+DESCRIPTION=ORiNOCO IEEE 802.11 wireless LAN driver
+HOMEPAGE=http://www.nongnu.org/orinoco/
+IUSE=kernel_linux
+LICENSE=GPL-2 MPL-1.1
+RDEPEND=!net-wireless/orinoco-sn net-wireless/wireless-tools net-wireless/orinoco-fwutils kernel_linux? ( virtual/modutils )
+SLOT=0
+_eclasses_=eutils	0f008baa9552301d379ae5df233e9713	linux-info	cc184ad3383ffb6ffbaa82f53608e77f	linux-mod	cba6b1240fca7886fe5c7297106aea80	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	subversion	6945b2a4f19da5ca5867bb745cb01a35	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e	versionator	6601b4c5b3f019a993db59a50e1854e4
+_md5_=847aed0469944ad2b5da0896008d0519

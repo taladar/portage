@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install postinst postrm preinst setup unpack
+DEPEND=net-wireless/linux-wlan-ng-modules ~net-wireless/linux-wlan-ng-utils-0.2.2 ~net-wireless/linux-wlan-ng-firmware-0.2.2 kernel_linux? ( virtual/modutils ) sys-apps/sed kernel_linux? ( virtual/linux-sources )
+DESCRIPTION=Programs/files needed for Prism2/2.5/3 based USB wireless LAN products
+HOMEPAGE=http://linux-wlan.org
+IUSE=debug doc kernel_linux
+KEYWORDS=~amd64 ~ppc ~x86
+LICENSE=|| ( GPL-2 MPL-1.1 ) MPL-1.1
+RDEPEND=net-wireless/linux-wlan-ng-modules ~net-wireless/linux-wlan-ng-utils-0.2.2 ~net-wireless/linux-wlan-ng-firmware-0.2.2 kernel_linux? ( virtual/modutils )
+SLOT=0
+SRC_URI=ftp://ftp.linux-wlan.org/pub/linux-wlan-ng/linux-wlan-ng-0.2.3.tar.bz2
+_eclasses_=eutils	0f008baa9552301d379ae5df233e9713	linux-info	cc184ad3383ffb6ffbaa82f53608e77f	linux-mod	cba6b1240fca7886fe5c7297106aea80	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e	versionator	6601b4c5b3f019a993db59a50e1854e4
+_md5_=3c291f509463bf57883f9fd64eb427b5
