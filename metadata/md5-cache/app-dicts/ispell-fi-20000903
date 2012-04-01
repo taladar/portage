@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install
+DEPEND=app-text/ispell app-arch/bzip2
+DESCRIPTION=Finnish dictionary for ispell
+HOMEPAGE=http://ispell-fi.sourceforge.net/
+KEYWORDS=alpha ~amd64 ~hppa ~mips ppc sparc x86
+LICENSE=GPL-2
+RDEPEND=app-text/ispell
+SLOT=0
+SRC_URI=http://ispell-fi.sourceforge.net/finnish.dict.bz2 http://ispell-fi.sourceforge.net/finnish.medium.aff.bz2
+_eclasses_=multilib	5f4ad6cf85e365e8f0c6050ddd21659e	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68
+_md5_=6c422eb360bc674ccee497218375c351

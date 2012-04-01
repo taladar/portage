@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install prepare
+DEPEND=nls? ( sys-devel/gettext )
+DESCRIPTION=Abook is a text-based addressbook program designed to use with mutt mail client.
+EAPI=2
+HOMEPAGE=http://abook.sourceforge.net/
+IUSE=nls
+KEYWORDS=alpha amd64 ppc ppc64 sparc x86 ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris
+LICENSE=GPL-2
+RDEPEND=nls? ( virtual/libintl )
+SLOT=0
+SRC_URI=mirror://sourceforge/abook/abook-0.5.6.tar.gz
+_eclasses_=eutils	0f008baa9552301d379ae5df233e9713	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e
+_md5_=6beed37ab50384db519b0c4ea8638f4f

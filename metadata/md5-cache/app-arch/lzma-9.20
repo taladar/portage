@@ -1,0 +1,10 @@
+DEFINED_PHASES=compile install postinst
+DESCRIPTION=LZMA Stream Compressor from the SDK
+HOMEPAGE=http://www.7-zip.org/sdk.html
+IUSE=doc
+KEYWORDS=~amd64 ~arm ~ia64 ~mips ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos
+LICENSE=LGPL-2.1
+SLOT=0
+SRC_URI=mirror://sourceforge/sevenzip/lzma920.tar.bz2
+_eclasses_=multilib	5f4ad6cf85e365e8f0c6050ddd21659e	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68
+_md5_=b37d0722415dd96d3ffb8560598fe57d

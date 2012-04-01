@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure install
+DEPEND=x11-libs/wxGTK:2.8[X]
+DESCRIPTION=A library capable of plotting streetmaps and providing driving directions for US addresses
+EAPI=2
+HOMEPAGE=http://roadnav.sourceforge.net
+KEYWORDS=~x86 ~amd64
+LICENSE=LGPL-2.1
+RDEPEND=x11-libs/wxGTK:2.8[X]
+SLOT=0
+SRC_URI=mirror://sourceforge/roadnav/libroadnav-0.19.tar.gz
+_eclasses_=eutils	0f008baa9552301d379ae5df233e9713	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e	wxwidgets	fb1a306837717dfa2af841ecdf929565
+_md5_=ae0125ccf2162f91ec8a2a1b6e08a29d

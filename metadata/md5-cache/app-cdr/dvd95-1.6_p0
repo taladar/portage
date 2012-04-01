@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install prepare
+DEPEND=>=gnome-base/libgnomeui-2 dev-libs/libxml2 media-libs/libdvdread mpeg? ( media-libs/libmpeg2 ) media-video/mplayer dev-util/pkgconfig nls? ( sys-devel/gettext dev-util/intltool ) sys-apps/sed
+DESCRIPTION=DVD95 is a Gnome application to convert DVD9 to DVD5.
+EAPI=2
+HOMEPAGE=http://dvd95.sourceforge.net/
+IUSE=3dnow nls mmx mpeg sse sse2
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=>=gnome-base/libgnomeui-2 dev-libs/libxml2 media-libs/libdvdread mpeg? ( media-libs/libmpeg2 ) media-video/mplayer
+SLOT=0
+SRC_URI=mirror://sourceforge/dvd95/dvd95-1.6p0.tar.gz
+_eclasses_=eutils	0f008baa9552301d379ae5df233e9713	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e
+_md5_=64c806a15135a9fe3f8e1ab51ff43370

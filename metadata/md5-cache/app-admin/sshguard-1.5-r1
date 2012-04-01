@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install prepare
+DEPEND=kernel_linux? ( net-firewall/iptables ) kernel_FreeBSD? ( !ipfilter? ( sys-freebsd/freebsd-pf ) ) sys-devel/flex
+DESCRIPTION=protects hosts from brute force attacks against ssh
+EAPI=2
+HOMEPAGE=http://sshguard.sourceforge.net/
+IUSE=ipfilter kernel_FreeBSD kernel_linux
+KEYWORDS=amd64 x86 ~x86-fbsd
+LICENSE=BSD
+RDEPEND=kernel_linux? ( net-firewall/iptables ) kernel_FreeBSD? ( !ipfilter? ( sys-freebsd/freebsd-pf ) ) sys-apps/openrc virtual/logger
+SLOT=0
+SRC_URI=mirror://sourceforge/sshguard/sshguard-1.5.tar.bz2
+_eclasses_=eutils	0f008baa9552301d379ae5df233e9713	flag-o-matic	66cb710a2aa184a5687fe1289d7973ab	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e
+_md5_=7e86b20ced0e7df5cb5bb3ed25b1dd43

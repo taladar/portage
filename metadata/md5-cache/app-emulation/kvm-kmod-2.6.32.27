@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst setup
+DEPEND=kernel_linux? ( virtual/modutils ) sys-apps/sed kernel_linux? ( virtual/linux-sources )
+DESCRIPTION=Kernel-based Virtual Machine kernel modules
+EAPI=2
+HOMEPAGE=http://www.linux-kvm.org
+IUSE=kernel_linux
+KEYWORDS=-* ~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=kernel_linux? ( virtual/modutils )
+RESTRICT=test
+SLOT=0
+SRC_URI=mirror://sourceforge/kvm/kvm-kmod-2.6.32.27.tar.bz2
+_eclasses_=eutils	0f008baa9552301d379ae5df233e9713	linux-info	cc184ad3383ffb6ffbaa82f53608e77f	linux-mod	cba6b1240fca7886fe5c7297106aea80	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e	versionator	6601b4c5b3f019a993db59a50e1854e4
+_md5_=54fd04be87588878ae5af09af2c9f132

@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install postinst postrm prepare
+DEPEND=virtual/tex-base doc? ( virtual/latex-base ) =dev-lang/python-2*
+DESCRIPTION=Python package for the generation of encapsulated PostScript figures
+EAPI=3
+HOMEPAGE=http://pyx.sourceforge.net/
+IUSE=doc
+KEYWORDS=amd64 ~ia64 ~ppc ~ppc64 x86
+LICENSE=GPL-2
+RDEPEND=virtual/tex-base =dev-lang/python-2*
+SLOT=0
+SRC_URI=mirror://sourceforge/pyx/PyX-0.10.tar.gz
+_eclasses_=distutils	15ae23f6f8219a009bfcfff7724fe727	eutils	0f008baa9552301d379ae5df233e9713	multilib	5f4ad6cf85e365e8f0c6050ddd21659e	python	36d7e2b7aa4dce62364c72eec96610cf	toolchain-funcs	6526ac6fc9aedf391efb91fcd75ace68	user	32a09e82e2f592bf88ad2fd08525166e
+_md5_=05c313cf602b1cf8c0c5c787b1cc3452
