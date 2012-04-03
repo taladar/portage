@@ -1,6 +1,29 @@
 # ChangeLog for app-office/libreoffice
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/ChangeLog,v 1.273 2012/04/02 16:58:15 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/ChangeLog,v 1.278 2012/04/03 16:07:36 scarabeus Exp $
+
+  03 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/libreoffice-3.5.2-icu-49-part2.patch,
+  files/libreoffice-3.5.2-icu-49.patch:
+  Deal with the icu49 for good now.
+
+  03 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-3.5.2.2.ebuild:
+  Do not apply icu49-patch2 for now as it fails on 3.5 now.
+
+  03 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/libreoffice-3.5-doublebuild.patch, libreoffice-3.5.2.2.ebuild,
+  libreoffice-3.5.9999.ebuild:
+  Fix double running build, that was run once more on instakll phase.
+
+  03 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/libreoffice-3.5.2-tests-headless.patch, libreoffice-3.5.2.2.ebuild:
+  Pass headless to test runs. This should solve various dbus/assert crashes and
+  bug#410317.
+
+  03 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/libreoffice-3.5.2-icu-49-part2.patch, libreoffice-3.5.2.2.ebuild:
+  Add one more patch for the icu issue so it does not pose any issues with older
+  icu versions.
 
   02 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org>
   +files/libreoffice-3.5.2-icu-49.patch, libreoffice-3.5.2.2.ebuild:
