@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/paxctl
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/paxctl/ChangeLog,v 1.33 2012/03/24 11:40:48 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/paxctl/ChangeLog,v 1.35 2012/04/03 22:08:27 blueness Exp $
+
+*paxctl-0.7-r1 (03 Apr 2012)
+
+  03 Apr 2012; Anthony G. Basile <blueness@gentoo.org> +paxctl-0.7-r1.ebuild:
+  Upstream corrected version, bug #410685, and switch to EAPI=4, bug #410711
+
+  03 Apr 2012; Agostino Sarubbo <ago@gentoo.org> paxctl-0.7.ebuild:
+  Stable for amd64, wrt bug #410685
 
   24 Mar 2012; Anthony G. Basile <blueness@gentoo.org> -paxctl-0.6.ebuild:
   Removed buggy version, bug #408377
