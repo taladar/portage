@@ -1,6 +1,20 @@
 # ChangeLog for dev-ruby/actionmailer
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.179 2012/02/25 13:18:12 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.182 2012/04/04 11:47:12 graaff Exp $
+
+*actionmailer-3.1.4 (04 Apr 2012)
+
+  04 Apr 2012; Hans de Graaff <graaff@gentoo.org> +actionmailer-3.1.4.ebuild:
+  Version bump for Rails 3.1.4, security bug 406547.
+
+*actionmailer-3.0.12 (04 Apr 2012)
+
+  04 Apr 2012; Hans de Graaff <graaff@gentoo.org> +actionmailer-3.0.12.ebuild:
+  Version bump for security bug 406547.
+
+  04 Apr 2012; Hans de Graaff <graaff@gentoo.org> actionmailer-3.1.3.ebuild:
+  Add missing ~ppc64 keyword which was most likely the intention given that all
+  other parts of rails have been keyworded.
 
 *actionmailer-3.0.11-r2 (25 Feb 2012)
 
