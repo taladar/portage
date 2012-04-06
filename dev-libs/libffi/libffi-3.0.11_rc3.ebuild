@@ -1,12 +1,12 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.11_rc2.ebuild,v 1.3 2012/03/13 18:38:10 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.11_rc3.ebuild,v 1.2 2012/04/06 14:58:23 ssuominen Exp $
 
 EAPI=4
 
 MY_P=${P/_/-}
 
-inherit libtool multilib toolchain-funcs eutils
+inherit eutils libtool multilib toolchain-funcs
 
 DESCRIPTION="a portable, high level programming interface to various calling conventions."
 HOMEPAGE="http://sourceware.org/libffi/"
@@ -22,20 +22,23 @@ DEPEND="test? ( dev-util/dejagnu )"
 
 S=${WORKDIR}/${MY_P}
 
+DOCS="ChangeLog* README"
+
 pkg_setup() {
-	# Detect and document broken installation of sys-devel/gcc in the build.log wrt #354903
+	# Check for orphaned libffi, see http://bugs.gentoo.org/354903 for example
 	if ! has_version ${CATEGORY}/${PN}; then
-		local base="${T}/conftest"
-		echo 'int main() { }' > "${base}.c"
-		$(tc-getCC) -o "${base}" "${base}.c" -lffi >&/dev/null && \
-			ewarn "Found a copy of second ${PN} in your system. Uninstall it before continuing."
+		local base="${T}"/conftest
+		echo 'int main() { }' > "${base}".c
+		$(tc-getCC) -o "${base}" "${base}".c -lffi >&/dev/null
+		if [ $? -eq = 0 ]; then
+			eerror "The linker reported linking against -lffi to be working while it shouldn't have."
+			eerror "This is wrong and you should find and delete the old copy of libffi before continuing."
+			die "The system is in inconsistent state with unknown libffi installed."
+		fi
 	fi
 }
 
 src_prepare() {
-	epatch \
-		"${FILESDIR}"/${PN}-3.0.9-x32.patch \
-		"${FILESDIR}"/${P}-fix-ppc64-compile.patch
 	elibtoolize
 }
 
@@ -47,9 +50,8 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
-	dodoc ChangeLog* README
-	rm -f "${ED}"usr/lib*/${PN}.la
+	default
+	rm -f "${ED}"/usr/lib*/lib*.la
 }
 
 pkg_preinst() {
