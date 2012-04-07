@@ -1,10 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6394 2012/04/06 14:56:10 pesa Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6399 2012/04/06 22:04:33 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  06 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Remove entries for gecko-sharp, Gtk2-MozEmbed, ntfsprogs, syncevolution
+  and qtada since they got removed from tree.
+
+  06 Apr 2012; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Cleanup.
+
+  06 Apr 2012; Andreas K. Huettel <dilfridge@gentoo.org> package.mask:
+  Mask calligra-2.4.0 until it is released
+
+  06 Apr 2012; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Fill missing dates.
 
   06 Apr 2012; Davide Pesavento <pesa@gentoo.org> use.desc:
   Update kde USE flag description, kde-base/kde doesn't exist anymore. Ack'ed
