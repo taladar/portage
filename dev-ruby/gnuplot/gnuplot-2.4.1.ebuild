@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/gnuplot/gnuplot-2.3.5.ebuild,v 1.1 2011/01/30 09:26:00 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/gnuplot/gnuplot-2.4.1.ebuild,v 1.1 2012/04/08 07:32:40 graaff Exp $
 
 EAPI="2"
 USE_RUBY="ruby18 ruby19 ree18 jruby"
@@ -24,6 +24,11 @@ RDEPEND="${RDEPEND} sci-visualization/gnuplot"
 
 ruby_add_bdepend "test? ( virtual/ruby-test-unit )"
 
+all_ruby_prepare() {
+	# Existing metadata causes a crash in jruby, so use our own.
+	rm ../metadata || die "Unable to remove metadata."
+}
+
 each_ruby_test() {
-	${RUBY} -Ctest -rtest/unit -e "Dir['test/*.rb'].each{|f| require f}" || die
+	${RUBY} -Ctest test_gnuplot.rb || die
 }
