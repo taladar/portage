@@ -1,13 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/multi_json/multi_json-1.0.3.ebuild,v 1.2 2011/11/05 17:43:44 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/multi_json/multi_json-1.2.0.ebuild,v 1.1 2012/04/09 12:44:10 graaff Exp $
 
 EAPI=2
 
 USE_RUBY="ruby18 ruby19 ree18 jruby"
 
 RUBY_FAKEGEM_TASK_TEST="spec"
-RUBY_FAKEGEM_TASK_DOC="rdoc"
+RUBY_FAKEGEM_TASK_DOC="doc:rdoc"
 
 RUBY_FAKEGEM_DOCDIR="rdoc"
 RUBY_FAKEGEM_EXTRADOC="README.md"
@@ -20,18 +20,13 @@ DESCRIPTION="A gem to provide swappable JSON backends"
 HOMEPAGE="http://github.com/intridea/multi_json"
 LICENSE="MIT"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~hppa ~ppc ~ppc64 ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 IUSE=""
 
 ruby_add_rdepend "|| ( >=dev-ruby/json-1.4 >=dev-ruby/yajl-ruby-0.7 =dev-ruby/activesupport-3* )"
 
-# I've switched one of the tests from requiring yajl to requiring
-# json-pure since it's the only implementation that is available for all
-# the Ruby interpreters we support. This is fixed upstream in 1.0.2 but
-# got broken again in 1.0.3:
-# https://github.com/intridea/multi_json/issues/18
-RUBY_PATCHES=( "${FILESDIR}/${P}-gentoo.patch" )
+ruby_add_bdepend "doc? ( dev-ruby/rspec:2 )"
 
 ruby_add_bdepend "test? ( dev-ruby/rspec:2 dev-ruby/json )"
 
@@ -49,4 +44,10 @@ all_ruby_prepare() {
 
 	# Provide version otherwise provided by bundler.
 	sed -i -e "s/#{MultiJson::VERSION}/${PV}/" Rakefile || die
+
+	# Remove unimportant rspec options not supported by rspec 2.6.
+	rm .rspec || die
+
+	# Remove best default spec since we don't package oj yet.
+	sed -i -e '/defaults to the best available gem/,/^    end/ s:^:#:' spec/multi_json_spec.rb || die
 }

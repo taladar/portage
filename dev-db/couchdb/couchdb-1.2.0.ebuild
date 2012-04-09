@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/couchdb/couchdb-1.0.2.ebuild,v 1.6 2011/02/10 23:44:56 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/couchdb/couchdb-1.2.0.ebuild,v 1.1 2012/04/09 08:10:00 djc Exp $
 
 EAPI="2"
 
@@ -8,11 +8,11 @@ inherit eutils
 
 DESCRIPTION="Apache CouchDB is a distributed, fault-tolerant and schema-free document-oriented database."
 HOMEPAGE="http://couchdb.apache.org/"
-SRC_URI="mirror://apache/couchdb/${PV}/apache-${P}.tar.gz"
+SRC_URI="mirror://apache/couchdb/releases/${PV}/apache-${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="amd64 ppc x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="test"
 
 RDEPEND=">=dev-libs/icu-4.3.1
@@ -36,7 +36,7 @@ src_configure() {
 		--localstatedir=/var \
 		--with-js-lib=/usr/lib
 	# bug 296609, upstream bug #COUCHDB-621
-	sed -e "s#localdocdir = /usr/share/doc/couchdb#localdocdir = /usr/share/doc/couchdb-0.10.1#" -i Makefile || die "sed failed"
+	sed -e "s#localdocdir = /usr/share/doc/couchdb#localdocdir = /usr/share/doc/${PF}#" -i Makefile || die "sed failed"
 }
 
 src_install() {
@@ -55,7 +55,7 @@ src_install() {
 	done
 	fperms 664 /etc/couchdb/default.ini
 
-	newinitd "${FILESDIR}/couchdb.init-0.10" couchdb || die
+	newinitd "${FILESDIR}/couchdb.init-2" couchdb || die
 	newconfd "${FILESDIR}/couchdb.conf-0.10" couchdb || die
 
 	sed -i -e "s:LIBDIR:$(get_libdir):" "${D}/etc/conf.d/couchdb"
