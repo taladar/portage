@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/asterisk/asterisk-1.8.8.2.ebuild,v 1.4 2012/03/02 17:48:28 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/asterisk/asterisk-1.8.11.0.ebuild,v 1.1 2012/04/10 09:46:50 chainsaw Exp $
 
 EAPI=4
 inherit autotools base eutils linux-info multilib
@@ -10,10 +10,10 @@ MY_P="${PN}-${PV/_/-}"
 DESCRIPTION="Asterisk: A Modular Open Source PBX System"
 HOMEPAGE="http://www.asterisk.org/"
 SRC_URI="http://downloads.asterisk.org/pub/telephony/asterisk/${MY_P}.tar.gz
-	 mirror://gentoo/gentoo-asterisk-patchset-1.7.tar.bz2"
+	 mirror://gentoo/gentoo-asterisk-patchset-1.11.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 
 IUSE="ais alsa bluetooth calendar +caps curl dahdi debug doc freetds gtalk http iconv jabber jingle ldap lua mysql newt +samples odbc osplookup oss portaudio postgres radius snmp span speex sqlite sqlite3 srtp static syslog usb vorbis"
 
@@ -23,6 +23,8 @@ PATCHES=( "${WORKDIR}/asterisk-patchset" )
 RDEPEND="dev-libs/popt
 	dev-libs/libxml2
 	dev-libs/openssl
+	sys-libs/ncurses
+	sys-libs/zlib
 	ais? ( sys-cluster/openais )
 	alsa? ( media-libs/alsa-lib )
 	bluetooth? ( net-wireless/bluez )
