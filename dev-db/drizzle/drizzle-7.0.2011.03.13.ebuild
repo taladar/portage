@@ -1,24 +1,36 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/drizzle/drizzle-7.2011.02.09.ebuild,v 1.1 2011/02/03 12:31:37 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/drizzle/drizzle-7.0.2011.03.13.ebuild,v 1.1 2012/04/10 00:55:07 robbat2 Exp $
 
 EAPI=2
 
 inherit flag-o-matic libtool autotools eutils pam versionator
 
-MY_P="${PN}$(replace_version_separator 1 -)"
+# Upstream version numbers live in a directory that is [+-][1-2] days either
+# side of the name the tarball! eg:
+# https://launchpad.net/drizzle/7.0/2011-03-14/+download/drizzle7-2011.03.13.tar.gz
+# If the tarball falls on the last day of the month, be really careful!
+# We name the ebuild for the tarball, and deal with the mess of the name instead
+
+MY_PN="${PN}$(get_version_component_range 1-1)"
+MY_PV="$(get_version_component_range 3-5)"
+MY_P="${MY_PN}-${MY_PV}"
+
+# This is the mess of the name
+DIR_PV_B="$(get_version_component_range 1-2)"
+DIR_PV_DATE="2011-03-14"
+DIR_PV="${DIR_PV_B}/${DIR_PV_DATE}"
+
 S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Database optimized for Cloud and Net applications"
 HOMEPAGE="http://drizzle.org"
-SRC_URI="http://launchpad.net/drizzle/elliott/$(get_version_component_range 2-2)-01-31/+download/${MY_P}.tar.gz"
+SRC_URI="http://launchpad.net/drizzle/${DIR_PV}/+download/${MY_P}.tar.gz"
+
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug tcmalloc doc memcache curl pam gearman +md5 ldap haildb"
-
-# tests are known to fail with haildb enabled, still.
-RESTRICT="haildb? ( test )"
 
 RDEPEND="tcmalloc? ( dev-util/google-perftools )
 		sys-libs/readline
@@ -49,7 +61,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-2009.12.1240-nolint.patch"
+	#epatch "${FILESDIR}/${PN}-2009.12.1240-nolint.patch"
 
 	AT_M4DIR="m4" eautoreconf
 	elibtoolize
@@ -65,6 +77,9 @@ src_configure() {
 	# while I applaud upstreams goal of 0 compiler warnings
 	# the 1412 release didn't achieve it.
 	append-flags -Wno-error
+
+	# Bug #362901
+	append-flags -DBOOST_FILESYSTEM_VERSION=2
 
 	# NOTE disable-all and without-all no longer recognized options
 	# NOTE using --enable on some plugins can cause test failures.
