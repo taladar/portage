@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6410 2012/04/11 10:07:21 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6413 2012/04/12 02:42:02 tetromino Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  12 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.mask:
+  Unmask glib-2.32, gtk+-3.4, and other core gnome-3.4 libraries.
+
+  11 Apr 2012; Andreas K. Huettel <dilfridge@gentoo.org> package.mask:
+  Calligra 2.4 released
+
+  11 Apr 2012; Ulrich Müller <ulm@gentoo.org> license_groups:
+  Add ipadic license to MISC-FREE group, bug 397833.
 
   11 Apr 2012; Kacper Kowalik <xarthisius@gentoo.org> updates/2Q-2012:
   Slotmove media-libs/libharu from 2 to 0.

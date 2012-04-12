@@ -1,6 +1,15 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.375 2012/04/08 14:43:35 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.379 2012/04/12 04:14:39 tetromino Exp $
+
+  12 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Mask gtkmm[wayland] since it needs gtk+[wayland].
+
+  11 Apr 2012; Sebastian Pipping <sping@gentoo.org> package.use.mask:
+  Mask >=media-libs/babl-0.1.8[introspection] and >=media-libs/gegl-0.2[introspection]
+
+  11 Apr 2012; Michał Górny <mgorny@gentoo.org> package.use.mask:
+  Mask USE=jit on libzpaq for non-x86/amd64.
 
   08 Apr 2012; Alexis Ballier <aballier@gentoo.org> package.use.mask:
   mask x264-encoder[ffmpegsource] on all versions but latest one
