@@ -1,6 +1,18 @@
 # ChangeLog for sys-libs/glibc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.827 2012/03/26 22:23:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.830 2012/04/14 02:04:02 vapier Exp $
+
+  14 Apr 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.13-r4.ebuild:
+  Mark s390 stable #382377.
+
+*glibc-2.14.1-r3 (14 Apr 2012)
+
+  14 Apr 2012; Mike Frysinger <vapier@gentoo.org> -glibc-2.14.1.ebuild,
+  -glibc-2.14.1-r1.ebuild, +glibc-2.14.1-r3.ebuild:
+  Fix regex crashes #389881 and missing hppa prlimit64.
+
+  14 Apr 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.15.ebuild:
+  Fix prlimit64 on hppa and drop some old patches.
 
   26 Mar 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.15.ebuild:
   Add patch from upstream for libmemusage.so on arm targets #409721 by
