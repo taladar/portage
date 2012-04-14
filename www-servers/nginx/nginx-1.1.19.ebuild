@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/nginx-1.1.19.ebuild,v 1.1 2012/04/13 15:16:46 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/nginx-1.1.19.ebuild,v 1.2 2012/04/14 09:20:53 hollow Exp $
 
 EAPI="4"
 
@@ -360,7 +360,7 @@ pkg_postinst() {
 	if use ssl; then
 		if [ ! -f "${EROOT}"/etc/ssl/${PN}/${PN}.key ]; then
 			install_cert /etc/ssl/${PN}/${PN}
-			use prefix || chown ${PN}:${PN} "${ROOT}"/etc/ssl/${PN}/${PN}.{crt,csr,key,pem}
+			use prefix || chown ${PN}:${PN} "${EROOT}"/etc/ssl/${PN}/${PN}.{crt,csr,key,pem}
 		fi
 	fi
 }
