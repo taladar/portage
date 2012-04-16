@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/naev/naev-0.5.1.ebuild,v 1.1 2012/03/02 02:12:46 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/naev/naev-0.5.3.ebuild,v 1.1 2012/04/16 05:18:43 ssuominen Exp $
 
 EAPI=2
 inherit gnome2-utils games
