@@ -1,6 +1,16 @@
 # ChangeLog for www-client/conkeror
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/conkeror/ChangeLog,v 1.25 2012/03/24 17:41:47 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/conkeror/ChangeLog,v 1.27 2012/04/17 13:04:54 ulm Exp $
+
+  17 Apr 2012; Ulrich Müller <ulm@gentoo.org> conkeror-0.9.4-r1.ebuild,
+  conkeror-1.0_pre20120223.ebuild:
+  Re-add xulrunner dependency to the stable version, as it doesn't work with
+  firefox. Re-add minimum version requirement for the unstable version.
+
+  17 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> conkeror-0.9.4-r1.ebuild,
+  conkeror-1.0_pre20120223.ebuild:
+  Remove obsolete net-libs/xulrunner from no-op RDEPEND wrt #409483 by Jauhien
+  Piatlicki
 
 *conkeror-1.0_pre20120223 (24 Mar 2012)
 
