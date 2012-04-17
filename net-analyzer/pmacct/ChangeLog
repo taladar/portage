@@ -1,6 +1,13 @@
 # ChangeLog for net-analyzer/pmacct
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/pmacct/ChangeLog,v 1.78 2012/04/14 23:42:42 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/pmacct/ChangeLog,v 1.80 2012/04/16 23:21:48 jer Exp $
+
+  16 Apr 2012; Jeroen Roovers <jer@gentoo.org> -pmacct-0.12.2.ebuild,
+  -pmacct-0.12.3.ebuild, -pmacct-0.12.5.ebuild:
+  Old.
+
+  16 Apr 2012; Brent Baude <ranger@gentoo.org> pmacct-0.12.5-r1.ebuild:
+  Marking pmacct-0.12.5-r1 ppc for bug 411863
 
   14 Apr 2012; Jeff Horelick <jdhore@gentoo.org> pmacct-0.12.5-r1.ebuild:
   marked x86 per bug 411863
