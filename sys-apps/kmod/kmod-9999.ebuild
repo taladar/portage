@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/kmod-9999.ebuild,v 1.24 2012/04/06 21:04:44 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/kmod-9999.ebuild,v 1.25 2012/04/20 12:14:30 ssuominen Exp $
 
 EAPI=4
 
@@ -59,16 +59,13 @@ src_configure()
 		export zlib_LIBS="-lz"
 	fi
 
-	local myconf
-	[[ ${PV} == 9999 ]] && myconf="$(use_enable doc gtk-doc)"
-
 	econf \
 		$(use_enable static-libs static) \
 		$(use_enable tools) \
 		$(use_enable debug) \
+		$(use_enable doc gtk-doc) \
 		$(use_with lzma xz) \
-		$(use_with zlib) \
-		${myconf}
+		$(use_with zlib)
 }
 
 src_install()
