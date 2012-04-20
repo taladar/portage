@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.21.ebuild,v 1.7 2011/10/14 16:25:46 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.4.2.ebuild,v 1.1 2012/04/20 04:00:31 patrick Exp $
 
-EAPI="4"
+EAPI="2"
 inherit flag-o-matic eutils
 
 DESCRIPTION="Useful Apache tools - htdigest, htpasswd, ab, htdbm"
@@ -11,28 +11,19 @@ SRC_URI="mirror://apache/httpd/httpd-${PV}.tar.bz2"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
 IUSE="ssl"
 RESTRICT="test"
 
 RDEPEND="=dev-libs/apr-1*
 	=dev-libs/apr-util-1*
 	dev-libs/libpcre
-	ssl? ( dev-libs/openssl )
-	!<www-servers/apache-2.2.4"
+	ssl? ( dev-libs/openssl )"
 
 DEPEND="${RDEPEND}
 	sys-devel/libtool"
 
 S="${WORKDIR}/httpd-${PV}"
-
-src_prepare() {
-	# Apply these patches:
-	# (1)	apache-tools-2.2.20-Makefile.patch:
-	#		- fix up the `make install' for support/
-	#		- remove envvars from `make install'
-	epatch "${FILESDIR}"/${PN}-2.2.20-Makefile.patch
-}
 
 src_configure() {
 	local myconf=""
@@ -64,8 +55,8 @@ src_install () {
 	make DESTDIR="${D}" install
 
 	# install manpages
-	doman "${S}"/docs/man/{dbmmanage,htdigest,htpasswd,htdbm}.1 \
-		"${S}"/docs/man/{ab,htcacheclean,logresolve,rotatelogs}.8
+	doman "${S}"/docs/man/{dbmmanage,htdigest,htpasswd,htdbm,ab,logresolve}.1 \
+		"${S}"/docs/man/{htcacheclean,rotatelogs}.8
 
 	# Providing compatiblity symlinks for #177697 (which we'll stop to install
 	# at some point).

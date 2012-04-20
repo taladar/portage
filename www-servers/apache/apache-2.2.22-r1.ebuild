@@ -1,14 +1,13 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.21-r1.ebuild,v 1.8 2012/03/05 08:17:32 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.22-r1.ebuild,v 1.1 2012/04/20 04:22:46 patrick Exp $
 
 EAPI="2"
 
 # latest gentoo apache files
-GENTOO_PATCHSTAMP="20111018"
-GENTOO_DEVELOPER="pva"
-# We want the patch from r0
-GENTOO_PATCHNAME="gentoo-${P}-r1"
+GENTOO_PATCHSTAMP="20120213"
+GENTOO_DEVELOPER="jmbsvicetto"
+GENTOO_PATCHNAME="gentoo-apache-2.2.22"
 
 # IUSE/USE_EXPAND magic
 IUSE_MPMS_FORK="itk peruser prefork"
@@ -102,3 +101,10 @@ RDEPEND="${RDEPEND}
 	>=dev-libs/apr-1.4.5
 	>=dev-libs/openssl-0.9.8m
 	apache2_modules_mime? ( app-misc/mime-types )"
+
+# init script fixup - should be rolled into next tarball #389965
+src_prepare() {
+	apache-2_src_prepare
+	sed -i -e 's/! test -f/test -f/' "${GENTOO_PATCHDIR}"/init/apache2.initd || die "Failed to fix init script"
+	cp ${FILESDIR}/2.2.22-envvars-std.in ${S}/support/envvars-std.in || die "Failed to apply LD_PRELOAD fix"
+}

@@ -1,12 +1,13 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.22.ebuild,v 1.9 2012/04/17 19:33:52 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.4.2.ebuild,v 1.1 2012/04/20 03:58:46 patrick Exp $
 
 EAPI="2"
 
 # latest gentoo apache files
-GENTOO_PATCHSTAMP="20120213"
-GENTOO_DEVELOPER="jmbsvicetto"
+GENTOO_PATCHSTAMP="20120401"
+GENTOO_DEVELOPER="patrick"
+GENTOO_PATCHNAME="gentoo-apache-2.4.1"
 
 # IUSE/USE_EXPAND magic
 IUSE_MPMS_FORK="itk peruser prefork"
@@ -88,7 +89,7 @@ HOMEPAGE="http://httpd.apache.org/"
 # some helper scripts are Apache-1.1, thus both are here
 LICENSE="Apache-2.0 Apache-1.1"
 SLOT="2"
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
 IUSE=""
 
 DEPEND="${DEPEND}
@@ -105,4 +106,24 @@ RDEPEND="${RDEPEND}
 src_prepare() {
 	apache-2_src_prepare
 	sed -i -e 's/! test -f/test -f/' "${GENTOO_PATCHDIR}"/init/apache2.initd || die "Failed to fix init script"
+}
+
+src_install() {
+	apache-2_src_install
+	for i in /usr/bin/{htdigest,logresolve,htpasswd,htdbm,ab,httxt2dbm}; do
+		rm "${D}"/$i || die "Failed to prune apache-tools bits"
+	done
+	for i in /usr/share/man/man8/{rotatelogs.8,htcacheclean.8}; do
+		rm "${D}"/$i || die "Failed to prune apache-tools bits"
+	done
+	for i in /usr/share/man/man1/{logresolve.1,htdbm.1,htdigest.1,htpasswd.1,dbmmanage.1,ab.1}; do
+		rm "${D}"/$i || die "Failed to prune apache-tools bits"
+	done
+	for i in /usr/sbin/{checkgid,fcgistarter,htcacheclean,rotatelogs}; do
+		rm "${D}/"$i || die "Failed to prune apache-tools bits"
+	done
+
+	# well, actually installing things makes them more installed, I guess?
+	cp "${S}"/support/apxs "${D}"/usr/sbin/apxs || die "Failed to install apxs"
+	chmod 0755 "${D}"/usr/sbin/apxs
 }
