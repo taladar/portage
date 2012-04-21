@@ -1,6 +1,26 @@
 # ChangeLog for sys-libs/glibc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.834 2012/04/17 20:47:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.838 2012/04/21 17:26:51 vapier Exp $
+
+  21 Apr 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.14.1-r3.ebuild:
+  Also add fetestexcept libm hppa patch to 2.14.1 #412933 by Jeroen Roovers.
+
+*glibc-2.15-r1 (21 Apr 2012)
+
+  21 Apr 2012; Mike Frysinger <vapier@gentoo.org> -glibc-2.15.ebuild,
+  +glibc-2.15-r1.ebuild:
+  Unmask now that 2.14 is going stable.
+
+  21 Apr 2012; Mike Frysinger <vapier@gentoo.org>
+  glibc-2.9_p20081201-r3.ebuild, glibc-2.10.1-r1.ebuild, glibc-2.11.3.ebuild,
+  glibc-2.12.1-r3.ebuild, glibc-2.12.2.ebuild, glibc-2.13-r2.ebuild,
+  glibc-2.13-r4.ebuild, glibc-2.14.ebuild, glibc-2.14.1-r2.ebuild,
+  glibc-2.14.1-r3.ebuild, glibc-2.15.ebuild, glibc-9999.ebuild,
+  files/eblits/src_compile.eblit, metadata.xml:
+  Drop USE=glibc-omitfp support since upstream has as well.
+
+  21 Apr 2012; Agostino Sarubbo <ago@gentoo.org> glibc-2.14.1-r3.ebuild:
+  Stable for amd64, wrt bug #411903
 
   17 Apr 2012; Brent Baude <ranger@gentoo.org> glibc-2.14.1-r3.ebuild:
   Marking glibc-2.14.1-r3 ppc64 for bug 411903
