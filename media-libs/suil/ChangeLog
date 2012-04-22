@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/suil
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/suil/ChangeLog,v 1.2 2012/03/01 13:45:34 tomka Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/suil/ChangeLog,v 1.5 2012/04/22 00:32:33 aballier Exp $
+
+  22 Apr 2012; Alexis Ballier <aballier@gentoo.org> suil-0.6.0.ebuild:
+  this release needs lv2-1.0.0, so depend on it and drop keywords
+
+*suil-0.6.0 (22 Apr 2012)
+
+  22 Apr 2012; Alexis Ballier <aballier@gentoo.org> +suil-0.6.0.ebuild:
+  version bump
+
+  21 Apr 2012; Alexis Ballier <aballier@gentoo.org> suil-0.4.4.ebuild:
+  allow media-libs/lv2 in addition of lv2core+lv2-ui
 
   01 Mar 2012; Thomas Kahle <tomka@gentoo.org> suil-0.4.4.ebuild:
   marked ~x86 per bug 397887
