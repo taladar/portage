@@ -1,6 +1,45 @@
 # ChangeLog for net-mail/notmuch
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/notmuch/ChangeLog,v 1.40 2012/04/23 20:25:30 aidecoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/notmuch/ChangeLog,v 1.48 2012/04/24 17:04:03 ago Exp $
+
+  24 Apr 2012; Agostino Sarubbo <ago@gentoo.org> notmuch-0.12.ebuild:
+  Stable for amd64, wrt bug #413323
+
+  24 Apr 2012; Agostino Sarubbo <ago@gentoo.org> notmuch-0.10.2-r3.ebuild,
+  notmuch-0.11.1-r3.ebuild:
+  Stable for amd64, wrt bug #413349
+
+  24 Apr 2012; Amadeusz Żołnowski <aidecoe@gentoo.org> notmuch-0.10.2-r2.ebuild,
+  notmuch-0.10.2-r3.ebuild, notmuch-0.11.1-r2.ebuild, notmuch-0.11.1-r3.ebuild,
+  notmuch-0.12.ebuild:
+  Better short description.
+
+  24 Apr 2012; Amadeusz Żołnowski <aidecoe@gentoo.org> notmuch-0.10.2-r3.ebuild,
+  notmuch-0.11.1-r3.ebuild:
+  Synced ebuilds structures between 0.10.2-r3 and 0.11.1-r3.  In result
+  autotools-utils usage has been dropped in 0.10.2-r3 and nmbug script
+  installation has been added.  In 0.11.1-r3 patch has been moved to PATCHES
+  variable.
+
+*notmuch-0.11.1-r3 (24 Apr 2012)
+*notmuch-0.10.2-r3 (24 Apr 2012)
+
+  24 Apr 2012; Amadeusz Żołnowski <aidecoe@gentoo.org>
+  +files/0.10.2-build-with-gmime-2.4-only.patch,
+  +files/0.11.1-build-with-gmime-2.4-only.patch, +notmuch-0.10.2-r3.ebuild,
+  +notmuch-0.11.1-r3.ebuild:
+  Added patch enforcing build with GMime 2.4 only, because 2.6 is not supported
+  in Notmuch 0.10.2 and it's not fully supported in 0.11.1.
+
+  24 Apr 2012; Amadeusz Żołnowski <aidecoe@gentoo.org> notmuch-0.10.2-r2.ebuild,
+  notmuch-0.11.1-r2.ebuild, notmuch-0.12.ebuild:
+  Combined pax-mark flags -z and -e into -ze, because pax-mark interpreted later
+  -e as file name.
+
+  24 Apr 2012; Amadeusz Żołnowski <aidecoe@gentoo.org> notmuch-0.10.2-r2.ebuild,
+  notmuch-0.11.1-r2.ebuild:
+  Added PaX markings for test phase in stable ebuilds, too.  It's required for
+  test in which gdb break is used (on PaX kernel).
 
   23 Apr 2012; Amadeusz Żołnowski <aidecoe@gentoo.org> notmuch-0.12.ebuild:
   Added PaX markings for test phase.  It's required for test in which gdb break
