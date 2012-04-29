@@ -1,6 +1,15 @@
 # ChangeLog for dev-ruby/httpclient
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/httpclient/ChangeLog,v 1.33 2011/12/15 10:00:18 ago Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/httpclient/ChangeLog,v 1.36 2012/04/28 17:49:07 graaff Exp $
+
+  28 Apr 2012; Hans de Graaff <graaff@gentoo.org> httpclient-2.2.4.ebuild:
+  Move test fixes forward to latest version.
+
+  28 Apr 2012; Hans de Graaff <graaff@gentoo.org> httpclient-2.2.2.ebuild:
+  Comment out test relying on specific DNS results, bug 395155.
+
+  28 Apr 2012; Hans de Graaff <graaff@gentoo.org> httpclient-2.2.2.ebuild:
+  Comment out harmless test failures, bug 411191.
 
   15 Dec 2011; Agostino Sarubbo <ago@gentoo.org> httpclient-2.2.2.ebuild:
   Stable for AMD64, wrt bug #393583

@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/focuswriter/focuswriter-1.2.0.ebuild,v 1.4 2010/05/25 15:21:27 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/focuswriter/focuswriter-1.2.0.ebuild,v 1.1 2012/04/28 20:12:12 johu Exp $
 
 EAPI=3
 inherit qt4-r2
