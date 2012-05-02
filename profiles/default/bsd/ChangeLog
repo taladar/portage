@@ -1,6 +1,9 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/default/bsd/ChangeLog,v 1.77 2012/04/25 15:17:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/default/bsd/ChangeLog,v 1.79 2012/05/02 15:32:11 naota Exp $
+
+  02 May 2012; Naohiro Aota <naota@gentoo.org> profile.bashrc:
+  Match only for the word beginning
 
   25 Apr 2012; Alexis Ballier <aballier@gentoo.org> +fbsd/amd64/7.2/deprecated,
   +fbsd/amd64/8.0/deprecated, +fbsd/sparc/7.2/deprecated,
