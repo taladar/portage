@@ -1,6 +1,24 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.231 2012/05/02 17:09:17 pesa Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.235 2012/05/03 00:31:58 floppym Exp $
+
+  03 May 2012; Mike Gilbert <floppym@gentoo.org> python-distutils-ng.eclass:
+  Declare local S in _python-distutils-ng_run_for_impl.
+
+  02 May 2012; Mike Gilbert <floppym@gentoo.org> python-distutils-ng.eclass:
+  Fix bytecode generation with Python 3, bug 413771. Patch by James Rowe.
+
+  02 May 2012; Gilles Dartiguelongue <eva@gentoo.org> gnome2-utils.eclass,
+  gnome2.eclass:
+  Rewrite scrollkeeper support as proposed in bug #301311.
+
+  02 May 2012; Jeff Horelick <jdhore@gentoo.org> clutter.eclass,
+  gkrellm-plugin.eclass, gnome-python-common.eclass, go-mono.eclass,
+  gpe.eclass, gst-plugins-bad.eclass, gst-plugins-base.eclass,
+  gst-plugins-good.eclass, gst-plugins-ugly.eclass, gtk-sharp-module.eclass,
+  kde4-base.eclass, ruby-ng-gnome2.eclass, mozcoreconf-2.eclass, xorg-2.eclass,
+  rox.eclass, vim.eclass, x-modular.eclass:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
   02 May 2012; Davide Pesavento <pesa@gentoo.org> qt4-build.eclass:
   dev-util/pkgconfig -> virtual/pkgconfig
