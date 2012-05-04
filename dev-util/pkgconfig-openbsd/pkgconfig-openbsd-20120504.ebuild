@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig-openbsd/pkgconfig-openbsd-20120116.ebuild,v 1.3 2012/01/17 00:46:08 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig-openbsd/pkgconfig-openbsd-20120504.ebuild,v 1.2 2012/05/04 16:16:16 ssuominen Exp $
 
 # cvs -d anoncvs@anoncvs.openbsd.org:/cvs get src/usr.bin/pkg-config/pkg-config
 # cvs -d anoncvs@anoncvs.openbsd.org:/cvs get src/usr.bin/pkg-config/pkg-config.1
@@ -8,18 +8,27 @@
 
 EAPI=4
 
+PKG_M4_VERSION=0.26
+
 DESCRIPTION="A perl based version of pkg-config from OpenBSD"
 HOMEPAGE="http://www.openbsd.org/cgi-bin/cvsweb/src/usr.bin/pkg-config/ http://www.openbsd.org/cgi-bin/cvsweb/src/usr.sbin/pkg_add/OpenBSD/PkgConfig.pm"
-SRC_URI="http://dev.gentoo.org/~ssuominen/${P}.tar.xz"
+SRC_URI="http://dev.gentoo.org/~ssuominen/${P}.tar.xz
+	pkg-config? ( http://pkgconfig.freedesktop.org/releases/pkg-config-${PKG_M4_VERSION}.tar.gz )"
 
 LICENSE="ISC"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="pkg-config"
 
-RDEPEND="dev-lang/perl
+DEPEND="
+	pkg-config? (
+		!dev-util/pkgconfig
+		!dev-util/pkg-config-lite
+		!dev-util/pkgconf[pkg-config]
+	)"
+RDEPEND="${DEPEND}
+	dev-lang/perl
 	virtual/perl-Getopt-Long"
-DEPEND=""
 
 S=${WORKDIR}/src
 
@@ -29,8 +38,16 @@ src_prepare() {
 }
 
 src_install() {
-	newbin usr.bin/pkg-config/pkg-config pkg-config-openbsd
-	newman usr.bin/pkg-config/pkg-config.1 pkg-config-openbsd.1
+	if use pkg-config; then
+		dobin usr.bin/pkg-config/pkg-config
+		doman usr.bin/pkg-config/pkg-config.1
+
+		insinto /usr/share/aclocal
+		doins "${WORKDIR}"/pkg-config-*/pkg.m4
+	else
+		newbin usr.bin/pkg-config/pkg-config pkg-config-openbsd
+		newman usr.bin/pkg-config/pkg-config.1 pkg-config-openbsd.1
+	fi
 
 	insinto /usr/share/${PN}/OpenBSD
 	doins usr.sbin/pkg_add/OpenBSD/PkgConfig.pm

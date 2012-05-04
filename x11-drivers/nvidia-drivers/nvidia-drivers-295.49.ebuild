@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/nvidia-drivers-295.33.ebuild,v 1.5 2012/04/11 17:51:45 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/nvidia-drivers-295.49.ebuild,v 1.2 2012/05/04 14:58:57 cardoe Exp $
 
 EAPI="2"
 
@@ -19,7 +19,7 @@ SRC_URI="x86? ( http://us.download.nvidia.com/XFree86/Linux-x86/${PV}/${X86_NV_P
 LICENSE="NVIDIA"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86 ~x86-fbsd"
-IUSE="acpi custom-cflags gtk multilib kernel_linux"
+IUSE="acpi custom-cflags multilib kernel_linux +tools"
 RESTRICT="strip"
 EMULTILIB_PKG="true"
 
@@ -33,8 +33,7 @@ DEPEND="${COMMON}
 RDEPEND="${COMMON}
 	x11-libs/libXvMC
 	acpi? ( sys-power/acpid )"
-PDEPEND=">=x11-libs/libvdpau-0.3-r1
-	gtk? ( media-video/nvidia-settings )"
+PDEPEND=">=x11-libs/libvdpau-0.3-r1"
 
 QA_TEXTRELS_x86="
 	usr/lib/OpenCL/vendors/nvidia/libOpenCL.so.1.0.0
@@ -54,8 +53,8 @@ QA_TEXTRELS_x86="
 QA_TEXTRELS_x86_fbsd="boot/modules/nvidia.ko
 	usr/lib/opengl/nvidia/lib/libGL.so.1
 	usr/lib/libnvidia-glcore.so.1
+	usr/lib/libvdpau_nvidia.so.1
 	usr/lib/libnvidia-cfg.so.1
-	usr/lib/libnvidia-ml.so.1
 	usr/lib/opengl/nvidia/extensions/libglx.so.1
 	usr/lib/xorg/modules/drivers/nvidia_drv.so"
 
@@ -235,6 +234,7 @@ pkg_setup() {
 
 	# set variables to where files are in the package structure
 	if use kernel_FreeBSD; then
+		S="${WORKDIR}/${X86_FBSD_NV_PACKAGE}"
 		NV_DOC="${S}/doc"
 		NV_EXEC="${S}/obj"
 		NV_LIB="${S}/obj"
@@ -344,10 +344,10 @@ src_install() {
 		newins "${FILESDIR}"/nvidia.udev-rule 99-nvidia.rules
 	elif use x86-fbsd; then
 		insinto /boot/modules
-		doins "${WORKDIR}/${NV_PACKAGE}/src/nvidia.kld" || die
+		doins "${S}/src/nvidia.kld" || die
 
 		exeinto /boot/modules
-		doexe "${WORKDIR}/${NV_PACKAGE}/src/nvidia.ko" || die
+		doexe "${S}/src/nvidia.ko" || die
 	fi
 
 	# NVIDIA kernel <-> userspace driver config lib
@@ -360,25 +360,27 @@ src_install() {
 		/usr/$(get_libdir)/libnvidia-cfg.so || \
 		die "failed to create libnvidia-cfg.so symlink"
 
-	# NVIDIA monitoring library
-	dolib.so ${NV_LIB}/libnvidia-ml.so.${NV_SOVER} || \
-		die "failed to install libnvidia-ml"
-	dosym libnvidia-ml.so.${NV_SOVER} \
-		/usr/$(get_libdir)/libnvidia-ml.so.1 || \
-		die "failed to create libnvidia-ml.so symlink"
-	dosym libnvidia-ml.so.1 \
-		/usr/$(get_libdir)/libnvidia-ml.so || \
-		die "failed to create libnvidia-ml.so symlink"
+	if use kernel_linux; then
+		# NVIDIA monitoring library
+		dolib.so ${NV_LIB}/libnvidia-ml.so.${NV_SOVER} || \
+			die "failed to install libnvidia-ml"
+		dosym libnvidia-ml.so.${NV_SOVER} \
+			/usr/$(get_libdir)/libnvidia-ml.so.1 || \
+			die "failed to create libnvidia-ml.so symlink"
+		dosym libnvidia-ml.so.1 \
+			/usr/$(get_libdir)/libnvidia-ml.so || \
+			die "failed to create libnvidia-ml.so symlink"
 
-	# NVIDIA video decode <-> CUDA
-	dolib.so ${NV_LIB}/libnvcuvid.so.${NV_SOVER} || \
-		die "failed to install libnvcuvid.so"
-	dosym libnvcuvid.so.${NV_SOVER} \
-		/usr/$(get_libdir)/libnvcuvid.so.1 || \
-		die "failed to create libnvcuvid.so symlink"
-	dosym libnvcuvid.so.1 \
-		/usr/$(get_libdir)/libnvcuvid.so || \
-		die "failed to create libnvcuvid.so symlink"
+		# NVIDIA video decode <-> CUDA
+		dolib.so ${NV_LIB}/libnvcuvid.so.${NV_SOVER} || \
+			die "failed to install libnvcuvid.so"
+		dosym libnvcuvid.so.${NV_SOVER} \
+			/usr/$(get_libdir)/libnvcuvid.so.1 || \
+			die "failed to create libnvcuvid.so symlink"
+		dosym libnvcuvid.so.1 \
+			/usr/$(get_libdir)/libnvcuvid.so || \
+			die "failed to create libnvcuvid.so symlink"
+	fi
 
 	# Xorg DDX driver
 	insinto /usr/$(get_libdir)/xorg/modules/drivers
@@ -417,21 +419,21 @@ src_install() {
 	if use x86-fbsd; then
 		dodoc "${NV_DOC}/README"
 		doman "${NV_MAN}/nvidia-xconfig.1"
-		use gtk && doman "${NV_MAN}/nvidia-settings.1"
+		doman "${NV_MAN}/nvidia-settings.1"
 	else
 		# Docs
 		newdoc "${NV_DOC}/README.txt" README
 		dodoc "${NV_DOC}/NVIDIA_Changelog"
 		doman "${NV_MAN}/nvidia-smi.1.gz"
 		doman "${NV_MAN}/nvidia-xconfig.1.gz"
-		use gtk && doman "${NV_MAN}/nvidia-settings.1.gz"
+		doman "${NV_MAN}/nvidia-settings.1.gz"
 	fi
 
 	# Helper Apps
 	exeinto /opt/bin/
 	doexe ${NV_EXEC}/nvidia-xconfig || die
-	doexe ${NV_EXEC}/nvidia-debugdump || die
-	if use gtk; then
+	use kernel_linux && { doexe ${NV_EXEC}/nvidia-debugdump || die ; }
+	if use tools; then
 		doexe ${NV_EXEC}/nvidia-settings || die
 	fi
 	doexe ${NV_EXEC}/nvidia-bug-report.sh || die
@@ -440,14 +442,14 @@ src_install() {
 	fi
 
 	# Desktop entries for nvidia-settings
-	if use gtk; then
+	if use tools && use kernel_linux ; then
 		sed -e 's:__UTILS_PATH__:/opt/bin:' \
 			-e 's:__PIXMAP_PATH__:/usr/share/pixmaps:' \
 			-i "${NV_EXEC}/nvidia-settings.desktop"
 		newmenu ${NV_EXEC}/nvidia-settings.desktop nvidia-settings-opt.desktop
-
-		doicon ${NV_EXEC}/nvidia-settings.png
 	fi
+
+	doicon ${NV_EXEC}/nvidia-settings.png
 
 	if has_multilib_profile ; then
 		local OABI=${ABI}
@@ -562,12 +564,11 @@ pkg_postinst() {
 	elog "If you are having resolution problems, try disabling DynamicTwinView."
 	elog
 
-	if ! use gtk; then
-		elog "USE=gtk controls whether the nvidia-settings application"
+	if ! use tools; then
+		elog "USE=tools controls whether the nvidia-settings application"
 		elog "is installed. If you would like to use it, enable that"
-		elog "flag and re-emerge this ebuild. media-video/nvidia-settings"
-		elog "no longer installs nvidia-settings but only installs the"
-		elog "associated user space libraries."
+		elog "flag and re-emerge this ebuild. Optionally you can install"
+		elog "media-video/nvidia-settings"
 	fi
 }
 
