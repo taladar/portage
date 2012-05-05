@@ -1,6 +1,21 @@
 # ChangeLog for sys-fs/ocfs2-tools
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/ocfs2-tools/ChangeLog,v 1.7 2012/02/21 14:29:00 ultrabug Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/ocfs2-tools/ChangeLog,v 1.10 2012/05/05 15:33:57 alexxy Exp $
+
+  05 May 2012; Alexey Shvetsov <alexxy@gentoo.org> ocfs2-tools-1.8.2.ebuild:
+  [sys-fs/ocfs2-tools] Ohh git genearted snapshots may have different
+  checksumms. So mirror it in my devspace
+
+*ocfs2-tools-1.8.2 (05 May 2012)
+
+  05 May 2012; Alexey Shvetsov <alexxy@gentoo.org> +ocfs2-tools-1.8.2.ebuild:
+  [sys-fs/ocfs2-tools] Version bump. Since 1.6.4 doesnt work with ocfs in 3.3+
+  kernels
+
+  05 May 2012; Alexey Shvetsov <alexxy@gentoo.org>
+  +files/ocfs2-tools-recent-kernels.patch, ocfs2-tools-1.6.4-r1.ebuild,
+  ocfs2-tools-1.6.4.ebuild:
+  [sys-fs/ocfs2-tools] Fix building with recent kernels
 
 *ocfs2-tools-1.6.4-r1 (21 Feb 2012)
 
