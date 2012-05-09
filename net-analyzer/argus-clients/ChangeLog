@@ -1,6 +1,20 @@
 # ChangeLog for net-analyzer/argus-clients
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/argus-clients/ChangeLog,v 1.38 2012/04/17 16:18:17 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/argus-clients/ChangeLog,v 1.41 2012/05/09 15:50:34 jer Exp $
+
+  09 May 2012; Jeroen Roovers <jer@gentoo.org> argus-clients-3.0.6.1.ebuild,
+  metadata.xml:
+  Add missing dependencies. Bring back sasl support. Make flow-tools dependency
+  explicit and optional. Remove RDEPEND on net-analyzer/argus as it is not
+  required at run time (could be a remote server).
+
+  09 May 2012; Jeroen Roovers <jer@gentoo.org> -argus-clients-3.0.5.38.ebuild:
+  Old.
+
+*argus-clients-3.0.6.1 (09 May 2012)
+
+  09 May 2012; Jeroen Roovers <jer@gentoo.org> +argus-clients-3.0.6.1.ebuild:
+  Version bump.
 
 *argus-clients-3.0.6 (17 Apr 2012)
 
