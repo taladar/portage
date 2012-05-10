@@ -1,6 +1,13 @@
 # ChangeLog for sys-libs/glibc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.847 2012/05/09 04:30:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.849 2012/05/10 05:24:53 vapier Exp $
+
+  10 May 2012; Mike Frysinger <vapier@gentoo.org>
+  files/eblits/src_compile.eblit:
+  Cache all arch tls variables when cross-compiling.
+
+  09 May 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.15-r1.ebuild:
+  Build with new arm hardfp ldso path.
 
   09 May 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.14.1-r3.ebuild,
   glibc-2.15-r1.ebuild:

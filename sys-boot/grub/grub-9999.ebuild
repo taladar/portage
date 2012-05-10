@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.62 2012/04/28 03:23:03 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.63 2012/05/09 23:00:07 floppym Exp $
 
 EAPI=4
 
@@ -50,9 +50,7 @@ IUSE+=" ${GRUB_PLATFORMS[@]/#/grub_platforms_}"
 # os-prober: Used on runtime to detect other OSes
 # xorriso (dev-libs/libisoburn): Used on runtime for mkrescue
 RDEPEND="
-	dev-libs/libisoburn
 	dev-libs/lzo
-	sys-boot/os-prober
 	>=sys-libs/ncurses-5.2-r5
 	debug? (
 		sdl? ( media-libs/libsdl )
@@ -277,4 +275,10 @@ pkg_postinst() {
 	# display the link to guide
 	elog "For information on how to configure grub-2 please refer to the guide:"
 	elog "    http://wiki.gentoo.org/wiki/GRUB2_Quick_Start"
+	if ! has_version sys-boot/os-prober; then
+		elog "Install sys-boot/os-prober to enable detection of other operating systems using grub2-mkconfig."
+	fi
+	if ! has_version dev-libs/libisoburn; then
+		elog "Install dev-libs/libisoburn to enable creation of rescue media using grub2-mkrescue."
+	fi
 }
