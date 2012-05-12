@@ -1,13 +1,13 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-misc/kcm-gtk-config/kcm-gtk-config-1.7.ebuild,v 1.4 2012/03/10 17:12:14 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-misc/kde-gtk-config/kde-gtk-config-1.7.ebuild,v 1.1 2012/05/11 22:03:04 johu Exp $
 
 EAPI=4
 
 KDE_MINIMAL="4.6"
 KDE_LINGUAS_DIR=translations
 KDE_LINGUAS="ca cs el es eu fr gl id it pl ru zh_CN"
-MY_P=${P/kcm/chakra}
+MY_P=${P/kde/chakra}
 inherit kde4-base
 
 DESCRIPTION="KCM for set the look&feel of your Gtk apps using the KDE systemsettings."
