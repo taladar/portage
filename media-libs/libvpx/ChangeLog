@@ -1,6 +1,34 @@
 # ChangeLog for media-libs/libvpx
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvpx/ChangeLog,v 1.50 2012/05/10 18:51:33 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvpx/ChangeLog,v 1.57 2012/05/12 16:47:06 aballier Exp $
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> libvpx-1.1.0.ebuild,
+  libvpx-9999.ebuild:
+  remove dead code: bug #379659 should be fixed in this release and sync -9999
+  with current release.
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> libvpx-1.1.0.ebuild:
+  Use the CROSS variable for setting the toolchain prefix instead of forcing to
+  link with gcc (sometimes it would be wrong).
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> libvpx-1.1.0.ebuild:
+  respect chost-prefixed toolchain, not only CC
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> libvpx-1.1.0.ebuild:
+  use extra-cflags to overshadow optimizations if needed and do not force
+  disabling optimizations
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> libvpx-1.1.0.ebuild:
+  disable hardcoded cflags by disabling (compiler) optimizations, user cflags
+  will be used then
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> libvpx-1.1.0.ebuild:
+  build verbose so that we see the actual commands invoked
+
+*libvpx-1.1.0 (12 May 2012)
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> +libvpx-1.1.0.ebuild:
+  version bump
 
   10 May 2012; Brent Baude <ranger@gentoo.org> libvpx-0.9.6.ebuild:
   Marking libvpx-0.9.6 ppc64 for bug 408555

@@ -1,6 +1,20 @@
 # ChangeLog for sys-freebsd/freebsd-sbin
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-freebsd/freebsd-sbin/ChangeLog,v 1.66 2012/05/04 12:54:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-freebsd/freebsd-sbin/ChangeLog,v 1.69 2012/05/12 14:28:56 aballier Exp $
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> -freebsd-sbin-8.2.ebuild,
+  -freebsd-sbin-9.0.ebuild:
+  remove old
+
+*freebsd-sbin-9.0-r1 (12 May 2012)
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org>
+  +freebsd-sbin-9.0-r1.ebuild:
+  propagate changes in a new rev
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> freebsd-sbin-9.0.ebuild:
+  remove resolvconf provided by net-dns/openresolv, bug #415555 by Dmitri
+  Bogomolov
 
   04 May 2012; Alexis Ballier <aballier@gentoo.org> freebsd-sbin-9.0.ebuild:
   install geom class libs into /lib64/geom on amd64
