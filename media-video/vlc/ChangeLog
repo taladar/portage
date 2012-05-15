@@ -1,6 +1,19 @@
 # ChangeLog for media-video/vlc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/ChangeLog,v 1.792 2012/05/14 19:45:01 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/ChangeLog,v 1.796 2012/05/15 13:40:37 aballier Exp $
+
+  15 May 2012; Alexis Ballier <aballier@gentoo.org> vlc-9999.ebuild:
+  fbosd and xosd plugins are gone
+
+  15 May 2012; Alexis Ballier <aballier@gentoo.org> vlc-9999.ebuild:
+  dv has been renamed to dv1394
+
+  15 May 2012; Alexis Ballier <aballier@gentoo.org> -vlc-2.0.0.ebuild:
+  remove old
+
+  15 May 2012; Alexis Ballier <aballier@gentoo.org> vlc-2.0.9999.ebuild,
+  vlc-9999.ebuild:
+  libcaca requires X
 
   14 May 2012; Luca Barbato <lu_zero@gentoo.org> vlc-2.0.1.ebuild,
   vlc-2.0.9999.ebuild, vlc-9999.ebuild:
