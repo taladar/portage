@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/genkernel/genkernel-9999.ebuild,v 1.35 2012/05/16 18:56:22 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/genkernel/genkernel-9999.ebuild,v 1.36 2012/05/17 17:54:17 sping Exp $
 
 # genkernel-9999        -> latest Git branch "master"
 # genkernel-VERSION     -> normal genkernel release
@@ -10,7 +10,6 @@ EAPI="3"
 VERSION_BUSYBOX='1.19.3'
 VERSION_DMRAID='1.0.0.rc16-3'
 VERSION_MDADM='3.1.5'
-VERSION_E2FSPROGS='1.42'
 VERSION_FUSE='2.8.6'
 VERSION_ISCSI='2.0-872'
 VERSION_LVM='2.02.88'
@@ -29,7 +28,6 @@ COMMON_URI="${DM_HOME}/dmraid-${VERSION_DMRAID}.tar.bz2
 		${RH_HOME}/lvm2/old/LVM2.${VERSION_LVM}.tgz
 		${BB_HOME}/busybox-${VERSION_BUSYBOX}.tar.bz2
 		mirror://kernel/linux/kernel/people/mnc/open-iscsi/releases/open-iscsi-${VERSION_ISCSI}.tar.gz
-		mirror://sourceforge/e2fsprogs/e2fsprogs-${VERSION_E2FSPROGS}.tar.gz
 		mirror://sourceforge/fuse/fuse-${VERSION_FUSE}.tar.gz
 		http://podgorny.cz/unionfs-fuse/releases/unionfs-fuse-${VERSION_UNIONFS_FUSE}.tar.bz2
 		mirror://gnupg/gnupg/gnupg-${VERSION_GPG}.tar.bz2"
@@ -94,7 +92,6 @@ src_install() {
 		-e "s:VERSION_BUSYBOX:$VERSION_BUSYBOX:" \
 		-e "s:VERSION_MDADM:$VERSION_MDADM:" \
 		-e "s:VERSION_DMRAID:$VERSION_DMRAID:" \
-		-e "s:VERSION_E2FSPROGS:$VERSION_E2FSPROGS:" \
 		-e "s:VERSION_FUSE:$VERSION_FUSE:" \
 		-e "s:VERSION_ISCSI:$VERSION_ISCSI:" \
 		-e "s:VERSION_LVM:$VERSION_LVM:" \
@@ -124,7 +121,6 @@ src_install() {
 		"${DISTDIR}"/mdadm-${VERSION_MDADM}.tar.bz2 \
 		"${DISTDIR}"/dmraid-${VERSION_DMRAID}.tar.bz2 \
 		"${DISTDIR}"/LVM2.${VERSION_LVM}.tgz \
-		"${DISTDIR}"/e2fsprogs-${VERSION_E2FSPROGS}.tar.gz \
 		"${DISTDIR}"/busybox-${VERSION_BUSYBOX}.tar.bz2 \
 		"${DISTDIR}"/fuse-${VERSION_FUSE}.tar.gz \
 		"${DISTDIR}"/unionfs-fuse-${VERSION_UNIONFS_FUSE}.tar.bz2 \
