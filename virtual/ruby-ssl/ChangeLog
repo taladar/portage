@@ -1,6 +1,12 @@
 # ChangeLog for virtual/ruby-ssl
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/ruby-ssl/ChangeLog,v 1.10 2012/01/01 18:11:25 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/ruby-ssl/ChangeLog,v 1.12 2012/05/20 20:58:51 ago Exp $
+
+  20 May 2012; Agostino Sarubbo <ago@gentoo.org> ruby-ssl-1.ebuild:
+  Stable for amd64, wrt bug #411507
+
+  20 May 2012; Hans de Graaff <graaff@gentoo.org> ruby-ssl-1.ebuild:
+  Keyword for arm since the underlying implementation is keyworded already.
 
   01 Jan 2012; Fabian Groffen <grobian@gentoo.org> ruby-ssl-1.ebuild:
   Marked ~x64-macos, ~sparc64-solaris
