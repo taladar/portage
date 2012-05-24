@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/v8
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/v8/ChangeLog,v 1.183 2012/05/22 20:05:57 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/v8/ChangeLog,v 1.185 2012/05/24 02:07:35 rich0 Exp $
+
+  24 May 2012; Richard Freeman <rich0@gentoo.org> v8-3.9.24.28.ebuild:
+  amd64 stable - 417321
+
+*v8-3.9.24.28 (23 May 2012)
+
+  23 May 2012; Mike Gilbert <floppym@gentoo.org> +v8-3.9.24.28.ebuild:
+  Version bump for stable channel release.
 
 *v8-3.11.3 (22 May 2012)
 

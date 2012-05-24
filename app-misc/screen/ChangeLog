@@ -1,6 +1,16 @@
 # ChangeLog for app-misc/screen
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.163 2011/10/18 19:25:31 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.165 2012/05/24 04:25:27 darkside Exp $
+
+  24 May 2012; Jeremy Olexa <darkside@gentoo.org> screen-4.0.3-r5.ebuild:
+  Further fixes, don't create /var/run/screen, bump to EAPI4, cleanup
+
+*screen-4.0.3-r5 (24 May 2012)
+
+  24 May 2012; Jeremy Olexa <darkside@gentoo.org> +screen-4.0.3-r5.ebuild:
+  Revision bump to disable socket dir (and use ~/.screen/ instead) for cases
+  where /var/run is tmpfs, etc. This seems more portable and has been the best
+  solution proposed on bug 333821
 
   18 Oct 2011; Jeroen Roovers <jer@gentoo.org>
   -files/4.0.3-extend-d_termname.patch,
