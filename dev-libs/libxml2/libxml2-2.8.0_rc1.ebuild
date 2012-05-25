@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.8.0_rc1.ebuild,v 1.6 2012/05/22 14:02:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.8.0_rc1.ebuild,v 1.7 2012/05/25 07:13:52 tetromino Exp $
 
 EAPI="4"
 PYTHON_DEPEND="python? 2"
@@ -25,7 +25,8 @@ XSTS_NAME_2="xmlschema2004-01-14"
 XSTS_TARBALL_1="xsts-2002-01-16.tar.gz"
 XSTS_TARBALL_2="xsts-2004-01-14.tar.gz"
 
-SRC_URI="ftp://xmlsoft.org/${PN}/${PN}-${PV/_rc/-rc}.tar.gz
+# SRC_URI="ftp://xmlsoft.org/${PN}/${PN}-${PV/_rc/-rc}.tar.gz
+SRC_URI="mirror://gentoo/${PN}-${PV/_rc/-rc}.tar.gz
 	test? (
 		${XSTS_HOME}/${XSTS_NAME_1}/${XSTS_TARBALL_1}
 		${XSTS_HOME}/${XSTS_NAME_2}/${XSTS_TARBALL_2} )"

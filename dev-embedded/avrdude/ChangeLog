@@ -1,6 +1,18 @@
 # ChangeLog for dev-embedded/avrdude
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-embedded/avrdude/ChangeLog,v 1.50 2012/05/22 16:21:16 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-embedded/avrdude/ChangeLog,v 1.53 2012/05/25 11:30:56 ago Exp $
+
+  25 May 2012; Agostino Sarubbo <ago@gentoo.org> avrdude-5.11.1.ebuild:
+  Stable for amd64, wrt bug #414341
+
+  25 May 2012; Tim Harder <radhermit@gentoo.org> -avrdude-5.8.ebuild,
+  -avrdude-5.8-r1.ebuild, -files/avrdude-5.8-dragon-segfault.patch,
+  -avrdude-5.10.ebuild, -files/avrdude-5.10-jtagmkII-debugWire.patch,
+  -avrdude-5.11.ebuild:
+  Remove old.
+
+  25 May 2012; Tim Harder <radhermit@gentoo.org> avrdude-5.11.1.ebuild:
+  Bump libusb slot dep.
 
   22 May 2012; Samuli Suominen <ssuominen@gentoo.org> avrdude-5.4.ebuild,
   avrdude-5.5.ebuild:
