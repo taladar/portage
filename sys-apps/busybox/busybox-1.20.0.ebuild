@@ -1,9 +1,9 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/busybox/busybox-1.20.0.ebuild,v 1.3 2012/05/14 04:16:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/busybox/busybox-1.20.0.ebuild,v 1.5 2012/05/26 00:07:11 vapier Exp $
 
 EAPI="4"
-inherit eutils flag-o-matic savedconfig toolchain-funcs
+inherit eutils flag-o-matic savedconfig toolchain-funcs multilib
 
 ################################################################################
 # BUSYBOX ALTERNATE CONFIG MINI-HOWTO
@@ -57,7 +57,7 @@ fi
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="ipv6 make-symlinks math mdev -pam selinux sep-usr static"
+IUSE="ipv6 livecd make-symlinks math mdev -pam selinux sep-usr static"
 RESTRICT="test"
 
 RDEPEND="selinux? ( sys-libs/libselinux )
@@ -245,6 +245,9 @@ src_install() {
 		doexe "${FILESDIR}"/mdev/*
 
 		newinitd "${FILESDIR}"/mdev.rc.1 mdev
+	fi
+	if use livecd ; then
+		dosym busybox /bin/vi
 	fi
 
 	# bundle up the symlink files for use later
