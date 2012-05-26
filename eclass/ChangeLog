@@ -1,6 +1,14 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.268 2012/05/25 19:56:13 hd_brummy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.270 2012/05/26 14:25:02 swift Exp $
+
+  26 May 2012; <swift@gentoo.org> selinux-policy-2.eclass:
+  Introducing support for user-provided policies, fix loading logic to retry
+  with all modules (bug #414599, #414017)
+
+  26 May 2012; Michał Górny <mgorny@gentoo.org> python-distutils-ng.eclass:
+  Fix double hashbang in installed scripts. Patch by Krzysztof Pawlik, modified
+  by me.
 
   25 May 2012; Joerg Bornkessel <hd_brummy@gentoo.org> vdr-plugin-2.eclass:
   fixed install for locales if only LINGUAS=en
