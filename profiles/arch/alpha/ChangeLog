@@ -1,6 +1,15 @@
 # ChangeLog for Gentoo/Alpha profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/ChangeLog,v 1.119 2012/05/26 17:03:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/ChangeLog,v 1.122 2012/05/27 23:25:56 mattst88 Exp $
+
+  27 May 2012; Matt Turner <mattst88@gentoo.org> use.mask:
+  Add entropy to use.mask.
+
+  27 May 2012; Matt Turner <mattst88@gentoo.org> use.mask:
+  Add gnome-online-accounts to use.mask.
+
+  27 May 2012; Matt Turner <mattst88@gentoo.org> package.use.mask, use.mask:
+  Add connman to use.mask.
 
   26 May 2012; Raúl Porcel <armin76@gentoo.org> use.mask:
   Use.mask webm

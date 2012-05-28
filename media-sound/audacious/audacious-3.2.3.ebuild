@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-3.2.ebuild,v 1.2 2012/05/05 08:11:04 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-3.2.3.ebuild,v 1.1 2012/05/27 21:00:17 jdhore Exp $
 
 EAPI=4
 inherit eutils
@@ -31,8 +31,12 @@ DEPEND="${RDEPEND}
 	chardet? ( >=app-i18n/libguess-1.1 )
 	nls? ( dev-util/intltool )"
 
-PDEPEND=">=media-plugins/audacious-plugins-3.2"
+PDEPEND=">=media-plugins/audacious-plugins-3.2.3"
 REQUIRED_USE="^^ ( gtk gtk3 )"
+
+src_prepare() {
+	epatch "$FILESDIR"/${P}-fix-mutex.patch
+}
 
 src_configure() {
 	# D-Bus is a mandatory dependency, remote control,
