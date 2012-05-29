@@ -1,10 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6606 2012/05/28 18:30:12 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6610 2012/05/29 14:46:22 grobian Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  29 May 2012; Fabian Groffen <grobian@gentoo.org> ChangeLog:
+  Mask upcoming exim 4.80 release candidates
+
+  29 May 2012; Julian Ospald <hasufell@gentoo.org> updates/2Q-2012:
+  move x11-misc/tudor-volumed to media-sound/tudor-volumed
+
+  29 May 2012; Tim Harder <radhermit@gentoo.org> package.mask:
+  Unmask =www-apps/mediawiki-1.19*.
+
+  29 May 2012; Sebastian Pipping <sping@gentoo.org> desc/linguas.desc:
+  Add Yiddish locale for media-gfx/gimp (bug #418053)
 
   28 May 2012; Kacper Kowalik <xarthisius@gentoo.org> package.mask:
   Drop mask on dev-python/xsv Removed wrt #396497
