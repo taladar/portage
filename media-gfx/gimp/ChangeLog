@@ -1,6 +1,20 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.367 2012/05/28 14:17:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.370 2012/05/28 22:26:41 sping Exp $
+
+*gimp-2.6.12-r1 (28 May 2012)
+
+  28 May 2012; Sebastian Pipping <sping@gentoo.org> +gimp-2.6.12-r1.ebuild:
+  Port linguas handling (bug #416597) and deletion of .la files to latest 2.6.x
+  ebuild
+
+  28 May 2012; Sebastian Pipping <sping@gentoo.org> gimp-2.8.0-r1.ebuild:
+  Resolve linguas code duplication for bug #418053
+
+*gimp-2.8.0-r1 (28 May 2012)
+
+  28 May 2012; Sebastian Pipping <sping@gentoo.org> +gimp-2.8.0-r1.ebuild:
+  Add linguas_* use flags to latest 2.8.x ebuild (bug #416597)
 
   28 May 2012; Raúl Porcel <armin76@gentoo.org> gimp-2.6.12.ebuild:
   alpha/ia64/sparc stable wrt #410403
