@@ -1,6 +1,22 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.275 2012/05/29 08:05:05 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.280 2012/05/30 15:25:08 slyfox Exp $
+
+  30 May 2012; Sergei Trofimovich <slyfox@gentoo.org> darcs.eclass:
+  Use 'darcs get --lazy' instead of 'darcs get --partial' (gone in darcs-2.8).
+
+  30 May 2012; Ralph Sennhauser <sera@gentoo.org> ant-tasks.eclass:
+  Set prefix for ant-1.8.4
+
+  30 May 2012; Justin Lecher <jlec@gentoo.org> flag-o-matic.eclass:
+  Sort ldflags handling functions to logic place
+
+  30 May 2012; Sergei Trofimovich <slyfox@gentoo.org> games.eclass:
+  Allow EAPI=4.
+
+  30 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> chromium.eclass:
+  Introduce chromium_suid_sandbox_check_kernel_config, deprecate
+  chromium_check_kernel_config.
 
   29 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gnustep-2.eclass,
   gnustep-base.eclass:

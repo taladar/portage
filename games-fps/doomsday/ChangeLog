@@ -1,6 +1,21 @@
 # ChangeLog for games-fps/doomsday
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-fps/doomsday/ChangeLog,v 1.41 2011/10/23 20:12:14 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-fps/doomsday/ChangeLog,v 1.44 2012/05/30 16:25:36 maksbotan Exp $
+
+  30 May 2012; Maxim Koltsov <maksbotan@gentoo.org> doomsday-1.9.8.ebuild,
+  files/doomsday-1.9.8-2to3.patch:
+  Fix ebuild by games herd standards, thanks to Mr_Bones_
+
+  30 May 2012; Maxim Koltsov <maksbotan@gentoo.org> doomsday-1.9.8.ebuild,
+  files/doomsday-1.9.8-2to3.patch:
+  Fix 2to3 patch
+
+*doomsday-1.9.8 (30 May 2012)
+
+  30 May 2012; Maxim Koltsov <maksbotan@gentoo.org> +doomsday-1.9.8.ebuild,
+  +files/doomsday-1.9.8-2to3.patch, +files/doomsday-1.9.8-openal-link.patch,
+  metadata.xml:
+  Bump to 1.9.8, bug 410043. Remake wrapper generation, bump to eapi4
 
   23 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
   -doomsday-1.9.0_beta62.ebuild:
