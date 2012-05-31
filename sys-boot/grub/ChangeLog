@@ -1,6 +1,18 @@
 # ChangeLog for sys-boot/grub
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/ChangeLog,v 1.205 2012/05/29 10:03:49 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/ChangeLog,v 1.207 2012/05/31 00:06:01 vapier Exp $
+
+*grub-0.97-r12 (31 May 2012)
+
+  31 May 2012; Mike Frysinger <vapier@gentoo.org> +grub-0.97-r12.ebuild:
+  Build stage1/stage2 with -march=i[3456]86 based on target tuple to keep
+  SSE/etc... insns from sneaking into the generated output #360513#115.
+
+  31 May 2012; Mike Frysinger <vapier@gentoo.org> grub-0.97-r3.ebuild,
+  grub-0.97-r4.ebuild, grub-0.97-r5.ebuild, grub-0.97-r6.ebuild,
+  grub-0.97-r8.ebuild, grub-0.97-r9.ebuild, grub-0.97-r10.ebuild,
+  grub-0.97-r11.ebuild, grub-1.99-r2.ebuild:
+  Inherit multilib eclass in ebuilds that use it.
 
   29 May 2012; Kacper Kowalik <xarthisius@gentoo.org> grub-0.97-r11.ebuild:
   Bump patchver and add it's digest
