@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyro/pyro-4.11.ebuild,v 1.1 2012/02/08 05:09:52 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyro/pyro-4.11.ebuild,v 1.3 2012/06/01 12:07:14 aidecoe Exp $
 
 EAPI="3"
 PYTHON_DEPEND="*:2.6"
