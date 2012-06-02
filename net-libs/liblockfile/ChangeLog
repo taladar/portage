@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/liblockfile
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.66 2012/05/06 00:08:06 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.68 2012/06/02 11:39:14 ago Exp $
+
+  02 Jun 2012; Agostino Sarubbo <ago@gentoo.org> liblockfile-1.09.ebuild:
+  Stable for amd64, wrt bug #419261
+
+  02 Jun 2012; Eray Aslan <eras@gentoo.org> liblockfile-1.09.ebuild:
+  QA - fix quoting
 
   06 May 2012; Alexis Ballier <aballier@gentoo.org> liblockfile-1.09.ebuild:
   keyword ~amd64-fbsd

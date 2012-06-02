@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.64 2012/05/18 15:01:23 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.65 2012/06/02 16:06:48 floppym Exp $
 
 EAPI=4
 
@@ -197,6 +197,12 @@ grub_src_install() {
 
 src_prepare() {
 	local i j
+
+	# fix texinfo file name, bug 416035
+	sed -i \
+		-e 's/^\* GRUB:/* GRUB2:/' \
+		-e 's/(grub)/(grub2)/' -- \
+		"${S}"/docs/grub.texi
 
 	epatch_user
 

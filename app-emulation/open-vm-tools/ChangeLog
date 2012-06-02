@@ -1,6 +1,21 @@
 # ChangeLog for app-emulation/open-vm-tools
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/open-vm-tools/ChangeLog,v 1.63 2012/05/31 23:06:14 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/open-vm-tools/ChangeLog,v 1.66 2012/06/02 15:03:01 vadimk Exp $
+
+  02 Jun 2012; Vadim Kuznetsov vadimk@gentoo.org
+  open-vm-tools-2012.05.21.724730.ebuild:
+  inherit multilib for get_libdir and user for enewgroup dev-util/pkgconfig ->
+  virtual/pkgconfig
+
+*open-vm-tools-2012.05.21.724730 (02 Jun 2012)
+
+  02 Jun 2012; Vadim Kuznetsov vadimk@gentoo.org
+  +open-vm-tools-2012.05.21.724730.ebuild:
+  version bump
+
+  02 Jun 2012; Vadim Kuznetsov vadimk@gentoo.org
+  -open-vm-tools-2011.11.20.535097.ebuild:
+  clean up
 
   31 May 2012; Zac Medico <zmedico@gentoo.org>
   open-vm-tools-2011.11.20.535097.ebuild,
