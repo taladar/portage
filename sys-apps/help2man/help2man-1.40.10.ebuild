@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/help2man-1.40.9.ebuild,v 1.2 2012/04/26 13:02:16 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/help2man-1.40.10.ebuild,v 1.1 2012/06/03 08:28:04 ssuominen Exp $
 
 EAPI=4
 inherit eutils
@@ -18,12 +18,9 @@ RDEPEND="dev-lang/perl
 	elibc_glibc? ( nls? (
 		dev-perl/Locale-gettext
 	) )"
-DEPEND="${RDEPEND}
-	elibc_glibc? ( nls? (
-		dev-perl/Locale-gettext
-	) )"
+DEPEND=${RDEPEND}
 
-DOCS=( debian/changelog NEWS README THANKS ) #385753
+DOCS="debian/changelog NEWS README THANKS" #385753
 
 src_prepare() {
 	epatch \
