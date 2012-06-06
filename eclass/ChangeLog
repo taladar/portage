@@ -1,6 +1,24 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.290 2012/06/05 18:31:54 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.295 2012/06/06 17:17:30 mgorny Exp $
+
+  06 Jun 2012; Michał Górny <mgorny@gentoo.org> autotools-utils.eclass:
+  Reuse eautoreconf, deprecate autotools-utils_autoreconf.
+
+  06 Jun 2012; Michał Górny <mgorny@gentoo.org> autotools.eclass:
+  Support other GNOME-related tools in eautoreconf: gtk-doc, gnome-doc &
+  glib-gettext.
+
+  06 Jun 2012; Michael Pagano <mpagano@gentoo.org> kernel-2.eclass:
+  Move ppc/powerpc fix to after we apply linux patches
+
+  06 Jun 2012; Michał Górny <mgorny@gentoo.org> autotools-utils.eclass:
+  Start using prune_libtool_files() from eutils, deprecate
+  remove_libtool_files().
+
+  06 Jun 2012; Michał Górny <mgorny@gentoo.org> eutils.eclass:
+  Introduce prune_libtool_files() for .la file removal. Based on one used
+  by autotools-utils.
 
   05 Jun 2012; Fabian Groffen <grobian@gentoo.org> autotools.eclass:
   Avoid type -P output for glibtoolize, bug #419641

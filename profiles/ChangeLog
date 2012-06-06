@@ -1,10 +1,31 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6635 2012/06/05 17:42:24 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6640 2012/06/06 13:41:41 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  06 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Remove mask for app-misc/beagle and =www-client/firefox-3.6* since they are
+  now removed.
+
+  06 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Lastrite net-libs/xulrunner wrt #403415
+
+  06 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Remove separate mask for =x11-plugins/replytolist-0.3.0 from 2007 since it's
+  now in lastrite mask.
+
+  06 Jun 2012; Jory A. Pratt <anarchy@gentoo.org> package.mask:
+  Mask mail-client/thunderbird-3.1*, x11-plugins/enigmail, x11-plugins/replytolist
+
+  06 Jun 2012; Patrick Lauer <patrick@gentoo.org> package.mask:
+  Mask nginx >1.3 #411937
+
+  06 Jun 2012; Patrick Lauer <patrick@gentoo.org> package.mask,
+  thirdpartymirrors:
+  Mask nginx >1.3 #411937
 
   05 Jun 2012; Torsten Veller <tove@gentoo.org> package.mask:
   Mask dev-lang/perl-5.16
