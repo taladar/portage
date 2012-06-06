@@ -1,6 +1,12 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.321 2012/06/05 14:13:02 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.323 2012/06/05 20:00:17 xmw Exp $
+
+  05 Jun 2012; Michael Weber <xmw@gentoo.org> mit-krb5-1.10.2.ebuild:
+  adding ~ppc (bug 412489)
+
+  05 Jun 2012; Michael Weber <xmw@gentoo.org> mit-krb5-1.10.1-r3.ebuild:
+  adding ~ppc (bug 412489)
 
 *mit-krb5-1.10.2 (05 Jun 2012)
 

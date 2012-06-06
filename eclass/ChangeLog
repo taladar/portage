@@ -1,6 +1,12 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.288 2012/06/05 10:21:35 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.290 2012/06/05 18:31:54 grobian Exp $
+
+  05 Jun 2012; Fabian Groffen <grobian@gentoo.org> autotools.eclass:
+  Avoid type -P output for glibtoolize, bug #419641
+
+  05 Jun 2012; Julian Ospald <hasufell@gentoo.org> eutils.eclass:
+  enhanced functionality of doicon/newicon in eutils.eclass
 
   05 Jun 2012; Pacho Ramos <pacho@gentoo.org> stardict.eclass:
   Allow more providers for stardict, bug #413093 by tot-to and qt team.
