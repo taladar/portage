@@ -1,6 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/memtester/memtester-4.2.1.ebuild,v 1.1 2011/02/05 08:51:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/memtester/memtester-4.3.0.ebuild,v 1.1 2012/06/11 03:37:32 radhermit Exp $
+
+EAPI="4"
 
 inherit toolchain-funcs
 
@@ -11,18 +13,16 @@ SRC_URI="http://pyropus.ca/software/memtester/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
 IUSE=""
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	echo "$(tc-getCC) ${CFLAGS} ${CPPFLAGS} -DPOSIX -c" > conf-cc
 	echo "$(tc-getCC) ${CFLAGS} ${LDFLAGS}" > conf-ld
 }
 
 src_install() {
-	dosbin memtester || die "dosbin failed"
+	dosbin memtester
 	doman memtester.8
 	dodoc BUGS CHANGELOG README README.tests
 }
