@@ -1,6 +1,18 @@
 # ChangeLog for media-video/mplayer
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.850 2012/06/10 16:40:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.852 2012/06/11 12:49:00 aballier Exp $
+
+*mplayer-1.1-r1 (11 Jun 2012)
+
+  11 Jun 2012; Alexis Ballier <aballier@gentoo.org> -mplayer-1.1.ebuild,
+  +mplayer-1.1-r1.ebuild:
+  Push previous changes in a new revision.
+
+  11 Jun 2012; Alexis Ballier <aballier@gentoo.org> mplayer-1.1.ebuild,
+  +files/mplayer-1.1-ffmpeg.patch, mplayer-9999.ebuild, files/dump_ffmpeg.sh:
+  Do not let it use bundled ffmpeg headers for releasees, bug #420601. Fix
+  build with ffmpeg 0.10.3 with now unbundled headers. Let dump_ffmpeg.sh work
+  with releases tarballs. Bump ffmpeg deps in -9999.
 
 *mplayer-1.1 (10 Jun 2012)
 
