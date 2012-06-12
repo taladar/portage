@@ -1,20 +1,20 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/gcc-apple-4.2.1_p5646.ebuild,v 1.10 2011/12/06 19:57:09 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/gcc-apple-4.2.1_p5666-r1.ebuild,v 1.1 2012/06/11 18:06:40 grobian Exp $
 
 EAPI="3"
 
 inherit eutils toolchain flag-o-matic autotools prefix
 
 GCC_VERS=${PV/_p*/}
-APPLE_VERS=${PV/*_p/}
-DESCRIPTION="Apple branch of the GNU Compiler Collection, Developer Tools 3.2"
+APPLE_VERS="${PV/*_p/}.3"
+DESCRIPTION="Apple branch of the GNU Compiler Collection, Developer Tools 4.0"
 HOMEPAGE="http://gcc.gnu.org"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc-${APPLE_VERS}.tar.gz
 		http://www.opensource.apple.com/darwinsource/tarballs/other/libstdcxx-16.tar.gz
 		http://www.opensource.apple.com/darwinsource/tarballs/other/libstdcxx-39.tar.gz
-		fortran? ( mirror://gnu/gcc/gcc-${GCC_VERS}/gcc-fortran-${GCC_VERS}.tar.bz2 )"
-LICENSE="GPL-2"
+		fortran? ( mirror://gnu/gcc/gcc-4.2.4/gcc-fortran-4.2.4.tar.bz2 )"
+LICENSE="GPL-2 GPL-3"
 
 case ${CHOST} in
 	*-darwin1*|i?86-*-darwin9|powerpc-*-darwin9)
@@ -72,8 +72,8 @@ src_unpack() {
 src_prepare() {
 	# Support for fortran
 	if use fortran ; then
-		mv "${WORKDIR}"/gcc-${GCC_VERS}/gcc/fortran gcc/ || die
-		mv "${WORKDIR}"/gcc-${GCC_VERS}/libgfortran . || die
+		mv "${WORKDIR}"/gcc-4.2.4/gcc/fortran gcc/ || die
+		mv "${WORKDIR}"/gcc-4.2.4/libgfortran . || die
 		# from: substracted from http://r.research.att.com/tools/
 		epatch "${FILESDIR}"/${PN}-4.2.1_p5646-gfortran.patch
 	fi
@@ -99,7 +99,12 @@ src_prepare() {
 	sed -i -e "s:tail +16c:tail -c +16:g" \
 		gcc/Makefile.in || die "sed gcc/Makefile.in failed."
 
+	# default to AltiVec on PPC, like for older releases
 	epatch "${FILESDIR}"/${PN}-4.0.1_p5465-default-altivec.patch
+
+	# support -arch XXX if XXX is actually what the toolchain targets because
+	# some upstreams insist on setting it
+	epatch "${FILESDIR}"/${PN}-4.2.1-arch-option.patch
 
 	# dsymutil stuff breaks on 10.4/x86, revert it
 	[[ ${CHOST} == *86*-apple-darwin8 ]] && \
@@ -120,10 +125,14 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.2.1-prefix-search-dirs.patch
 	eprefixify "${S}"/gcc/gcc.c
 
-	epatch "${FILESDIR}"/${PN}-${GCC_VERS}-texinfo.patch
-	epatch "${FILESDIR}"/${PN}-${GCC_VERS}-autoconf-m4-precious.patch
-	cd "${S}"/gcc && eautoconf
-	cd "${S}"/libgomp && eautoconf
+	if use !bootstrap ; then
+		# this only occurs with up-to-date tools from the Prefix, and actually
+		# breaks the bootstrap since the autoconf needs a very recent automake
+		epatch "${FILESDIR}"/${PN}-${GCC_VERS}-texinfo.patch
+		epatch "${FILESDIR}"/${PN}-${GCC_VERS}-autoconf-m4-precious.patch
+		cd "${S}"/gcc && eautoconf
+		cd "${S}"/libgomp && eautoconf
+	fi
 
 	local BRANDING_GCC_PKGVERSION="$(sed -n -e '/^#define VERSUFFIX/s/^[^"]*"\([^"]\+\)".*$/\1/p' "${S}"/gcc/version.c)"
 	BRANDING_GCC_PKGVERSION=${BRANDING_GCC_PKGVERSION/(/(Gentoo ${PVR}, }
