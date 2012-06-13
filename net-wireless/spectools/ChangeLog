@@ -1,6 +1,18 @@
 # ChangeLog for net-wireless/spectools
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/spectools/ChangeLog,v 1.7 2012/06/11 15:17:47 zerochaos Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/spectools/ChangeLog,v 1.10 2012/06/13 04:32:19 mr_bones_ Exp $
+
+  13 Jun 2012; Michael Sterrett <mr_bones_@gentoo.org> spectools-9999.ebuild:
+  DESCRIPTION goes after inherit
+
+*spectools-9999 (13 Jun 2012)
+
+  13 Jun 2012; Rick Farina <zerochaos@gentoo.org> +spectools-9999.ebuild,
+  metadata.xml, spectools-2011.08.1-r1.ebuild:
+  cleanup, add live ebuild for crazies
+
+  13 Jun 2012; Rick Farina <zerochaos@gentoo.org> spectools-2011.08.1-r1.ebuild:
+  clean inherit line
 
   11 Jun 2012; Rick Farina <zerochaos@gentoo.org> metadata.xml:
   fixing metadata to use my official info

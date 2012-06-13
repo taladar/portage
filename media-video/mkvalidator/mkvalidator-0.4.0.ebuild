@@ -1,13 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mkclean/mkclean-0.8.6.ebuild,v 1.1 2011/12/05 22:28:30 sbriesen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mkvalidator/mkvalidator-0.4.0.ebuild,v 1.1 2012/06/12 21:41:27 sbriesen Exp $
 
 EAPI=4
 
 inherit eutils
 
-DESCRIPTION="mkclean is a command line tool to clean and optimize Matroska files"
-HOMEPAGE="http://www.matroska.org/downloads/mkclean.html"
+DESCRIPTION="mkvalidator is a command line tool to verify Matroska files for spec conformance"
+HOMEPAGE="http://www.matroska.org/downloads/mkvalidator.html"
 SRC_URI="http://downloads.sourceforge.net/project/matroska/${PN}/${P}.tar.bz2"
 
 LICENSE="BSD"
@@ -27,8 +27,12 @@ src_configure() {
 		-e 's|^\(STRIP.*=\)|\1 echo|g' $(find -name "*.mak")
 }
 
+src_compile() {
+    emake -j1
+}
+
 src_install() {
-	dobin release/*/${PN}
+	dobin release/*/mkv*
 	newdoc ChangeLog.txt ChangeLog
 	newdoc ReadMe.txt README
 }
