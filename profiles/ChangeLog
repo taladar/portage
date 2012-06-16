@@ -1,10 +1,54 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6674 2012/06/15 17:00:30 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6684 2012/06/16 17:20:24 tove Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  16 Jun 2012; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask net-proxy/vulture for removal (#310711)
+
+  16 Jun 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  app-shells/rssh is fixed
+
+  16 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> use.desc:
+  New USE flag called "postscript" to replace USE="ps" and USE="gs"
+
+  16 Jun 2012; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Mask sys-kernel/cluster-sources for removal.
+
+  16 Jun 2012; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Mask some packages for removal.
+
+  16 Jun 2012; Andreas K. Huettel <dilfridge@gentoo.org> package.mask:
+  Mask also next calligra beta
+
+  16 Jun 2012; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Clean mask entries.
+
+  16 Jun 2012; Justin Lecher <jlec@gentoo.org> arch/alpha/make.defaults,
+  arch/amd64-fbsd/make.defaults, arch/amd64/make.defaults,
+  arch/arm/armv4/make.defaults, arch/arm/armv4t/make.defaults,
+  arch/arm/armv5te/make.defaults, arch/arm/armv6j/make.defaults,
+  arch/arm/armv7a/make.defaults, arch/arm/make.defaults,
+  arch/ia64/make.defaults, arch/m68k/make.defaults,
+  arch/mips/mips64/multilib/make.defaults,
+  arch/mips/mipsel/mips64el/multilib/make.defaults,
+  arch/powerpc/ppc32/make.defaults, arch/powerpc/ppc64/make.defaults,
+  arch/s390/make.defaults, arch/sh/make.defaults,
+  arch/sparc-fbsd/make.defaults, arch/x86-fbsd/make.defaults,
+  arch/x86/make.defaults, arch/x86/xbox/make.defaults, embedded/make.defaults,
+  hardened/linux/amd64/make.defaults, hardened/linux/x86/make.defaults,
+  hardened/linux/x86/minimal/make.defaults, info_vars, uclibc/make.defaults:
+  Set default values of FFLAGS and FCFLAGS to profiles default CFLAGS, equally
+  as CXXFLAGS handling
+
+  16 Jun 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Update app-shells/rssh message
+
+  16 Jun 2012; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  4suite is gone
 
   15 Jun 2012; Anthony G. Basile <blueness@gentoo.org>
   -hardened/linux/x86/10.0/deprecated,
