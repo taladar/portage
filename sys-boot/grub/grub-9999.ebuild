@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.67 2012/06/09 04:47:30 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.68 2012/06/25 03:53:43 floppym Exp $
 
 EAPI=4
 
@@ -11,7 +11,7 @@ if [[ ${PV} == "9999" ]] ; then
 	DO_AUTORECONF="true"
 else
 	MY_P=${P/_/\~}
-	if [[ ${PV} == *_alpha* || ${PV} == *_beta* ]]; then
+	if [[ ${PV} == *_alpha* || ${PV} == *_beta* || ${PV} == *_rc* ]]; then
 		SRC_URI="mirror://gnu-alpha/${PN}/${MY_P}.tar.xz"
 	else
 		SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.xz
@@ -129,6 +129,7 @@ grub_run_phase() {
 grub_src_configure() {
 	local platform=$1
 	local with_platform=
+	local enable_efiemu="--disable-efiemu"
 
 	[[ -z ${platform} ]] && die "${FUNCNAME} [platform]"
 
@@ -160,7 +161,14 @@ grub_src_configure() {
 			with_platform="--with-platform=efi"
 			;;
 		guessed) ;;
-		*) with_platform="--with-platform=${platform}" ;;
+		*)
+			with_platform="--with-platform=${platform}"
+			case ${CTARGET:-${CHOST}} in
+				i?86*|x86_64*)
+					enable_efiemu=$(use_enable efiemu)
+					;;
+			esac
+			;;
 	esac
 
 	ECONF_SOURCE="${S}" \
@@ -173,7 +181,7 @@ grub_src_configure() {
 		$(use_enable debug mm-debug) \
 		$(use_enable debug grub-emu-usb) \
 		$(use_enable device-mapper) \
-		$(use_enable efiemu) \
+		${enable_efiemu} \
 		$(use_enable mount grub-mount) \
 		$(use_enable nls) \
 		$(use_enable truetype grub-mkfont) \

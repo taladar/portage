@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/timer_entropyd/timer_entropyd-0.1-r2.ebuild,v 1.3 2011/05/03 11:46:29 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/timer_entropyd/timer_entropyd-0.2.ebuild,v 1.1 2012/06/24 21:35:39 flameeyes Exp $
 
-EAPI=2
+EAPI=4
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -12,16 +12,16 @@ SRC_URI="http://www.vanheusden.com/te/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 src_prepare() {
 	sed -i -e 's:-O2::' Makefile || die
-	epatch "${FILESDIR}"/${P}-syslog.patch
+	epatch "${FILESDIR}"/${PN}-0.1-syslog.patch
 }
 
 src_compile() {
-	use debug && append-flags -D_DEBUG
+	use debug && append-cppflags -D_DEBUG
 
 	tc-export CC
 	emake DEBUG= || die
@@ -29,9 +29,9 @@ src_compile() {
 
 src_install() {
 	exeinto /usr/libexec
-	doexe ${PN} || die "doexe failed"
-	dodoc Changes readme.txt || die
-	newinitd "${FILESDIR}/timer_entropyd.initd" ${PN} || die
+	doexe ${PN}
+	dodoc Changes readme.txt
+	newinitd "${FILESDIR}/timer_entropyd.initd.1" ${PN} || die
 }
 
 pkg_postinst() {
