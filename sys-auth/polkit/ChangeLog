@@ -1,6 +1,33 @@
 # ChangeLog for sys-auth/polkit
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/polkit/ChangeLog,v 1.87 2012/06/25 09:32:04 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/polkit/ChangeLog,v 1.93 2012/06/27 11:56:12 ssuominen Exp $
+
+  27 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> polkit-0.106-r5.ebuild:
+  pax-mark polkitd only when spidermonkey is built with JIT enabled and only
+  'm' instead of 'mr' when version is >= 1.8.7 (by using has_version check)
+
+  27 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> -polkit-0.106-r2.ebuild,
+  -polkit-0.106-r3.ebuild, -polkit-0.106-r4.ebuild:
+  old
+
+*polkit-0.106-r5 (27 Jun 2012)
+
+  27 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> +polkit-0.106-r5.ebuild:
+  Revert entire unix-group:wheel experiment back to unix-user:0 because
+  PolicyKit agent(s) don't behave correctly with it wrt #423733 by Travis
+  Hansen. Revert system-local-login to system-auth for PAM errors wrt #423487
+  by Doug Goldstein.
+
+*polkit-0.106-r4 (27 Jun 2012)
+
+  27 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> +polkit-0.106-r4.ebuild:
+  Stop installing polkit-backend-1.pc because upstream changed
+  libpolkit-backend-1.la to be noinst_LTLIBRARIES in
+  src/polkitbackend/Makefile.am wrt #423431 by Pim Vullers
+
+  27 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> polkit-0.106-r3.ebuild:
+  Redefine libprivdir in install for multilib-strict wrt #423381 by Michael
+  Palimaka
 
 *polkit-0.106-r3 (25 Jun 2012)
 

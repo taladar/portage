@@ -1,14 +1,15 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-0.12.1.ebuild,v 1.2 2012/06/06 05:17:02 heroxbd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-0.12.1.ebuild,v 1.4 2012/06/27 10:41:47 xarthisius Exp $
 
 EAPI=4
 
 # python eclass cruft
-PYTHON_USE_DEPEND="readline? sqlite?"
+PYTHON_DEPEND="*:2.6"
+PYTHON_USE_WITH="readline sqlite"
 PYTHON_MODNAME="IPython"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="2.[45] *-jython"
+RESTRICT_PYTHON_ABIS="2.5 *-jython"
 
 inherit distutils elisp-common eutils virtualx
 
@@ -19,8 +20,7 @@ SRC_URI="http://archive.ipython.org/release/${PV}/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc emacs examples matplotlib mongodb notebook qt4 readline +smp
-	sqlite test wxwidgets"
+IUSE="doc emacs examples matplotlib mongodb notebook qt4 +smp test wxwidgets"
 
 CDEPEND="dev-python/decorator
 	|| ( dev-python/argparse =dev-lang/python-2.7* >=dev-lang/python-3.2 )
