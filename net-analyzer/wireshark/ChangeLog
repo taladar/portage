@@ -1,6 +1,22 @@
 # ChangeLog for net-analyzer/wireshark
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/ChangeLog,v 1.353 2012/06/26 20:41:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/ChangeLog,v 1.357 2012/06/27 21:11:04 jer Exp $
+
+  27 Jun 2012; Jeroen Roovers <jer@gentoo.org> wireshark-1.8.0.ebuild,
+  files/wireshark-1.8.0-underlinking.patch:
+  Er, put back eautoreconf.
+
+  27 Jun 2012; Jeroen Roovers <jer@gentoo.org>
+  files/wireshark-1.8.0-underlinking.patch:
+  Clean up patch.
+
+  27 Jun 2012; Jeroen Roovers <jer@gentoo.org> wireshark-1.8.0.ebuild:
+  Remove IUSE=threads.
+
+  27 Jun 2012; Justin Lecher <jlec@gentoo.org>
+  +files/wireshark-1.8.0-underlinking.patch, wireshark-1.8.0.ebuild:
+  Add fix for underlinking because of gmodule-2 being removed from glibs pkg-
+  config, detected by gold
 
   26 Jun 2012; Jeroen Roovers <jer@gentoo.org> wireshark-1.8.0.ebuild:
   Remove unneeded elibtoolize.
@@ -1412,4 +1428,3 @@
   +wireshark-0.99.1_pre1.ebuild:
   Initial import, fixes bug #136729 , thanks to gentooperson@yahoo.com for
   providing an ebuild
-
