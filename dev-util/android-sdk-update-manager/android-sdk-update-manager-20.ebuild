@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/android-sdk-update-manager/android-sdk-update-manager-16.ebuild,v 1.2 2012/06/07 20:49:07 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/android-sdk-update-manager/android-sdk-update-manager-20.ebuild,v 1.1 2012/06/29 01:52:09 rich0 Exp $
 
 EAPI="3"
 
@@ -45,8 +45,6 @@ pkg_setup() {
 }
 
 src_prepare(){
-#	epatch "${FILESDIR}/${PN}-8-swt.patch"
-
 	rm -rf tools/lib/x86*
 }
 
@@ -58,7 +56,6 @@ src_install(){
 	cp -pPR tools/* "${ED}${ANDROID_SDK_DIR}/tools" || die "failed to install tools"
 
 	# Maybe this is needed for the tools directory too.
-	#keepdir "${ANDROID_SDK_DIR}"/{add-ons,docs,platforms,temp} || die "failed to keepdir"
 	dodir "${ANDROID_SDK_DIR}"/{add-ons,docs,platforms,temp} || die "failed to dodir"
 
 	fowners root:android "${ANDROID_SDK_DIR}"/{,add-ons,docs,platforms,temp,tools} || die

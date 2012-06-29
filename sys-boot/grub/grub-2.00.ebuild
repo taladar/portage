@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-2.00.ebuild,v 1.2 2012/06/28 14:54:59 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-2.00.ebuild,v 1.6 2012/06/29 04:35:33 jdhore Exp $
 
 EAPI=4
 
@@ -17,9 +17,7 @@ else
 		SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.xz
 		mirror://gentoo/${MY_P}.tar.xz"
 	fi
-	# Masked until documentation guys consolidate the guide and approve
-	# it for usage.
-	#KEYWORDS="~amd64 ~mips ~x86"
+	KEYWORDS="~amd64 ~x86"
 	S=${WORKDIR}/${MY_P}
 fi
 
@@ -47,6 +45,8 @@ GRUB_PLATFORMS=(
 )
 IUSE+=" ${GRUB_PLATFORMS[@]/#/grub_platforms_}"
 
+REQUIRED_USE="grub_platforms_qemu? ( truetype )"
+
 # os-prober: Used on runtime to detect other OSes
 # xorriso (dev-libs/libisoburn): Used on runtime for mkrescue
 RDEPEND="
@@ -69,7 +69,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	>=dev-lang/python-2.5.2
 	sys-devel/flex
-	virtual/yacc
+	sys-devel/bison
 	sys-apps/texinfo
 	static? (
 		truetype? (
