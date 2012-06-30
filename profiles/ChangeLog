@@ -1,10 +1,51 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6719 2012/06/29 13:57:55 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6732 2012/06/30 17:17:41 aballier Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  30 Jun 2012; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask new core_extended
+
+  30 Jun 2012; Tim Harder <radhermit@gentoo.org> package.mask:
+  Mask =media-gfx/luminance-hdr-2.3.0* development releases.
+
+  30 Jun 2012; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  remove temp mask for Claws Mail and plugins, bump finished
+
+  30 Jun 2012; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask new dev-ml/core
+
+  30 Jun 2012; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask pipebang
+
+  30 Jun 2012; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask variantslib
+
+  30 Jun 2012; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask pa_ounit
+
+  30 Jun 2012; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask new sexplib
+
+  30 Jun 2012; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask new fieldslib
+
+  30 Jun 2012; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask new bin-prot
+
+  30 Jun 2012; Pacho Ramos <pacho@gentoo.org> arch/ia64/package.use.mask,
+  arch/sparc/package.use.mask:
+  Missing keywords for connman, masking its use for gupnp then on affected
+  arches.
+
+  30 Jun 2012; Alexis Ballier <aballier@gentoo.org> package.mask:
+  mask type-conv-3.0.5
+
+  30 Jun 2012; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  temp mask to bump Claws Mail and plugins
 
   29 Jun 2012; Mike Gilbert <floppym@gentoo.org> package.mask:
   Unmask v8-3.11 early to satisfy nodejs dependency.
