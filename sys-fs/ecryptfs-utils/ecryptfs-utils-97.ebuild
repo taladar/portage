@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/ecryptfs-utils/ecryptfs-utils-91.ebuild,v 1.3 2012/05/04 19:09:16 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/ecryptfs-utils/ecryptfs-utils-97.ebuild,v 1.1 2012/06/30 05:22:50 radhermit Exp $
 
-EAPI="3"
+EAPI="4"
 PYTHON_DEPEND="python? 2:2.5"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="2.4 3.* *-jython 2.7-pypy-*"
@@ -10,7 +10,7 @@ RESTRICT_PYTHON_ABIS="2.4 3.* *-jython 2.7-pypy-*"
 inherit flag-o-matic pam python linux-info autotools
 
 DESCRIPTION="eCryptfs userspace utilities"
-HOMEPAGE="http://launchpad.net/ecryptfs"
+HOMEPAGE="https://launchpad.net/ecryptfs"
 SRC_URI="http://launchpad.net/ecryptfs/trunk/${PV}/+download/${PN}_${PV}.orig.tar.gz"
 
 LICENSE="GPL-2"
@@ -37,9 +37,7 @@ DEPEND="${RDEPEND}
 	python? ( dev-lang/swig )"
 
 pkg_setup() {
-	if use python; then
-		python_pkg_setup
-	fi
+	use python && python_pkg_setup
 
 	CONFIG_CHECK="~ECRYPT_FS"
 	linux-info_pkg_setup
@@ -55,7 +53,7 @@ src_prepare() {
 }
 
 src_configure() {
-	append-flags -D_FILE_OFFSET_BITS=64
+	append-cppflags -D_FILE_OFFSET_BITS=64
 
 	econf \
 		--docdir="/usr/share/doc/${PF}" \
@@ -92,7 +90,7 @@ src_compile() {
 }
 
 src_install(){
-	emake DESTDIR="${D}" install || die "emake install failed"
+	emake DESTDIR="${D}" install
 
 	if use python; then
 		installation() {
@@ -116,13 +114,11 @@ src_install(){
 
 	use suid && fperms u+s /sbin/mount.ecryptfs_private
 
-	find "${D}" -name '*.la' -exec rm -f '{}' +
+	find "${ED}" -name '*.la' -exec rm -f '{}' +
 }
 
 pkg_postinst() {
-	if use python; then
-		python_mod_optimize ecryptfs-utils
-	fi
+	use python && python_mod_optimize ecryptfs-utils
 
 	if use suid; then
 		ewarn
@@ -134,7 +130,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	if use python; then
-		python_mod_cleanup ecryptfs-utils
-	fi
+	use python && python_mod_cleanup ecryptfs-utils
 }
