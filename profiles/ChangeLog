@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6736 2012/07/02 16:39:02 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6739 2012/07/02 20:21:14 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  02 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Lastrite dev-python/sexy-python wrt #380193
+
+  02 Jul 2012; Joe Peterson <lavajoe@gentoo.org> package.mask:
+  Mask sys-fs/btrfs-progs-0.19*
+
+  02 Jul 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Mask qbittorrent-3.0.0_rc for testing
 
   02 Jul 2012; Ulrich Müller <ulm@gentoo.org> license_groups:
   Add MPL-2.0 to GPL-COMPATIBLE and OSI-APPROVED license groups.
