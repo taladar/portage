@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/lyx/lyx-2.0.2.ebuild,v 1.9 2012/06/14 07:15:34 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/lyx/lyx-2.0.4.ebuild,v 1.1 2012/07/03 13:06:54 aballier Exp $
 
 EAPI=3
 
@@ -17,11 +17,10 @@ DESCRIPTION="WYSIWYM frontend for LaTeX, DocBook, etc."
 HOMEPAGE="http://www.lyx.org/"
 SRC_URI="ftp://ftp.lyx.org/pub/lyx/stable/2.0.x/${P}.tar.xz"
 #SRC_URI="ftp://ftp.lyx.org/pub/lyx/devel/lyx-2.0/rc3/${MY_P}.tar.xz"
-#SRC_URI="ftp://ftp.devel.lyx.org/pub/lyx/stable/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 hppa ~ia64 ppc ~ppc64 sparc x86"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x64-macos ~x86-macos"
 IUSE="cups debug nls +latex xetex luatex monolithic-build html rtf dot docbook dia subversion rcs svg gnumeric +hunspell aspell enchant"
 
 LANGS="ar ca cs de da el en es eu fi fr gl he hu ia id it ja nb nn pl pt ro ru sk sr sv tr uk zh_CN zh_TW"
@@ -32,16 +31,6 @@ done
 
 COMMONDEPEND="x11-libs/qt-gui:4
 	x11-libs/qt-core:4
-	x11-libs/libXrandr
-	x11-libs/libXcursor
-	x11-libs/libXrender
-	x11-libs/libXfixes
-	x11-libs/libXext
-	x11-libs/libSM
-	x11-libs/libICE
-	x11-libs/libX11
-	x11-libs/libXau
-	x11-libs/libXdmcp
 	dev-libs/libxml2
 	media-libs/fontconfig
 	media-libs/freetype
@@ -95,7 +84,6 @@ RDEPEND="${COMMONDEPEND}
 
 DEPEND="${COMMONDEPEND}
 	sys-devel/bc
-	x11-proto/xproto
 	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 
@@ -105,7 +93,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/1.6.7-python.patch
+	epatch "${FILESDIR}"/2.0-python.patch
 	echo "#!/bin/sh" > config/py-compile
 	sed "s:python -tt:$(PYTHON) -tt:g" -i lib/configure.py || die
 }
@@ -122,7 +110,9 @@ src_configure() {
 		$(use_with hunspell) \
 		$(use_with aspell) \
 		$(use_with enchant) \
-		--without-included-boost --disable-stdlib-debug
+		--without-included-boost \
+		--disable-stdlib-debug \
+		--with-packaging=posix
 }
 
 src_install() {
@@ -138,7 +128,7 @@ src_install() {
 		doins "${T}"/hebrew.bind || die
 	fi
 
-	newicon -s 32 "${S}"/development/Win32/packaging/icons/lyx_32x32.png ${PN}.png
+	newicon -s 32 "$S/development/Win32/packaging/icons/lyx_32x32.png" ${PN}.png
 	make_desktop_entry ${PN} "LyX" "${PN}" "Office" "MimeType=application/x-lyx;"
 
 	# fix for bug 91108
@@ -149,7 +139,7 @@ src_install() {
 	# fonts needed for proper math display, see also bug #15629
 	font_src_install
 
-	python_convert_shebangs -r 2 "${D}"/usr/share/${PN}
+	python_convert_shebangs -r 2 "${ED}"/usr/share/${PN}
 
 	if use hunspell ; then
 		dosym /usr/share/myspell /usr/share/lyx/dicts

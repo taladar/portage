@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/allegro/allegro-5.0.4.ebuild,v 1.5 2012/05/05 08:02:40 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/allegro/allegro-5.0.7.ebuild,v 1.1 2012/07/03 12:05:18 ssuominen Exp $
 
-EAPI=2
+EAPI=4
 inherit cmake-utils
 
 DESCRIPTION="A game programming library"
@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/alleg/${P}.tar.gz"
 
 LICENSE="BSD ZLIB"
 SLOT="5"
-KEYWORDS="amd64 ppc ppc64 x86"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE="alsa dumb flac gtk jpeg openal oss physfs png pulseaudio test truetype vorbis X xinerama"
 
 RDEPEND="alsa? ( media-libs/alsa-lib )
@@ -38,7 +38,7 @@ DEPEND="${RDEPEND}
 	x11-proto/xf86vidmodeproto
 	x11-proto/xproto"
 
-PATCHES=( "${FILESDIR}"/${P}-underlink.patch )
+PATCHES=( "${FILESDIR}"/${PN}-5.0.4-underlink.patch )
 
 src_configure() {
 	local mycmakeargs=(
@@ -67,7 +67,7 @@ src_configure() {
 src_install() {
 	cmake-utils_src_install
 
-	dodoc CHANGES-5.0.txt || die
-	dohtml -r docs/html/refman/* || die
-	doman docs/man/*.3 || die
+	nonfatal dodoc CHANGES-5.0.txt
+	nonfatal dohtml -r docs/html/refman/*
+	nonfatal doman docs/man/*.3
 }
