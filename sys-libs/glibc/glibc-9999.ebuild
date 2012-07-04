@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-9999.ebuild,v 1.9 2012/06/08 22:06:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-9999.ebuild,v 1.10 2012/07/03 20:07:34 vapier Exp $
 
-inherit eutils versionator libtool toolchain-funcs flag-o-matic gnuconfig multilib multiprocessing
+inherit eutils versionator libtool toolchain-funcs flag-o-matic gnuconfig multilib unpacker multiprocessing
 
 DESCRIPTION="GNU libc6 (also called glibc2) C library"
 HOMEPAGE="http://www.gnu.org/software/libc/libc.html"
@@ -35,11 +35,9 @@ INFOPAGE_VER=""                                # pregenerated infopages
 LIBIDN_VER=""                                  # it's integrated into the main tarball now
 PATCH_VER=""                                   # Gentoo patchset
 PORTS_VER=""                                   # version of glibc ports addon
-LT_VER=""                                      # version of linuxthreads addon
-NPTL_KERN_VER=${NPTL_KERN_VER:-"2.6.9"}        # min kernel version nptl requires
-#LT_KERN_VER=${LT_KERN_VER:-"2.4.1"}           # min kernel version linuxthreads requires
+NPTL_KERN_VER=${NPTL_KERN_VER:-"2.6.16"}       # min kernel version nptl requires
 
-IUSE="debug gd hardened multilib selinux profile vanilla crosscompile_opts_headers-only ${LT_VER:+glibc-compat20 nptl linuxthreads}"
+IUSE="debug gd hardened multilib selinux systemtap profile vanilla crosscompile_opts_headers-only"
 [[ -n ${RELEASE_VER} ]] && S=${WORKDIR}/glibc-${RELEASE_VER}${SNAP_VER:+-${SNAP_VER}}
 
 # Here's how the cross-compile logic breaks down ...
@@ -83,7 +81,6 @@ DEPEND=">=sys-devel/gcc-3.4.4
 	ppc? ( >=sys-devel/gcc-4.1.0 )
 	ppc64? ( >=sys-devel/gcc-4.1.0 )
 	>=sys-devel/binutils-2.15.94
-	${LT_VER:+nptl? (} >=sys-kernel/linux-headers-${NPTL_KERN_VER} ${LT_VER:+)}
 	>=app-misc/pax-utils-0.1.10
 	virtual/os-headers
 	!<sys-apps/sandbox-1.2.18.1-r2
@@ -119,11 +116,10 @@ SRC_URI=$(
 		[[ -n ${PORTS_VER} ]] && PORTS_VER=${SNAP_VER}
 		upstream_uris ${TARNAME}-${SNAP_VER}.tar.bz2
 	elif [[ -z ${EGIT_REPO_URIS} ]] ; then
-		upstream_uris ${TARNAME}-${RELEASE_VER}.tar.bz2
+		upstream_uris ${TARNAME}-${RELEASE_VER}.tar.xz
 	fi
 	[[ -n ${LIBIDN_VER}    ]] && upstream_uris glibc-libidn-${LIBIDN_VER}.tar.bz2
-	[[ -n ${PORTS_VER}     ]] && upstream_uris ${TARNAME}-ports-${PORTS_VER}.tar.bz2
-	[[ -n ${LT_VER}        ]] && upstream_uris ${TARNAME}-linuxthreads-${LT_VER}.tar.bz2
+	[[ -n ${PORTS_VER}     ]] && upstream_uris ${TARNAME}-ports-${PORTS_VER}.tar.xz
 	[[ -n ${BRANCH_UPDATE} ]] && gentoo_uris glibc-${RELEASE_VER}-branch-update-${BRANCH_UPDATE}.patch.bz2
 	[[ -n ${PATCH_VER}     ]] && gentoo_uris glibc-${RELEASE_VER}-patches-${PATCH_VER}.tar.bz2
 	[[ -n ${MANPAGE_VER}   ]] && gentoo_uris glibc-manpages-${MANPAGE_VER}.tar.bz2
@@ -212,6 +208,22 @@ eblit-src_unpack-post() {
 			-e 's:-fstack-protector$:-fstack-protector-all:' \
 			nscd/Makefile \
 			|| die "Failed to ensure nscd builds with ssp-all"
+	fi
+}
+
+eblit-pkg_preinst-post() {
+	if [[ ${CTARGET} == arm* ]] ; then
+		# Backwards compat support for renaming hardfp ldsos #417287
+		local oldso='/lib/ld-linux.so.3'
+		local nldso='/lib/ld-linux-armhf.so.3'
+		if [[ -e ${D}${nldso} ]] ; then
+			if scanelf -qRyi "${ROOT}$(alt_prefix)"/*bin/ | grep -s "^${oldso}" ; then
+				ewarn "Symlinking old ldso (${oldso}) to new ldso (${nldso})."
+				ewarn "Please rebuild all packages using this old ldso as compat"
+				ewarn "support will be dropped in the future."
+				ln -s "${nldso##*/}" "${D}$(alt_prefix)${oldso}"
+			fi
+		fi
 	fi
 }
 
