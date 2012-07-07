@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/clementine/clementine-0.7.1-r2.ebuild,v 1.8 2012/05/21 09:33:40 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/clementine/clementine-1.0.1-r2.ebuild,v 1.1 2012/07/07 08:03:03 ssuominen Exp $
 
 EAPI=4
 
-LANGS=" ar be bg br ca cs cy da de el en_CA en_GB eo es et eu fi fr gl he hi hr hu is it ja kk lt lv nb nl oc pa pl pt pt_BR ro ru sk sl sr sv tr uk vi zh_CN zh_TW"
+LANGS=" ar be bg bn br bs ca cs cy da de el en_CA en_GB eo es et eu fa fi fr gl he hi hr hu hy ia id is it ja ka kk ko lt lv mr ms nb nl oc pa pl pt_BR pt ro ru sk sl sr@latin sr sv tr uk vi zh_CN zh_TW"
 
 inherit cmake-utils eutils gnome2-utils virtualx
 
@@ -14,11 +14,9 @@ SRC_URI="http://clementine-player.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 x86"
-IUSE="ayatana +dbus ios ipod lastfm mtp projectm +udev wiimote"
+KEYWORDS="~amd64 ~x86"
+IUSE="ayatana cdda +dbus ios ipod kde lastfm mms mtp projectm test +udev wiimote"
 IUSE+="${LANGS// / linguas_}"
-
-RESTRICT="test" #415477
 
 REQUIRED_USE="
 	ios? ( ipod )
@@ -31,14 +29,16 @@ COMMON_DEPEND="
 	>=x11-libs/qt-opengl-4.5:4
 	>=x11-libs/qt-sql-4.5:4[sqlite]
 	dev-db/sqlite[fts3]
-	>=media-libs/taglib-1.6
-	>=dev-libs/glib-2.24.1-r1:2
+	>=media-libs/taglib-1.7[mp4]
+	>=dev-libs/glib-2.24.1-r1
 	dev-libs/libxml2
-	gnome-base/gsettings-desktop-schemas
+	dev-libs/qjson
 	media-libs/libechonest
+	>=media-libs/chromaprint-0.6
 	media-libs/gstreamer:0.10
 	media-libs/gst-plugins-base:0.10
 	ayatana? ( dev-libs/libindicate-qt )
+	cdda? ( dev-libs/libcdio )
 	ipod? (
 		>=media-libs/libgpod-0.8.0[ios?]
 		ios? (
@@ -47,7 +47,8 @@ COMMON_DEPEND="
 			app-pda/usbmuxd
 		)
 	)
-	lastfm? ( media-libs/liblastfm )
+	kde? ( >=kde-base/kdelibs-4.4 )
+	lastfm? ( >=media-libs/liblastfm-1 )
 	mtp? ( >=media-libs/libmtp-1.0.0 )
 	projectm? ( media-libs/glew )
 "
@@ -56,28 +57,38 @@ COMMON_DEPEND="
 # r1966 "Compile with a static sqlite by default, since Qt 4.7 doesn't seem to expose the symbols we need to use FTS"
 RDEPEND="${COMMON_DEPEND}
 	dbus? ( udev? ( sys-fs/udisks:0 ) )
+	mms? ( media-plugins/gst-plugins-libmms:0.10 )
 	mtp? ( gnome-base/gvfs )
 	projectm? ( >=media-libs/libprojectm-1.2.0 )
 	media-plugins/gst-plugins-meta:0.10
 	media-plugins/gst-plugins-gio:0.10
 	media-plugins/gst-plugins-soup:0.10
 	media-plugins/gst-plugins-taglib:0.10
-	media-plugins/gst-plugins-ofa:0.10
 "
 DEPEND="${COMMON_DEPEND}
 	>=dev-libs/boost-1.39
 	virtual/pkgconfig
 	sys-devel/gettext
 	x11-libs/qt-test:4
+	kde? ( dev-util/automoc )
+	dev-cpp/gmock
+	test? ( gnome-base/gsettings-desktop-schemas )
 "
-DOCS="Changelog TODO"
+DOCS="Changelog"
 
 src_prepare() {
 	# some tests fail or hang
 	sed -i \
 		-e '/add_test_file(translations_test.cpp/d' \
 		tests/CMakeLists.txt || die
-	epatch "${FILESDIR}"/${P}-fix-devicekit.patch
+
+	# API changed, see http://bugs.gentoo.org/410933
+	has_version '>=app-pda/libimobiledevice-1.1.2' && \
+		sed -i -e 's:event->uuid:event->udid:' src/devices/ilister.cpp
+
+	epatch "${FILESDIR}"/${P}-fresh-start.patch \
+		"${FILESDIR}"/${P}-linguas.patch \
+		"${FILESDIR}"/${P}-liblastfm-1.patch
 }
 
 src_configure() {
@@ -86,26 +97,30 @@ src_configure() {
 		use linguas_${x} && langs+=" ${x}"
 	done
 
-	# GIO is disabled because of upstream #802
-	# REMOTE and SCRIPTING unstable or unusable
+	# spotify is not in portage
+	# REMOTE is unstable
 	local mycmakeargs=(
 		-DBUILD_WERROR=OFF
 		-DLINGUAS="${langs}"
 		-DBUNDLE_PROJECTM_PRESETS=OFF
+		$(cmake-utils_use cdda ENABLE_AUDIOCD)
 		$(cmake-utils_use dbus ENABLE_DBUS)
 		$(cmake-utils_use udev ENABLE_DEVICEKIT)
-		-DENABLE_GIO=OFF
-		$(cmake-utils_use ios ENABLE_IMOBILEDEVICE)
 		$(cmake-utils_use ipod ENABLE_LIBGPOD)
+		$(cmake-utils_use ios ENABLE_IMOBILEDEVICE)
+		$(cmake-utils_use kde ENABLE_PLASMARUNNER)
 		$(cmake-utils_use lastfm ENABLE_LIBLASTFM)
 		$(cmake-utils_use mtp ENABLE_LIBMTP)
-		-DENABLE_REMOTE=OFF
-		-DENABLE_SCRIPTING_ARCHIVES=OFF
-		-DENABLE_SCRIPTING_PYTHON=OFF
-		$(cmake-utils_use ayatana ENABLE_SOUNDMENU)
-		$(cmake-utils_use projectm ENABLE_VISUALISATIONS)
+		-DENABLE_GIO=ON
 		$(cmake-utils_use wiimote ENABLE_WIIMOTEDEV)
+		$(cmake-utils_use projectm ENABLE_VISUALISATIONS)
+		$(cmake-utils_use ayatana ENABLE_SOUNDMENU)
+		-DENABLE_SPOTIFY=OFF
+		-DENABLE_SPOTIFY_BLOB=OFF
+		-DENABLE_REMOTE=OFF
+		-DENABLE_BREAKPAD=OFF
 		-DSTATIC_SQLITE=OFF
+		-DUSE_SYSTEM_GMOCK=ON
 		)
 
 	cmake-utils_src_configure
