@@ -1,17 +1,15 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig-openbsd/pkgconfig-openbsd-20120504.ebuild,v 1.2 2012/05/04 16:16:16 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig-openbsd/pkgconfig-openbsd-20120710.ebuild,v 1.1 2012/07/10 16:40:04 ssuominen Exp $
 
-# cvs -d anoncvs@anoncvs.openbsd.org:/cvs get src/usr.bin/pkg-config/pkg-config
-# cvs -d anoncvs@anoncvs.openbsd.org:/cvs get src/usr.bin/pkg-config/pkg-config.1
-# cvs -d anoncvs@anoncvs.openbsd.org:/cvs get src/usr.sbin/pkg_add/OpenBSD/PkgConfig.pm
+# cvs -d anoncvs@anoncvs.openbsd.org:/cvs get src/usr.bin/pkg-config
 
 EAPI=4
 
 PKG_M4_VERSION=0.26
 
 DESCRIPTION="A perl based version of pkg-config from OpenBSD"
-HOMEPAGE="http://www.openbsd.org/cgi-bin/cvsweb/src/usr.bin/pkg-config/ http://www.openbsd.org/cgi-bin/cvsweb/src/usr.sbin/pkg_add/OpenBSD/PkgConfig.pm"
+HOMEPAGE="http://www.openbsd.org/cgi-bin/cvsweb/src/usr.bin/pkg-config/"
 SRC_URI="http://dev.gentoo.org/~ssuominen/${P}.tar.xz
 	pkg-config? ( http://pkgconfig.freedesktop.org/releases/pkg-config-${PKG_M4_VERSION}.tar.gz )"
 
@@ -30,7 +28,7 @@ RDEPEND="${DEPEND}
 	dev-lang/perl
 	virtual/perl-Getopt-Long"
 
-S=${WORKDIR}/src
+S=${WORKDIR}/${P}/src
 
 src_prepare() {
 	# Config.pm from dev-lang/perl doesn't set ARCH, only archname
@@ -49,8 +47,8 @@ src_install() {
 		newman usr.bin/pkg-config/pkg-config.1 pkg-config-openbsd.1
 	fi
 
-	insinto /usr/share/${PN}/OpenBSD
-	doins usr.sbin/pkg_add/OpenBSD/PkgConfig.pm
+	insinto /usr/share/${PN}
+	doins -r usr.bin/pkg-config/OpenBSD
 
 	cat <<-EOF > "${T}"/99${PN}
 	COLON_SEPARATED=PERL5LIB
