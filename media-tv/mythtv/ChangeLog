@@ -1,6 +1,26 @@
 # ChangeLog for media-tv/mythtv
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/mythtv/ChangeLog,v 1.357 2012/07/09 14:48:47 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-tv/mythtv/ChangeLog,v 1.361 2012/07/10 05:30:34 cardoe Exp $
+
+  09 Jul 2012; Doug Goldstein <cardoe@gentoo.org>
+  mythtv-0.25.1_p20120708.ebuild:
+  Move the freetype depend to the right spot
+
+  09 Jul 2012; Doug Goldstein <cardoe@gentoo.org>
+  mythtv-0.25.1_p20120708.ebuild, metadata.xml:
+  Numerous updates to support all the features and notes in the 0.25 release
+  notes.
+
+  09 Jul 2012; Doug Goldstein <cardoe@gentoo.org>
+  mythtv-0.25.1_p20120708.ebuild:
+  We now need wmctrl with the new mythfrontend wrapper. Due to bugs in Qt, we
+  need at least 4.7.2 to avoid 4.7.1 which broke SchedulesDirect
+
+  09 Jul 2012; Doug Goldstein <cardoe@gentoo.org>
+  mythtv-0.25.1_p20120708.ebuild, +files/mythfrontend.conf,
+  +files/mythfrontend.wrapper, +files/xinitrc-r1:
+  Add a Mythbuntu like wrapper for mythfrontend so users can configure the
+  autostart arguments easily as well as using mythwelcome as a wrapper.
 
   09 Jul 2012; Doug Goldstein <cardoe@gentoo.org>
   mythtv-0.25.1_p20120708.ebuild:
