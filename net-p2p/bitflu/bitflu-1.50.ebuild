@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bitflu/bitflu-1.41.ebuild,v 1.4 2012/07/12 01:41:55 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bitflu/bitflu-1.50.ebuild,v 1.1 2012/07/12 16:32:51 blueness Exp $
 
 EAPI=4
 
-inherit eutils
+inherit user
 
 DESCRIPTION="Bitflu is a BitTorrent client, written in Perl and is designed to run as a daemon"
 HOMEPAGE="http://bitflu.workaround.ch"
@@ -12,7 +12,7 @@ SRC_URI="http://bitflu.workaround.ch/bitflu/${P}.tgz"
 
 LICENSE="Artistic-2 GPL-2"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="dev-perl/Danga-Socket
