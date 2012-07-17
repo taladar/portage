@@ -1,6 +1,26 @@
 # ChangeLog for media-tv/mythtv
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/mythtv/ChangeLog,v 1.365 2012/07/15 22:40:09 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-tv/mythtv/ChangeLog,v 1.368 2012/07/17 01:20:39 cardoe Exp $
+
+  16 Jul 2012; Doug Goldstein <cardoe@gentoo.org>
+  -files/mythbackend-0.18.2.conf, -files/mythtv-v4l2-fix.2.patch,
+  -files/mythbackend-0.18.2.rc, -files/ffmpeg-sync.patch,
+  -files/fixLdconfSandbox.0.25.1.patch, -files/fixLdconfSandbox.patch,
+  -files/mythtv.logrotate.d-r1, -files/runmythfe, -files/runmythfe-r1,
+  -files/xinitrc, metadata.xml:
+  Remove out unused files
+
+  16 Jul 2012; Doug Goldstein <cardoe@gentoo.org>
+  -mythtv-0.24.1_p20110524.ebuild:
+  Remove older version
+
+*mythtv-0.25.2_p20120716 (16 Jul 2012)
+
+  16 Jul 2012; Doug Goldstein <cardoe@gentoo.org> -mythtv-0.25.1.ebuild,
+  +mythtv-0.25.2_p20120716.ebuild, files/mythfrontend.wrapper:
+  Version bump. Fix --version output from the various programs. Fix a bug where
+  the mythfrontend wrapper script was not passing arguments to the real
+  process. Found by Wilson Michaels <TheBitPit@earthlink.net>
 
 *mythtv-0.25.1_p20120715 (15 Jul 2012)
 
