@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/vzctl/vzctl-9999.ebuild,v 1.9 2012/03/31 05:09:25 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/vzctl/vzctl-9999.ebuild,v 1.10 2012/07/17 05:35:02 pva Exp $
 
 EAPI="4"
 
@@ -28,6 +28,7 @@ src_prepare() {
 	# Set default OSTEMPLATE on gentoo
 	sed -e 's:=redhat-:=gentoo-:' -i etc/dists/default || die
 	eautoreconf
+	sed -e '/udevdir/{s|$(sysconfdir)|/lib|}' -i etc/udev/Makefile.in || die
 }
 
 src_configure() {
