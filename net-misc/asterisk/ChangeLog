@@ -1,6 +1,20 @@
 # ChangeLog for net-misc/asterisk
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/asterisk/ChangeLog,v 1.406 2012/07/18 04:12:24 rajiv Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/asterisk/ChangeLog,v 1.408 2012/07/18 07:48:33 chainsaw Exp $
+
+*asterisk-1.8.14.1 (18 Jul 2012)
+
+  18 Jul 2012; Tony Vroon <chainsaw@gentoo.org> -asterisk-1.8.14.0.ebuild,
+  +asterisk-1.8.14.1.ebuild:
+  Bugfix release on the 1.8 branch which addresses SSL/TLS related severe
+  instability. The affected (non-stable) ebuild has been removed.
+
+*asterisk-10.6.1 (18 Jul 2012)
+
+  18 Jul 2012; Tony Vroon <chainsaw@gentoo.org> -asterisk-10.6.0.ebuild,
+  +asterisk-10.6.1.ebuild:
+  Bugfix release on the 10 branch that addresses SSL/TLS related severe
+  instability. This removes the affected release which had already been masked.
 
   18 Jul 2012; Rajiv Aaron Manglani <rajiv@gentoo.org> asterisk-10.5.2.ebuild:
   correct SRC_URI.
