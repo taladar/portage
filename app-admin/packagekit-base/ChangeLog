@@ -1,6 +1,17 @@
 # ChangeLog for app-admin/packagekit-base
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/packagekit-base/ChangeLog,v 1.24 2012/06/27 18:54:20 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/packagekit-base/ChangeLog,v 1.27 2012/07/20 17:30:53 lxnay Exp $
+
+  20 Jul 2012; Fabio Erculiani <lxnay@gentoo.org>
+  packagekit-base-0.6.22.ebuild:
+  fix compilation with npapi-sdk currently in tree, close bug #423911
+
+  20 Jul 2012; Fabio Erculiani <lxnay@gentoo.org> packagekit-base-0.7.4.ebuild,
+  +files/packagekit-base-0.7.x-npapi-api-change.patch:
+  fix compilation with unmasked npapi-sdk (see notes inside ebuild)
+
+  20 Jul 2012; Fabio Erculiani <lxnay@gentoo.org> packagekit-base-0.7.4.ebuild:
+  properly handle 'connman' USE flag
 
   27 Jun 2012; Samuli Suominen <ssuominen@gentoo.org>
   packagekit-base-0.7.4.ebuild:
