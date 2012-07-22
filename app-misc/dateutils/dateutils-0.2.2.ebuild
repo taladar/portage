@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/dateutils/dateutils-0.2.0.ebuild,v 1.1 2012/04/10 19:22:43 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/dateutils/dateutils-0.2.2.ebuild,v 1.1 2012/07/21 22:20:44 radhermit Exp $
 
 EAPI="4"
 
@@ -13,7 +13,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="app-arch/xz-utils"
+DEPEND="app-arch/xz-utils
+	sys-libs/timezone-data"
 
 src_compile() {
 	emake CFLAGS="${CFLAGS}"

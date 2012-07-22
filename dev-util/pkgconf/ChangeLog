@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/pkgconf
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconf/ChangeLog,v 1.27 2012/07/21 06:35:44 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconf/ChangeLog,v 1.29 2012/07/22 02:52:31 jdhore Exp $
+
+*pkgconf-0.8.2 (22 Jul 2012)
+
+  22 Jul 2012; Jeff Horelick <jdhore@gentoo.org> +pkgconf-0.8.2.ebuild,
+  -files/pkgconf-0.8.1-newm4.patch, -pkgconf-0.8.1.ebuild:
+  Version bump
+
+  22 Jul 2012; Jeff Horelick <jdhore@gentoo.org> metadata.xml:
+  Set myself as the maintainer instead of dev-embedded. I'm the de-facto
+  maintainer anyway.
 
   21 Jul 2012; Jeff Horelick <jdhore@gentoo.org>
   +files/pkgconf-0.8.1-newm4.patch, pkgconf-0.8.1.ebuild:

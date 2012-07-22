@@ -1,6 +1,27 @@
 # ChangeLog for app-emulation/qemu-kvm
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/ChangeLog,v 1.136 2012/07/16 21:07:49 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/ChangeLog,v 1.141 2012/07/22 04:35:00 cardoe Exp $
+
+  22 Jul 2012; Doug Goldstein <cardoe@gentoo.org> qemu-kvm-9999.ebuild:
+  Use packaged sgabios instead of what QEMU ships with.
+
+  21 Jul 2012; Doug Goldstein <cardoe@gentoo.org> qemu-kvm-1.1.1-r1.ebuild,
+  qemu-kvm-9999.ebuild:
+  Use the Gentoo provided seabios and vgabios instead of the shipped versions.
+
+  21 Jul 2012; Doug Goldstein <cardoe@gentoo.org> qemu-kvm-1.1.0.ebuild,
+  qemu-kvm-1.1.1-r1.ebuild, qemu-kvm-9999.ebuild:
+  Fix seabios dependency.
+
+  21 Jul 2012; Doug Goldstein <cardoe@gentoo.org> -qemu-kvm-1.0-r3.ebuild:
+  Remove older version
+
+*qemu-kvm-1.1.1-r1 (21 Jul 2012)
+
+  21 Jul 2012; Doug Goldstein <cardoe@gentoo.org> -qemu-kvm-1.1.1.ebuild,
+  +qemu-kvm-1.1.1-r1.ebuild:
+  Fix issue where compilation would fail for certain softmmu targets. bug
+  #425418
 
 *qemu-kvm-1.1.1 (16 Jul 2012)
 
