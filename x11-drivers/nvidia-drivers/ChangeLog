@@ -1,6 +1,39 @@
 # ChangeLog for x11-drivers/nvidia-drivers
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/ChangeLog,v 1.363 2012/07/22 17:10:06 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/ChangeLog,v 1.368 2012/07/22 22:32:26 cardoe Exp $
+
+  22 Jul 2012; Doug Goldstein <cardoe@gentoo.org> nvidia-drivers-304.22.ebuild,
+  metadata.xml:
+  Make the installation of the X.org driver, OpenGL libraries, XvMC libraries,
+  and VDPAU libraries optional by the X USE flag. bug #413461. Based on work by
+  Amir Aupov <fads93@gmail.com>
+
+  22 Jul 2012; Doug Goldstein <cardoe@gentoo.org> nvidia-drivers-304.22.ebuild,
+  +files/nvidia-drivers-settings.desktop, files/nvidia-autostart.desktop:
+  Update desktop entries to match Ubuntu a little bit which installs
+  nvidia-settings from both the drivers package as well as nvidia-settings
+  package as well. Fix desktop entry deprecation. bug #236260
+
+  22 Jul 2012; Doug Goldstein <cardoe@gentoo.org> nvidia-drivers-304.22.ebuild,
+  +files/nvidia-autostart.desktop:
+  Add nvidia-settings autostart file utilizing XDG support similar to Ubuntu.
+  bug #414725
+
+  22 Jul 2012; Doug Goldstein <cardoe@gentoo.org> nvidia-drivers-304.22.ebuild:
+  Check for HIGHMEM support as its required. bug #356395
+
+*nvidia-drivers-304.22 (22 Jul 2012)
+
+  22 Jul 2012; Doug Goldstein <cardoe@gentoo.org>
+  +files/50nvidia-prelink-blacklist, +nvidia-drivers-304.22.ebuild,
+  +files/nvidia-smi.init:
+  Refactor the ebuild for easier maintenance.
+  Improve kernel feature detection (bug #412707, #286445, #329597).
+  Add init script for SMI to control the fan when X is not running (bug
+  #388725,
+  init script from Stuart Finlayson <stu@santa-li.com>).
+  Block the drivers from being prelinked (bug #420285. prelink script by Norman
+  Back <gentoo@thebacks.co.uk>).
 
   22 Jul 2012; Doug Goldstein <cardoe@gentoo.org>
   nvidia-drivers-96.43.20.ebuild, nvidia-drivers-173.14.34.ebuild,
