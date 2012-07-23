@@ -1,6 +1,20 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.347 2012/07/21 11:57:30 sera Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.351 2012/07/23 14:11:26 scarabeus Exp $
+
+  23 Jul 2012; Tomáš Chvátal <scarabeus@gentoo.org> myspell-r2.eclass:
+  More licenses removal
+
+  23 Jul 2012; Ben de Groot <yngwin@gentoo.org> qt4-r2.eclass:
+  Add array variables for DOCS and HTML_DOCS in qt4-r2.eclass
+
+  23 Jul 2012; Ben de Groot <yngwin@gentoo.org> +l10n.eclass:
+  Initial commit of l10n.eclass
+
+  23 Jul 2012; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  mysql.eclass, mysql-v2.eclass:
+  Sync mysql and mysql-v2 eclasses from the mysql overlay.
+  Simplify ncurses dependency and update inherit to use git-2 eclass.
 
   21 Jul 2012; Ralph Sennhauser <sera@gentoo.org> java-pkg-2.eclass:
   Convert documentation to eclass-manpages.
