@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.10.2-r2.ebuild,v 1.11 2012/05/29 15:45:00 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.10.2-r2.ebuild,v 1.13 2012/07/24 14:01:45 yngwin Exp $
 
 EAPI=3
 
@@ -66,6 +66,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.10.0-buggy_gradients.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${P}-qt-surface.patch
+	epatch_user
 
 	# Slightly messed build system YAY
 	if [[ ${PV} == *9999* ]]; then
