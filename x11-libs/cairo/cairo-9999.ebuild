@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-9999.ebuild,v 1.20 2012/07/14 20:01:53 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-9999.ebuild,v 1.21 2012/07/25 08:44:33 yngwin Exp $
 
 EAPI=4
 
@@ -74,6 +74,9 @@ REQUIRED_USE="
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.8.8-interix.patch
+	epatch "${FILESDIR}"/${PN}-1.10.2-qt-surface.patch
+	epatch "${FILESDIR}"/${PN}-respect-fontconfig.patch
+	epatch_user
 
 	# Slightly messed build system YAY
 	if [[ ${PV} == *9999* ]]; then
