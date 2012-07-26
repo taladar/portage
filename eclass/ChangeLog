@@ -1,6 +1,18 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.353 2012/07/24 19:22:22 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.356 2012/07/26 16:14:47 grobian Exp $
+
+  26 Jul 2012; Fabian Groffen <grobian@gentoo.org>
+  +ELT-patches/sol2-ltmain/2.4.2, libtool.eclass:
+  elt-patches: add Solaris no de-deplication patch to fix built C++ objects
+  from aborting when an exception is thrown
+
+  26 Jul 2012; <swift@gentoo.org> selinux-policy-2.eclass:
+  Use warnings for SELinux failures, not errors, since the failure is not fatal
+  for a system
+
+  26 Jul 2012; Ben de Groot <yngwin@gentoo.org> l10n.eclass:
+  Remove ambiguous wording
 
   24 Jul 2012; Fabian Groffen <grobian@gentoo.org> autotools.eclass:
   _elibtoolize: properly set LIBTOOLIZE in case glibtoolize exists in the
@@ -667,10 +679,10 @@
   New eclass.
 
   13 Mar 2012; Ralph Sennhauser <sera@gentoo.org> java-utils-2.eclass:
-  Add JAVA_PKG_WANT_BUILD_VM to allow limiting build VM by VM handle. The main 
-  aim is to allow respecting the system VM, if possible, for a subset of VMs 
+  Add JAVA_PKG_WANT_BUILD_VM to allow limiting build VM by VM handle. The main
+  aim is to allow respecting the system VM, if possible, for a subset of VMs
   provided by the jdk virtuals.
-  Thanks to Vlastimil Babka <caster@gentoo.org> for contributing the variable 
+  Thanks to Vlastimil Babka <caster@gentoo.org> for contributing the variable
   name and review.
 
   10 Mar 2012; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
