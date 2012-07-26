@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gimp-gmic/gimp-gmic-1.5.1.4.ebuild,v 1.1 2012/05/30 06:08:48 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gimp-gmic/gimp-gmic-1.5.1.7.ebuild,v 1.1 2012/07/26 02:25:35 radhermit Exp $
 
 EAPI="4"
 

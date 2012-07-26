@@ -1,5 +1,5 @@
---- gmic-1.5.1.4/src/Makefile
-+++ gmic-1.5.1.4/src/Makefile
+--- gmic-1.5.1.7/src/Makefile
++++ gmic-1.5.1.7/src/Makefile
 @@ -89,7 +89,7 @@
  
  # Flags that are mandatory to compile 'gmic'.
@@ -26,21 +26,23 @@
  
  # Flags to enable image display, using X11
  # (keep /usr/ dirname here since X11 is located in /usr/ on Mac too).
-@@ -165,12 +157,7 @@
+@@ -164,14 +156,8 @@
+ # Flags to enable native support of webcams, using the OpenCV library.
  # This requires the presence of the OpenCV include and library files.
  # (package 'libcv3-2-dev' on Debian).
- OPENCV_CFLAGS = -Dcimg_use_opencv -I$(USR)/include -I$(USR)/include/opencv
 -ifeq ($(OS),Darwin)
- OPENCV_LDFLAGS = `pkg-config opencv --libs`   # Use this for OpenCV 2.2.0 !
+ OPENCV_CFLAGS = -Dcimg_use_opencv -I$(USR)/include -I$(USR)/include/opencv
+ OPENCV_LDFLAGS = `pkg-config opencv --libs`   #-> Use this for OpenCV 2.2.0 !
 -else
+-OPENCV_CFLAGS = -Dcimg_use_opencv -I$(USR)/include -I$(USR)/include/opencv
 -OPENCV_LDFLAGS = -lcv -lhighgui
--# OPENCV_LDFLAGS = -lopencv_core -lopencv_highgui   # Use this for OpenCV 2.2.0 !
+-# OPENCV_LDFLAGS = -lopencv_core -lopencv_highgui   #-> Use this for OpenCV 2.2.0 !
 -endif
  
  # Flags to enable native support of most classical image file formats, using the GraphicsMagick++ library.
  # This requires the presence of the GraphicsMagick++ include and library files.
-@@ -215,11 +202,11 @@
- 	           $(EXR_LDFLAGS) $(FFTW_LDFLAGS) $(OPENCV_LDFLAGS) # $(FFMPEG_LDFLAGS) $(XSHM_LDFLAGS) # $(MAGICK_LDFLAGS)
+@@ -216,11 +202,11 @@
+ 	           $(EXR_LDFLAGS) $(FFTW_LDFLAGS) # $(OPENCV_LDFLAGS) $(FFMPEG_LDFLAGS) $(XSHM_LDFLAGS) # $(MAGICK_LDFLAGS)
  
  CUST_UNIX_CFLAGS = $(MANDATORY_CFLAGS) $(X11_CFLAGS) $(XSHM_CFLAGS) $(PNG_CFLAGS) \
 -                   $(JPEG_CFLAGS) $(TIFF_CFLAGS) $(MINC2_CFLAGS) $(ZLIB_CFLAGS) \
@@ -55,7 +57,7 @@
  
  DEBUG_UNIX_CFLAGS = $(MANDATORY_CFLAGS) $(DEBUG_CFLAGS) $(X11_CFLAGS) $(XSHM_CFLAGS) $(PNG_CFLAGS) \
                      $(JPEG_CFLAGS) $(TIFF_CFLAGS) $(ZLIB_CFLAGS) $(FFTW_CFLAGS) \
-@@ -245,7 +232,7 @@
+@@ -246,7 +232,7 @@
  STD_WINDOWS_LDFLAGS = $(MANDATORY_LDFLAGS) $(GDI32_LDFLAGS) $(ZLIB_LDFLAGS) $(PNG_LDFLAGS) $(JPEG_LDFLAGS) $(FFTW_LDFLAGS)
  
  STD_GIMP_CFLAGS = -Dgmic_build -Dcimg_display=0 -Dcimg_use_rng -I$(USR)/include $(FFTW_CFLAGS) $(PNG_CFLAGS) $(ZLIB_CFLAGS) ${IS_BETA_CFLAGS}
@@ -64,7 +66,7 @@
  ifeq ($(OS),MINGW32_NT-5.1)
  STD_GIMP_LDFLAGS += -mwindows
  endif
-@@ -291,10 +278,10 @@
+@@ -289,10 +275,10 @@
  endif
  
  gimp:
@@ -77,7 +79,7 @@
  
  zart: lib
  ifneq ($(OS),Darwin)
-@@ -311,10 +298,10 @@
+@@ -309,10 +295,10 @@
  	$(MAKE) "CFLAGS+=$(DEBUG_UNIX_CFLAGS)" "LDFLAGS+=$(DEBUG_UNIX_LDFLAGS)" gmic_minimal
  
  linux:
@@ -90,7 +92,7 @@
  
  solaris:
  	$(MAKE) "CFLAGS=$(STD_UNIX_CFLAGS) $(OPT_CFLAGS)" "LDFLAGS=$(STD_UNIX_LDFLAGS) -R$(USR)/X11R6/lib -lrt -lnsl -lsocket" "STRIP_EXE=1" gmic_gmic
-@@ -344,7 +331,6 @@
+@@ -342,7 +328,6 @@
  	$(CC) -o gmic_gimp.o -c gmic.cpp -Dgmic_gimp -Dgmic_minimal -Dgmic_float $(CFLAGS)
  gmic_gimp : gmic_gimp.o gmic_gimp.cpp
  	$(CC) -o gmic_gimp gmic_gimp.cpp gmic_gimp.o `gimptool-2.0$(EXE) --cflags` $(CFLAGS) `gimptool-2.0$(EXE) --libs` $(LDFLAGS)
@@ -98,7 +100,7 @@
  
  gmic_minimal: gmic.cpp
  	$(CC) -o gmic gmic.cpp -Dgmic_minimal -Dgmic_float -Dgmic_main $(CFLAGS) $(LDFLAGS)
-@@ -369,7 +355,6 @@
+@@ -367,7 +352,6 @@
  	$(CC) -o gmic_double.o -c gmic.cpp -Dgmic_separate_compilation -Dgmic_double $(CFLAGS)
  gmic_gmic: gmic.cpp gmic_bool.o gmic_uchar.o gmic_char.o gmic_ushort.o gmic_short.o gmic_uint.o gmic_int.o gmic_float.o gmic_double.o gmic_def.h
  	$(CC) -o gmic gmic.cpp -Dgmic_separate_compilation -Dgmic_main $(CFLAGS) gmic_bool.o gmic_uchar.o gmic_char.o gmic_ushort.o gmic_short.o gmic_uint.o gmic_int.o gmic_float.o gmic_double.o $(LDFLAGS)
