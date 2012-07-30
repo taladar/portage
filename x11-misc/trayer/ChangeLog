@@ -1,6 +1,13 @@
 # ChangeLog for x11-misc/trayer
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/trayer/ChangeLog,v 1.27 2012/05/08 15:41:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/trayer/ChangeLog,v 1.29 2012/07/29 17:52:55 jer Exp $
+
+  29 Jul 2012; Jeroen Roovers <jer@gentoo.org> -trayer-1.0.ebuild:
+  Old.
+
+  29 Jul 2012; Raúl Porcel <armin76@gentoo.org> trayer-1.0.ebuild,
+  trayer-1.0-r1.ebuild:
+  Drop sparc keywords
 
   08 May 2012; Brent Baude <ranger@gentoo.org> trayer-1.0-r1.ebuild:
   Marking trayer-1.0-r1 ppc64 for bug 414305
