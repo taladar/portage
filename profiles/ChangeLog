@@ -1,10 +1,25 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6855 2012/07/31 01:40:16 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6860 2012/07/31 16:23:41 grobian Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  31 Jul 2012; Fabian Groffen <grobian@gentoo.org> profiles.desc:
+  Add Mac OS X Mountain Lion (10.8) profiles
+
+  31 Jul 2012; Anthony G. Basile <blueness@gentoo.org> package.mask:
+  Removing mask on =net-misc/curl-7.27.0, its off the tree, bug #428696
+
+  31 Jul 2012; Julian Ospald <hasufell@gentoo.org> package.mask:
+  masking =net-misc/curl-7.27.0 wrt bug #428696
+
+  31 Jul 2012; Andreas K. Huettel <dilfridge@gentoo.org> package.mask:
+  Mask virtuoso-6.1.5 because of general brokenness
+
+  31 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Lastrite dev-util/pkg-config-lite wrt #425292
 
   31 Jul 2012; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
   Mask new freeipmi betas.
