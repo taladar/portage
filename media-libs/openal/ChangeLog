@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/openal
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.150 2012/05/15 13:52:18 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.153 2012/07/30 20:16:50 ssuominen Exp $
+
+*openal-1.14 (30 Jul 2012)
+
+  30 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> +openal-1.14.ebuild,
+  metadata.xml:
+  Version bump wrt #412679 by Rafał Mużyło. New USE flag for building 
+  and installing the FFmpeg based `alstream` example application.
+
+  30 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> -openal-1.11.753.ebuild,
+  -openal-1.12.854.ebuild:
+  old
 
   15 May 2012; Alexis Ballier <aballier@gentoo.org> openal-1.13.ebuild:
   keyword ~amd64-fbsd
