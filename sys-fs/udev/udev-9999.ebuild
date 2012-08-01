@@ -1,74 +1,73 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.98 2012/05/04 19:09:16 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.99 2012/08/01 17:13:47 williamh Exp $
 
 EAPI=4
 
-KV_min=2.6.34
-# patchversion=1
-udev_rules_md5=ebc2cf422aa9e46cf7d9a555670412ba
+KV_min=2.6.39
 
-EGIT_REPO_URI="git://git.kernel.org/pub/scm/linux/hotplug/udev.git"
+inherit autotools eutils linux-info
 
-[[ ${PV} == 9999 ]] && vcs="git-2 autotools"
-inherit ${vcs} eutils flag-o-matic multilib toolchain-funcs linux-info systemd libtool
-
-if [[ ${PV} != 9999 ]]
+if [[ ${PV} = 9999* ]]
 then
+	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
+	inherit git-2
+else
+	patchversion=1
+	SRC_URI="http://www.freedesktop.org/software/systemd/systemd-${PV}.tar.xz"
+	if [[ -n "${patchversion}" ]]
+		then
+				SRC_URI="${SRC_URI}
+					mirror://gentoo/${P}-patches-${patchversion}.tar.bz2"
+			fi
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
-	SRC_URI="mirror://kernel/linux/utils/kernel/hotplug/${P}.tar.bz2"
-	if [[ -n ${patchversion} ]]
-	then
-		patchset=${P}-patchset-${patchversion}
-		SRC_URI="${SRC_URI} mirror://gentoo/${patchset}.tar.bz2"
-	fi
 fi
 
 DESCRIPTION="Linux dynamic and persistent device naming support (aka userspace devfs)"
-HOMEPAGE="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev/udev.html http://git.kernel.org/?p=linux/hotplug/udev.git;a=summary"
+HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
 
-LICENSE="GPL-2"
+LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
-IUSE="build selinux debug +rule_generator hwdb gudev introspection
-	keymap floppy doc static-libs +openrc"
+IUSE="doc gudev hwdb introspection keymap +openrc selinux static-libs"
 
-COMMON_DEPEND="selinux? ( sys-libs/libselinux )
-	gudev? ( dev-libs/glib:2 )
+RESTRICT="test"
+
+COMMON_DEPEND="gudev? ( dev-libs/glib:2 )
 	introspection? ( dev-libs/gobject-introspection )
+	selinux? ( sys-libs/libselinux )
 	>=sys-apps/kmod-5
 	>=sys-apps/util-linux-2.20
 	!<sys-libs/glibc-2.10"
 
 DEPEND="${COMMON_DEPEND}
-	keymap? ( dev-util/gperf )
+	dev-util/gperf
+	>=dev-util/intltool-0.40.0
 	virtual/pkgconfig
 	virtual/os-headers
-	!<sys-kernel/linux-headers-2.6.34"
-
-if [[ $PV == 9999 ]]
-then
-	RESTRICT="test? ( userpriv )"
-	IUSE="${IUSE} test"
-	DEPEND="${DEPEND}
-		dev-util/gtk-doc
-		test? ( app-text/tree )"
-else
-	DEPEND="${DEPEND}
+	!<sys-kernel/linux-headers-${KV_min}
 	doc? ( dev-util/gtk-doc )"
+
+if [[ ${PV} = 9999* ]]
+then
+	DEPEND="${DEPEND}
+		app-text/docbook-xsl-stylesheets
+		dev-libs/libxslt"
 fi
 
 RDEPEND="${COMMON_DEPEND}
 	hwdb? ( sys-apps/hwids )
-	openrc? ( >=sys-fs/udev-init-scripts-10
+	openrc? ( >=sys-fs/udev-init-scripts-14
 		!<sys-apps/openrc-0.9.9 )
 	!sys-apps/coldplug
 	!<sys-fs/lvm2-2.02.45
 	!sys-fs/device-mapper
-	!<sys-fs/udev-init-scripts-10
+	!<sys-fs/udev-init-scripts-14
 	!<sys-kernel/dracut-017-r1
 	!<sys-kernel/genkernel-3.4.25"
 
-udev_check_KV()
+S="${WORKDIR}/systemd-${PV}"
+
+check_KV()
 {
 	if kernel_is lt ${KV_min//./ }
 	then
@@ -77,43 +76,52 @@ udev_check_KV()
 	return 0
 }
 
+check_default_rules()
+{
+	# Make sure there are no sudden changes to upstream rules file
+	# (more for my own needs than anything else ...)
+	local udev_rules_md5=18843fc4a8dd1d8074b98a583454cb9e
+	MD5=$(md5sum < "${S}/rules/50-udev-default.rules")
+	MD5=${MD5/  -/}
+	if [[ ${MD5} != ${udev_rules_md5} ]]
+	then
+		eerror "50-udev-default.rules has been updated, please validate!"
+		eerror "md5sum: ${MD5}"
+		die "50-udev-default.rules has been updated, please validate!"
+	fi
+}
+
 pkg_setup()
 {
 	# required kernel options
-	CONFIG_CHECK="~BLK_DEV_BSG ~DEVTMPFS ~HOTPLUG ~INOTIFY_USER ~NET ~PROC_FS
-		~SIGNALFD ~SYSFS
-		~!IDE ~!SYSFS_DEPRECATED ~!SYSFS_DEPRECATED_V2"
+	CONFIG_CHECK="~DEVTMPFS"
+	ERROR_DEVTMPFS="DEVTMPFS is not set in this kernel. Udev will not run."
 
 	linux-info_pkg_setup
 
-	# always print kernel version requirements
-	ewarn
-	ewarn "${P} does not support Linux kernel before version ${KV_min}!"
-
-	if ! udev_check_KV
+	if ! check_KV
 	then
 		eerror "Your kernel version (${KV_FULL}) is too old to run ${P}"
+		eerror "It must be at least ${KV_min}!"
 	fi
 
 	KV_FULL_SRC=${KV_FULL}
 	get_running_version
-	if ! udev_check_KV
+	if ! check_KV
 	then
 		eerror
-		eerror "udev cannot be restarted after emerging,"
-		eerror "as your running kernel version (${KV_FULL}) is too old."
-		eerror "You really need to use a newer kernel after a reboot!"
-		NO_RESTART=1
+		eerror "Your running kernel version (${KV_FULL}) is too old"
+		eerror "for this version of udev."
+		eerror "You must upgrade your kernel or downgrade udev."
 	fi
 }
 
 src_prepare()
 {
 	# backport some patches
-	if [[ -n ${patchset} ]]
+	if [[ -n "${patchversion}" ]]
 	then
-		EPATCH_SOURCE="${WORKDIR}"/${patchset} EPATCH_SUFFIX=patch \
-			EPATCH_FORCE=yes epatch
+		EPATCH_SUFFIX=patch EPATCH_FORCE=yes epatch
 	fi
 
 	# change rules back to group uucp instead of dialout for now
@@ -121,121 +129,181 @@ src_prepare()
 		-i rules/*.rules \
 	|| die "failed to change group dialout to uucp"
 
-	if [[ ! -e configure ]]
+	if [ ! -e configure ]
 	then
-		gtkdocize --copy || die "gtkdocize failed"
+		if use doc
+		then
+			gtkdocize --docdir docs || die "gtkdocize failed"
+		else
+			echo 'EXTRA_DIST =' > docs/gtk-doc.make
+		fi
 		eautoreconf
 	else
-		# Make sure there are no sudden changes to upstream rules file
-		# (more for my own needs than anything else ...)
-		MD5=$(md5sum < "${S}/rules/50-udev-default.rules")
-		MD5=${MD5/  -/}
-		if [[ ${MD5} != ${udev_rules_md5} ]]
-		then
-			eerror "50-udev-default.rules has been updated, please validate!"
-			eerror "md5sum: ${MD5}"
-			die "50-udev-default.rules has been updated, please validate!"
-		fi
+		check_default_rules
 		elibtoolize
 	fi
 }
 
 src_configure()
 {
-	filter-flags -fprefetch-loop-arrays
-	econf \
-		--libexecdir=/lib \
-		--libdir=/usr/$(get_libdir) \
-		--docdir=/usr/share/doc/${PF} \
-		$(use_enable static-libs static) \
-		$(use_enable doc gtk-doc) \
-		$(use_enable debug) \
-		$(use_enable gudev) \
-		$(use_enable introspection) \
-		$(use_enable keymap) \
-		$(use_enable rule_generator) \
-		$(use_enable floppy) \
-		--with-html-dir=/usr/share/doc/${PF}/html \
-		--with-rootprefix=/ \
-		$(use_with selinux) \
-		--with-usb-ids-path=/usr/share/misc/usb.ids \
-		--with-pci-ids-path=/usr/share/misc/pci.ids \
-		"$(systemd_with_unitdir)"
+	local econf_args
+
+	econf_args=(
+		ac_cv_search_cap_init=
+		ac_cv_header_sys_capability_h=yes
+		DBUS_CFLAGS=' '
+		DBUS_LIBS=' '
+		--docdir=/usr/share/doc/${PF}
+		--libdir=/usr/$(get_libdir)
+		--libexecdir=/usr/lib
+		--with-distro=gentoo
+		--with-html-dir=/usr/share/doc/${PF}/html
+		--with-pci-ids-path=/usr/share/misc/pci.ids
+		--with-usb-ids-path=/usr/share/misc/usb.ids
+		--with-rootprefix=/usr
+		--with-rootlibdir=/usr/$(get_libdir)
+		--disable-acl
+		--disable-audit
+		--disable-coredump
+		--disable-hostnamed
+		--disable-ima
+		--disable-libcryptsetup
+		--disable-localed
+		--disable-logind
+		--disable-nls
+		--disable-pam
+		--disable-quotacheck
+		--disable-readahead
+		--enable-split-usr
+		--disable-tcpwrap
+		--disable-timedated
+		--disable-xz
+		$(use_enable doc gtk-doc)
+		$(use_enable gudev)
+		$(use_enable introspection)
+		$(use_enable keymap)
+		$(use_enable selinux)
+		$(use_enable static-libs static)
+	)
+	econf "${econf_args[@]}"
+}
+
+src_compile()
+{
+	echo 'BUILT_SOURCES: $(BUILT_SOURCES)' > "${T}"/Makefile.extra
+	emake -f Makefile -f "${T}"/Makefile.extra BUILT_SOURCES
+	local targets=(
+		systemd-udevd
+		udevadm
+		libudev.la
+		ata_id
+		cdrom_id
+		collect
+		scsi_id
+		v4l_id
+		accelerometer
+		mtd_probe
+		man/udev.7
+		man/udevadm.8
+		man/systemd-udevd.8
+		man/systemd-udevd.service.8
+	)
+	use keymap && targets+=( keymap )
+	use gudev && targets+=( libgudev-1.0.la )
+
+	emake "${targets[@]}"
+	if use doc
+	then
+		emake -C docs/libudev
+		use gudev && emake -C docs/gudev
+	fi
 }
 
 src_install()
 {
-	emake DESTDIR="${D}" install
+	local lib_LTLIBRARIES=libudev.la \
+		pkgconfiglib_DATA=src/libudev/libudev.pc
 
-	find "${D}" -type f -name '*.la' -exec rm -f {} +
+	local targets=(
+		install-libLTLIBRARIES
+		install-includeHEADERS
+		install-libgudev_includeHEADERS
+		install-binPROGRAMS
+		install-rootlibexecPROGRAMS
+		install-udevlibexecPROGRAMS
+		install-dist_systemunitDATA
+		install-dist_udevconfDATA
+		install-dist_udevhomeSCRIPTS
+		install-dist_udevkeymapDATA
+		install-dist_udevkeymapforcerelDATA
+		install-dist_udevrulesDATA
+		install-girDATA
+		install-man7
+		install-man8
+		install-nodist_systemunitDATA
+		install-pkgconfiglibDATA
+		install-sharepkgconfigDATA
+		install-typelibsDATA
+		install-dist_docDATA
+		udev-confdirs
+		systemd-install-hook
+	)
 
-	dodoc ChangeLog NEWS README TODO
-	use keymap && dodoc src/keymap/README.keymap.txt
+	if use gudev
+	then
+		lib_LTLIBRARIES+=" libgudev-1.0.la"
+		pkgconfiglib_DATA+=" src/gudev/gudev-1.0.pc"
+	fi
 
-	# udevadm is now in /usr/bin.
-	dosym /usr/bin/udevadm /sbin/udevadm
+	# add final values of variables:
+	targets+=(
+		rootlibexec_PROGRAMS=systemd-udevd
+		bin_PROGRAMS=udevadm
+		lib_LTLIBRARIES="${lib_LTLIBRARIES}"
+		MANPAGES="man/udev.7 man/udevadm.8 man/systemd-udevd.service.8"
+		MANPAGES_ALIAS="man/systemd-udevd.8"
+		dist_systemunit_DATA="units/systemd-udevd-control.socket \
+			units/systemd-udevd-kernel.socket"
+		nodist_systemunit_DATA="units/systemd-udevd.service \
+				units/systemd-udev-trigger.service \
+				units/systemd-udev-settle.service"
+		pkgconfiglib_DATA="${pkgconfiglib_DATA}"
+	)
+	emake DESTDIR="${D}" "${targets[@]}"
+	if use doc
+	then
+		emake -C docs/libudev DESTDIR="${D}" install
+		use gudev && emake -C docs/gudev DESTDIR="${D}" install
+	fi
+	dodoc TODO
 
-	# create symlinks for these utilities to /sbin
-	# where multipath-tools expect them to be (Bug #168588)
-	dosym /lib/udev/scsi_id /sbin/scsi_id
+	prune_libtool_files --all
+	rm -f "${D}"/usr/lib/udev/rules.d/99-systemd.rules
+	rm -rf "${D}"/usr/share/doc/${PF}/LICENSE.*
 
-	# Now install rules
-	insinto /lib/udev/rules.d
+	# install gentoo-specific rules
+	insinto /usr/lib/udev/rules.d
 	doins "${FILESDIR}"/40-gentoo.rules
+
+	# install udevadm symlink
+	dosym ../usr/bin/udevadm /sbin/udevadm
 }
 
 pkg_preinst()
 {
 	local htmldir
 	for htmldir in gudev libudev; do
-		if [[ -d ${ROOT}usr/share/gtk-doc/html/${htmldir} ]]; then
+		if [[ -d ${ROOT}usr/share/gtk-doc/html/${htmldir} ]]
+		then
 			rm -rf "${ROOT}"usr/share/gtk-doc/html/${htmldir}
 		fi
-		if [[ -d ${D}/usr/share/doc/${PF}/html/${htmldir} ]]; then
-			dosym /usr/share/doc/${PF}/html/${htmldir} \
+		if [[ -d ${D}/usr/share/doc/${PF}/html/${htmldir} ]]
+		then
+			dosym ../../doc/${PF}/html/${htmldir} \
 				/usr/share/gtk-doc/html/${htmldir}
 		fi
 	done
-}
-
-# See Bug #129204 for a discussion about restarting udevd
-restart_udevd()
-{
-	if [[ ${NO_RESTART} = 1 ]]
-	then
-		ewarn "Not restarting udevd, as your kernel is too old!"
-		return
-	fi
-
-	# need to merge to our system
-	[[ ${ROOT} = / ]] || return
-
-	# check if root of init-process is identical to ours (not in chroot)
-	[[ -r /proc/1/root && /proc/1/root/ -ef /proc/self/root/ ]] || return
-
-	# abort if there is no udevd running
-	[[ -n $(pidof udevd) ]] || return
-
-	# abort if no /run/udev exists
-	[[ -e /run/udev ]] || return
-
-	elog
-	elog "restarting udevd now."
-
-	killall -15 udevd &>/dev/null
-	sleep 1
-	killall -9 udevd &>/dev/null
-
-	/lib/udev/udevd --daemon
-	sleep 3
-	if [[ ! -n $(pidof udevd) ]]
-	then
-		eerror "FATAL: udev died, please check your kernel is"
-		eerror "new enough and configured correctly for ${P}."
-		eerror
-		eerror "Please have a look at this before rebooting."
-		eerror "If in doubt, please downgrade udev back to your old version"
-	fi
+	preserve_old_lib libudev.so.0
 }
 
 # This function determines if a directory is a mount point.
@@ -261,8 +329,6 @@ pkg_postinst()
 		ewarn "else losetup may be confused when looking for unused devices."
 	fi
 
-	restart_udevd
-
 	# people want reminders, I'll give them reminders.  Odds are they will
 	# just ignore them anyway...
 
@@ -275,19 +341,9 @@ pkg_postinst()
 			einfo "Removed unneeded file 64-device-mapper.rules"
 	fi
 
-	# requested in Bug #225033:
-	elog
-	elog "persistent-net assigns fixed names to network devices."
-	elog "If you have problems with the persistent-net rules,"
-	elog "just delete the rules file"
-	elog "\trm ${ROOT}etc/udev/rules.d/70-persistent-net.rules"
-	elog "then reboot."
-	elog
-	elog "This may however number your devices in a different way than they are now."
-
 	ewarn
 	ewarn "If you build an initramfs including udev, then please"
-	ewarn "make sure that the /usr/bin/udevadm binary gets included,"
+	ewarn "make sure the /usr/bin/udevadm binary gets included,"
 	ewarn "and your scripts changed to use it,as it replaces the"
 	ewarn "old helper apps udevinfo, udevtrigger, ..."
 
@@ -314,11 +370,28 @@ pkg_postinst()
 		ewarn "experience failures which are very difficult to troubleshoot."
 		ewarn "For a more detailed explanation, see the following URL:"
 		ewarn "http://www.freedesktop.org/wiki/Software/systemd/separate-usr-is-broken"
+		ewarn
+		ewarn "For more information on setting up an initramfs, see the"
+		ewarn "following URL:"
+		ewarn "http://www.gentoo.org/doc/en/initramfs-guide.xml"
 	fi
 
 	ewarn
-	ewarn "The udev-acl functionality has been removed from udev."
-	ewarn "This functionality will appear in a future version of consolekit."
+	ewarn "The udev-acl functionality has been removed from standalone udev."
+	ewarn "If you are using standalone udev, consolekithandles this"
+	ewarn "functionality."
+
+	ewarn
+	ewarn "You need to restart udev as soon as possible to make the upgrade go"
+	ewarn "into affect."
+	ewarn "The method you use to do this depends on your init system."
+
+	ewarn
+	ewarn "Upstream has removed the persistent-net and persistent-cd rules"
+	ewarn "generator. If you need persistent names for these devices,"
+	ewarn "place udev rules for them in ${ROOT}etc/udev/rules.d."
+
+	preserve_old_lib_notify libudev.so.0
 
 	elog
 	elog "For more information on udev on Gentoo, writing udev rules, and"
