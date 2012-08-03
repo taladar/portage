@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.100 2012/08/01 18:56:23 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.101 2012/08/03 00:57:06 williamh Exp $
 
 EAPI=4
 
@@ -13,7 +13,7 @@ then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
 	inherit git-2
 else
-	patchversion=1
+	patchversion=
 	SRC_URI="http://www.freedesktop.org/software/systemd/systemd-${PV}.tar.xz"
 	if [[ -n "${patchversion}" ]]
 		then
@@ -155,8 +155,8 @@ src_configure()
 		DBUS_LIBS=' '
 		--docdir=/usr/share/doc/${PF}
 		--libdir=/usr/$(get_libdir)
-		--libexecdir=/usr/lib
 		--with-distro=gentoo
+		--with-firmware-path=/usr/lib/firmware/updates:/usr/lib/firmware:/lib/firmware/updates:/lib/firmware
 		--with-html-dir=/usr/share/doc/${PF}/html
 		--with-pci-ids-path=/usr/share/misc/pci.ids
 		--with-usb-ids-path=/usr/share/misc/usb.ids
