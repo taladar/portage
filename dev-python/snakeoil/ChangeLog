@@ -1,6 +1,18 @@
 # ChangeLog for dev-python/snakeoil
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/snakeoil/ChangeLog,v 1.50 2011/12/14 10:31:38 ferringb Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/snakeoil/ChangeLog,v 1.52 2012/08/05 05:43:28 ferringb Exp $
+
+  05 Aug 2012; Brian Harring <ferringb@gentoo.org> snakeoil-0.5.ebuild:
+  Update the python dep to >=2.5 && not 3.0
+
+*snakeoil-0.5 (05 Aug 2012)
+
+  05 Aug 2012; Brian Harring <ferringb@gentoo.org> -snakeoil-0.4.5.ebuild,
+  +snakeoil-0.5.ebuild:
+  New version including whirlpool/sha512 support, parallelization of
+  compression,
+  and generally a boatload of functionality that should've been released
+  earlier.
 
 *snakeoil-0.4.6 (14 Dec 2011)
 
@@ -248,4 +260,3 @@
   06 Jun 2007; Marien Zwart <marienz@gentoo.org> +metadata.xml,
   +snakeoil-0.1_rc2.ebuild:
   New ebuild.
-
