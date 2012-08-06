@@ -1,6 +1,15 @@
 # ChangeLog for net-analyzer/netperf
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netperf/ChangeLog,v 1.55 2012/07/03 20:34:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netperf/ChangeLog,v 1.57 2012/08/05 22:52:18 jer Exp $
+
+  05 Aug 2012; Jeroen Roovers <jer@gentoo.org>
+  -files/netperf-2.4.0-gcc41.patch, -netperf-2.4.4-r1.ebuild,
+  -netperf-2.4.5-r2.ebuild, -files/netperf-2.4.5-netserver.patch,
+  -files/netperf-CVE-2007-1444.patch:
+  Old.
+
+  05 Aug 2012; Raúl Porcel <armin76@gentoo.org> netperf-2.5.0-r1.ebuild:
+  alpha/ia64/sparc stable wrt #419221
 
   03 Jul 2012; Jeroen Roovers <jer@gentoo.org> netperf-2.5.0-r1.ebuild:
   Stable for HPPA (bug #419221).
