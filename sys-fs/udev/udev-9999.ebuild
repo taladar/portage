@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.103 2012/08/04 16:09:32 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.105 2012/08/08 04:38:08 tetromino Exp $
 
 EAPI=4
 
@@ -33,7 +33,7 @@ IUSE="doc gudev hwdb introspection keymap +openrc selinux static-libs"
 RESTRICT="test"
 
 COMMON_DEPEND="gudev? ( dev-libs/glib:2 )
-	introspection? ( dev-libs/gobject-introspection )
+	introspection? ( >=dev-libs/gobject-introspection-1.31.1 )
 	selinux? ( sys-libs/libselinux )
 	>=sys-apps/kmod-5
 	>=sys-apps/util-linux-2.20
@@ -56,12 +56,12 @@ fi
 
 RDEPEND="${COMMON_DEPEND}
 	hwdb? ( sys-apps/hwids )
-	openrc? ( >=sys-fs/udev-init-scripts-14
+	openrc? ( >=sys-fs/udev-init-scripts-15
 		!<sys-apps/openrc-0.9.9 )
 	!sys-apps/coldplug
 	!<sys-fs/lvm2-2.02.45
 	!sys-fs/device-mapper
-	!<sys-fs/udev-init-scripts-14
+	!<sys-fs/udev-init-scripts-15
 	!<sys-kernel/dracut-017-r1
 	!<sys-kernel/genkernel-3.4.25"
 
@@ -159,9 +159,9 @@ src_configure()
 		--with-firmware-path=/usr/lib/firmware/updates:/usr/lib/firmware:/lib/firmware/updates:/lib/firmware
 		--with-html-dir=/usr/share/doc/${PF}/html
 		--with-pci-ids-path=/usr/share/misc/pci.ids
+		--with-rootlibdir=/$(get_libdir)
+		--with-rootprefix=
 		--with-usb-ids-path=/usr/share/misc/usb.ids
-		--with-rootprefix=/usr
-		--with-rootlibdir=/usr/$(get_libdir)
 		--disable-acl
 		--disable-audit
 		--disable-coredump
@@ -231,7 +231,6 @@ src_install()
 		install-binPROGRAMS
 		install-rootlibexecPROGRAMS
 		install-udevlibexecPROGRAMS
-		install-dist_systemunitDATA
 		install-dist_udevconfDATA
 		install-dist_udevhomeSCRIPTS
 		install-dist_udevkeymapDATA
@@ -240,13 +239,11 @@ src_install()
 		install-girDATA
 		install-man7
 		install-man8
-		install-nodist_systemunitDATA
 		install-pkgconfiglibDATA
 		install-sharepkgconfigDATA
 		install-typelibsDATA
 		install-dist_docDATA
 		udev-confdirs
-		systemd-install-hook
 	)
 
 	if use gudev
@@ -262,11 +259,6 @@ src_install()
 		lib_LTLIBRARIES="${lib_LTLIBRARIES}"
 		MANPAGES="man/udev.7 man/udevadm.8 man/systemd-udevd.service.8"
 		MANPAGES_ALIAS="man/systemd-udevd.8"
-		dist_systemunit_DATA="units/systemd-udevd-control.socket \
-			units/systemd-udevd-kernel.socket"
-		nodist_systemunit_DATA="units/systemd-udevd.service \
-				units/systemd-udev-trigger.service \
-				units/systemd-udev-settle.service"
 		pkgconfiglib_DATA="${pkgconfiglib_DATA}"
 	)
 	emake DESTDIR="${D}" "${targets[@]}"
@@ -278,11 +270,11 @@ src_install()
 	dodoc TODO
 
 	prune_libtool_files --all
-	rm -f "${D}"/usr/lib/udev/rules.d/99-systemd.rules
+	rm -f "${D}"/lib/udev/rules.d/99-systemd.rules
 	rm -rf "${D}"/usr/share/doc/${PF}/LICENSE.*
 
 	# install gentoo-specific rules
-	insinto /usr/lib/udev/rules.d
+	insinto /lib/udev/rules.d
 	doins "${FILESDIR}"/40-gentoo.rules
 
 	# install udevadm symlink
@@ -380,17 +372,6 @@ pkg_postinst()
 	ewarn "The udev-acl functionality has been removed from standalone udev."
 	ewarn "If you are using standalone udev, consolekithandles this"
 	ewarn "functionality."
-
-	if [[ -d ${ROOT}lib/udev ]]
-	then
-		ewarn
-		ewarn "This version of udev moves the files that were installed in"
-		ewarn "/lib/udev to /usr/lib/udev."
-		ewarn "We include a backward compatibility patch for gentoo to"
-		ewarn "allow the rules in /lib/udev/rules.d to be read. However,"
-		ewarn "bugs should be filed against packages that are installing"
-	ewarn "files in /lib/udev so they can be fixed."
-	fi
 
 	ewarn
 	ewarn "You need to restart udev as soon as possible to make the upgrade go"
