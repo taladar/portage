@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/getmail/getmail-4.30.1.ebuild,v 1.1 2012/06/22 04:49:39 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/getmail/getmail-4.33.0.ebuild,v 1.1 2012/08/09 04:05:06 radhermit Exp $
 
 EAPI="4"
 

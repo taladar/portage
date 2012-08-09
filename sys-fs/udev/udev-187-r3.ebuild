@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-187-r2.ebuild,v 1.3 2012/08/08 07:55:00 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-187-r3.ebuild,v 1.1 2012/08/08 22:54:46 williamh Exp $
 
 EAPI=4
 
@@ -13,7 +13,7 @@ then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
 	inherit git-2
 else
-	patchversion=
+	patchversion=2
 	SRC_URI="http://www.freedesktop.org/software/systemd/systemd-${PV}.tar.xz"
 	if [[ -n "${patchversion}" ]]
 		then
@@ -56,12 +56,12 @@ fi
 
 RDEPEND="${COMMON_DEPEND}
 	hwdb? ( sys-apps/hwids )
-	openrc? ( >=sys-fs/udev-init-scripts-15
+	openrc? ( >=sys-fs/udev-init-scripts-16
 		!<sys-apps/openrc-0.9.9 )
 	!sys-apps/coldplug
 	!<sys-fs/lvm2-2.02.45
 	!sys-fs/device-mapper
-	!<sys-fs/udev-init-scripts-15
+	!<sys-fs/udev-init-scripts-16
 	!<sys-kernel/dracut-017-r1
 	!<sys-kernel/genkernel-3.4.25"
 
@@ -159,8 +159,8 @@ src_configure()
 		--with-firmware-path=/usr/lib/firmware/updates:/usr/lib/firmware:/lib/firmware/updates:/lib/firmware
 		--with-html-dir=/usr/share/doc/${PF}/html
 		--with-pci-ids-path=/usr/share/misc/pci.ids
-		--with-rootlibdir=/$(get_libdir)
-		--with-rootprefix=
+		--with-rootlibdir=/usr/$(get_libdir)
+		--with-rootprefix=/usr
 		--with-usb-ids-path=/usr/share/misc/usb.ids
 		--disable-acl
 		--disable-audit
@@ -270,11 +270,11 @@ src_install()
 	dodoc TODO
 
 	prune_libtool_files --all
-	rm -f "${D}"/lib/udev/rules.d/99-systemd.rules
+	rm -f "${D}"/usr/lib/udev/rules.d/99-systemd.rules
 	rm -rf "${D}"/usr/share/doc/${PF}/LICENSE.*
 
 	# install gentoo-specific rules
-	insinto /lib/udev/rules.d
+	insinto /usr/lib/udev/rules.d
 	doins "${FILESDIR}"/40-gentoo.rules
 
 	# install udevadm symlink
@@ -372,6 +372,17 @@ pkg_postinst()
 	ewarn "The udev-acl functionality has been removed from standalone udev."
 	ewarn "If you are using standalone udev, consolekit handles this"
 	ewarn "functionality."
+
+	if [[ -d ${ROOT}lib/udev ]]
+	then
+		ewarn
+		ewarn "This version of udev moves the files that were installed in"
+		ewarn "/lib/udev to /usr/lib/udev."
+		ewarn "We include a backward compatibility patch for gentoo to"
+		ewarn "allow the rules in /lib/udev/rules.d to be read. However,"
+		ewarn "bugs should be filed against packages that are installing"
+	ewarn "files in /lib/udev so they can be fixed."
+	fi
 
 	ewarn
 	ewarn "You need to restart udev as soon as possible to make the upgrade go"
