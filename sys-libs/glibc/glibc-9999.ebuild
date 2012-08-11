@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-9999.ebuild,v 1.10 2012/07/03 20:07:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-9999.ebuild,v 1.12 2012/08/11 16:29:11 vapier Exp $
 
 inherit eutils versionator libtool toolchain-funcs flag-o-matic gnuconfig multilib unpacker multiprocessing
 
@@ -18,8 +18,8 @@ BRANCH_UPDATE=""
 SNAP_VER=""
 case ${PV} in
 9999*)
-	EGIT_REPO_URIS=( "git://sourceware.org/git/glibc.git" "git://sourceware.org/git/glibc-ports.git" )
-	EGIT_SOURCEDIRS=( "${S}" "${S}/ports" )
+	EGIT_REPO_URIS="git://sourceware.org/git/glibc.git"
+	EGIT_SOURCEDIRS="${S}"
 	inherit git-2
 	;;
 *_p*)
@@ -62,7 +62,7 @@ if [[ ${CTARGET} == ${CHOST} ]] ; then
 	fi
 fi
 
-[[ ${CTARGET} == hppa* ]] && NPTL_KERN_VER=${NPTL_KERN_VER/2.6.9/2.6.20}
+[[ ${CTARGET} == hppa* ]] && NPTL_KERN_VER=${NPTL_KERN_VER/2.6.16/2.6.20}
 
 is_crosscompile() {
 	[[ ${CHOST} != ${CTARGET} ]]
