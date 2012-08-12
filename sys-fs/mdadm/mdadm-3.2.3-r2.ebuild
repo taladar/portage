@@ -1,9 +1,9 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/mdadm/mdadm-3.2.5.ebuild,v 1.1 2012/05/24 04:27:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/mdadm/mdadm-3.2.3-r2.ebuild,v 1.3 2012/08/12 15:40:26 ssuominen Exp $
 
-EAPI="4"
-inherit eutils flag-o-matic toolchain-funcs
+EAPI="2"
+inherit multilib eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="A useful tool for running RAID systems - it can be used as a replacement for the raidtools"
 HOMEPAGE="http://neil.brown.name/blog/mdadm"
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
 IUSE="static"
 
-DEPEND=""
+DEPEND="virtual/pkgconfig"
 RDEPEND="!<sys-apps/baselayout-2
 	>=sys-apps/util-linux-2.16"
 
@@ -24,7 +24,11 @@ RESTRICT="test"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.2.1-mdassemble.patch #211426
-	sed -i 's:/run/mdadm:/var/run/mdadm:g' *.[ch] Makefile || die
+	epatch "${FILESDIR}"/${PN}-3.2.3-segv-assemble.patch #211426
+
+	local udevdir="$($(tc-getPKG_CONFIG) --variable=udevdir udev)"
+	has_version sys-fs/udev && udevdir="$($(tc-getPKG_CONFIG) --variable=udevdir udev)"
+	sed -i -e "s:/lib/udev:${udevdir}:" Makefile || die #430900
 }
 
 mdadm_emake() {
@@ -32,7 +36,8 @@ mdadm_emake() {
 		CC="$(tc-getCC)" \
 		CWFLAGS="-Wall" \
 		CXFLAGS="${CFLAGS}" \
-		"$@"
+		"$@" \
+		|| die
 }
 
 src_compile() {
@@ -47,17 +52,17 @@ src_test() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install
+	emake DESTDIR="${D}" install || die
 	into /
-	dosbin mdassemble
+	dosbin mdassemble || die
 	dodoc ChangeLog INSTALL TODO README* ANNOUNCE-${PV}
 
 	insinto /etc
 	newins mdadm.conf-example mdadm.conf
-	newinitd "${FILESDIR}"/mdadm.rc mdadm
-	newconfd "${FILESDIR}"/mdadm.confd mdadm
-	newinitd "${FILESDIR}"/mdraid.rc mdraid
-	newconfd "${FILESDIR}"/mdraid.confd mdraid
+	newinitd "${FILESDIR}"/mdadm.rc mdadm || die
+	newconfd "${FILESDIR}"/mdadm.confd mdadm || die
+	newinitd "${FILESDIR}"/mdraid.rc mdraid || die
+	newconfd "${FILESDIR}"/mdraid.confd mdraid || die
 
 	# do not rely on /lib -> /libXX link
 	sed -i \
