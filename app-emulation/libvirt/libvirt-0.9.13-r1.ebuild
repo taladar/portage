@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/libvirt/libvirt-0.9.13.ebuild,v 1.5 2012/07/19 09:00:51 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/libvirt/libvirt-0.9.13-r1.ebuild,v 1.2 2012/08/13 04:53:10 cardoe Exp $
 
 EAPI=4
 
-#BACKPORTS=1
+BACKPORTS=1
 AUTOTOOLIZE=yes
 
 MY_P="${P/_rc/-rc}"
@@ -25,7 +25,7 @@ else
 	SRC_URI="http://libvirt.org/sources/${MY_P}.tar.gz
 		ftp://libvirt.org/libvirt/${MY_P}.tar.gz
 		${BACKPORTS:+
-			http://dev.gentoo.org/~cardoe/distfiles/${MY_P}-bp-${BACKPORTS}.tar.bz2}"
+			http://dev.gentoo.org/~cardoe/distfiles/${MY_P}-bp-${BACKPORTS}.tar.xz}"
 	KEYWORDS="~amd64 ~x86"
 fi
 S="${WORKDIR}/${P%_rc*}"
@@ -117,7 +117,6 @@ LXC_CONFIG_CHECK="
 	~NAMESPACES
 	~UTS_NS
 	~IPC_NS
-	~USER_NS
 	~PID_NS
 	~NET_NS
 	~DEVPTS_MULTIPLE_INSTANCES
@@ -146,8 +145,17 @@ pkg_setup() {
 	enewgroup qemu 77
 	enewuser qemu 77 -1 -1 qemu kvm
 
+	# Some people used the masked ebuild which was not adding the qemu
+	# user to the kvm group originally. This results in VMs failing to
+	# start for some users. bug #430808
+	egetent group kvm | grep -q qemu
+	if [[ $? -ne 0 ]]; then
+		gpasswd -a qemu kvm
+	fi
+
 	CONFIG_CHECK=""
 	use lxc && CONFIG_CHECK+="${LXC_CONFIG_CHECK}"
+	kernel_is lt 3 5 && use lxc && CONFIG_CHECK+=" ~USER_NS"
 	use macvtap && CONFIG_CHECK+="${MACVTAP}"
 	use virt-network && CONFIG_CHECK+="${VIRTNET_CONFIG_CHECK}"
 	if [[ -n ${CONFIG_CHECK} ]]; then
@@ -159,10 +167,6 @@ src_prepare() {
 	[[ -n ${BACKPORTS} ]] && \
 		EPATCH_FORCE=yes EPATCH_SUFFIX="patch" EPATCH_SOURCE="${S}/patches" \
 			epatch
-
-	epatch \
-		"${FILESDIR}/${P}-qemu-add-rbd-to-whitelist-of-migration-safe-formats.patch" \
-		"${FILESDIR}/${P}-libnl3.patch"
 
 	if [[ ${PV} = *9999* ]]; then
 

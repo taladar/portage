@@ -1,6 +1,41 @@
 # ChangeLog for app-emulation/qemu-kvm
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/ChangeLog,v 1.147 2012/08/06 00:03:12 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/ChangeLog,v 1.154 2012/08/13 00:59:46 cardoe Exp $
+
+  13 Aug 2012; Doug Goldstein <cardoe@gentoo.org> qemu-kvm-1.0.1.ebuild,
+  qemu-kvm-1.0.1-r1.ebuild, qemu-kvm-1.1.1-r1.ebuild, qemu-kvm-1.1.1-r3.ebuild,
+  qemu-kvm-9999.ebuild:
+  Update LICENSE field to match all the files included.
+
+  13 Aug 2012; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
+  Remove unused local USE flag descriptions.
+
+  13 Aug 2012; Doug Goldstein <cardoe@gentoo.org> -qemu-kvm-0.15.1-r1.ebuild:
+  Remove older version
+
+*qemu-kvm-1.1.1-r3 (12 Aug 2012)
+
+  12 Aug 2012; Doug Goldstein <cardoe@gentoo.org> -qemu-kvm-1.1.1-r2.ebuild,
+  +qemu-kvm-1.1.1-r3.ebuild, qemu-kvm-9999.ebuild:
+  Upstreamed fixes for the following: issues with --disable-kvm, glibc 2.16
+  support, USB redir babble, ECHI assert when using isoc transfers. Ebuild
+  fixes for potential issues with audio output selection, mixemu can only be
+  enabled, systemtap can only be enabled.
+
+  12 Aug 2012; Doug Goldstein <cardoe@gentoo.org> qemu-kvm-9999.ebuild:
+  Live ebuild doesn't use BACKPORTS.
+
+*qemu-kvm-1.1.1-r2 (12 Aug 2012)
+
+  12 Aug 2012; Doug Goldstein <cardoe@gentoo.org> +qemu-kvm-1.1.1-r2.ebuild,
+  qemu-kvm-9999.ebuild, metadata.xml:
+  Add support for SystemTAP/DTrace. Add support for audio mixer emulation. More
+  use of REQUIRED_USE to detect problems with the build earlier than dying in
+  src_configure. Clean out old commented out. Remove executable stacks.
+
+  12 Aug 2012; Doug Goldstein <cardoe@gentoo.org> qemu-kvm-9999.ebuild:
+  Switch from QA_PRESTRIPPED to QA_PREBUILT since these files are actually
+  prebuilt so that we prevent QA warnings.
 
   06 Aug 2012; Doug Goldstein <cardoe@gentoo.org> -files/65-gentoo-kvm.rules,
   -files/qemu-kvm-0.12.3-fix-crash-with-sdl.patch,
