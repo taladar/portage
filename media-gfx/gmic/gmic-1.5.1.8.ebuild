@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gmic/gmic-1.5.1.6.ebuild,v 1.1 2012/06/21 21:05:23 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gmic/gmic-1.5.1.8.ebuild,v 1.1 2012/08/17 04:52:31 radhermit Exp $
 
 EAPI="4"
 
@@ -8,12 +8,13 @@ inherit eutils toolchain-funcs bash-completion-r1 flag-o-matic
 
 DESCRIPTION="GREYC's Magic Image Converter"
 HOMEPAGE="http://gmic.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${PN}_${PV}.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/${PN}_${PV}.tar.gz
+	doc? ( http://dev.gentoo.org/~radhermit/dist/gmic_reference-${PV}.pdf.xz )"
 
-LICENSE="CeCILL-2"
+LICENSE="CeCILL-2 FDL-1.3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="ffmpeg fftw graphicsmagick jpeg opencv openexr png tiff X zlib"
+IUSE="doc ffmpeg fftw graphicsmagick jpeg opencv openexr png tiff X zlib"
 
 RDEPEND="
 	ffmpeg? ( virtual/ffmpeg )
@@ -32,12 +33,13 @@ RDEPEND="
 		x11-libs/libXext
 	)
 	zlib? ( sys-libs/zlib )"
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	doc? ( app-arch/xz-utils )"
 
 S=${WORKDIR}/${P}/src
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-makefile.patch
+	epatch "${FILESDIR}"/${PN}-1.5.1.7-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.5.0.7-ffmpeg.patch
 
 	for i in ffmpeg fftw jpeg opencv png tiff zlib ; do
@@ -56,7 +58,7 @@ src_prepare() {
 }
 
 src_compile() {
-	emake AR="$(tc-getAR)" CC="$(tc-getCXX)" custom bashcompletion lib
+	emake AR="$(tc-getAR)" CC="$(tc-getCXX)" custom lib
 }
 
 src_install() {
@@ -68,6 +70,8 @@ src_install() {
 
 	doman ../man/gmic.1.gz
 	dodoc ../README
+
+	use doc && dodoc "${WORKDIR}"/gmic_reference-${PV}.pdf
 
 	newbashcomp gmic_bashcompletion.sh ${PN}
 }
