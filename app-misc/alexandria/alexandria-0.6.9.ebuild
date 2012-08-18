@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/alexandria/alexandria-0.6.7.ebuild,v 1.5 2012/08/16 03:49:27 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/alexandria/alexandria-0.6.9.ebuild,v 1.1 2012/08/18 16:24:48 fauli Exp $
 
-EAPI=2
+EAPI=4
 USE_RUBY="ruby18"
 
 inherit gnome2 ruby-ng
@@ -13,23 +13,26 @@ SRC_URI="mirror://rubyforge/${PN}/${PN}-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~ppc x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="evo"
 
 DOCS="ChangeLog README TODO doc/BUGS doc/cuecat_support.rdoc doc/FAQ doc/HACKING doc/NEWS"
 
 ruby_add_rdepend "
 	>=dev-ruby/ruby-gettext-0.6.1
-	>=dev-ruby/ruby-gnome2-0.16.0
-	>=dev-ruby/ruby-libglade2-0.12.0
-	>=dev-ruby/ruby-gconf2-0.12.0
+	>=dev-ruby/ruby-gtk2-0.90
+	>=dev-ruby/ruby-goocanvas-0.90
+	>=dev-ruby/ruby-gstreamer-0.90
+	>=dev-ruby/ruby-pango-0.90
 	>=dev-ruby/imagesize-0.1.1
 	dev-ruby/hpricot
 	evo? ( >=dev-ruby/revolution-0.5 )"
 
 ruby_add_bdepend "dev-ruby/rake"
 
-DEPEND="${DEPEND} app-text/scrollkeeper"
+DEPEND="${DEPEND}
+	gnome-base/gconf:2
+	app-text/scrollkeeper"
 
 RUBY_PATCHES=(
 	"${FILESDIR}/${PN}-0.6.6-Rakefile.patch"
