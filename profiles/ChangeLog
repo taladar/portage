@@ -1,10 +1,20 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6905 2012/08/18 00:04:58 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.6908 2012/08/19 02:30:02 flameeyes Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  19 Aug 2012; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask www-apache/mod_ap2_snmp for removal.
+
+  19 Aug 2012; Diego E. Pettenò <flameeyes@gentoo.org> base/use.mask,
+  package.mask:
+  Mask prelude for removal.
+
+  18 Aug 2012; Ulrich Müller <ulm@gentoo.org> updates/3Q-2012:
+  Package move iwl*-ucode from net-wireless to sys-firmware, bug 429868.
 
   18 Aug 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.mask:
   Old wine versions were removed.

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/qemu-9999.ebuild,v 1.19 2012/06/10 20:15:57 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/qemu-9999.ebuild,v 1.20 2012/08/18 18:51:35 vapier Exp $
 
 EAPI=4
 
@@ -10,10 +10,10 @@ if [[ ${PV} = *9999* ]]; then
 	GIT_ECLASS="git-2"
 fi
 
-inherit eutils flag-o-matic ${GIT_ECLASS} linux-info toolchain-funcs
+inherit eutils flag-o-matic ${GIT_ECLASS} linux-info toolchain-funcs python
 
 if [[ ${PV} != *9999* ]]; then
-	SRC_URI="http://wiki.qemu.org/download/${P}.tar.gz"
+	SRC_URI="http://wiki.qemu.org/download/${P}.tar.bz2"
 	KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 fi
 
@@ -125,6 +125,8 @@ pkg_setup() {
 	use qemu_softmmu_targets_x86_64 || ewarn "You disabled default target QEMU_SOFTMMU_TARGETS=x86_64"
 
 	use kvm && ewarn "You have enabled USE=kvm feature. Please consider using app-emulation/qemu-kvm"
+
+	python_set_active_version 2
 }
 
 src_prepare() {
