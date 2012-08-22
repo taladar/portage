@@ -1,6 +1,17 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.620 2012/08/19 08:28:43 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.623 2012/08/22 15:01:56 olemarkus Exp $
+
+  22 Aug 2012; Ole Markus With <olemarkus@gentoo.org>
+  files/eblits/src_compile-v1.eblit, files/eblits/src_compile-v2.eblit,
+  files/eblits/src_configure-v53.eblit, files/eblits/src_configure-v54.eblit:
+  Adding more addpredicts, bug 432248
+
+  22 Aug 2012; Michael Weber <xmw@gentoo.org> php-5.3.15.ebuild:
+  ppc stable (bug 427354).
+
+  22 Aug 2012; Agostino Sarubbo <ago@gentoo.org> php-5.4.6.ebuild:
+  Stable for amd64, wrt bug #427024
 
   19 Aug 2012; Ole Markus With <olemarkus@gentoo.org> php-5.3.16-r1.ebuild,
   php-5.4.6-r1.ebuild:
@@ -2734,5 +2745,3 @@
 
   05 Sep 2005; <stuart@gentoo.org> ChangeLog:
   Initial version; replaces older dev-php/* packages
-
-
