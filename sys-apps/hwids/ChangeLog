@@ -1,6 +1,54 @@
 # ChangeLog for sys-apps/hwids
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/hwids/ChangeLog,v 1.17 2012/08/15 14:29:06 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/hwids/ChangeLog,v 1.27 2012/10/08 03:30:23 flameeyes Exp $
+
+*hwids-20121009 (08 Oct 2012)
+
+  08 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> +hwids-20121009.ebuild,
+  -hwids-20120929.ebuild, -hwids-20121001.ebuild:
+  Version bump; remove old.
+
+*hwids-20121001 (03 Oct 2012)
+
+  03 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> +hwids-20121001.ebuild:
+  Version bump.
+
+  02 Oct 2012; Anthony G. Basile <blueness@gentoo.org> hwids-20120922.ebuild:
+  stable arm, bug #436186
+
+*hwids-20120929 (30 Sep 2012)
+
+  30 Sep 2012; Diego E. Pettenò <flameeyes@gentoo.org> +hwids-20120929.ebuild,
+  -hwids-20120926.ebuild:
+  Version bump.
+
+*hwids-20120926 (27 Sep 2012)
+
+  27 Sep 2012; Diego E. Pettenò <flameeyes@gentoo.org> +hwids-20120926.ebuild:
+  Version bump.
+
+  26 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> hwids-20120922.ebuild:
+  amd64/ppc/ppc64/x86 stable wrt #436186
+
+  26 Sep 2012; Jeroen Roovers <jer@gentoo.org> hwids-20120922.ebuild:
+  Stable for HPPA (bug #436186).
+
+*hwids-20120922 (22 Sep 2012)
+
+  22 Sep 2012; Diego E. Pettenò <flameeyes@gentoo.org> +hwids-20120922.ebuild,
+  -hwids-20120916.ebuild:
+  Version bump.
+
+*hwids-20120916 (17 Sep 2012)
+
+  17 Sep 2012; Diego E. Pettenò <flameeyes@gentoo.org> +hwids-20120916.ebuild,
+  -hwids-20120730.ebuild, -hwids-20120815.ebuild, -hwids-20120831.ebuild:
+  Version bump and remove old.
+
+*hwids-20120831 (02 Sep 2012)
+
+  02 Sep 2012; Diego E. Pettenò <flameeyes@gentoo.org> +hwids-20120831.ebuild:
+  Version bump.
 
 *hwids-20120815 (15 Aug 2012)
 

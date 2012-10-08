@@ -1,6 +1,17 @@
 # ChangeLog for dev-java/jffi
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jffi/ChangeLog,v 1.22 2012/05/28 19:33:58 sera Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jffi/ChangeLog,v 1.25 2012/09/25 10:41:34 sera Exp $
+
+*jffi-1.2.5 (25 Sep 2012)
+
+  25 Sep 2012; Ralph Sennhauser <sera@gentoo.org> +jffi-1.2.5.ebuild,
+  +files/jffi-1.2.5_no-werror.patch:
+  Version bump. #431936
+
+  25 Aug 2012; Ian Whyman <thev00d00@gentoo.org> jffi-0.6.0.2.ebuild,
+  jffi-0.6.0.2-r1.ebuild, jffi-0.7_pre20100131.ebuild, jffi-1.0.0.ebuild,
+  jffi-1.0.11.ebuild:
+  Fix build with GCC 4.7 #421501
 
   28 May 2012; Ralph Sennhauser <sera@gentoo.org> jffi-1.2.2.ebuild:
   use https for HOMEPAGE. Reported by Arfrever.

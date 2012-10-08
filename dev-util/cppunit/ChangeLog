@@ -1,6 +1,21 @@
 # ChangeLog for dev-util/cppunit
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cppunit/ChangeLog,v 1.73 2012/08/15 01:37:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cppunit/ChangeLog,v 1.76 2012/09/27 11:05:48 scarabeus Exp $
+
+*cppunit-1.13.1 (27 Sep 2012)
+
+  27 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> +cppunit-1.13.1.ebuild,
+  cppunit-9999.ebuild:
+  Bump to latest version.
+
+  13 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> -cppunit-1.12.1-r1.ebuild,
+  -files/cppunit-1.10.2-asneeded.patch,
+  -files/cppunit-1.12.1-add_missing_include.patch,
+  -files/cppunit-1.12.1-warnings.patch:
+  Punt older keep only latest stable.
+
+  09 Sep 2012; Raúl Porcel <armin76@gentoo.org> cppunit-1.13.0.ebuild:
+  alpha/ia64/sparc stable wrt #431274
 
   15 Aug 2012; Jeroen Roovers <jer@gentoo.org> cppunit-1.13.0.ebuild:
   Stable for HPPA (bug #431274).

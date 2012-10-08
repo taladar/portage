@@ -1,6 +1,26 @@
 # ChangeLog for x11-misc/colord
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/colord/ChangeLog,v 1.33 2012/08/10 19:01:58 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/colord/ChangeLog,v 1.39 2012/10/06 10:00:29 maekke Exp $
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> colord-0.1.21.ebuild:
+  arm stable, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> colord-0.1.21.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> colord-0.1.21.ebuild:
+  x86 stable wrt bug #427544
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> colord-0.1.21.ebuild:
+  Stable for HPPA (bug #427544).
+
+*colord-0.1.23 (30 Sep 2012)
+
+  30 Sep 2012; Pacho Ramos <pacho@gentoo.org> +colord-0.1.23.ebuild:
+  Version bump.
+
+  08 Sep 2012; Nirbheek Chauhan <nirbheek@gentoo.org> colord-0.1.22.ebuild:
+  Use either vala-0.14, or vala-0.18
 
 *colord-0.1.22 (10 Aug 2012)
 
@@ -160,4 +180,3 @@
   14 Aug 2011; Nirbheek Chauhan <nirbheek@gentoo.org> +colord-0.1.11.ebuild,
   +files/colord-0.1.11-fix-automagic-vala.patch, +metadata.xml:
   Add colord from the gnome overlay for GNOME 3
-

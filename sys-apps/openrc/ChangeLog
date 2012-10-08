@@ -1,6 +1,34 @@
 # ChangeLog for sys-apps/openrc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/openrc/ChangeLog,v 1.225 2012/07/04 14:36:33 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/openrc/ChangeLog,v 1.231 2012/09/29 20:38:12 williamh Exp $
+
+  29 Sep 2012; William Hubbs <williamh@gentoo.org> openrc-9999.ebuild:
+  The code in pkg_setup and make_args is only run once at the start of
+  src_compile, so we can move it into that function, thanks to Zac Medico for
+  the input.
+
+  29 Sep 2012; Benda Xu <heroxbd@gentoo.org> openrc-9999.ebuild:
+  make_args should be called only once; ED -> D in src_install to avoid double
+  prefix. close 415899
+
+  28 Sep 2012; William Hubbs <williamh@gentoo.org> openrc-9999.ebuild:
+  fix typo
+
+  28 Sep 2012; William Hubbs <williamh@gentoo.org> openrc-9999.ebuild:
+  Fix the ebuild so we can use pre/postinst on prefix systems as well.
+  Originally I did not think we needed this, but thinking it over it is better
+  to have them.  Also this reworks the live portion of the ebuild to use a
+  separate inherit call.
+
+  27 Sep 2012; William Hubbs <williamh@gentoo.org> openrc-9999.ebuild:
+  Add prefix support for bug #415899. I would like to thank Benda Xu for working
+  with me on this.
+
+  09 Sep 2012; William Hubbs <williamh@gentoo.org> -openrc-0.10.1.ebuild,
+  -openrc-0.10.2.ebuild, -openrc-0.10.3.ebuild, -openrc-0.10.ebuild,
+  -openrc-0.9.9.1.ebuild, -openrc-0.9.9.2.ebuild, -openrc-0.9.9.3.ebuild,
+  -openrc-0.9.9.ebuild:
+  remove old versions
 
 *openrc-0.10.5 (04 Jul 2012)
 
@@ -1053,4 +1081,3 @@
   23 Mar 2008; Mike Frysinger <vapier@gentoo.org> +metadata.xml,
   +openrc-9999.ebuild:
   Initial ebuild #212696.
-

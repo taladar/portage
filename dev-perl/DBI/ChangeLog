@@ -1,6 +1,14 @@
 # ChangeLog for dev-perl/DBI
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/ChangeLog,v 1.162 2012/06/24 12:58:28 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/ChangeLog,v 1.164 2012/09/02 17:29:10 tove Exp $
+
+  02 Sep 2012; Torsten Veller <tove@gentoo.org> -DBI-1.615.ebuild,
+  -DBI-1.616.0.ebuild, -DBI-1.617.0.ebuild, -DBI-1.619.0.ebuild,
+  -DBI-1.620.0.ebuild, -DBI-1.621.0.ebuild:
+  Cleanup
+
+  01 Sep 2012; Fabian Groffen <grobian@gentoo.org> DBI-1.622.0.ebuild:
+  Marked ~ppc-aix, bug #432288
 
   24 Jun 2012; Torsten Veller <tove@gentoo.org> metadata.xml:
   Update CPAN upstream info

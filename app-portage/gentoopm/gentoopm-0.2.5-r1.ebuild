@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoopm/gentoopm-0.2.5-r1.ebuild,v 1.4 2012/08/07 20:34:00 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoopm/gentoopm-0.2.5-r1.ebuild,v 1.7 2012/10/05 21:12:57 mgorny Exp $
 
 EAPI=4
 PYTHON_COMPAT='python2_6 python2_7 python3_1 python3_2'
@@ -8,8 +8,8 @@ PYTHON_COMPAT='python2_6 python2_7 python3_1 python3_2'
 inherit base python-distutils-ng
 
 DESCRIPTION="A common interface to Gentoo package managers"
-HOMEPAGE="https://github.com/mgorny/gentoopm/"
-SRC_URI="mirror://github/mgorny/${PN}/${P}.tar.bz2"
+HOMEPAGE="https://bitbucket.org/mgorny/gentoopm/"
+SRC_URI="mirror://bitbucket/mgorny/${PN}/downloads/${P}.tar.bz2"
 
 LICENSE="BSD-2"
 SLOT="0"
@@ -17,8 +17,9 @@ KEYWORDS="amd64 ~mips x86 ~amd64-fbsd ~x86-fbsd"
 IUSE="doc"
 
 RDEPEND="|| ( >=sys-apps/portage-2.1.10.3
-		sys-apps/pkgcore
-		>=sys-apps/paludis-0.64.2[python-bindings] )"
+		<=sys-apps/pkgcore-0.8
+		>=sys-apps/paludis-0.64.2[python-bindings] )
+	!>=sys-apps/pkgcore-0.8.1"
 DEPEND="doc? ( dev-python/epydoc )"
 PDEPEND="app-admin/eselect-package-manager"
 

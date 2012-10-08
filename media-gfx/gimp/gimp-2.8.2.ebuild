@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.8.2.ebuild,v 1.1 2012/08/24 19:11:50 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.8.2.ebuild,v 1.3 2012/09/29 20:10:26 sping Exp $
 
 EAPI="3"
 PYTHON_DEPEND="python? 2:2.5"
@@ -119,10 +119,10 @@ src_prepare() {
 }
 
 _clean_up_locales() {
-	elog "Cleaning up locales..."
+	einfo "Cleaning up locales..."
 	for lang in ${LANGS}; do
 		use "linguas_${lang}" && {
-			elog "- keeping ${lang}"
+			einfo "- keeping ${lang}"
 			continue
 		}
 		rm -Rf "${D}"/usr/share/locale/"${lang}" || die
@@ -142,6 +142,10 @@ src_install() {
 	mv "${D}"/usr/share/applications/{,zzz-}gimp.desktop || die
 
 	find "${D}" -name '*.la' -delete || die
+
+	# Prevent dead symlink gimp-console.1 from downstream man page compression (bug #433527)
+	local gimp_app_version=$(get_version_component_range 1-2)
+	mv "${D}"/usr/share/man/man1/gimp-console{-${gimp_app_version},}.1 || die
 
 	_clean_up_locales
 }

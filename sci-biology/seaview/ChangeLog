@@ -1,6 +1,19 @@
 # ChangeLog for sci-biology/seaview
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/seaview/ChangeLog,v 1.41 2012/07/04 10:09:26 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/seaview/ChangeLog,v 1.44 2012/09/14 14:16:01 ago Exp $
+
+  14 Sep 2012; Agostino Sarubbo <ago@gentoo.org> seaview-4.3.3.ebuild:
+  Stable for amd64, wrt bug #432366
+
+  14 Sep 2012; Justin Lecher <jlec@gentoo.org> seaview-4.2.5.ebuild,
+  seaview-4.3.3.ebuild, seaview-4.3.5.ebuild:
+  Add missing deps, #432366
+
+*seaview-4.3.5 (26 Aug 2012)
+
+  26 Aug 2012; Justin Lecher <jlec@gentoo.org> seaview-4.2.5.ebuild,
+  -seaview-4.2.12.ebuild, seaview-4.3.3.ebuild, +seaview-4.3.5.ebuild:
+  Version Bump; Drop overlinking, #431074
 
 *seaview-4.3.3 (04 Jul 2012)
 

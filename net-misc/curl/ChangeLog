@@ -1,6 +1,30 @@
 # ChangeLog for net-misc/curl
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.242 2012/08/25 15:16:51 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.249 2012/09/06 10:28:39 blueness Exp $
+
+  06 Sep 2012; Anthony G. Basile <blueness@gentoo.org> curl-7.26.0.ebuild:
+  Stable ppc64, bug #421479
+
+  03 Sep 2012; Anthony G. Basile <blueness@gentoo.org> -curl-7.24.0.ebuild:
+  Remove older stable, bug #433281
+
+  02 Sep 2012; Jeroen Roovers <jer@gentoo.org> curl-7.26.0.ebuild:
+  Stable for HPPA (bug #421479).
+
+*curl-7.27.0-r3 (01 Sep 2012)
+
+  01 Sep 2012; Anthony G. Basile <blueness@gentoo.org> -curl-7.27.0-r2.ebuild,
+  +curl-7.27.0-r3.ebuild:
+  Rename USE=ares to adns, bug #433549
+
+  30 Aug 2012; Anthony G. Basile <blueness@gentoo.org> curl-7.26.0.ebuild:
+  Stable ppc, bug #421479
+
+  28 Aug 2012; Raúl Porcel <armin76@gentoo.org> curl-7.26.0.ebuild:
+  alpha/ia64/s390/sh/sparc/x86 stable wrt #421479
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> curl-7.27.0-r2.ebuild:
+  Re-add ~alpha/~ia64/~sparc wrt #428520
 
   25 Aug 2012; Agostino Sarubbo <ago@gentoo.org> curl-7.26.0.ebuild:
   Stable for amd64, wrt bug #421479

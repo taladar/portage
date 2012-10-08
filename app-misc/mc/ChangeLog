@@ -1,6 +1,26 @@
 # ChangeLog for app-misc/mc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.264 2012/08/05 17:43:29 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.267 2012/09/15 07:33:26 slyfox Exp $
+
+*mc-4.8.6 (15 Sep 2012)
+
+  15 Sep 2012; Sergei Trofimovich <slyfox@gentoo.org> +mc-4.8.6.ebuild,
+  -files/mc-4.8.5-Ticket-2881-fix-tabs.patch, -mc-4.8.5-r1.ebuild:
+  Fast upstream version bump (fixes two critical bugs in previous version).
+
+*mc-4.8.5-r1 (14 Sep 2012)
+
+  14 Sep 2012; Sergei Trofimovich <slyfox@gentoo.org>
+  +files/mc-4.8.5-Ticket-2881-fix-tabs.patch, +mc-4.8.5-r1.ebuild,
+  -mc-4.8.5.ebuild:
+  Fix tab effect bug in editor (bug #434688 by Lars Wendler).
+
+*mc-4.8.5 (10 Sep 2012)
+
+  10 Sep 2012; Sergei Trofimovich <slyfox@gentoo.org> +mc-4.8.5.ebuild,
+  mc-9999.ebuild:
+  Version bump. Dropped LINGUAS from IUSE as build system respects GNU style
+  LINGUAS environment variables.
 
 *mc-4.8.4-r3 (05 Aug 2012)
 

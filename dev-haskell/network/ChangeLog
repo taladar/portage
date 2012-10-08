@@ -1,6 +1,20 @@
 # ChangeLog for dev-haskell/network
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.61 2012/06/15 13:50:11 gienah Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.65 2012/09/30 11:08:06 blueness Exp $
+
+  30 Sep 2012; Anthony G. Basile <blueness@gentoo.org> network-2.3.0.14.ebuild:
+  stable ppc, bug #428936
+
+  23 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> network-2.3.0.14.ebuild:
+  x86 stable wrt bug #428936
+
+  13 Sep 2012; Agostino Sarubbo <ago@gentoo.org> network-2.3.0.14.ebuild:
+  Stable for amd64, wrt bug #428936
+
+  12 Sep 2012; Alexander Vershilov <qnikst@gentoo.org> network-2.2.1.7.ebuild,
+  network-2.3.0.11.ebuild, network-2.3.0.13.ebuild, network-2.3.0.14.ebuild,
+  network-2.3.0.2.ebuild, network-2.3.0.7.ebuild:
+  move dev-haskell/network/network-2.3.0.13.ebuild ebuild to mirror://hackage
 
 *network-2.3.0.14 (15 Jun 2012)
 
@@ -233,4 +247,3 @@
 
   11 Mar 2007; <kolmodin@gentoo.org> +metadata.xml, +network-1.0.ebuild:
   Dummy package for GHC 6.4, see bug 151012
-

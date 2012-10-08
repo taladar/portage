@@ -1,6 +1,31 @@
 # ChangeLog for dev-cpp/gtkmm
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.229 2012/07/08 11:40:40 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.236 2012/10/07 02:00:52 blueness Exp $
+
+  07 Oct 2012; Anthony G. Basile <blueness@gentoo.org> gtkmm-3.4.0.ebuild:
+  stable ppc64, bug #427544
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> gtkmm-3.4.0.ebuild:
+  arm stable, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> gtkmm-3.4.0.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  04 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gtkmm-3.4.0.ebuild:
+  x86 stable wrt bug #427544
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> gtkmm-3.4.0.ebuild:
+  Stable for HPPA (bug #427544).
+
+*gtkmm-3.4.2 (29 Sep 2012)
+
+  29 Sep 2012; Pacho Ramos <pacho@gentoo.org> +gtkmm-3.4.2.ebuild:
+  Version bump.
+
+*gtkmm-3.4.1 (15 Sep 2012)
+
+  15 Sep 2012; Pacho Ramos <pacho@gentoo.org> +gtkmm-3.4.1.ebuild:
+  Version bump.
 
   08 Jul 2012; Pacho Ramos <pacho@gentoo.org> -gtkmm-2.22.0.ebuild,
   -gtkmm-2.24.0.ebuild, -gtkmm-3.0.1.ebuild, gtkmm-3.4.0.ebuild:

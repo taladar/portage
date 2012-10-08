@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/busybox/busybox-1.20.2.ebuild,v 1.5 2012/08/25 12:11:10 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/busybox/busybox-1.20.2.ebuild,v 1.10 2012/10/05 18:03:52 ranger Exp $
 
 EAPI="4"
 inherit eutils flag-o-matic savedconfig toolchain-funcs multilib
@@ -52,12 +52,12 @@ if [[ ${PV} == "9999" ]] ; then
 else
 	MY_P=${PN}-${PV/_/-}
 	SRC_URI="http://www.busybox.net/downloads/${MY_P}.tar.bz2"
-	KEYWORDS="~alpha amd64 arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc x86 ~amd64-linux ~x86-linux"
+	KEYWORDS="alpha amd64 arm ~hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-linux ~x86-linux"
 fi
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="ipv6 livecd make-symlinks math mdev -pam selinux sep-usr static"
+IUSE="ipv6 livecd make-symlinks math mdev -pam selinux sep-usr static systemd"
 RESTRICT="test"
 
 RDEPEND="selinux? ( sys-libs/libselinux )
@@ -133,7 +133,9 @@ src_configure() {
 	busybox_config_option n FEATURE_SUID_CONFIG
 	busybox_config_option n BUILD_AT_ONCE
 	busybox_config_option n BUILD_LIBBUSYBOX
+	busybox_config_option n FEATURE_CLEAN_UP
 	busybox_config_option n MONOTONIC_SYSCALL
+	busybox_config_option n USE_PORTABLE_CODE
 	busybox_config_option n WERROR
 
 	# If these are not set and we are using a uclibc/busybox setup
@@ -155,6 +157,7 @@ src_configure() {
 		&& busybox_config_option n PAM \
 		|| busybox_config_option pam PAM
 	busybox_config_option static STATIC
+	busybox_config_option systemd FEATURE_SYSTEMD
 	busybox_config_option math FEATURE_AWK_LIBM
 
 	# all the debug options are compiler related, so punt them

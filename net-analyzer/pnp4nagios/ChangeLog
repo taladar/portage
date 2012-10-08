@@ -1,6 +1,28 @@
 # ChangeLog for net-analyzer/pnp4nagios
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/pnp4nagios/ChangeLog,v 1.44 2012/08/19 15:32:32 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/pnp4nagios/ChangeLog,v 1.49 2012/09/26 15:28:40 xarthisius Exp $
+
+  26 Sep 2012; Kacper Kowalik <xarthisius@gentoo.org>
+  pnp4nagios-0.6.19-r1.ebuild:
+  ppc64 stable wrt #430358
+
+  17 Sep 2012; Andreas Schuerch <nativemad@gentoo.org>
+  pnp4nagios-0.6.19-r1.ebuild:
+  x86 stable, see bug 430358
+
+  14 Sep 2012; Agostino Sarubbo <ago@gentoo.org> pnp4nagios-0.6.19-r1.ebuild:
+  Stable for amd64, wrt bug #430358
+
+*pnp4nagios-0.6.19-r1 (13 Sep 2012)
+
+  13 Sep 2012; Christian Ruppert <idl0r@gentoo.org>
+  +pnp4nagios-0.6.19-r1.ebuild, -pnp4nagios-0.6.19.ebuild:
+  Fix bug 430358 - CVE-2012-3457
+
+*pnp4nagios-0.6.19 (11 Sep 2012)
+
+  11 Sep 2012; Christian Ruppert <idl0r@gentoo.org> +pnp4nagios-0.6.19.ebuild:
+  Version bump to 0.6.19.
 
   19 Aug 2012; Diego E. Pettenò <flameeyes@gentoo.org> metadata.xml:
   Re-assign to sysadmin herd.

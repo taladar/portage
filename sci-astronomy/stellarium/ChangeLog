@@ -1,6 +1,23 @@
 # ChangeLog for sci-astronomy/stellarium
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-astronomy/stellarium/ChangeLog,v 1.101 2012/08/21 20:36:48 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-astronomy/stellarium/ChangeLog,v 1.105 2012/10/04 10:27:57 ago Exp $
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> stellarium-0.11.4a.ebuild:
+  Stable for amd64, wrt bug #436810
+
+  04 Oct 2012; Michael Sterrett <mr_bones_@gentoo.org>
+  stellarium-0.11.4a.ebuild:
+  only upstream supported locales (bug #437052)
+
+  02 Oct 2012; Anthony G. Basile <blueness@gentoo.org>
+  stellarium-0.11.4a.ebuild:
+  stable ppc ppc64, bug #436810
+
+*stellarium-0.11.4a (29 Aug 2012)
+
+  29 Aug 2012; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/stellarium-0.11.4a-desktop.patch, +stellarium-0.11.4a.ebuild:
+  version bump (bug #433211)
 
   21 Aug 2012; Michael Sterrett <mr_bones_@gentoo.org> stellarium-0.11.3.ebuild:
   punt unsupported locales (bug #432064)

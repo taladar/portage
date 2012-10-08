@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin-2.eclass,v 1.9 2012/08/05 19:26:36 hd_brummy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin-2.eclass,v 1.13 2012/09/29 19:38:56 hd_brummy Exp $
 
 # @ECLASS: vdr-plugin-2.eclass
 # @MAINTAINER:
@@ -46,7 +46,7 @@
 inherit base eutils flag-o-matic multilib toolchain-funcs
 
 case ${EAPI:-0} in
-    4) ;;
+    4|5) ;;
     *) die "EAPI ${EAPI} unsupported."
 esac
 
@@ -262,7 +262,7 @@ linguas_support() {
 
 	for f in ${makefile_dir[*]}; do
 
-		PLUGIN_LINGUAS=$( ls ${f}/po --ignore="*.pot" | tr \\\012 ' ' | tr -d [:upper:] | tr -d [:punct:] |sed -e "s:po::g" )
+		PLUGIN_LINGUAS=$( ls ${f}/po --ignore="*.pot" | sed -e "s:.po::g" | cut -d_ -f1 | tr \\\012 ' ' )
 		einfo "LINGUAS=\"${PLUGIN_LINGUAS}\""
 
 		sed -i ${f}/Makefile \
@@ -315,6 +315,19 @@ vdr_i18n() {
 		dev_check "obsolete tI18nPhrase not found, fine..."
 		dev_check "please review, may be in subdir... \n"
 	fi
+}
+
+remove_i18n_include() {
+	# remove uneeded i18.n includes
+	# call 'remove_i18n_include bla foo'
+
+	local f
+	for f; do
+		sed -i "${f}" \
+		-e "s:^#include[[:space:]]*\"i18n.h\"://:"
+	done
+
+	dev_check "removed i18n.h for ${@}"
 }
 # end new vdr-plugin-2.eclass content
 
@@ -371,7 +384,7 @@ vdr-plugin-2_pkg_setup() {
 	# Plugins need to be compiled with position independent code, otherwise linking
 	# VDR against it will fail
 	if has_version ">=media-video/vdr-1.7.13"; then
-		append-cppflags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
+		append-lfs-flags
 	fi
 
 	# missing ${chost}- tag

@@ -1,6 +1,47 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.352 2012/06/04 04:36:32 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.361 2012/09/22 10:23:23 pacho Exp $
+
+  22 Sep 2012; Pacho Ramos <pacho@gentoo.org>
+  -files/libxml2-2.8.0_rc1-randomization-threads.patch,
+  -libxml2-2.8.0-r1.ebuild, -libxml2-2.8.0_rc1.ebuild:
+  Drop old.
+
+  18 Sep 2012; Anthony G. Basile <blueness@gentoo.org> libxml2-2.8.0-r2.ebuild:
+  stable ppc, bug #434344
+
+  17 Sep 2012; Anthony G. Basile <blueness@gentoo.org> libxml2-2.8.0-r2.ebuild:
+  stable ppc64, bug #434344
+
+  15 Sep 2012; Raúl Porcel <armin76@gentoo.org> libxml2-2.8.0-r2.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #434344
+
+  15 Sep 2012; Andreas Schuerch <nativemad@gentoo.org> libxml2-2.8.0-r2.ebuild:
+  x86 stable, see bug 434344
+
+  11 Sep 2012; Agostino Sarubbo <ago@gentoo.org> libxml2-2.8.0-r2.ebuild:
+  Stable for amd64, wrt bug #434344
+
+  10 Sep 2012; Jeroen Roovers <jer@gentoo.org> libxml2-2.8.0-r2.ebuild:
+  Stable for HPPA (bug #434344).
+
+*libxml2-2.8.0-r2 (09 Sep 2012)
+
+  09 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -files/libxml2-2.7.2-winnt.patch, -libxml2-2.7.8-r5.ebuild,
+  -files/libxml2-2.7.8-allocation-error-copying-entities.patch,
+  -files/libxml2-2.7.8-error-xpath.patch,
+  -files/libxml2-2.7.8-hardening-xpath.patch,
+  -files/libxml2-2.7.8-hash-randomization.patch,
+  -files/libxml2-2.7.8-reactivate-script.patch,
+  -files/libxml2-2.7.8-reallocation-failures.patch,
+  -files/libxml2-2.7.8-windows-thread_t.patch,
+  -files/libxml2-2.7.8-xpath-freeing.patch,
+  -files/libxml2-2.7.8-xpath-freeing2.patch,
+  -files/libxml2-2.7.8-xpath-memory.patch, +libxml2-2.8.0-r2.ebuild:
+  Add upstream patches to ensure special treatment for namespace nodes
+  (CVE-2012-2871, bug #434344, thanks to Paweł Hajdan, Jr. and Sean Amoss).
+  Drop old version.
 
   04 Jun 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
   libxml2-2.8.0-r1.ebuild, +files/libxml2-2.8.0-icu-linking.patch:

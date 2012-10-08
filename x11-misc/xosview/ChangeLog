@@ -1,6 +1,26 @@
 # ChangeLog for x11-misc/xosview
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xosview/ChangeLog,v 1.52 2012/08/19 15:59:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xosview/ChangeLog,v 1.56 2012/10/04 00:49:46 blueness Exp $
+
+  04 Oct 2012; Anthony G. Basile <blueness@gentoo.org> xosview-1.9.4.ebuild:
+  stable ppc ppc64, bug #436988
+
+  03 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> xosview-1.9.4.ebuild:
+  amd64 stable, wrt bug #436988
+
+*xosview-1.10 (02 Oct 2012)
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> -xosview-1.8.3-r1.ebuild,
+  -files/xosview-1.8.3-alpha-build-fix.patch, -files/xosview-1.8.3-gcc44.patch,
+  -files/xosview-1.8.3-remove-serialmeter.patch, -xosview-1.9.2.ebuild,
+  -files/xosview-1.9.2-emptyxpaths.patch, +xosview-1.10.ebuild,
+  -files/xosview-emptyxpaths.patch, -files/xosview-resdir.patch:
+  Version bump by Lars Wendler (bug #436588).
+
+*xosview-1.9.4 (05 Sep 2012)
+
+  05 Sep 2012; Jeroen Roovers <jer@gentoo.org> +xosview-1.9.4.ebuild:
+  Version bump.
 
   19 Aug 2012; Raúl Porcel <armin76@gentoo.org> xosview-1.8.3-r1.ebuild,
   xosview-1.9.2.ebuild, xosview-1.9.3.ebuild:

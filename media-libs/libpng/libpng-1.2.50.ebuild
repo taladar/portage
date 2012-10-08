@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.50.ebuild,v 1.1 2012/07/13 12:45:05 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.50.ebuild,v 1.3 2012/10/05 17:24:22 ranger Exp $
 
 # this ebuild is only for the libpng12.so.0 SONAME for ABI compat
 
@@ -12,9 +12,9 @@ DESCRIPTION="Portable Network Graphics library"
 HOMEPAGE="http://www.libpng.org/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
 
-LICENSE="as-is"
+LICENSE="libpng"
 SLOT="1.2"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
 IUSE=""
 
 RDEPEND="sys-libs/zlib

@@ -1,6 +1,60 @@
 # ChangeLog for app-backup/bacula
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-backup/bacula/ChangeLog,v 1.131 2012/08/17 18:14:02 tomjbe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-backup/bacula/ChangeLog,v 1.144 2012/09/23 18:28:42 ago Exp $
+
+  23 Sep 2012; Agostino Sarubbo <ago@gentoo.org> -bacula-5.0.3-r2.ebuild,
+  -bacula-5.2.5.ebuild:
+  Remove old
+
+  23 Sep 2012; Raúl Porcel <armin76@gentoo.org> bacula-5.2.12.ebuild:
+  sparc/x86 stable wrt #434878
+
+  23 Sep 2012; Jeroen Roovers <jer@gentoo.org> bacula-5.0.3-r2.ebuild:
+  Marked ~hppa (bug #434878).
+
+  22 Sep 2012; Agostino Sarubbo <ago@gentoo.org> -bacula-5.0.3-r1.ebuild,
+  -bacula-5.0.3-r3.ebuild, -bacula-5.2.10.ebuild, -bacula-5.2.9.ebuild:
+  Remove old
+
+  22 Sep 2012; Agostino Sarubbo <ago@gentoo.org> bacula-5.2.12.ebuild:
+  Stable for amd64, wrt bug #434878
+
+  22 Sep 2012; Thomas Beierlein <tomjbe@gentoo.org>
+  files/5.2.10/bacula-5.2.10-fix-static.patch, bacula-5.2.12.ebuild:
+  Fix build with USE=static (bug #435798). Thanks peratu
+
+  22 Sep 2012; Anthony G. Basile <blueness@gentoo.org> bacula-5.2.12.ebuild:
+  stable ppc, bug #434878
+
+  20 Sep 2012; Thomas Beierlein <tomjbe@gentoo.org> bacula-5.2.12.ebuild,
+  +files/5.2.12/bacula-5.2.12-depend.patch:
+  fix file not found error during make depend
+
+*bacula-5.2.12 (16 Sep 2012)
+
+  16 Sep 2012; Thomas Beierlein <tomjbe@gentoo.org> -bacula-5.2.11.ebuild,
+  +bacula-5.2.12.ebuild:
+  Bug fix version bump. Drop version 5.2.11 withdrawn by upstream. Thanks
+  Andrea
+
+*bacula-5.2.11 (12 Sep 2012)
+
+  12 Sep 2012; Thomas Beierlein <tomjbe@gentoo.org> +bacula-5.2.11.ebuild:
+  Version bump
+
+  05 Sep 2012; Justin Lecher <jlec@gentoo.org> bacula-5.0.3-r3.ebuild,
+  bacula-5.2.10.ebuild, bacula-5.2.5.ebuild, bacula-5.2.9.ebuild:
+  Don't install license
+
+  05 Sep 2012; Justin Lecher <jlec@gentoo.org> bacula-5.0.3-r1.ebuild,
+  bacula-5.0.3-r2.ebuild, bacula-5.0.3-r3.ebuild, bacula-5.2.10.ebuild,
+  bacula-5.2.5.ebuild, bacula-5.2.9.ebuild:
+  Use doicon instead insinto + doins to install icon files
+
+  05 Sep 2012; Justin Lecher <jlec@gentoo.org> bacula-5.0.3-r1.ebuild,
+  bacula-5.0.3-r2.ebuild, bacula-5.0.3-r3.ebuild, bacula-5.2.10.ebuild,
+  bacula-5.2.5.ebuild, bacula-5.2.9.ebuild:
+  Use domenu instead insinto + doins to install .desktop files
 
   17 Aug 2012; Thomas Beierlein <tomjbe@gentoo.org> bacula-5.2.5.ebuild,
   bacula-5.2.9.ebuild, bacula-5.2.10.ebuild:

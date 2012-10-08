@@ -1,6 +1,65 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.414 2012/08/14 21:27:15 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.427 2012/10/05 06:08:59 naota Exp $
+
+  05 Oct 2012;  <naota@gentoo.org> mesa-8.1_rc1_pre20120724.ebuild,
+  mesa-8.1_rc1_pre20120814.ebuild, mesa-9.0_pre20120918.ebuild,
+  mesa-9_pre20120831-r1.ebuild, mesa-9_pre20120831.ebuild:
+  Use cat as INDENT to workaround build failure on non-GNU system. #428112
+
+  04 Oct 2012;  <naota@gentoo.org> +files/mesa-8.0.4-configure-bsd.patch,
+  mesa-8.0.3-r1.ebuild, mesa-8.0.3.ebuild, mesa-8.0.4-r1.ebuild,
+  mesa-8.0.4.ebuild, mesa-8.1_rc1_pre20120724.ebuild,
+  mesa-8.1_rc1_pre20120814.ebuild:
+  Add patch to fix non-POSIX test. #435496
+
+  24 Sep 2012; Raúl Porcel <armin76@gentoo.org> mesa-8.0.4-r1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #432400
+
+  21 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  mesa-9.0_pre20120918.ebuild:
+  Fix overzealous removal of dri2proto/glproto dependencies, thanks to slyfox
+  for noticing.
+
+*mesa-9.0_pre20120918 (18 Sep 2012)
+
+  18 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +mesa-9.0_pre20120918.ebuild:
+  New snapshot.
+
+  16 Sep 2012; Markus Meier <maekke@gentoo.org> mesa-8.0.4-r1.ebuild:
+  arm stable, bug #432400
+
+  12 Sep 2012; Andreas Schuerch <nativemad@gentoo.org> mesa-8.0.4-r1.ebuild:
+  x86 stable, see bug 432400
+
+  06 Sep 2012; Matt Turner <mattst88@gentoo.org> mesa-8.0.3-r1.ebuild,
+  mesa-8.0.3.ebuild, mesa-8.0.4-r1.ebuild, mesa-8.0.4.ebuild,
+  mesa-8.1_rc1_pre20120724.ebuild, mesa-8.1_rc1_pre20120814.ebuild,
+  mesa-9_pre20120831-r1.ebuild, mesa-9_pre20120831.ebuild, metadata.xml:
+  Drop d3d USE flag. It's broken, unmaintained, and disabled upstream.
+
+*mesa-9_pre20120831-r1 (05 Sep 2012)
+
+  05 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +mesa-9_pre20120831-r1.ebuild:
+  New revision to address i965 crashes.
+
+  04 Sep 2012; Jeroen Roovers <jer@gentoo.org> mesa-8.0.4-r1.ebuild:
+  Stable for HPPA (bug #432400).
+
+  02 Sep 2012; Agostino Sarubbo <ago@gentoo.org> mesa-8.0.4-r1.ebuild:
+  Stable for amd64, wrt bug #432400
+
+*mesa-8.0.4-r1 (01 Sep 2012)
+*mesa-9_pre20120831 (01 Sep 2012)
+
+  01 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +mesa-8.0.4-r1.ebuild, +mesa-9_pre20120831.ebuild:
+  Update patch tarball and snapshot for security bug #432400.
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> mesa-8.0.3.ebuild:
+  alpha/ia64/sh/sparc stable wrt #419473
 
 *mesa-8.1_rc1_pre20120814 (14 Aug 2012)
 

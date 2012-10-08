@@ -1,6 +1,24 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.425 2012/08/08 19:25:11 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.429 2012/10/06 19:52:53 floppym Exp $
+
+*sqlite-3.7.14.1 (06 Oct 2012)
+
+  06 Oct 2012; Mike Gilbert <floppym@gentoo.org> +sqlite-3.7.14.1.ebuild:
+  Version bump. Ebuild by Arfrever.
+
+  04 Oct 2012; Ulrich Müller <ulm@gentoo.org> sqlite-2.8.16-r5.ebuild,
+  sqlite-3.7.12.1.ebuild, sqlite-3.7.13.ebuild, sqlite-3.7.14.ebuild:
+  LICENSE is public-domain, bug 437228.
+
+*sqlite-3.7.14 (05 Sep 2012)
+
+  05 Sep 2012; Mike Gilbert <floppym@gentoo.org> +sqlite-3.7.14.ebuild,
+  -sqlite-3.7.10.ebuild, -sqlite-3.7.11.ebuild, -sqlite-3.7.12.ebuild:
+  Version bump. Ebuild by Arfrever.
+
+  27 Aug 2012; Raúl Porcel <armin76@gentoo.org> sqlite-3.7.13.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #428080
 
   08 Aug 2012; Brent Baude <ranger@gentoo.org> sqlite-3.7.13.ebuild:
   Marking sqlite-3.7.13 ppc for bug 428080

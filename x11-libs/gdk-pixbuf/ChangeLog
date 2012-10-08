@@ -1,6 +1,39 @@
 # ChangeLog for x11-libs/gdk-pixbuf
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gdk-pixbuf/ChangeLog,v 1.67 2012/07/15 18:31:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gdk-pixbuf/ChangeLog,v 1.75 2012/10/06 21:21:49 blueness Exp $
+
+  06 Oct 2012; Anthony G. Basile <blueness@gentoo.org> gdk-pixbuf-2.26.4.ebuild:
+  stable ppc ppc64, bug #427544
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> gdk-pixbuf-2.26.4.ebuild:
+  arm stable, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> gdk-pixbuf-2.26.4.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  gdk-pixbuf-2.26.4.ebuild:
+  x86 stable wrt bug #427544
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> gdk-pixbuf-2.26.4.ebuild:
+  Stable for HPPA (bug #427544).
+
+  27 Sep 2012; Matt Turner <mattst88@gentoo.org> gdk-pixbuf-2.26.4.ebuild:
+  Stable on alpha, bug 427544.
+
+*gdk-pixbuf-2.26.4 (18 Sep 2012)
+
+  18 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  gdk-pixbuf-2.24.0-r1.ebuild, gdk-pixbuf-2.24.1.ebuild,
+  gdk-pixbuf-2.24.1-r1.ebuild, -gdk-pixbuf-2.26.1.ebuild,
+  gdk-pixbuf-2.26.3.ebuild, +gdk-pixbuf-2.26.4.ebuild:
+  Version bump with color profile support in jpg files. Drop old. Use a more
+  portable mktemp call, thanks to Mart Raudsepp.
+
+*gdk-pixbuf-2.26.3 (02 Sep 2012)
+
+  02 Sep 2012; Nirbheek Chauhan <nirbheek@gentoo.org> +gdk-pixbuf-2.26.3.ebuild:
+  Bump to 2.26.3
 
   15 Jul 2012; Raúl Porcel <armin76@gentoo.org> gdk-pixbuf-2.24.1.ebuild:
   alpha/ia64/sh/sparc stable wrt #410611
@@ -263,4 +296,3 @@
   +gdk-pixbuf-2.22.0.ebuild, +metadata.xml:
   Add gdk-pixbuf, split off gtk+ so it can be shared b/w gtk+:2 and gtk+:3.
   Inherits gtk's keywords.
-

@@ -1,6 +1,31 @@
 # ChangeLog for app-arch/lbzip2
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lbzip2/ChangeLog,v 1.32 2012/08/06 06:39:25 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lbzip2/ChangeLog,v 1.40 2012/10/07 11:55:08 jlec Exp $
+
+  07 Oct 2012; Justin Lecher <jlec@gentoo.org> -lbzip2-0.23-r2.ebuild,
+  -lbzip2-2.1.ebuild, -lbzip2-2.1-r2.ebuild, lbzip2-2.2.ebuild:
+  Block other packages installing the /usr/bin/bzip2 symlink, #436354; drop old
+
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> lbzip2-2.2.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #435228
+
+  25 Sep 2012; Matt Turner <mattst88@gentoo.org> lbzip2-2.2.ebuild:
+  Stable on alpha, bug 435228.
+
+  18 Sep 2012; Anthony G. Basile <blueness@gentoo.org> lbzip2-2.2.ebuild:
+  stable arm, bug #435228
+
+  18 Sep 2012; Jeroen Roovers <jer@gentoo.org> lbzip2-2.2.ebuild:
+  Stable for HPPA (bug #435228).
+
+  18 Sep 2012; Johannes Huber <johu@gentoo.org> lbzip2-2.2.ebuild:
+  Stable for x86, wrt bug #435228
+
+  18 Sep 2012; Anthony G. Basile <blueness@gentoo.org> lbzip2-2.2.ebuild:
+  stable ppc ppc64, bug #435228
+
+  17 Sep 2012; Agostino Sarubbo <ago@gentoo.org> lbzip2-2.2.ebuild:
+  Stable for amd64, wrt bug #435228
 
 *lbzip2-2.2 (06 Aug 2012)
 

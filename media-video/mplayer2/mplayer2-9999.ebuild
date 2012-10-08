@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer2/mplayer2-9999.ebuild,v 1.42 2012/08/13 13:19:20 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer2/mplayer2-9999.ebuild,v 1.46 2012/09/27 23:02:48 sping Exp $
 
 EAPI=4
 
@@ -35,10 +35,10 @@ fi
 IUSE="+a52 aalib +alsa aqua bidi bindist bl bluray bs2b cddb +cdio
 	cpudetection debug directfb doc +dts +dv dvb +dvd +dvdnav dxr3 +enca +faad
 	fbcon ftp gif ggi +iconv ipv6 jack joystick jpeg kernel_linux ladspa
-	+libass libcaca lirc mad md5sum mng +mp3 nas +network nut +opengl oss png pnm
-	portaudio postproc pulseaudio pvr +quicktime radio +rar +real +rtc samba
-	sdl +speex tga +theora +truetype +unicode v4l vdpau +vorbis win32codecs +X
-	xanim xinerama +xscreensaver +xv xvid"
+	+libass libcaca lirc mad md5sum mng +mp3 nas +network nut +opengl oss png
+	pnm portaudio postproc pulseaudio pvr +quicktime quvi radio +rar +real
+	+rtc samba sdl +speex tga +theora +truetype +unicode v4l vdpau +vorbis
+	win32codecs +X xanim xinerama +xscreensaver +xv xvid"
 IUSE+=" symlink"
 
 CPU_FEATURES="3dnow 3dnowext altivec +mmx mmxext +shm sse sse2 ssse3"
@@ -53,13 +53,13 @@ done
 
 # bindist does not cope with win32codecs, which are nonfree
 REQUIRED_USE="
-	libass? ( truetype )
 	bindist? ( !win32codecs )
 	cddb? ( cdio network )
 	dvdnav? ( dvd )
 	dxr3? ( X )
 	ggi? ( X )
-	opengl? ( X )
+	libass? ( truetype )
+	opengl? ( || ( X aqua ) )
 	radio? ( || ( dvb v4l ) )
 	truetype? ( iconv )
 	vdpau? ( X )
@@ -128,6 +128,7 @@ RDEPEND+="
 	portaudio? ( >=media-libs/portaudio-19_pre20111121 )
 	postproc? ( || ( media-libs/libpostproc <media-video/libav-0.8.2-r1 media-video/ffmpeg ) )
 	pulseaudio? ( media-sound/pulseaudio )
+	quvi? ( media-libs/libquvi )
 	rar? (
 		|| (
 			app-arch/unrar
@@ -152,7 +153,7 @@ RDEPEND+="
 ASM_DEP="dev-lang/yasm"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
-	>=dev-lang/python-2.6
+	>=dev-lang/python-2.7
 	sys-devel/gettext
 	X? (
 		x11-proto/videoproto
@@ -250,6 +251,7 @@ src_configure() {
 	use bidi || myconf+=" --disable-fribidi"
 	use ipv6 || myconf+=" --disable-inet6"
 	use nut || myconf+=" --disable-libnut"
+	use quvi || myconf+=" --disable-libquvi"
 	use rar || myconf+=" --disable-unrarexec"
 	use samba || myconf+=" --disable-smb"
 	if ! use lirc; then
@@ -419,8 +421,8 @@ src_configure() {
 	# Platform specific flags, hardcoded on amd64 (see below)
 	use cpudetection && myconf+=" --enable-runtime-cpudetection"
 
-	for i in ${CPU_FEATURES}; do
-		myconf+=" $(use_enable ${i/+/})"
+	for i in ${CPU_FEATURES//+/}; do
+		myconf+=" $(use_enable ${i})"
 	done
 
 	use debug && myconf+=" --enable-debug=3"
@@ -467,23 +469,7 @@ src_configure() {
 
 src_compile() {
 	base_src_compile
-	# Build only user-requested docs if they're available.
-	if use doc ; then
-		# select available languages from $LINGUAS
-		LINGUAS=${LINGUAS/zh/zh_CN}
-		local ALLOWED_LINGUAS="cs de en es fr hu it pl ru zh_CN"
-		local BUILT_DOCS=""
-		for i in ${LINGUAS} ; do
-			has ${i} ${ALLOWED_LINGUAS} && BUILT_DOCS+=" ${i}"
-		done
-		if [[ -z $BUILT_DOCS ]]; then
-			emake -j1 -C DOCS/xml html-chunked
-		else
-			for i in ${BUILT_DOCS}; do
-				emake -j1 -C DOCS/xml html-chunked-${i}
-			done
-		fi
-	fi
+	use doc && emake -j1 -C DOCS/xml html-chunked
 }
 
 src_install() {

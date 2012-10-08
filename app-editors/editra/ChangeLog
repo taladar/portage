@@ -1,6 +1,16 @@
 # ChangeLog for app-editors/editra
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/editra/ChangeLog,v 1.29 2012/07/21 02:30:57 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/editra/ChangeLog,v 1.31 2012/09/05 08:40:44 jlec Exp $
+
+  05 Sep 2012; Justin Lecher <jlec@gentoo.org> editra-0.7.08.ebuild,
+  editra-0.7.12.ebuild:
+  Use doicon instead insinto + doins to install icon files
+
+*editra-0.7.12 (03 Sep 2012)
+
+  03 Sep 2012; Ryan Hill <dirtyepic@gentoo.org> -editra-0.7.01.ebuild,
+  editra-0.7.08.ebuild, +editra-0.7.12.ebuild:
+  Version bump, remove old. Update desktop category.
 
 *editra-0.7.08 (21 Jul 2012)
 
@@ -159,4 +169,3 @@
   21 Feb 2009; Ryan Hill <dirtyepic@gentoo.org> +metadata.xml,
   +editra-0.4.65.ebuild:
   Initial import, split off from dev-python/wxpython.
-

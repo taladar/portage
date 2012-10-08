@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/xbmc/xbmc-9999.ebuild,v 1.115 2012/06/08 04:49:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-tv/xbmc/xbmc-9999.ebuild,v 1.119 2012/09/24 18:02:24 vapier Exp $
 
 EAPI="4"
 
@@ -26,7 +26,7 @@ HOMEPAGE="http://xbmc.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="airplay alsa altivec avahi bluetooth bluray cec css debug goom joystick midi mysql profile +projectm pulseaudio pvr +rsxs rtmp +samba sse sse2 udev vaapi vdpau webserver +xrandr"
+IUSE="airplay alsa altivec avahi bluetooth bluray cec css debug goom joystick midi mysql nfs profile +projectm pulseaudio pvr +rsxs rtmp +samba sse sse2 udev upnp vaapi vdpau webserver +xrandr"
 REQUIRED_USE="pvr? ( mysql )"
 
 COMMON_DEPEND="virtual/opengl
@@ -53,7 +53,6 @@ COMMON_DEPEND="virtual/opengl
 	>=media-libs/glew-1.5.6
 	media-libs/jasper
 	media-libs/jbigkit
-	virtual/jpeg
 	>=media-libs/libass-0.9.7
 	bluray? ( media-libs/libbluray )
 	css? ( media-libs/libdvdcss )
@@ -66,6 +65,7 @@ COMMON_DEPEND="virtual/opengl
 	media-libs/libsamplerate
 	media-libs/libsdl[audio,opengl,video,X]
 	alsa? ( media-libs/libsdl[alsa] )
+	>=media-libs/taglib-1.8
 	media-libs/libvorbis
 	media-libs/sdl-gfx
 	>=media-libs/sdl-image-1.2.10[gif,jpeg,png]
@@ -78,12 +78,14 @@ COMMON_DEPEND="virtual/opengl
 	>=virtual/ffmpeg-0.6[encode]
 	rtmp? ( media-video/rtmpdump )
 	avahi? ( net-dns/avahi )
+	nfs? ( net-fs/libnfs )
 	webserver? ( net-libs/libmicrohttpd )
 	net-misc/curl
 	samba? ( >=net-fs/samba-3.4.6[smbclient] )
 	bluetooth? ( net-wireless/bluez )
 	sys-apps/dbus
 	sys-libs/zlib
+	virtual/jpeg
 	mysql? ( virtual/mysql )
 	x11-apps/xdpyinfo
 	x11-apps/mesa-progs
@@ -196,6 +198,7 @@ src_configure() {
 		$(use_enable joystick) \
 		$(use_enable midi mid) \
 		$(use_enable mysql) \
+		$(use_enable nfs) \
 		$(use_enable profile profiling) \
 		$(use_enable projectm) \
 		$(use_enable pulseaudio pulse) \
@@ -203,6 +206,7 @@ src_configure() {
 		$(use_enable rsxs) \
 		$(use_enable rtmp) \
 		$(use_enable samba) \
+		$(use_enable upnp) \
 		$(use_enable vaapi) \
 		$(use_enable vdpau) \
 		$(use_enable webserver) \
@@ -213,8 +217,7 @@ src_install() {
 	default
 	rm "${ED}"/usr/share/doc/*/{LICENSE.GPL,copying.txt}*
 
-	insinto /usr/share/applications
-	doins tools/Linux/xbmc.desktop
+	domenu tools/Linux/xbmc.desktop
 	newicon tools/Linux/xbmc-48x48.png xbmc.png
 
 	insinto "$(python_get_sitedir)" #309885

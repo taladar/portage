@@ -1,6 +1,39 @@
 # ChangeLog for net-im/gajim
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/gajim/ChangeLog,v 1.144 2012/06/19 12:20:36 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/gajim/ChangeLog,v 1.154 2012/10/07 01:16:40 blueness Exp $
+
+  07 Oct 2012; Anthony G. Basile <blueness@gentoo.org> gajim-0.15.1.ebuild:
+  stable ppc64, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> gajim-0.15.1.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gajim-0.15.1.ebuild:
+  x86 stable wrt bug #427544
+
+  30 Sep 2012; Agostino Sarubbo <ago@gentoo.org> -gajim-0.15-r1.ebuild:
+  Remove old
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org> gajim-0.15-r2.ebuild:
+  alpha/ia64/sparc stable wrt #434806
+
+  20 Sep 2012; Anthony G. Basile <blueness@gentoo.org> gajim-0.15-r2.ebuild:
+  stable ppc ppc64, bug #434806
+
+  13 Sep 2012; Agostino Sarubbo <ago@gentoo.org> gajim-0.15-r2.ebuild:
+  Stable for X86, wrt bug #434806
+
+  13 Sep 2012; Agostino Sarubbo <ago@gentoo.org> gajim-0.15-r2.ebuild:
+  Stable for amd64, wrt bug #434806
+
+  12 Sep 2012; Justin Lecher <jlec@gentoo.org> gajim-0.15.1.ebuild:
+  Correct dependency from farsight to farstream
+
+*gajim-0.15.1 (11 Sep 2012)
+
+  11 Sep 2012; Justin Lecher <jlec@gentoo.org> gajim-0.15-r2.ebuild,
+  +gajim-0.15.1.ebuild:
+  Version Bump and dropeed USE gajim in favour of srv, #434600
 
   19 Jun 2012; Agostino Sarubbo <ago@gentoo.org> -gajim-0.14.1-r2.ebuild,
   -gajim-0.14.4-r1.ebuild, -gajim-0.14.4-r2.ebuild:
@@ -590,4 +623,3 @@
 
   05 Jun 2005; Sergey Kuleshov <svyatogor@gentoo.org> +gajim-0.7.1.ebuild:
   Initial commit of gajim jabber client. Closing bug #94181.
-

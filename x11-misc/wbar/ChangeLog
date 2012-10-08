@@ -1,6 +1,32 @@
 # ChangeLog for x11-misc/wbar
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/wbar/ChangeLog,v 1.21 2012/07/29 20:16:13 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/wbar/ChangeLog,v 1.26 2012/09/24 20:33:42 hasufell Exp $
+
+*wbar-2.3.4 (24 Sep 2012)
+
+  24 Sep 2012; Julian Ospald <hasufell@gentoo.org> +wbar-2.3.4.ebuild:
+  version bump
+
+  21 Sep 2012; Julian Ospald <hasufell@gentoo.org> wbar-2.3.3.ebuild,
+  +files/wbar-2.3.3-test.patch:
+  fix test phase
+
+*wbar-2.3.3 (21 Sep 2012)
+
+  21 Sep 2012; Julian Ospald <hasufell@gentoo.org> +wbar-2.3.3.ebuild,
+  +files/wbar-2.3.3-cfg.patch, +files/wbar-2.3.3-desktopfile.patch,
+  +files/wbar-2.3.3-nowerror.patch:
+  version bump
+
+  26 Aug 2012; Julian Ospald <hasufell@gentoo.org> wbar-2.3.1.ebuild,
+  +files/wbar-2.3.1-version.patch:
+  fix ...version in build system
+
+*wbar-2.3.1 (26 Aug 2012)
+
+  26 Aug 2012; Julian Ospald <hasufell@gentoo.org> +wbar-2.3.1.ebuild,
+  +files/wbar-2.3.1-desktopfile.patch, +files/wbar-2.3.1-nowerror.patch:
+  version bump
 
   29 Jul 2012; Julian Ospald <hasufell@gentoo.org> wbar-2.3.0.ebuild:
   stable for amd64 wrt bug #427658

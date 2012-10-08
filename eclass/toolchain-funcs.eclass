@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.115 2012/07/26 16:43:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.119 2012/09/28 15:07:30 axs Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -17,8 +17,6 @@ if [[ ${___ECLASS_ONCE_TOOLCHAIN_FUNCS} != "recur -_+^+_- spank" ]] ; then
 ___ECLASS_ONCE_TOOLCHAIN_FUNCS="recur -_+^+_- spank"
 
 inherit multilib
-
-DESCRIPTION="Based on the ${ECLASS} eclass"
 
 # tc-getPROG <VAR [search vars]> <default> [tuple]
 _tc-getPROG() {
@@ -359,7 +357,12 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 	local host=$2
 	[[ -z ${host} ]] && host=${CTARGET:-${CHOST}}
 
+	local KV=${KV:-${KV_FULL}}
+	[[ ${type} == "kern" ]] && [[ -z ${KV} ]] && \
+	ewarn "QA: Kernel version could not be determined, please inherit kernel-2 or linux-info"
+
 	case ${host} in
+		aarch64*)	ninj aarch64 arm;;
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
 		avr*)		ninj avr32 avr;;
@@ -446,6 +449,8 @@ tc-endian() {
 	host=${host%%-*}
 
 	case ${host} in
+		aarch64*be)	echo big;;
+		aarch64)	echo little;;
 		alpha*)		echo big;;
 		arm*b*)		echo big;;
 		arm*)		echo little;;

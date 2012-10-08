@@ -1,6 +1,38 @@
 # ChangeLog for mail-mta/postfix
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/postfix/ChangeLog,v 1.378 2012/08/05 00:10:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/postfix/ChangeLog,v 1.384 2012/10/08 07:05:33 eras Exp $
+
+*postfix-2.10_pre20121007 (08 Oct 2012)
+
+  08 Oct 2012; Eray Aslan <eraya@gentoo.org> +postfix-2.10_pre20121007.ebuild,
+  -postfix-2.10_pre20120924.ebuild:
+  Version bump
+
+*postfix-2.10_pre20120924 (01 Oct 2012)
+
+  01 Oct 2012; Eray Aslan <eraya@gentoo.org> +postfix-2.10_pre20120924.ebuild,
+  -postfix-2.10_pre20120908.ebuild:
+  Version bump
+
+*postfix-2.10_pre20120908 (11 Sep 2012)
+
+  11 Sep 2012; Eray Aslan <eras@gentoo.org> +postfix-2.10_pre20120908.ebuild,
+  -postfix-2.10_pre20120902.ebuild:
+  Version bump
+
+*postfix-2.10_pre20120902 (03 Sep 2012)
+
+  03 Sep 2012; Eray Aslan <eras@gentoo.org> +postfix-2.10_pre20120902.ebuild,
+  -postfix-2.10_pre20120801.ebuild:
+  Version bump
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> postfix-2.9.1.ebuild,
+  postfix-2.9.1-r1.ebuild, postfix-2.9.1-r2.ebuild, postfix-2.9.2.ebuild,
+  postfix-2.9.3.ebuild, postfix-2.9.4.ebuild:
+  Add ~s390 wrt #399329
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> postfix-2.9.3.ebuild:
+  alpha/ia64/sh/sparc stable wrt #426760
 
   05 Aug 2012; Jeroen Roovers <jer@gentoo.org> postfix-2.9.3.ebuild:
   Stable for HPPA (bug #426760).

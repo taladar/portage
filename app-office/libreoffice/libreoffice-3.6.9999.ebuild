@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/libreoffice-3.6.9999.ebuild,v 1.25 2012/08/25 08:43:24 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/libreoffice-3.6.9999.ebuild,v 1.29 2012/09/24 08:26:04 scarabeus Exp $
 
 EAPI=4
 
@@ -102,7 +102,7 @@ COMMON_DEPEND="
 	app-text/libwpg:0.2
 	>=app-text/libwps-0.2.2
 	>=dev-cpp/clucene-2.3.3.4-r2
-	>=dev-cpp/libcmis-0.2
+	>=dev-cpp/libcmis-0.2:0.2
 	dev-db/unixODBC
 	dev-libs/expat
 	>=dev-libs/glib-2.28
@@ -152,7 +152,10 @@ COMMON_DEPEND="
 		dev-java/tomcat-servlet-api:3.0
 	)
 	mysql? ( >=dev-db/mysql-connector-c++-1.1.0 )
-	opengl? ( virtual/opengl )
+	opengl? (
+		virtual/glu
+		virtual/opengl
+	)
 	postgres? ( >=dev-db/postgresql-base-9.0[kerberos] )
 	svg? ( gnome-base/librsvg )
 	webdav? ( net-libs/neon )
@@ -212,6 +215,7 @@ DEPEND="${COMMON_DEPEND}
 PATCHES=(
 	# not upstreamable stuff
 	"${FILESDIR}/${PN}-3.6-system-pyuno.patch"
+	"${FILESDIR}/${PN}-3.6-separate-checks.patch"
 )
 
 REQUIRED_USE="
@@ -222,8 +226,6 @@ REQUIRED_USE="
 	libreoffice_extensions_scripting-javascript? ( java )
 	libreoffice_extensions_wiki-publisher? ( java )
 "
-
-RESTRICT="test"
 
 S="${WORKDIR}/${PN}-core-${PV}"
 
@@ -405,9 +407,6 @@ src_configure() {
 		# hack...
 		mv -v "${WORKDIR}/branding-intro.png" "${S}/icon-themes/galaxy/brand/intro.png" || die
 	fi
-
-	# it's not entirely clear to me where the failure is, boost libreoffice gcc come to my mind
-	append-cppflags -DBOOST_NO_0X_HDR_TYPEINDEX
 
 	# system headers/libs/...: enforce using system packages
 	# --enable-unix-qstart-libpng: use libpng splashscreen that is faster

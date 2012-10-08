@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-9999.ebuild,v 1.34 2012/08/22 02:39:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-9999.ebuild,v 1.36 2012/09/07 04:23:04 vapier Exp $
 
 EAPI="3"
 
@@ -31,7 +31,7 @@ IUSE="+cramfs crypt ddate ncurses nls old-linux perl selinux slang static-libs u
 
 RDEPEND="!sys-process/schedutils
 	!sys-apps/setarch
-	!<sys-apps/sysvinit-2.88-r3
+	!<sys-apps/sysvinit-2.88-r4
 	!sys-block/eject
 	!<sys-libs/e2fsprogs-libs-1.41.8
 	!<sys-fs/e2fsprogs-1.41.8
@@ -72,19 +72,21 @@ src_configure() {
 		--enable-fs-paths-extra=/usr/sbin \
 		$(use_enable nls) \
 		--enable-agetty \
+		$(use_enable perl chkdupexe) \
 		$(use_enable cramfs) \
 		$(use_enable ddate) \
 		$(use_enable old-linux elvtune) \
 		--with-ncurses=$(usex ncurses $(usex unicode auto yes) no) \
 		--disable-kill \
 		--disable-last \
+		--disable-login \
 		--disable-mesg \
 		--enable-partx \
 		--enable-raw \
 		--enable-rename \
 		--disable-reset \
-		--disable-login-utils \
 		--enable-schedutils \
+		--disable-su \
 		--disable-wall \
 		--enable-write \
 		$(use_with selinux) \
@@ -97,11 +99,6 @@ src_configure() {
 src_install() {
 	emake install DESTDIR="${D}" || die
 	dodoc AUTHORS NEWS README* Documentation/{TODO,*.txt}
-
-	if ! use perl ; then #284093
-		rm "${ED}"/usr/bin/chkdupexe || die
-		rm "${ED}"/usr/share/man/man1/chkdupexe.1 || die
-	fi
 
 	# need the libs in /
 	gen_usr_ldscript -a blkid mount uuid

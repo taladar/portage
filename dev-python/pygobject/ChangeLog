@@ -1,6 +1,61 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.164 2012/08/15 17:51:46 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.176 2012/10/07 02:08:35 blueness Exp $
+
+  07 Oct 2012; Anthony G. Basile <blueness@gentoo.org>
+  pygobject-2.28.6-r52.ebuild:
+  stable ppc64, bug #427544
+
+  07 Oct 2012; Anthony G. Basile <blueness@gentoo.org> pygobject-3.2.2.ebuild:
+  stable ppc64, bug #427544
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> pygobject-2.28.6-r52.ebuild:
+  arm stable, bug #427544
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> pygobject-3.2.2.ebuild:
+  arm stable, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> pygobject-3.2.2.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> pygobject-2.28.6-r52.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  04 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> pygobject-3.2.2.ebuild:
+  x86 stable wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  pygobject-2.28.6-r52.ebuild:
+  x86 stable wrt bug #427544
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> pygobject-2.28.6-r52.ebuild,
+  pygobject-3.2.2.ebuild:
+  Stable for HPPA (bug #427544).
+
+  02 Oct 2012; Mike Gilbert <floppym@gentoo.org> pygobject-3.0.4.ebuild,
+  pygobject-3.2.2.ebuild:
+  Restrict python 3.3 based on testing by Arfrever.
+
+  28 Sep 2012; Matt Turner <mattst88@gentoo.org> pygobject-2.28.6-r52.ebuild,
+  pygobject-3.2.2.ebuild:
+  Stable on alpha, bug 427544.
+
+*pygobject-3.4.0 (25 Sep 2012)
+
+  25 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -files/pygobject-2.15.4-fix-codegen-location.patch,
+  -files/pygobject-2.18.0-support_multiple_python_versions.patch,
+  -files/pygobject-2.20.0-tmpdir-makefile.patch,
+  -files/pygobject-2.26.0-disable-non-working-tests.patch,
+  -files/pygobject-2.26.0-disabled-threads.patch,
+  -files/pygobject-2.26.0-make_check.patch,
+  -files/pygobject-2.26.0-nocrash.patch, pygobject-2.28.6-r51.ebuild,
+  pygobject-2.28.6-r52.ebuild, -pygobject-3.0.2.ebuild,
+  -files/pygobject-3.0.2-disable-new-gi-tests.patch,
+  -files/pygobject-3.0.3-gobject-property-min-max.patch,
+  pygobject-3.0.4.ebuild, -pygobject-3.2.1.ebuild, pygobject-3.2.2.ebuild,
+  +pygobject-3.4.0.ebuild, +files/pygobject-3.4.0-make_check.patch:
+  Version bump with assorted bugfixes. Drop old. Make license more precise.
 
   15 Aug 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
   pygobject-3.0.2.ebuild, pygobject-3.0.4.ebuild, pygobject-3.2.1.ebuild,
@@ -718,4 +773,3 @@
   +pygobject-2.10.1.ebuild:
   Add GNOME 2 bindings for Python, needed for system-config-*. Based on 2.11
   ebuild in gnome overlay. Gnome herd, feel free to add yourself to metadata.
-

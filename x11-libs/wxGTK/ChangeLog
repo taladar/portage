@@ -1,6 +1,19 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.292 2012/07/28 22:45:58 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.296 2012/09/25 03:49:06 vapier Exp $
+
+  25 Sep 2012; Mike Frysinger <vapier@gentoo.org> wxGTK-2.8.12.1.ebuild:
+  Fix setup of wx_cv_std_libpath #421851 by Xavier Miller.
+
+  17 Sep 2012; Ryan Hill <dirtyepic@gentoo.org> wxGTK-2.9.3.1.ebuild:
+  SLOT gstreamer deps.
+
+  17 Sep 2012; Ryan Hill <dirtyepic@gentoo.org> +wxGTK-2.9.3.1.ebuild:
+  Restore.
+
+  16 Sep 2012; Ryan Hill <dirtyepic@gentoo.org> wxGTK-2.8.12.1.ebuild,
+  -wxGTK-2.9.3.1.ebuild, wxGTK-2.9.4.1.ebuild:
+  Make gstreamer SLOT explicit. Remove old.
 
 *wxGTK-2.9.4.1 (28 Jul 2012)
 

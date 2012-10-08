@@ -1,6 +1,22 @@
 # ChangeLog for app-misc/geoclue
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/geoclue/ChangeLog,v 1.16 2012/08/11 19:08:59 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/geoclue/ChangeLog,v 1.21 2012/10/02 11:14:38 blueness Exp $
+
+  02 Oct 2012; Anthony G. Basile <blueness@gentoo.org> geoclue-0.12.99.ebuild:
+  stable arm, bug #427556
+
+  02 Oct 2012; Anthony G. Basile <blueness@gentoo.org> geoclue-0.12.99.ebuild:
+  stable ppc ppc64, bug #427556
+
+  01 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> geoclue-0.12.99.ebuild:
+  x86 stable wrt bug #427556
+
+  26 Sep 2012; Agostino Sarubbo <ago@gentoo.org> geoclue-0.12.99.ebuild:
+  Stable for amd64, wrt bug #427556
+
+  11 Sep 2012; Raúl Porcel <armin76@gentoo.org>
+  geoclue-0.12.0_p20110307.ebuild, geoclue-0.12.99.ebuild:
+  Add ~sparc wrt #432578
 
   11 Aug 2012; Samuli Suominen <ssuominen@gentoo.org> geoclue-0.12.99.ebuild:
   Remove obsolete gnome-base/gconf dependency wrt #430994 by Andreas
@@ -65,4 +81,3 @@
   +files/geoclue-0.12.0_p20110307-use-fallback-mac.patch,
   +files/geoclue-0.12.0_p20110307-use-flag.patch, +metadata.xml:
   New ebuild for Geoclue. Ebuild by signals@gentoo.org.
-

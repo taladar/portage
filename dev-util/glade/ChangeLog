@@ -1,6 +1,24 @@
 # ChangeLog for dev-util/glade
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/glade/ChangeLog,v 1.167 2012/07/15 17:09:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/glade/ChangeLog,v 1.172 2012/10/07 00:50:05 blueness Exp $
+
+  07 Oct 2012; Anthony G. Basile <blueness@gentoo.org> glade-3.12.1.ebuild:
+  stable ppc64, bug #427544
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> glade-3.12.1.ebuild:
+  arm stable, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> glade-3.12.1.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  04 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> glade-3.12.1.ebuild:
+  x86 stable wrt bug #427544
+
+*glade-3.12.2 (22 Sep 2012)
+
+  22 Sep 2012; Pacho Ramos <pacho@gentoo.org> +glade-3.12.2.ebuild,
+  -glade-3.8.1.ebuild:
+  Version bump, drop old.
 
   15 Jul 2012; Raúl Porcel <armin76@gentoo.org> glade-3.8.2.ebuild:
   alpha/ia64/sh/sparc stable wrt #410611

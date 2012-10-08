@@ -1,6 +1,16 @@
 # ChangeLog for media-gfx/mscgen
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/mscgen/ChangeLog,v 1.6 2012/08/08 14:58:25 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/mscgen/ChangeLog,v 1.9 2012/10/03 10:27:38 ago Exp $
+
+  03 Oct 2012; Agostino Sarubbo <ago@gentoo.org> mscgen-0.20.ebuild:
+  Stable for amd64, wrt bug #435976
+
+  29 Sep 2012; Anthony G. Basile <blueness@gentoo.org> mscgen-0.20.ebuild:
+  stable ppc ppc64, bug #430430
+
+  29 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> mscgen-0.18.ebuild,
+  mscgen-0.20.ebuild:
+  Restricting tests wrt bug #379279
 
   08 Aug 2012; Anthony G. Basile <blueness@gentoo.org> mscgen-0.20.ebuild:
   Stable arm for bug #430430
@@ -25,4 +35,3 @@
   02 Nov 2010; Samuli Suominen <ssuominen@gentoo.org> +mscgen-0.18.ebuild,
   +files/mscgen-0.18-pkg.patch:
   Initial commit wrt #173570 by Roy, Peter, Walter (and others).
-

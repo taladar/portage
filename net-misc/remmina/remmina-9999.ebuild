@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/remmina/remmina-9999.ebuild,v 1.23 2012/07/08 00:37:54 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/remmina/remmina-9999.ebuild,v 1.25 2012/10/07 00:32:31 floppym Exp $
 
 EAPI="4"
 
@@ -14,7 +14,8 @@ if [[ ${PV} != 9999 ]]; then
 else
 	inherit git-2
 	SRC_URI=""
-	EGIT_REPO_URI="git://github.com/FreeRDP/Remmina.git"
+	EGIT_REPO_URI="git://github.com/FreeRDP/Remmina.git
+		https://github.com/FreeRDP/Remmina.git"
 	KEYWORDS=""
 fi
 
@@ -32,7 +33,7 @@ RDEPEND="
 	avahi? ( net-dns/avahi[gtk3] )
 	ayatana? ( dev-libs/libappindicator )
 	crypt? ( dev-libs/libgcrypt )
-	freerdp? ( >=net-misc/freerdp-1.0.1_p20120704 )
+	freerdp? ( >=net-misc/freerdp-1.1.0_pre20121004 )
 	gnome-keyring? ( gnome-base/libgnome-keyring )
 	ssh? ( net-libs/libssh[sftp] )
 	telepathy? ( net-libs/telepathy-glib )

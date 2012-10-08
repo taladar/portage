@@ -1,6 +1,31 @@
 # ChangeLog for app-text/wdiff
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/ChangeLog,v 1.72 2012/05/31 03:00:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/ChangeLog,v 1.80 2012/10/06 15:18:41 jlec Exp $
+
+  06 Oct 2012; Justin Lecher <jlec@gentoo.org> -wdiff-1.1.0.ebuild,
+  -wdiff-1.1.1.ebuild:
+  Drop old
+
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> wdiff-1.1.2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #428906
+
+  25 Sep 2012; Jeroen Roovers <jer@gentoo.org> wdiff-1.1.2.ebuild:
+  Fix hang in test suite when an incompatible screenrc is found.
+
+  23 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> wdiff-1.1.2.ebuild:
+  x86 stable wrt bug #428906
+
+  20 Sep 2012; Anthony G. Basile <blueness@gentoo.org> wdiff-1.1.2.ebuild:
+  stable ppc ppc64, bug #428906
+
+  18 Sep 2012; Jeroen Roovers <jer@gentoo.org> wdiff-1.1.2.ebuild:
+  Stable for HPPA (bug #428906).
+
+  14 Sep 2012; Markus Meier <maekke@gentoo.org> wdiff-1.1.2.ebuild:
+  arm stable, bug #428906
+
+  13 Sep 2012; Agostino Sarubbo <ago@gentoo.org> wdiff-1.1.2.ebuild:
+  Stable for amd64, wrt bug #428906
 
 *wdiff-1.1.2 (31 May 2012)
 

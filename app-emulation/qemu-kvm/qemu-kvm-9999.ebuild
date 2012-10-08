@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/qemu-kvm-9999.ebuild,v 1.55 2012/08/13 00:59:46 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/qemu-kvm-9999.ebuild,v 1.60 2012/09/10 21:39:34 cardoe Exp $
 
 EAPI="4"
 
@@ -30,9 +30,9 @@ kernel_FreeBSD mixemu ncurses opengl pulseaudio python rbd sasl sdl \
 smartcard spice static systemtap tci tls usbredir vde +vhost-net \
 virtfs xattr xen xfs"
 
-COMMON_TARGETS="i386 x86_64 alpha arm cris m68k microblaze microblazeel mips mipsel ppc ppc64 sh4 sh4eb sparc sparc64 s390x"
+COMMON_TARGETS="i386 x86_64 alpha arm cris m68k microblaze microblazeel mips mipsel or32 ppc ppc64 sh4 sh4eb sparc sparc64 s390x unicore32"
 IUSE_SOFTMMU_TARGETS="${COMMON_TARGETS} mips64 mips64el ppcemb xtensa xtensaeb"
-IUSE_USER_TARGETS="${COMMON_TARGETS} armeb ppc64abi32 sparc32plus unicore32"
+IUSE_USER_TARGETS="${COMMON_TARGETS} armeb ppc64abi32 sparc32plus"
 
 # Setup the default SoftMMU targets, while using the loops
 # below to setup the other targets. x86_64 should be the only
@@ -67,6 +67,7 @@ RDEPEND="
 	>=dev-libs/glib-2.0
 	media-libs/libpng
 	sys-apps/pciutils
+	sys-firmware/ipxe
 	>=sys-firmware/seabios-1.7.0
 	sys-firmware/sgabios
 	sys-firmware/vgabios
@@ -169,6 +170,14 @@ pkg_pretend() {
 			check_extra_config
 		fi
 	fi
+
+	if use static; then
+		ewarn "USE=static is very much a moving target because of the packages"
+		ewarn "we depend on will have their static libs ripped out or wrapped"
+		ewarn "with USE=static-libs or USE=static due to continued dicsussion"
+		ewarn "on the mailing list about USE=static's place in Gentoo. As a"
+		ewarn "result what worked today may not work tomorrow."
+	fi
 }
 
 pkg_setup() {
@@ -185,6 +194,7 @@ src_prepare() {
 
 	python_convert_shebangs -r 2 "${S}/scripts/kvm/kvm_stat"
 
+	epatch "${FILESDIR}"/${P}-fix-mipsen.patch
 	[[ -n ${BACKPORTS} ]] && \
 		EPATCH_FORCE=yes EPATCH_SUFFIX="patch" EPATCH_SOURCE="${S}/patches" \
 			epatch
@@ -242,6 +252,9 @@ src_configure() {
 	# provides libuuid on their platform
 	# --enable-vnc-thread will go away in 1.2
 	# $(use_enable xen xen-pci-passthrough) for 1.2
+	# $(use_enable debug debug-mon) goes away for 1.2
+	# --disable-seccomp as in-tree seccomp is API incompatible (in-tree
+	# version is ancient)
 	./configure --prefix=/usr \
 		--sysconfdir=/etc \
 		--disable-bsd-user \
@@ -252,18 +265,17 @@ src_configure() {
 		--enable-vnc-jpeg \
 		--enable-vnc-png \
 		--python=python2 \
+		--disable-seccomp \
 		$(use_enable aio linux-aio) \
 		$(use_enable bluetooth bluez) \
 		$(use_enable brltty brlapi) \
 		$(use_enable caps cap-ng) \
 		$(use_enable curl) \
 		$(use_enable debug debug-info) \
-		$(use_enable debug debug-mon) \
 		$(use_enable debug debug-tcg) \
 		$(use_enable doc docs) \
 		$(use_enable fdt) \
 		$(use_enable kernel_linux kvm) \
-		$(use_enable kernel_linux kvm-device-assignment) \
 		$(use_enable kernel_linux nptl) \
 		$(use_enable kernel_linux uuid) \
 		$(use_enable ncurses curses) \
@@ -345,6 +357,15 @@ src_install() {
 	# Remove sgabios since we're using the sgabios packaged one
 	rm "${ED}/usr/share/qemu/sgabios.bin"
 	dosym ../sgabios/sgabios.bin /usr/share/qemu/sgabios.bin
+
+	# Remove iPXE since we're using the iPXE packaged one
+	rm "${ED}/usr/share/qemu/pxe-*.rom"
+	dosym ../ipxe/808610de.rom /usr/share/qemu/pxe-e1000.rom
+	dosym ../ipxe/80861209.rom /usr/share/qemu/pxe-eepro100.rom
+	dosym ../ipxe/10500940.rom /usr/share/qemu/pxe-ne2k_pci.rom
+	dosym ../ipxe/10222000.rom /usr/share/qemu/pxe-pcnet.rom
+	dosym ../ipxe/10ec8139.rom /usr/share/qemu/pxe-rtl8139.rom
+	dosym ../ipxe/1af41000.rom /usr/share/qemu/pxe-virtio.rom
 }
 
 pkg_postinst() {

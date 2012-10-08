@@ -1,6 +1,24 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.492 2012/08/19 14:23:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.496 2012/10/04 15:22:18 ssuominen Exp $
+
+*imagemagick-6.7.9.9 (04 Oct 2012)
+
+  04 Oct 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +imagemagick-6.7.9.9.ebuild:
+  Version bump. Fix documentation installation to include 'html' in it's path
+  for $DOC_SYMLINKS_DIR to work wrt #424209 by Guenther Brunthaler
+
+  04 Oct 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -imagemagick-6.7.6.4.ebuild:
+  old
+
+  04 Oct 2012; Samuli Suominen <ssuominen@gentoo.org>
+  imagemagick-6.7.8.7.ebuild:
+  ppc stable wrt #428718
+
+  28 Aug 2012; Brent Baude <ranger@gentoo.org> imagemagick-6.7.8.7.ebuild:
+  Marking imagemagick-6.7.8.7 ppc64 for bug 428718
 
   19 Aug 2012; Raúl Porcel <armin76@gentoo.org> imagemagick-6.7.8.7.ebuild:
   alpha/ia64/s390/sh/sparc stable wrt #428718

@@ -1,6 +1,53 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.426 2012/08/22 21:23:59 swift Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.442 2012/10/02 18:27:07 ssuominen Exp $
+
+  02 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask <gnome-base/gvfs-1.12.3-r1[udisks] for stabilization bug #427544,
+  Comment #27
+
+  29 Sep 2012; <swift@gentoo.org> package.mask:
+  Add mask for selinux-rtorrent, new policy ebuild
+
+  27 Sep 2012; Ian Stakenvicius <axs@gentoo.org> make.defaults:
+  Added prefix flag to IUSE_IMPLICIT for EAPI=5 ebuild testing
+
+  25 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  Mask gtk+[egl] since it's only useful with wayland.
+
+  19 Sep 2012; Matt Turner <mattst88@gentoo.org> package.use.force:
+  Add media-libs/glu -multilib to package.use.force
+
+  19 Sep 2012; Matt Turner <mattst88@gentoo.org> package.use.mask:
+  Add media-libs/glu multilib to package.use.mask.
+
+  14 Sep 2012; Johannes Huber <johu@gentoo.org> package.use.mask:
+  Masked media-libs/phonon[zeitgeist] for stabilization as the use flag pulls a
+  dep tree of hell.
+
+  13 Sep 2012; Zac Medico <zmedico@gentoo.org> make.defaults:
+  Add IUSE injection variables to PROFILE_ONLY_VARIABLES.
+
+  13 Sep 2012; Zac Medico <zmedico@gentoo.org> make.defaults:
+  Populate variables for "Profile IUSE injection" (applies only to ebuilds
+  which use EAPI 5 or later). These are just minimal settings for ARCH, ELIBC,
+  KERNEL, and USERLAND flags which everyone can probably agree on.
+
+  12 Sep 2012; Davide Pesavento <pesa@gentoo.org> package.use.force:
+  Force usage of bundled botan in >=qt-creator-2.6
+
+  10 Sep 2012; Johannes Huber <johu@gentoo.org> package.use.mask:
+  Restore mask net-libs/telepathy-qt[farstream] otherwise repoman will scream.
+
+  09 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.use.mask:
+  GNOME 3.4 is unmasked
+
+  02 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.use.mask:
+  Mask wayland for one more version of mesa so it can go stable, bug #432400.
+
+  31 Aug 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Mask USE="cdr" of app-pda/gtkpod for #433535
 
   22 Aug 2012; <swift@gentoo.org> package.mask:
   Adding mask for SELinux vdagent policy

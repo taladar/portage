@@ -1,6 +1,33 @@
 # ChangeLog for net-print/cups
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-print/cups/ChangeLog,v 1.505 2012/08/16 17:07:16 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-print/cups/ChangeLog,v 1.512 2012/10/04 08:07:30 naota Exp $
+
+  04 Oct 2012;  <naota@gentoo.org> cups-1.6.1.ebuild:
+  Add ~x86-fbsd wrt bug #428356
+
+  21 Sep 2012; Anthony G. Basile <blueness@gentoo.org> cups-9999.ebuild:
+  Keyword ~ppc64, bug #428356
+
+  09 Sep 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  -files/cups-1.4.0-backend-https.patch, -files/cups-1.4.2-str3200.patch,
+  -files/cups-1.4.6-force-gnutls.patch,
+  -files/cups-1.4.6-serialize-gnutls.patch, -cups-1.4.8-r1.ebuild,
+  -files/cups-1.4.8-CVE-2011-3170.patch, -files/cups-1.4.8-largeimage.patch:
+  Remove old
+
+  09 Sep 2012; Raúl Porcel <armin76@gentoo.org> cups-1.5.2-r4.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #411887
+
+  01 Sep 2012; Anthony G. Basile <blueness@gentoo.org> cups-1.6.1.ebuild,
+  cups-9999.ebuild:
+  Keyword ~ppc, bug #428356
+
+  31 Aug 2012; Andreas K. Huettel <dilfridge@gentoo.org> cups-9999.ebuild:
+  Sync keywords
+
+  30 Aug 2012; Andreas K. Huettel <dilfridge@gentoo.org> cups-1.6.1.ebuild,
+  cups-9999.ebuild:
+  Add warning about network browsing on update from 1.5 and earlier
 
   16 Aug 2012; Jeroen Roovers <jer@gentoo.org> cups-1.6.1.ebuild:
   Marked ~hppa (bug #428356).

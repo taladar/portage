@@ -1,6 +1,29 @@
 # ChangeLog for sys-kernel/spl
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/spl/ChangeLog,v 1.25 2012/08/24 14:57:32 ryao Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/spl/ChangeLog,v 1.30 2012/10/03 00:06:36 ryao Exp $
+
+  03 Oct 2012; Richard Yao <ryao@gentoo.org> spl-9999.ebuild:
+  Sync spl-9999.ebuild with spl-0.6.0_rc11.ebuild - thanks prometheanfire
+
+*spl-0.6.0_rc11 (18 Sep 2012)
+
+  18 Sep 2012; Richard Yao <ryao@gentoo.org>
+  +files/spl-0.6.0_rc9-alias-km-sleep-with-km-pushpage.patch,
+  +spl-0.6.0_rc11.ebuild:
+  Add sys-kernel/spl-0.6.0_rc11 and reintroduce a patch that 0.6.0_rc10 needed
+
+  18 Sep 2012; Richard Yao <ryao@gentoo.org>
+  -files/spl-0.6.0_rc9-alias-km-sleep-with-km-pushpage.patch,
+  -files/spl-0.6.0_rc9-constify-free-functions.patch,
+  -files/spl-0.6.0_rc9-detect-kernel-honors-gfp-flags.patch:
+  Remove sys-kernel/spl-0.6.0_rc9-r2 patch files
+
+  18 Sep 2012; Richard Yao <ryao@gentoo.org> -spl-0.6.0_rc9-r2.ebuild:
+  Remove sys-kernel/spl-0.6.0_rc9-r2
+
+  31 Aug 2012; Richard Yao <ryao@gentoo.org> spl-0.6.0_rc10.ebuild,
+  spl-0.6.0_rc9-r2.ebuild, spl-9999.ebuild:
+  RESTRICT=test
 
   24 Aug 2012; Richard Yao <ryao@gentoo.org> spl-0.6.0_rc10.ebuild,
   spl-0.6.0_rc9-r2.ebuild, spl-9999.ebuild:

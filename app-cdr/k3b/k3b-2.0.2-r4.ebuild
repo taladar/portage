@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/k3b/k3b-2.0.2-r4.ebuild,v 1.1 2012/08/25 15:36:01 kensington Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/k3b/k3b-2.0.2-r4.ebuild,v 1.4 2012/10/03 10:27:18 ago Exp $
 
 EAPI=4
 
@@ -29,7 +29,7 @@ HOMEPAGE="http://www.k3b.org/"
 
 LICENSE="GPL-2 FDL-1.2"
 SLOT="4"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="amd64 ~ppc ~ppc64 x86"
 IUSE="debug dvd emovix encode ffmpeg flac mad mp3 musepack sndfile sox taglib vcd vorbis"
 
 DEPEND="
@@ -52,7 +52,7 @@ RDEPEND="${DEPEND}
 	virtual/cdrtools
 	dvd? (
 		>=app-cdr/dvd+rw-tools-7
-		media-video/transcode[dvd]
+		encode? ( media-video/transcode[dvd] )
 	)
 	emovix? ( media-video/emovix )
 	sox? ( media-sound/sox )

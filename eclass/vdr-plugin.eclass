@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.88 2012/04/23 23:13:52 hd_brummy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.90 2012/09/27 16:35:42 axs Exp $
 
 # @ECLASS: vdr-plugin.eclass
 # @MAINTAINER:
@@ -45,7 +45,7 @@
 
 inherit base multilib eutils flag-o-matic
 
-if ! has "${EAPI:-0}" 0 1 2 3 4; then
+if ! has "${EAPI:-0}" 0 1 2 3 4 5; then
 	die "API of vdr-plugin.eclass in EAPI=\"${EAPI}\" not established"
 fi
 
@@ -358,7 +358,7 @@ vdr-plugin_pkg_setup() {
 	# Plugins need to be compiled with position independent code, otherwise linking
 	# VDR against it will fail
 	if has_version ">=media-video/vdr-1.7.13"; then
-		append-flags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
+		append-lfs-flags
 	fi
 
 	# Where should the plugins live in the filesystem
@@ -450,7 +450,7 @@ vdr-plugin_src_unpack() {
 	fi
 	if [ -z "$1" ]; then
 		case "${EAPI:-0}" in
-			2|3|4)
+			2|3|4|5)
 				vdr-plugin_src_util unpack
 				;;
 			*)
@@ -592,7 +592,7 @@ vdr-plugin_pkg_config() {
 }
 
 case "${EAPI:-0}" in
-	2|3|4)
+	2|3|4|5)
 		EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare src_compile src_install pkg_postinst pkg_postrm pkg_config
 		;;
 	*)

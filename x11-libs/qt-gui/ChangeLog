@@ -1,6 +1,26 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.198 2012/07/19 21:01:58 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.202 2012/09/18 03:00:01 pesa Exp $
+
+  18 Sep 2012; Davide Pesavento <pesa@gentoo.org> -qt-gui-4.8.3.ebuild:
+  Remove broken version.
+
+*qt-gui-4.8.3-r1 (16 Sep 2012)
+
+  16 Sep 2012; Ben de Groot <yngwin@gentoo.org> +qt-gui-4.8.3-r1.ebuild:
+  Import updates from live ebuild in overlay. Revert gtkstyle changes (bugs
+  #435054 and #435122).
+
+*qt-gui-4.8.3 (14 Sep 2012)
+
+  14 Sep 2012; Ben de Groot <yngwin@gentoo.org> +files/44qt4-gtkstyle,
+  +qt-gui-4.8.3.ebuild:
+  Version bump. Drop qatomic-x32 patch applied upstream. Drop qpa useflag. Add
+  gtkstyle env.d file (bug #388551).
+
+  03 Sep 2012; Davide Pesavento <pesa@gentoo.org> qt-gui-4.8.1-r1.ebuild,
+  qt-gui-4.8.2.ebuild:
+  Install qdbusviewer icon wrt bug 430726 by Samuel Bauer.
 
   19 Jul 2012; Markus Meier <maekke@gentoo.org> qt-gui-4.8.2.ebuild:
   arm stable, bug #424625

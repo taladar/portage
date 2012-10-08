@@ -1,6 +1,29 @@
 # ChangeLog for media-libs/libirman
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libirman/ChangeLog,v 1.30 2012/08/06 21:11:36 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libirman/ChangeLog,v 1.34 2012/09/15 10:33:47 scarabeus Exp $
+
+  15 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> libirman-0.4.5.ebuild:
+  Stable ppc. Wrt bug#429112.
+
+  14 Sep 2012; Ian Stakenvicius <axs@gentoo.org> +libirman-0.4.2-r1.ebuild,
+  +files/libirman-0.4.2-PICShared.patch, +files/libirman-0.4.2-destdir.patch,
+  +files/libirman-0.4.2-format.patch, +files/libirman-0.4.2-gcc4.patch:
+  undid premature removal so ppc-stable lirc RDEPEND can still be satisfied
+
+  14 Sep 2012; Ian Stakenvicius <axs@gentoo.org> +libirman-0.4.2-r1.ebuild,
+  +files/libirman-0.4.2-PICShared.patch, +files/libirman-0.4.2-destdir.patch,
+  +files/libirman-0.4.2-format.patch, +files/libirman-0.4.2-gcc4.patch:
+  undid premature removal so ppc-stable lirc RDEPEND can still be satisfied
+
+  29 Aug 2012; Michael Palimaka <kensington@gentoo.org>
+  -files/libirman-0.4.2-PICShared.patch, -files/libirman-0.4.2-destdir.patch,
+  -files/libirman-0.4.2-format.patch, -files/libirman-0.4.2-gcc4.patch,
+  -libirman-0.4.2-r1.ebuild:
+  Remove old.
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> libirman-0.4.2-r1.ebuild,
+  libirman-0.4.5.ebuild:
+  Drop alpha/ia64/sparc keywords
 
   06 Aug 2012; Brent Baude <ranger@gentoo.org> libirman-0.4.5.ebuild:
   Marking libirman-0.4.5 ppc64 for bug 429122

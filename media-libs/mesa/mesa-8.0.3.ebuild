@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-8.0.3.ebuild,v 1.8 2012/07/12 17:05:34 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-8.0.3.ebuild,v 1.11 2012/10/04 08:37:19 naota Exp $
 
 EAPI=4
 
@@ -37,7 +37,7 @@ fi
 # GLES[2]/gl[2]{,ext,platform}.h are SGI-B-2.0
 LICENSE="MIT LGPL-3 SGI-B-2.0"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm hppa ~ia64 ~mips ppc ppc64 ~sh ~sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 
 INTEL_CARDS="i915 i965 intel"
 RADEON_CARDS="r100 r200 r300 r600 radeon"
@@ -47,10 +47,9 @@ for card in ${VIDEO_CARDS}; do
 done
 
 IUSE="${IUSE_VIDEO_CARDS}
-	bindist +classic d3d debug +egl g3dvl +gallium gbm gles1 gles2 +llvm +nptl openvg osmesa pax_kernel pic selinux shared-dricore +shared-glapi vdpau wayland xa xvmc kernel_FreeBSD"
+	bindist +classic debug +egl g3dvl +gallium gbm gles1 gles2 +llvm +nptl openvg osmesa pax_kernel pic selinux shared-dricore +shared-glapi vdpau wayland xa xvmc kernel_FreeBSD"
 
 REQUIRED_USE="
-	d3d?    ( gallium )
 	g3dvl?  ( gallium )
 	llvm?   ( gallium )
 	openvg? ( egl gallium )
@@ -93,7 +92,6 @@ RDEPEND="${EXTERNAL_DEPEND}
 	x11-libs/libXext
 	x11-libs/libXxf86vm
 	>=x11-libs/libxcb-1.8
-	d3d? ( app-emulation/wine )
 	vdpau? ( >=x11-libs/libvdpau-0.4.1 )
 	wayland? ( dev-libs/wayland )
 	xvmc? ( >=x11-libs/libXvMC-1.0.6 )
@@ -167,6 +165,9 @@ src_prepare() {
 	# Tests fail against python-3, bug #407887
 	sed -i 's|/usr/bin/env python|/usr/bin/env python2|' src/glsl/tests/compare_ir || die
 
+	# Fix bash-ism test bug 435496
+	epatch "${FILESDIR}"/${PN}-8.0.4-configure-bsd.patch
+
 	base_src_prepare
 
 	eautoreconf
@@ -208,7 +209,6 @@ src_configure() {
 
 	if use gallium; then
 		myconf+="
-			$(use_enable d3d d3d1x)
 			$(use_enable g3dvl gallium-g3dvl)
 			$(use_enable llvm gallium-llvm)
 			$(use_enable openvg)

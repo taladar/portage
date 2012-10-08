@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/totem/totem-3.4.2.ebuild,v 1.2 2012/05/20 22:22:55 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/totem/totem-3.4.2.ebuild,v 1.4 2012/09/16 02:55:45 tetromino Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
@@ -53,10 +53,12 @@ RDEPEND=">=dev-libs/glib-2.27.92:2
 	x11-libs/libX11
 	x11-libs/libXtst
 	>=x11-libs/libXxf86vm-1.0.1
+
+	gnome-base/gsettings-desktop-schemas
 	x11-themes/gnome-icon-theme-symbolic
 
 	flash? ( dev-libs/totem-pl-parser[quvi] )
-	grilo? ( >=media-libs/grilo-0.1.16 )
+	grilo? ( >=media-libs/grilo-0.1.16:0.1 )
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7 )
 	lirc? ( app-misc/lirc )
 	nautilus? ( >=gnome-base/nautilus-2.91.3 )

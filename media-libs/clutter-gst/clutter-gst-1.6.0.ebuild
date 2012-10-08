@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/clutter-gst/clutter-gst-1.6.0.ebuild,v 1.1 2012/07/03 07:30:49 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/clutter-gst/clutter-gst-1.6.0.ebuild,v 1.3 2012/09/23 05:19:13 blueness Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
@@ -14,7 +14,7 @@ inherit python gnome2 clutter gnome.org
 DESCRIPTION="GStreamer Integration library for Clutter"
 
 SLOT="1.0"
-KEYWORDS="~alpha ~amd64 ~x86"
+KEYWORDS="~alpha ~amd64 ~ppc64 ~x86"
 IUSE="doc examples +introspection"
 
 # FIXME: Support for gstreamer-basevideo-0.10 (HW decoder support) is automagic
@@ -48,11 +48,16 @@ src_prepare() {
 	# FIXME: is this still needed? I don't think so, but not sure. ~nirbheek
 	#eautoreconf
 
+	# In 1.6.1
+	epatch "${FILESDIR}/${P}-glint.patch"
+	epatch "${FILESDIR}/${P}-doc-fixes.patch"
+
 	gnome2_src_prepare
 }
 
 src_compile() {
 	# Clutter tries to access dri without userpriv, upstream bug #661873
 	# Massive failure of a hack, see bug 360219, bug 360073, bug 363917
-	DISPLAY="999invalid" emake
+	unset DISPLAY
+	default
 }

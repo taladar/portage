@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/glut/glut-2.3.0.0.ebuild,v 1.1 2012/06/02 12:17:28 gienah Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/glut/glut-2.3.0.0.ebuild,v 1.3 2012/09/12 14:54:06 qnikst Exp $
 
 EAPI=4
 
@@ -14,11 +14,11 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="A binding for the OpenGL Utility Toolkit"
 HOMEPAGE="http://www.haskell.org/haskellwiki/Opengl"
-SRC_URI="http://hackage.haskell.org/packages/archive/${MY_PN}/${PV}/${MY_P}.tar.gz"
+SRC_URI="mirror://hackage/packages/archive/${MY_PN}/${PV}/${MY_P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~sparc ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="=dev-haskell/opengl-2.5*[profile?]

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-6.01.ebuild,v 1.1 2012/06/20 17:33:05 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-6.01.ebuild,v 1.3 2012/09/23 09:14:51 pinkbyte Exp $
 
 EAPI="4"
 PYTHON_DEPEND="2"
@@ -19,7 +19,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
 IUSE="gtk lua ncat ndiff nmap-update nping ssl"
 
 DEPEND="dev-libs/libpcre
-	net-libs/libpcap
+	net-libs/libpcap[ipv6]
 	dev-libs/apr
 	gtk? ( >=x11-libs/gtk+-2.6:2
 		   >=dev-python/pygtk-2.6
@@ -46,6 +46,12 @@ src_prepare() {
 
 	# bug #416987
 	epatch "${FILESDIR}"/${P}-make.patch
+
+	# Fix desktop files wrt bug #432714
+	sed -i -e '/^Encoding/d' zenmap/install_scripts/unix/zenmap.desktop
+	sed -i -e '/^Encoding/d' zenmap/install_scripts/unix/zenmap-root.desktop
+	sed -i -e 's/Categories=Application;Network;Security/Categories=Network;System;Security/' zenmap/install_scripts/unix/zenmap.desktop
+	sed -i -e 's/Categories=Application;Network;Security/Categories=Network;System;Security/' zenmap/install_scripts/unix/zenmap-root.desktop
 }
 
 src_configure() {

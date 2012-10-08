@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-accessibility/at-spi2-atk/at-spi2-atk-2.4.0.ebuild,v 1.1 2012/05/14 00:10:05 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-accessibility/at-spi2-atk/at-spi2-atk-2.4.0.ebuild,v 1.3 2012/09/27 05:07:20 mattst88 Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
@@ -11,9 +11,9 @@ inherit eutils gnome2 virtualx
 DESCRIPTION="Gtk module for bridging AT-SPI to Atk"
 HOMEPAGE="http://live.gnome.org/Accessibility"
 
-LICENSE="LGPL-2"
+LICENSE="LGPL-2+"
 SLOT="2"
-KEYWORDS="~amd64 ~arm ~hppa ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~x86"
 IUSE=""
 
 COMMON_DEPEND="

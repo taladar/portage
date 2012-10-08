@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/qemu-kvm-1.1.1-r1.ebuild,v 1.7 2012/08/13 00:59:46 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu-kvm/qemu-kvm-1.1.1-r1.ebuild,v 1.10 2012/09/23 08:47:42 phajdan.jr Exp $
 
 EAPI="4"
 
@@ -17,7 +17,7 @@ else
 	SRC_URI="mirror://sourceforge/kvm/${PN}/${P}.tar.gz
 	${BACKPORTS:+
 		http://dev.gentoo.org/~cardoe/distfiles/${P}-bp-${BACKPORTS}.tar.xz}"
-	KEYWORDS="amd64 ~ppc ~ppc64 ~x86 ~x86-fbsd"
+	KEYWORDS="amd64 ~ppc ~ppc64 x86 ~x86-fbsd"
 fi
 
 DESCRIPTION="QEMU + Kernel-based Virtual Machine userland tools"
@@ -97,8 +97,8 @@ RDEPEND="
 	xfs? ( sys-fs/xfsprogs )"
 
 DEPEND="${RDEPEND}
-	app-text/texi2html
 	virtual/pkgconfig
+	doc? ( app-text/texi2html )
 	kernel_linux? ( >=sys-kernel/linux-headers-2.6.35 )"
 
 STRIP_MASK="/usr/share/qemu/palcode-clipper"
@@ -161,6 +161,14 @@ pkg_pretend() {
 			# Now do the actual checks setup above
 			check_extra_config
 		fi
+	fi
+
+	if use static; then
+		ewarn "USE=static is very much a moving target because of the packages"
+		ewarn "we depend on will have their static libs ripped out or wrapped"
+		ewarn "with USE=static-libs or USE=static due to continued dicsussion"
+		ewarn "on the mailing list about USE=static's place in Gentoo. As a"
+		ewarn "result what worked today may not work tomorrow."
 	fi
 }
 

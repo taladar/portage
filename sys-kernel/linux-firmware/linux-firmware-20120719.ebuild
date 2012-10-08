@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-firmware/linux-firmware-20120719.ebuild,v 1.3 2012/08/18 20:15:52 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-firmware/linux-firmware-20120719.ebuild,v 1.7 2012/10/03 20:45:59 chithanh Exp $
 
 EAPI=4
 inherit savedconfig
@@ -17,7 +17,7 @@ DESCRIPTION="Linux firmware files"
 HOMEPAGE="http://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git"
 
 LICENSE="GPL-1 GPL-2 GPL-3 BSD freedist"
-KEYWORDS="~amd64 ~arm ~ia64 ~x86"
+KEYWORDS="amd64 arm ~ia64 x86"
 SLOT="0"
 IUSE="savedconfig"
 
@@ -43,6 +43,7 @@ RDEPEND="!savedconfig? (
 		!net-wireless/rt2870-firmware
 		!sys-block/qla-fc-firmware
 		!sys-firmware/iwl1000-ucode
+		!sys-firmware/iwl2000-ucode
 		!sys-firmware/iwl2030-ucode
 		!sys-firmware/iwl3945-ucode
 		!sys-firmware/iwl4965-ucode

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3-r10.ebuild,v 1.2 2012/06/29 07:58:35 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3-r10.ebuild,v 1.5 2012/10/01 19:55:18 ulm Exp $
 
 EAPI=4
 WANT_AUTOMAKE="none"
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gnu.org/software/emacs/"
 SRC_URI="mirror://gnu/emacs/${P}.tar.gz
 	mirror://gentoo/${P}-patches-8.tar.bz2"
 
-LICENSE="GPL-3 FDL-1.2 BSD as-is MIT"
+LICENSE="GPL-3+ FDL-1.2+ BSD HPND MIT"
 SLOT="22"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
 IUSE="alsa games gif gtk gzip-el hesiod jpeg kerberos motif png sound source tiff toolkit-scroll-bars X Xaw3d +xpm"
@@ -147,7 +147,7 @@ src_compile() {
 }
 
 src_install () {
-	emake install DESTDIR="${D}"
+	emake DESTDIR="${D}" install
 
 	rm "${D}"/usr/bin/emacs-${FULL_VERSION}-${EMACS_SUFFIX} \
 		|| die "removing duplicate emacs executable failed"

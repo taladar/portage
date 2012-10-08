@@ -1,12 +1,12 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/usbutils-006.ebuild,v 1.1 2012/07/09 09:10:48 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/usbutils-006.ebuild,v 1.6 2012/10/02 12:54:36 blueness Exp $
 
 EAPI="4"
 
 PYTHON_DEPEND="python? 2:2.6"
 
-inherit python
+inherit eutils python
 
 DESCRIPTION="USB enumeration utilities"
 HOMEPAGE="http://linux-usb.sourceforge.net/"
@@ -14,7 +14,7 @@ SRC_URI="mirror://kernel/linux/utils/usb/${PN}/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 arm hppa ~ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh ~sparc x86 ~amd64-linux ~x86-linux"
 IUSE="python zlib"
 
 RDEPEND="virtual/libusb:1
@@ -33,6 +33,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-libusbx-1.0.13.patch
+
 	if use python; then
 		python_convert_shebangs 2 lsusb.py
 		sed -i -e '/^usbids/s:/usr/share:/usr/share/misc:' lsusb.py || die

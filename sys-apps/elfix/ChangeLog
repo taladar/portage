@@ -1,5 +1,23 @@
 
 
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> elfix-0.5.2.ebuild:
+  alpha/ia64/sparc stable wrt #435114
+
+  18 Sep 2012; Jeroen Roovers <jer@gentoo.org> elfix-0.5.2.ebuild:
+  Stable for HPPA (bug #435114).
+
+  18 Sep 2012; Johannes Huber <johu@gentoo.org> elfix-0.5.2.ebuild:
+  Stable for x86, wrt bug #435114
+
+  16 Sep 2012; Agostino Sarubbo <ago@gentoo.org> elfix-0.5.2.ebuild:
+  Stable for amd64, wrt bug #435114
+
+  15 Sep 2012; Anthony G. Basile <blueness@gentoo.org> elfix-0.5.2.ebuild:
+  Stable arm ppc ppc64, bug #435114
+
+  11 Sep 2012; Raúl Porcel <armin76@gentoo.org> elfix-0.5.2.ebuild:
+  Add ~alpha/~ia64/~sparc wrt #428558
+
   01 Aug 2012; Jeroen Roovers <jer@gentoo.org> elfix-0.5.2.ebuild:
   Marked ~hppa (bug #428558).
 

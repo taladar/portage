@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-3.4.2.ebuild,v 1.4 2012/07/19 02:46:04 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-3.4.2.ebuild,v 1.7 2012/09/23 14:12:30 blueness Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
@@ -14,7 +14,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENSE="GPL-2"
 SLOT="2"
 IUSE="+bluetooth +cheese +colord +cups +gnome-online-accounts +networkmanager +socialweb systemd wacom"
-KEYWORDS="~amd64 ~x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 
 # XXX: gnome-desktop-2.91.5 is needed for upstream commit c67f7efb
 # XXX: NetworkManager-0.9 support is automagic, make hard-dep once it's released
@@ -73,7 +73,9 @@ RDEPEND="${COMMON_DEPEND}
 	cups? (
 		>=app-admin/system-config-printer-gnome-1.3.5
 		net-print/cups-pk-helper )
-	!systemd? ( sys-auth/consolekit )
+	!systemd? (
+		app-admin/openrc-settingsd
+		sys-auth/consolekit )
 	wacom? ( gnome-base/gnome-settings-daemon[wacom] )
 
 	!<gnome-base/gdm-2.91.94

@@ -1,6 +1,63 @@
 # ChangeLog for app-office/libreoffice
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/ChangeLog,v 1.365 2012/08/25 08:43:24 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/ChangeLog,v 1.378 2012/10/08 11:38:20 scarabeus Exp $
+
+  08 Oct 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-9999-r2.ebuild:
+  Beanshell and javascript opts changed.
+
+  28 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-9999-r2.ebuild:
+  Pass with system ucpp.
+
+*libreoffice-3.6.2.2 (25 Sep 2012)
+
+  25 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> +libreoffice-3.6.2.2.ebuild,
+  -libreoffice-3.6.1.2.ebuild:
+  Bump to 3.6.2.2 so more fixes are around.
+
+  25 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/libreoffice-3.7-separate-checks.patch, libreoffice-9999-r2.ebuild:
+  Update checks patch to work on 3.7 branchie.
+
+  24 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-9999-r2.ebuild:
+  Add ucpp dep to libreoffice (not yet finished system detection).
+
+  24 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/libreoffice-3.6-separate-checks.patch, libreoffice-3.6.1.2.ebuild,
+  libreoffice-3.6.9999.ebuild, libreoffice-9999-r2.ebuild:
+  Move most test to their own phase. Thanks to debian/buntu guys :-)
+
+  21 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-3.6.1.2.ebuild,
+  libreoffice-3.6.9999.ebuild, libreoffice-9999-r2.ebuild:
+  Drop weird workaround to rather fix the true cause if it is still present.
+
+  20 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/libreoffice-3.7-system-pyuno.patch, libreoffice-9999-r2.ebuild:
+  Update pyuno patch wrt bug#435222.
+
+  20 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-9999-r2.ebuild,
+  metadata.xml:
+  Match useflags current options.
+
+  17 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-3.6.1.2.ebuild,
+  libreoffice-3.6.9999.ebuild, libreoffice-9999-r2.ebuild:
+  Depend on glu too. Fixes bug#434430. Happy live mesa users...
+
+  13 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-3.6.1.2.ebuild,
+  libreoffice-3.6.9999.ebuild, libreoffice-9999-r2.ebuild:
+  Update the cmis deps.
+
+  10 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-9999-r2.ebuild:
+  Depend on liborcus.
+
+*libreoffice-3.6.1.2 (31 Aug 2012)
+
+  31 Aug 2012; Tomáš Chvátal <scarabeus@gentoo.org> +libreoffice-3.6.1.2.ebuild,
+  -files/libreoffice-3.6.0-kde-fpicker.patch,
+  -files/libreoffice-3.6.0-mysql-as-needed.patch, -libreoffice-3.5.5.3.ebuild,
+  -libreoffice-3.5.9999.ebuild, -libreoffice-3.6.0.4.ebuild,
+  libreoffice-3.5.6.2.ebuild:
+  Version bump to 3.6.1. Drop older. Stabilise 3.5.6 on amd64 x86 and ppc.
+  Remove live 3.5 branch ebuild.
 
   25 Aug 2012; Tomáš Chvátal <scarabeus@gentoo.org> libreoffice-3.6.9999.ebuild,
   libreoffice-9999-r2.ebuild:

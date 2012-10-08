@@ -1,6 +1,19 @@
 # ChangeLog for dev-haskell/uulib
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/uulib/ChangeLog,v 1.22 2012/06/28 20:28:33 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/uulib/ChangeLog,v 1.26 2012/09/30 12:01:25 blueness Exp $
+
+  30 Sep 2012; Anthony G. Basile <blueness@gentoo.org> uulib-0.9.14.ebuild:
+  stable ppc ppc64, bug #428940
+
+  23 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> uulib-0.9.14.ebuild:
+  x86 stable wrt bug #428940
+
+  13 Sep 2012; Agostino Sarubbo <ago@gentoo.org> uulib-0.9.14.ebuild:
+  Stable for amd64, wrt bug #428940
+
+  12 Sep 2012; Alexander Vershilov <qnikst@gentoo.org> uulib-0.9.12.ebuild,
+  uulib-0.9.14.ebuild:
+  move dev-haskell/uulib/uulib-0.9.14.ebuild ebuild to mirror://hackage
 
   28 Jun 2012; Sergei Trofimovich <slyfox@gentoo.org> uulib-0.9.12.ebuild:
   ppc/ppc64/sparc stable (bug #393775)
@@ -82,4 +95,3 @@
 
   14 Dec 2005; <dcoutts@gentoo.org> +uulib-0.9.1.ebuild:
   Initial import.
-

@@ -1,6 +1,24 @@
 # ChangeLog for app-text/iso-codes
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.122 2012/06/30 12:07:04 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.128 2012/10/07 01:38:27 blueness Exp $
+
+  07 Oct 2012; Anthony G. Basile <blueness@gentoo.org> iso-codes-3.37.ebuild:
+  stable ppc64, bug #427544
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> iso-codes-3.37.ebuild:
+  arm stable, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> iso-codes-3.37.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> iso-codes-3.37.ebuild:
+  x86 stable wrt bug #427544
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> iso-codes-3.37.ebuild:
+  Stable for HPPA (bug #427544).
+
+  01 Oct 2012; Fabian Groffen <grobian@gentoo.org> iso-codes-3.37.ebuild:
+  Marked ~x64-macos
 
 *iso-codes-3.37 (30 Jun 2012)
 

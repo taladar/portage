@@ -1,6 +1,30 @@
 # ChangeLog for dev-util/scons
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.118 2012/08/08 20:05:29 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.126 2012/10/07 14:40:20 grobian Exp $
+
+  07 Oct 2012; Fabian Groffen <grobian@gentoo.org> scons-2.2.0.ebuild:
+  Setup a valid path, EPREFIX does NOT end in /
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org> scons-2.2.0.ebuild:
+  alpha/ia64/sparc stable wrt #434294
+
+  19 Sep 2012; Jeroen Roovers <jer@gentoo.org> scons-2.2.0.ebuild:
+  Stable for HPPA (bug #434294).
+
+  18 Sep 2012; Johannes Huber <johu@gentoo.org> scons-2.2.0.ebuild:
+  Stable for x86, wrt bug #434294
+
+  13 Sep 2012; Agostino Sarubbo <ago@gentoo.org> scons-2.2.0.ebuild:
+  Stable for amd64, wrt bug #434294
+
+  13 Sep 2012; Anthony G. Basile <blueness@gentoo.org> scons-2.2.0.ebuild:
+  stable arm, bug #434294
+
+  12 Sep 2012; Anthony G. Basile <blueness@gentoo.org> scons-2.2.0.ebuild:
+  stable ppc ppc64, bug #434294
+
+  08 Sep 2012; Tim Harder <radhermit@gentoo.org> metadata.xml:
+  Remove redundant maintainer from metadata.
 
   08 Aug 2012; Tim Harder <radhermit@gentoo.org> scons-2.2.0.ebuild:
   Simplify documentation installation.

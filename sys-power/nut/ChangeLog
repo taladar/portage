@@ -1,6 +1,12 @@
 # ChangeLog for sys-power/nut
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/nut/ChangeLog,v 1.102 2012/06/09 19:08:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/nut/ChangeLog,v 1.104 2012/09/20 11:53:50 xarthisius Exp $
+
+  20 Sep 2012; Kacper Kowalik <xarthisius@gentoo.org> nut-2.6.3.ebuild:
+  ppc64 stable wrt #419377
+
+  06 Sep 2012; Anthony G. Basile <blueness@gentoo.org> nut-2.6.3.ebuild:
+  Keyword ~arm
 
   09 Jun 2012; Raúl Porcel <armin76@gentoo.org> nut-2.6.0-r1.ebuild,
   nut-2.6.2.ebuild, nut-2.6.3.ebuild:

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.133 2012/06/07 05:02:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.135 2012/09/27 16:35:41 axs Exp $
 
 # @ECLASS: perl-module.eclass
 # @MAINTAINER:
@@ -21,7 +21,7 @@ case "${EAPI:-0}" in
 	0|1)
 		PERL_EXPF+=" pkg_setup pkg_preinst pkg_postinst pkg_prerm pkg_postrm"
 		;;
-	2|3|4)
+	2|3|4|5)
 		PERL_EXPF+=" src_prepare src_configure"
 		[[ ${CATEGORY} == "perl-core" ]] && \
 			PERL_EXPF+=" pkg_postinst pkg_postrm"
@@ -49,8 +49,6 @@ case "${PERL_EXPORT_PHASE_FUNCTIONS:-yes}" in
 		die "PERL_EXPORT_PHASE_FUNCTIONS=${PERL_EXPORT_PHASE_FUNCTIONS} is not supported by perl-module.eclass"
 		;;
 esac
-
-DESCRIPTION="Based on the $ECLASS eclass"
 
 LICENSE="${LICENSE:-|| ( Artistic GPL-1 GPL-2 GPL-3 )}"
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64-fbsd/todo/package.use.mask,v 1.291 2012/08/07 20:41:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64-fbsd/todo/package.use.mask,v 1.297 2012/09/20 13:05:50 aballier Exp $
 
 # Mask useflags that require deps with missing keywords.
 # Anyone is allowed and _very welcome_ to add masks there.
@@ -14,6 +14,12 @@
 # Keep it simple, we do not really care about the date or who masked it, we want
 # to be easily able to determine what we need to keyword.
 
+# dev-vcs/darcs
+app-portage/layman darcs
+
+# dev-python/mysql-python
+dev-vcs/mercurial bugzilla
+
 # net-libs/axtls
 net-misc/curl curl_ssl_axtls
 
@@ -26,9 +32,6 @@ net-misc/curl curl_ssl_cyassl
 
 # sys-process/numactl
 sys-apps/hwloc numa
-
-# doesnt link
-dev-lang/php iconv
 
 # sys-auth/pam_krb5
 sys-auth/pambase pam_krb5
@@ -44,9 +47,6 @@ net-dns/avahi mono
 
 # net-misc/netkit-rsh
 x11-apps/xsm rsh
-
-# dev-libs/libnl:1.1
-net-libs/libpcap libnl
 
 # net-libs/libtirpc
 sys-apps/xinetd rpc
@@ -126,9 +126,6 @@ app-editors/xemacs nas
 
 # net-misc/openntpd
 net-misc/ntp openntpd
-
-# tries to link to libdl, https://bugs.gentoo.org/show_bug.cgi?id=417523
-net-libs/webkit-gtk webgl
 
 # fails to build, need to investigate why
 net-libs/webkit-gtk introspection
@@ -255,3 +252,6 @@ media-gfx/graphviz devil
 
 # sci-libs/gts
 media-gfx/graphviz gts
+
+# sys-apps/util-linux (libuuid)
+net-misc/wget uuid

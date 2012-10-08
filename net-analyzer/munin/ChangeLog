@@ -1,6 +1,55 @@
 # ChangeLog for net-analyzer/munin
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/munin/ChangeLog,v 1.97 2012/08/24 22:13:22 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/munin/ChangeLog,v 1.107 2012/10/04 17:18:27 flameeyes Exp $
+
+*munin-2.0.7-r1 (04 Oct 2012)
+
+  04 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> +munin-2.0.7-r1.ebuild,
+  -munin-2.0.6.ebuild, -munin-2.0.7.ebuild, files/munin-node_init.d_2.0.5:
+  Revert change to init script; revbump to make sure nobody is using that (will
+  break your /run), and also add proper support for nsca notifications, which is
+  included upstream for 2.0.8.
+
+  03 Oct 2012; Robin H. Johnson <robbat2@gentoo.org>
+  files/munin-node_init.d_2.0.5:
+  Restore checkpath owner/group on /var/run/munin so it works here.
+
+*munin-2.0.7 (03 Oct 2012)
+
+  03 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> +munin-2.0.7.ebuild:
+  Version bump. We're left with only one patch (the new IPMI plugin), everything
+  else is merged upstream.
+
+  02 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> munin-2.0.5-r1.ebuild,
+  munin-2.0.6.ebuild:
+  Add missing dependency over dev-perl/URI (for master only). Thanks to Illya
+  Bilash in bug #436952.
+
+  20 Sep 2012; Diego E. Pettenò <flameeyes@gentoo.org> metadata.xml,
+  munin-2.0.6.ebuild:
+  Add a dhcpd USE flag to bring in dhcpd and the required dependencies of the
+  dhcpd3 plugin.
+
+  16 Sep 2012; Diego E. Pettenò <flameeyes@gentoo.org> -munin-2.0.5-r2.ebuild,
+  files/munin-node_init.d_2.0.5:
+  Fix typo in init script's reload(). Remove old ebuild.
+
+  13 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> munin-2.0.5-r1.ebuild:
+  x86 stable wrt bug #412881
+
+  07 Sep 2012; Agostino Sarubbo <ago@gentoo.org> munin-2.0.5-r1.ebuild:
+  Stable for amd64, wrt bug #412881
+
+*munin-2.0.6 (01 Sep 2012)
+
+  01 Sep 2012; Diego E. Pettenò <flameeyes@gentoo.org> +munin-2.0.6.ebuild:
+  Version bump with new patchset.
+
+  29 Aug 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/munin-node_init.d_2.0.5, munin-2.0.5-r2.ebuild:
+  Add a reload command to munin-node init script; make virtual/awk dependency
+  unconditional (used by the init scripts), and only depend on freeipmi at
+  runtime.
 
   24 Aug 2012; Diego E. Pettenò <flameeyes@gentoo.org> files/localstart-munin,
   files/munin-node_init.d_2.0.5, munin-2.0.5-r2.ebuild:

@@ -1,6 +1,24 @@
 # ChangeLog for net-im/kadu
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/kadu/ChangeLog,v 1.140 2012/08/25 13:01:31 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/kadu/ChangeLog,v 1.144 2012/09/15 10:53:32 ago Exp $
+
+  15 Sep 2012; Agostino Sarubbo <ago@gentoo.org> -kadu-0.11.3.ebuild,
+  -kadu-0.12.1.ebuild, -kadu-0.12.2.ebuild:
+  Remove old
+
+*kadu-0.12.3 (15 Sep 2012)
+
+  15 Sep 2012; Agostino Sarubbo <ago@gentoo.org> +kadu-0.12.3.ebuild,
+  kadu-0.12.0.ebuild:
+  Version bump to 0.12.3, fix qt-gui version for <0.12.3, wrt to bug #435090
+
+  15 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> kadu-0.12.0.ebuild:
+  Stable on ppc wrt bug#428648.
+
+*kadu-0.12.2 (13 Sep 2012)
+
+  13 Sep 2012; Maciej Mrozowski <reavertm@gentoo.org> +kadu-0.12.2.ebuild:
+  Version bump.
 
 *kadu-0.12.1 (25 Aug 2012)
 

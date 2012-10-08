@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/eet
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/eet/ChangeLog,v 1.19 2012/06/16 09:28:05 tommy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/eet/ChangeLog,v 1.21 2012/09/10 23:28:03 vapier Exp $
+
+  10 Sep 2012; Mike Frysinger <vapier@gentoo.org> eet-1.7.0.ebuild:
+  Add arm love.
+
+*eet-1.7.0 (07 Sep 2012)
+
+  07 Sep 2012; Thomas Sachau (Tommy[D]) <tommy@gentoo.org> -eet-1.4.1.ebuild,
+  -eet-1.5.0.ebuild, +eet-1.7.0.ebuild:
+  Version bump, drop old
 
 *eet-1.6.1 (16 Jun 2012)
 
@@ -38,4 +47,3 @@
   18 Nov 2010; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
   +eet-1.4.0_beta2.ebuild, +metadata.xml:
   Initial commit, based on ebuild in enlightenment overlay
-

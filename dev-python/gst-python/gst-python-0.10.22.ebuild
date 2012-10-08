@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.22.ebuild,v 1.4 2012/05/04 15:12:13 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.22.ebuild,v 1.11 2012/09/20 04:57:08 blueness Exp $
 
 EAPI=4
 
@@ -17,7 +17,7 @@ SRC_URI="http://gstreamer.freedesktop.org/src/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT="0.10"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 sparc x86 ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="examples test"
 
 RDEPEND="dev-libs/libxml2
@@ -33,7 +33,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.10.9-lazy.patch
-	>py-compile #396689
+	python_clean_py-compile_files #396689
 	AT_M4DIR="common/m4" eautoreconf
 	python_src_prepare
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-laptop/prey/prey-0.5.4.ebuild,v 1.1 2012/07/19 21:42:45 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-laptop/prey/prey-0.5.4.ebuild,v 1.3 2012/10/05 12:27:07 ago Exp $
 
 EAPI=4
 
@@ -12,7 +12,7 @@ SRC_URI="http://preyproject.com/releases/${PV}/${P}-linux.zip"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 x86"
 IUSE="gtk userpriv"
 
 LINGUAS="en it sv es"
@@ -57,13 +57,13 @@ pkg_setup() {
 		ewarn "interface. This may allow the thief to alter"
 		ewarn "or disable the ${PN} functionality"
 	fi
-
-	# remove system module since it depends on hal and we don't
-	# have hal in portage anymore
-	rm -rf "${S}"/modules/system || die
 }
 
 src_prepare() {
+	# remove system module since it depends on hal and we don't
+	# have hal in portage anymore
+	rm -rf "${S}"/modules/system || die
+
 	epatch "${FILESDIR}"/${P}-cron-functions.patch \
 		"${FILESDIR}"/${P}-gtk-ui.patch \
 		"${FILESDIR}"/${PN}-0.5.3-mplayer-support.patch

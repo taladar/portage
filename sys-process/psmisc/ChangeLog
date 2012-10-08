@@ -1,6 +1,26 @@
 # ChangeLog for sys-process/psmisc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.135 2012/07/08 16:35:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/ChangeLog,v 1.139 2012/10/03 09:42:47 radhermit Exp $
+
+*psmisc-22.20 (03 Oct 2012)
+
+  03 Oct 2012; Tim Harder <radhermit@gentoo.org> +psmisc-22.20.ebuild:
+  Version bump.
+
+  31 Aug 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -files/psmisc-22.13-no-nls.patch, -psmisc-22.14.ebuild, -psmisc-22.18.ebuild,
+  -psmisc-22.19.ebuild:
+  old
+
+*psmisc-22.19-r1 (31 Aug 2012)
+
+  31 Aug 2012; Samuli Suominen <ssuominen@gentoo.org> +psmisc-22.19-r1.ebuild:
+  Upstream patch for fuser to work with unix sockets wrt #398811. Thanks to
+  Piotr Karbowski and Mike Frysinger.
+
+  25 Aug 2012; Mike Frysinger <vapier@gentoo.org> psmisc-22.16.ebuild,
+  psmisc-22.18.ebuild, psmisc-22.19.ebuild:
+  Drop useless -vf args to mv #432632 by Joshua B. Kahlenberg.
 
   08 Jul 2012; Raúl Porcel <armin76@gentoo.org> psmisc-22.16.ebuild:
   alpha/ia64/m68k/s390/sh/sparc stable wrt #420047

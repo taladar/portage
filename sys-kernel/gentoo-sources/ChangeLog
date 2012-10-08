@@ -1,6 +1,76 @@
 # ChangeLog for sys-kernel/gentoo-sources
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/gentoo-sources/ChangeLog,v 1.1005 2012/08/24 12:06:09 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/gentoo-sources/ChangeLog,v 1.1018 2012/10/07 19:36:37 mpagano Exp $
+
+*gentoo-sources-3.6.1 (07 Oct 2012)
+
+  07 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.6.1.ebuild:
+  Linux patch 3.6.1
+
+*gentoo-sources-3.5.6 (07 Oct 2012)
+
+  07 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.5.6.ebuild:
+  Linux patches 3.5.5 and 3.5.6
+
+*gentoo-sources-3.6.0 (02 Oct 2012)
+
+  02 Oct 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.6.0.ebuild:
+  Linux 3.6.0. kcopy patch. fbcondecor patchset
+
+  02 Oct 2012; Markus Meier <maekke@gentoo.org> gentoo-sources-3.4.9.ebuild:
+  arm stable, bug #432426
+
+*gentoo-sources-3.5.4 (17 Sep 2012)
+
+  17 Sep 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.5.4.ebuild:
+  Linux patch 3.5.4
+
+*gentoo-sources-3.4.11 (17 Sep 2012)
+
+  17 Sep 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.11.ebuild:
+  Linux patch 3.4.11
+
+*gentoo-sources-3.0.43 (17 Sep 2012)
+
+  17 Sep 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.0.43.ebuild:
+  Linux patches 3.0.42 and 3.0.43
+
+  12 Sep 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.36.ebuild, -gentoo-sources-3.2.1-r2.ebuild,
+  -gentoo-sources-3.2.12.ebuild, -gentoo-sources-3.2.21.ebuild,
+  -gentoo-sources-3.5.0.ebuild, -gentoo-sources-3.5.1.ebuild:
+  Remove old, and unsupported versions
+
+  09 Sep 2012; Joseph Jezak <josejx@gentoo.org> gentoo-sources-3.0.35.ebuild,
+  gentoo-sources-3.2.21.ebuild, gentoo-sources-3.3.8.ebuild,
+  gentoo-sources-3.4.9.ebuild:
+  Marked ppc/ppc64 stable.
+
+  08 Sep 2012; Michael Pagano <mpagano@gentoo.org>
+  -gentoo-sources-3.0.33.ebuild:
+  Remove old version
+
+  29 Aug 2012; Jeroen Roovers <jer@gentoo.org> gentoo-sources-3.4.9.ebuild:
+  Stable for HPPA (bug #432426).
+
+*gentoo-sources-3.4.10 (29 Aug 2012)
+
+  29 Aug 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.4.10.ebuild:
+  Linux patch 3.4.10. Fix build warnings for lpfc when debugfs is not defined.
+  Bug #432604
+
+*gentoo-sources-3.5.3 (26 Aug 2012)
+
+  26 Aug 2012; Michael Pagano <mpagano@gentoo.org>
+  +gentoo-sources-3.5.3.ebuild:
+  Linux version 3.5.3
 
   24 Aug 2012; Agostino Sarubbo <ago@gentoo.org> gentoo-sources-3.4.9.ebuild:
   Stable for amd64, wrt bug #432426

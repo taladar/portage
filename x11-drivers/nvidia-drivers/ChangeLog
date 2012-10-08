@@ -1,6 +1,62 @@
 # ChangeLog for x11-drivers/nvidia-drivers
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/ChangeLog,v 1.389 2012/08/22 04:50:23 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/ChangeLog,v 1.399 2012/09/30 03:11:08 cardoe Exp $
+
+*nvidia-drivers-295.75 (30 Sep 2012)
+
+  30 Sep 2012; Doug Goldstein <cardoe@gentoo.org>
+  +nvidia-drivers-295.75.ebuild:
+  Version bump in the 295.x series.
+
+*nvidia-drivers-304.51 (25 Sep 2012)
+
+  25 Sep 2012; Doug Goldstein <cardoe@gentoo.org>
+  +nvidia-drivers-304.51.ebuild:
+  Bug fix release
+
+  24 Sep 2012; Mike Frysinger <vapier@gentoo.org>
+  nvidia-drivers-173.14.35.ebuild, nvidia-drivers-295.71.ebuild,
+  nvidia-drivers-302.17-r1.ebuild, nvidia-drivers-304.37-r1.ebuild,
+  nvidia-drivers-304.43.ebuild, nvidia-drivers-304.48.ebuild,
+  nvidia-drivers-96.43.20.ebuild:
+  QA_DT_HASH (old/deprecated) -> QA_FLAGS_IGNORED (new hotness).
+
+  19 Sep 2012; Alexis Ballier <aballier@gentoo.org>
+  nvidia-drivers-304.48.ebuild:
+  Do not try to install an icon that does not exist in the FreeBSD tarball.
+
+  13 Sep 2012; Doug Goldstein <cardoe@gentoo.org> nvidia-drivers-304.48.ebuild:
+  Make the xinitrc executable. bug #434936
+
+*nvidia-drivers-304.48 (13 Sep 2012)
+
+  13 Sep 2012; Doug Goldstein <cardoe@gentoo.org> +files/95-nvidia-settings,
+  +nvidia-drivers-304.48.ebuild:
+  Version bump. Should fix X.org input issues. fix bug #414725
+
+  29 Aug 2012; Doug Goldstein <cardoe@gentoo.org>
+  -files/195.30-unified-arch.patch,
+  -files/nvidia-drivers-173.14.30-2.6.39.patch,
+  -files/nvidia-drivers-260.19.44-2.6.39.patch, -nvidia-drivers-295.59.ebuild,
+  -files/256.35-unified-arch.patch, -nvidia-drivers-295.59-r1.ebuild,
+  -files/libGL.la-r2:
+  Remove older version and unused patches.
+
+  29 Aug 2012; Doug Goldstein <cardoe@gentoo.org> nvidia-drivers-304.43.ebuild:
+  Change how QA_PREBUILT is set based on Mike Gilbert <floppym@gentoo.org>
+  suggestion. bug #432370
+
+  29 Aug 2012; Doug Goldstein <cardoe@gentoo.org> nvidia-drivers-304.43.ebuild,
+  +files/nvidia-drivers-pax-const.patch,
+  +files/nvidia-drivers-pax-usercopy.patch:
+  Use Stefan Reimer <it@startux.de> Quark's overlay patches for PAX hacks by
+  popular demand. bug #385837.
+
+*nvidia-drivers-304.43 (28 Aug 2012)
+
+  28 Aug 2012; Doug Goldstein <cardoe@gentoo.org>
+  +nvidia-drivers-304.43.ebuild:
+  Version bump. Supports xorg-server 1.13 now.
 
   22 Aug 2012; Doug Goldstein <cardoe@gentoo.org>
   nvidia-drivers-304.37-r1.ebuild:

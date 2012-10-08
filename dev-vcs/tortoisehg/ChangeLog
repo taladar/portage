@@ -1,6 +1,21 @@
 # ChangeLog for dev-vcs/tortoisehg
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/tortoisehg/ChangeLog,v 1.21 2012/08/21 15:17:33 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/tortoisehg/ChangeLog,v 1.24 2012/10/04 05:57:37 polynomial-c Exp $
+
+*tortoisehg-2.5.1 (04 Oct 2012)
+
+  04 Oct 2012; Lars Wendler <polynomial-c@gentoo.org> +tortoisehg-2.5.1.ebuild:
+  non-maintainer commit: Version bump.
+
+  10 Sep 2012; Mike Gilbert <floppym@gentoo.org> tortoisehg-2.5.ebuild,
+  tortoisehg-9999.ebuild:
+  Drop multilib.
+
+*tortoisehg-2.5 (10 Sep 2012)
+
+  10 Sep 2012; Mike Gilbert <floppym@gentoo.org> +tortoisehg-2.5.ebuild,
+  tortoisehg-9999.ebuild:
+  Version bump for bug 434562.
 
 *tortoisehg-2.4.3 (21 Aug 2012)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-plugins/google-talkplugin/google-talkplugin-9999.ebuild,v 1.6 2012/07/20 20:45:56 ottxor Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-plugins/google-talkplugin/google-talkplugin-9999.ebuild,v 1.9 2012/09/24 00:49:11 vapier Exp $
 
 EAPI=4
 
@@ -36,7 +36,7 @@ RDEPEND="|| ( media-sound/pulseaudio media-libs/alsa-lib )
 	media-libs/fontconfig
 	media-libs/freetype:2
 	media-libs/libpng:1.2
-	>=sys-libs/glibc-2.4
+	sys-libs/glibc
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf
 	x11-libs/gtk+:2
@@ -46,6 +46,7 @@ RDEPEND="|| ( media-sound/pulseaudio media-libs/alsa-lib )
 	x11-libs/libXrandr
 	x11-libs/libXrender
 	x11-libs/libXt
+	x11-libs/pango
 	sys-apps/lsb-release
 	virtual/opengl
 	libnotify? ( x11-libs/libnotify )"
@@ -58,7 +59,7 @@ QA_EXECSTACK="${INSTALL_BASE}/GoogleTalkPlugin"
 
 QA_TEXTRELS="${INSTALL_BASE}/libnpg*.so"
 
-QA_DT_HASH="${INSTALL_BASE}/libnpg.*so
+QA_FLAGS_IGNORED="${INSTALL_BASE}/libnpg.*so
 	${INSTALL_BASE}/lib/libCg.*so
 	${INSTALL_BASE}/GoogleTalkPlugin"
 

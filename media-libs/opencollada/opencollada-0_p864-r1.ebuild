@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/opencollada/opencollada-0_p864-r1.ebuild,v 1.1 2012/02/11 23:01:22 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/opencollada/opencollada-0_p864-r1.ebuild,v 1.3 2012/09/29 14:11:09 blueness Exp $
 
 EAPI="3"
 
@@ -12,7 +12,7 @@ SRC_URI="http://www.hartwork.org/public/${P}.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc64 ~x86"
 IUSE="expat"
 
 RDEPEND="dev-libs/libpcre
@@ -38,6 +38,9 @@ src_prepare() {
 	# Remove unused build systems
 	rm Makefile scripts/{unixbuild.sh,vcproj2cmake.rb} || die
 	find "${S}" -name SConscript -delete || die
+
+	epatch "${FILESDIR}"/${P}-gcc-4.7.patch
+	epatch "${FILESDIR}"/${P}-parallel.patch  # still not fully done
 }
 
 src_configure() {
@@ -52,7 +55,7 @@ src_configure() {
 }
 
 src_compile() {
-	MAKEOPTS="${MAKEOPTS} -j1" default  # TODO
+	MAKEOPTS="${MAKEOPTS} -j1" cmake-utils_src_compile  # TODO
 }
 
 src_install() {

@@ -1,6 +1,211 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.378 2012/08/22 01:41:12 ottxor Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.433 2012/10/07 14:53:43 jlec Exp $
+
+  07 Oct 2012; Justin Lecher <jlec@gentoo.org> fortran-2.eclass:
+  Revert virtual/fortran depends again, because not only USE=fortran controlls
+  fortran needs
+
+  07 Oct 2012; Justin Lecher <jlec@gentoo.org> fortran-2.eclass:
+  Depend on virtual/fortran eclass wise but in an USE=fortran sensitive way,
+  #435250
+
+  07 Oct 2012; Justin Lecher <jlec@gentoo.org> fortran-2.eclass:
+  Revert last change to not break packages with optional fortran support
+
+  07 Oct 2012; Michał Górny <mgorny@gentoo.org> boost-utils.eclass:
+  Fix stupid mistake in boost-utils_get_best_slot().
+
+  07 Oct 2012; Justin Lecher <jlec@gentoo.org> fortran-2.eclass:
+  Depend on virtual/fortran eclass wise, #435250
+
+  07 Oct 2012; Justin Lecher <jlec@gentoo.org> fortran-2.eclass:
+  Give some information on selected fortran compilers
+
+  03 Oct 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  virtualx.eclass:
+  Unbreak EAPI=2 and 3 users of virtualx.eclass, bug #406353
+
+  02 Oct 2012; Tomáš Chvátal <scarabeus@gentoo.org> obs-download.eclass:
+  More update the doc
+
+  02 Oct 2012; Tomáš Chvátal <scarabeus@gentoo.org> obs-service.eclass:
+  Always use openSUSE:Tools as project to get updates. Remove obs_package
+  declaration as it is equal to pn.
+
+  02 Oct 2012; Tomáš Chvátal <scarabeus@gentoo.org> obs-download.eclass:
+  Change the documentation a bit and take OBS_PACKAGE from PN if not set.
+
+  02 Oct 2012; Michael Palimaka <kensington@gentoo.org> cmake-utils.eclass,
+  virtualx.eclass:
+  Make VIRTUALX_COMMAND nonfatal so that Xvfb is always killed. Return status
+  at the end of CMake test phase. This fixes bug #406353.
+
+  02 Oct 2012; Mike Gilbert <floppym@gentoo.org> python.eclass:
+  Add 3.3 as a supported python abi for testing.
+
+  29 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  virtualx.eclass:
+  Increase Xfvb resolution to address gimp test failure, bug #414853.
+
+  29 Sep 2012; Joerg Bornkessel <hd_brummy@gentoo.org> vdr-plugin-2.eclass:
+  added helper function to remove i18n.h includes, if media-plugins/vdr-* are
+  still use the obsoleted i18n handling and unsupported to gettext handling
+
+  28 Sep 2012; Ulrich Müller <ulm@gentoo.org> eutils.eclass:
+  Test for the EAPI explicitly, because it isn't guaranteed that package
+  managers implement usex as a shell function.
+
+  28 Sep 2012; Ian Stakenvicius <axs@gentoo.org> toolchain-funcs.eclass:
+  reverted fatal error from unset KV and made it a warning only shown when
+  checking for 'kern' arch, so that the portage environment call of tc-arch
+  will not fail anymore, bug 436450
+
+  27 Sep 2012; Mike Gilbert <floppym@gentoo.org> python.eclass:
+  Remove a silly EAPI conditional.
+
+  27 Sep 2012; Ian Stakenvicius <axs@gentoo.org> toolchain-funcs.eclass:
+  Fixed tc-ninja_magic_to_arch() to also use KV_FULL and fail if no kernel
+  version specified, bug 432390
+
+  27 Sep 2012; Ian Stakenvicius <axs@gentoo.org> eutils.eclass:
+  Made 'usex' declaration conditional on lack of PM or EAPI5+ support
+
+  27 Sep 2012; Ian Stakenvicius <axs@gentoo.org> fortran-2.eclass,
+  selinux-policy-2.eclass, vdr-plugin-2.eclass, xorg-2.eclass,
+  autotools-utils.eclass, base.eclass, bash-completion-r1.eclass,
+  boost-utils.eclass, check-reqs.eclass, cmake-utils.eclass, emboss.eclass,
+  emul-linux-x86.eclass, enlightenment.eclass, fox.eclass, games.eclass,
+  games-ggz.eclass, git.eclass, gnome2-utils.eclass, gnome2.eclass,
+  gst-plugins-bad.eclass, gtk-sharp-module.eclass, haskell-cabal.eclass,
+  kde4-functions.eclass, leechcraft.eclass, mozlinguas.eclass, mysql.eclass,
+  mysql-v2.eclass, obs-service.eclass, office-ext.eclass, perl-module.eclass,
+  php-ext-source-r2.eclass, python-distutils-ng.eclass, qt4-build.eclass,
+  qt4-r2.eclass, ruby-ng.eclass, scons-utils.eclass, systemd.eclass,
+  vcs-snapshot.eclass, vdr-plugin.eclass, virtuoso.eclass, waf-utils.eclass,
+  xfconf.eclass:
+  naive bump of all EAPI-specific checks in eclasses to permit EAPI=5 where
+  EAPI=4 was previously allowed
+
+  27 Sep 2012; Mike Gilbert <floppym@gentoo.org> python.eclass:
+  Allow usage of EAPI 5.
+
+  27 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org> clutter.eclass:
+  Default clutter license is LGPL-2.1 or later.
+
+  26 Sep 2012; Julian Ospald <hasufell@gentoo.org> python-distutils-ng.eclass:
+  add PYTHON_USE wrt #426768
+
+  20 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> autotools.eclass:
+  Be more strict about eautoreconfig on aclocal.m4. Fixes bug#424763 and
+  bug#420631.
+
+  20 Sep 2012; Michael Palimaka <kensington@gentoo.org> cmake-utils.eclass:
+  Add support for the ninja build system wrt bug #430608. Improve prefix
+  support wrt bug #434086.
+
+  20 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org> vala.eclass:
+  VALA_{MIN,MAX}_API_VERSION are not unset by default.
+
+  19 Sep 2012; Joerg Bornkessel <hd_brummy@gentoo.org> vdr-plugin-2.eclass,
+  vdr-plugin.eclass:
+  using now append-lfs-flags for large files
+
+  19 Sep 2012; Michał Górny <mgorny@gentoo.org> +boost-utils.eclass:
+  Introduce boost-utils eclass, to support linking against arbitrary boost
+  version.
+
+  18 Sep 2012; Ulrich Müller <ulm@gentoo.org> bzr.eclass:
+  Use lightweight checkout instead of export if EBZR_WORKDIR_CHECKOUT is set;
+  bug 434746. Remove old cleanup code.
+
+  18 Sep 2012; Tim Harder <radhermit@gentoo.org> vim.eclass:
+  Use has_version instead of built_with_use.
+
+  17 Sep 2012; Joerg Bornkessel <hd_brummy@gentoo.org> vdr-plugin-2.eclass:
+  better LINGUAS detection, vdr-plugin-2.eclass
+
+  16 Sep 2012; Ulrich Müller <ulm@gentoo.org> tla.eclass:
+  Mark as DEAD for removal.
+
+  16 Sep 2012; Justin Lecher <jlec@gentoo.org> intel-sdp.eclass:
+  Add old license jingle until we have fixed the license situation generally
+
+  16 Sep 2012; Justin Lecher <jlec@gentoo.org> intel-sdp.eclass:
+  Added new intel-sdp.eclass
+
+  15 Sep 2012; Zac Medico <zmedico@gentoo.org> cannadic.eclass,
+  cmake-utils.eclass, confutils.eclass, embassy.eclass, eutils.eclass,
+  games.eclass, gnatbuild.eclass, gnuconfig.eclass, libtool.eclass,
+  linux-mod.eclass, nsplugins.eclass, perl-module.eclass, qmail.eclass,
+  toolchain-funcs.eclass:
+  Remove redundant DESCRIPTION variable settings.
+
+  14 Sep 2012; Mark Wright <gienah@gentoo.org> ghc-package.eclass:
+  ghc-pkg --global-conf parameter is renamed to --global-package-db in ghc
+  7.6.1
+
+  12 Sep 2012; Jory A. Pratt <anarchy@gentoo.org> mozconfig-3.eclass:
+  Disable crashreporter on all source builds, bug #433962.
+
+  12 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org> vala.eclass:
+  Small stylistic fix.
+
+  12 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org> vala.eclass:
+  Typo: s/VALA_API_VERSION/version/
+
+  12 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org> +vala.eclass:
+  New eclass.
+
+  11 Sep 2012; Tim Harder <radhermit@gentoo.org> vim.eclass:
+  Allow vim to be built against ruby-1.9.
+
+  11 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> chromium.eclass:
+  Remove deprecated chromium_check_kernel_config.
+
+  10 Sep 2012; Brian Harring <ferringb@gentoo.org> mysql.eclass,
+  mysql-v2.eclass:
+  Remove usage of strip_duplicate_slashes function.
+
+  It's outside of PMS, and is exposed by misbehaviour on portages part.
+
+  09 Sep 2012; Ulrich Müller <ulm@gentoo.org> cvs.eclass:
+  Rename ESCM_OFFLINE to EVCS_OFFLINE. Drop ESCM_VERSION. Fixes bug 410465.
+
+  08 Sep 2012; <swift@gentoo.org> selinux-policy-2.eclass:
+  Support live policy builds
+
+  06 Sep 2012; Michael Palimaka <kensington@gentoo.org> qt4-build.eclass:
+  Improve respect for *FLAGS. Fixes part of bug #427782.
+
+  04 Sep 2012; Johannes Huber <johu@gentoo.org> kde4-meta.eclass:
+  Dont try to extract cmake/modules for kdegames > 4.9.0. Its removed from
+  top-level directory by upstream, fixes bug #431924.
+
+  01 Sep 2012; Vadim Kuznetsov vadimk@gentoo.org -vmware.eclass,
+  -vmware-mod.eclass:
+  removed vmware and vmware-mod elsasses
+
+  01 Sep 2012; Ulrich Müller <ulm@gentoo.org> elisp-common.eclass:
+  Suppress warning message in elisp-site-regen for initial installation.
+
+  30 Aug 2012; Michael Pagano <mpagano@gentoo.org> linux-mod.eclass:
+  Minor typo fix to documentation line. Bug #419469
+
+  29 Aug 2012; Michał Górny <mgorny@gentoo.org> eutils.eclass:
+  prune_libtool_files: run pkg-config code only if necessary.
+
+  28 Aug 2012; Michael Pagano <mpagano@gentoo.org> linux-mod.eclass:
+  Remove deprecated and unrecommended parameter -r from depmod
+
+  27 Aug 2012; Michał Górny <mgorny@gentoo.org> systemd.eclass:
+  Drop blockers for ancient systemd versions.
+
+  27 Aug 2012; Michał Górny <mgorny@gentoo.org> systemd.eclass:
+  tmpfiles.d: ensure .conf suffix when installing.
+
+  27 Aug 2012; Michał Górny <mgorny@gentoo.org> systemd.eclass:
+  Add systemd_newtmpfilesd().
 
   22 Aug 2012; Christoph Junghans <ottxor@gentoo.org> unpacker.eclass:
   added support for cpio archives
@@ -77,6 +282,10 @@
   28 Jul 2012; Julian Ospald <hasufell@gentoo.org> games.eclass:
   omg, we checked the dirs in ${S} instead of ${D} which accidentially
   worked for some ebuilds (EAPI-4 related fix)
+
+  05 Aug 2012; Justin Lecher <jlec@gentoo.org> pam.eclass:
+  Add magic needed for app-portage/eclass-manpages to pam.eclass, changes
+  approved by author
 
   26 Jul 2012; Fabian Groffen <grobian@gentoo.org>
   +ELT-patches/sol2-ltmain/2.4.2, libtool.eclass:

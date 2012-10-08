@@ -1,6 +1,25 @@
 # ChangeLog for app-emacs/org-mode
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/org-mode/ChangeLog,v 1.144 2012/06/05 22:00:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/org-mode/ChangeLog,v 1.148 2012/10/01 19:45:01 ulm Exp $
+
+*org-mode-7.9.2 (01 Oct 2012)
+
+  01 Oct 2012; Ulrich Müller <ulm@gentoo.org> +org-mode-7.9.2.ebuild:
+  Version bump.
+
+*org-mode-7.9.1 (26 Sep 2012)
+
+  26 Sep 2012; Ulrich Müller <ulm@gentoo.org> org-mode-6.36c.ebuild,
+  org-mode-7.7.ebuild, -org-mode-7.8.03-r1.ebuild, -org-mode-7.8.09.ebuild,
+  org-mode-7.8.11.ebuild, +org-mode-7.9.1.ebuild, metadata.xml:
+  Version bump. Add odt-schema USE flag to control installation of non-free
+  Relax-NG schemas. Clarify LICENSE. Remove old.
+
+  23 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> org-mode-7.8.11.ebuild:
+  x86 stable wrt bug #428866
+
+  13 Sep 2012; Agostino Sarubbo <ago@gentoo.org> org-mode-7.8.11.ebuild:
+  Stable for amd64, wrt bug #428866
 
 *org-mode-7.8.11 (05 Jun 2012)
 

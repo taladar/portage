@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/weechat/weechat-9999.ebuild,v 1.20 2012/08/21 13:28:37 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/weechat/weechat-9999.ebuild,v 1.22 2012/10/05 19:41:29 scarabeus Exp $
 
 EAPI=4
 
@@ -99,6 +99,7 @@ src_configure() {
 		$(cmake-utils_use_enable logger)
 		$(cmake-utils_use_enable relay)
 		$(cmake-utils_use_enable scripts)
+		$(cmake-utils_use_enable scripts script)
 		$(cmake-utils_use_enable perl)
 		$(cmake-utils_use_enable python)
 		$(cmake-utils_use_enable ruby)
@@ -109,12 +110,4 @@ src_configure() {
 	)
 
 	cmake-utils_src_configure
-}
-
-pkg_postinst() {
-	if use scripts && use python; then
-		elog "You may use the following script from upstream to manage your scripts."
-		elog "It helps with downloading and updating other scripts:"
-		elog "    http://www.weechat.org/scripts/source/stable/weeget.py/"
-	fi
 }

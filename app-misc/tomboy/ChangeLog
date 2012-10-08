@@ -1,6 +1,22 @@
 # ChangeLog for app-misc/tomboy
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tomboy/ChangeLog,v 1.133 2012/08/18 12:22:16 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tomboy/ChangeLog,v 1.137 2012/09/29 10:08:20 pacho Exp $
+
+*tomboy-1.12.0 (29 Sep 2012)
+
+  29 Sep 2012; Pacho Ramos <pacho@gentoo.org> +tomboy-1.12.0.ebuild:
+  Version bump.
+
+  24 Sep 2012; Anthony G. Basile <blueness@gentoo.org> tomboy-1.10.1.ebuild:
+  stable ppc, bug #435202
+
+  22 Sep 2012; Pacho Ramos <pacho@gentoo.org>
+  +files/tomboy-1.10.1-gmime26.patch, -files/tomboy-1.4.2-insecure-path.patch,
+  -tomboy-1.4.2-r1.ebuild, metadata.xml, tomboy-1.10.1.ebuild:
+  Fix build with gmime-2.6[mono], bug #435854 by Anthony Basile. Drop old.
+
+  16 Sep 2012; Agostino Sarubbo <ago@gentoo.org> tomboy-1.10.1.ebuild:
+  Stable for amd64, wrt bug #435202
 
   18 Aug 2012; Michael Weber <xmw@gentoo.org> tomboy-1.8.3.ebuild:
   ppc stable (bug 407701)

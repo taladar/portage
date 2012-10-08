@@ -1,6 +1,40 @@
 # ChangeLog for net-dns/bind
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind/ChangeLog,v 1.406 2012/08/24 19:01:09 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind/ChangeLog,v 1.415 2012/09/16 14:23:05 jer Exp $
+
+  16 Sep 2012; Jeroen Roovers <jer@gentoo.org> bind-9.9.1_p3.ebuild:
+  Stable for HPPA (bug #434876).
+
+  15 Sep 2012; Raúl Porcel <armin76@gentoo.org> bind-9.9.1_p3.ebuild:
+  alpha/ia64/s390/sh/sparc/x86 stable wrt #434876
+
+  13 Sep 2012; Anthony G. Basile <blueness@gentoo.org> bind-9.9.1_p3.ebuild:
+  Stable arm, bug #434876
+
+  13 Sep 2012; Anthony G. Basile <blueness@gentoo.org> bind-9.9.1_p3.ebuild:
+  Stable ppc, bug #434876
+
+  13 Sep 2012; Anthony G. Basile <blueness@gentoo.org> bind-9.9.1_p3.ebuild:
+  Stable ppc64, bug #434876
+
+  13 Sep 2012; Agostino Sarubbo <ago@gentoo.org> bind-9.9.1_p3.ebuild:
+  Stable for amd64, wrt bug #434876
+
+*bind-9.9.1_p3 (12 Sep 2012)
+
+  12 Sep 2012; Christian Ruppert <idl0r@gentoo.org> +bind-9.9.1_p3.ebuild,
+  -bind-9.9.1_p2-r3.ebuild:
+  Version bump.
+
+*bind-9.9.1_p2-r3 (11 Sep 2012)
+
+  11 Sep 2012; Christian Ruppert <idl0r@gentoo.org> +bind-9.9.1_p2-r3.ebuild,
+  -bind-9.8.3_p1.ebuild, -bind-9.8.3_p2.ebuild, -bind-9.9.1_p2-r2.ebuild,
+  -files/bind-9.8.1-sdlz_helper.patch, metadata.xml:
+  Remove old versions. Add DNS Response Rate Limit (RRL) patch, bug 434650.
+
+  10 Sep 2012; Christoph Junghans <ottxor@gentoo.org> bind-9.9.1_p2-r2.ebuild:
+  added prefix keywords
 
 *bind-9.9.1_p2-r2 (24 Aug 2012)
 
@@ -1835,4 +1869,3 @@
   comments should well explained and written in clean English. The details about
   writing correct changelogs are explained in the skel.ChangeLog file which you
   can find in the root directory of the portage repository.
-

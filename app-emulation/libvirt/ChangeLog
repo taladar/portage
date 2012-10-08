@@ -1,6 +1,46 @@
 # ChangeLog for app-emulation/libvirt
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/libvirt/ChangeLog,v 1.208 2012/08/22 13:11:25 nativemad Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/libvirt/ChangeLog,v 1.216 2012/10/05 19:28:29 cardoe Exp $
+
+*libvirt-0.10.2-r1 (05 Oct 2012)
+
+  05 Oct 2012; Doug Goldstein <cardoe@gentoo.org> +libvirt-0.10.2-r1.ebuild:
+  Bump for newer v5 of the udev based virInterface patch.
+
+  30 Sep 2012; Doug Goldstein <cardoe@gentoo.org> -files/libvirtd.confd-r2,
+  -files/libvirtd.init-r5, metadata.xml:
+  Drop old initscript and config file. Remove description for a USE flag that
+  is gone.
+
+  30 Sep 2012; Doug Goldstein <cardoe@gentoo.org> libvirt-0.10.2.ebuild,
+  libvirt-9999.ebuild, +files/libvirtd.init-r9:
+  Bump the init script to fix an issue where the halt command could not be used
+  during the correct phase with OpenRC.
+
+  30 Sep 2012; Doug Goldstein <cardoe@gentoo.org> libvirt-9999.ebuild:
+  Update the live ebuild to the latest tweak in 0.10.2.
+
+*libvirt-0.10.2 (30 Sep 2012)
+
+  30 Sep 2012; Doug Goldstein <cardoe@gentoo.org> +libvirt-0.10.2.ebuild:
+  Bump to the 0.10.2 release plus a few patches and virInterface support for
+  Gentoo so that we don't need netcf support for virt-manager.
+
+*libvirt-0.10.1 (31 Aug 2012)
+
+  31 Aug 2012; Doug Goldstein <cardoe@gentoo.org> -libvirt-0.10.0_rc1.ebuild,
+  -libvirt-0.10.0_rc2.ebuild, +libvirt-0.10.1.ebuild:
+  Bump to latest release.
+
+*libvirt-0.10.0_rc2 (27 Aug 2012)
+
+  27 Aug 2012; Doug Goldstein <cardoe@gentoo.org> +libvirt-0.10.0_rc2.ebuild:
+  Bump 0.10.0 RC.
+
+*libvirt-0.10.0_rc1 (25 Aug 2012)
+
+  25 Aug 2012; Doug Goldstein <cardoe@gentoo.org> +libvirt-0.10.0_rc1.ebuild:
+  Add 0.10.0 release candidate 1.
 
   22 Aug 2012; Andreas Schuerch <nativemad@gentoo.org>
   libvirt-0.9.13-r1.ebuild:

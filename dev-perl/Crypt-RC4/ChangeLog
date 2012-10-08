@@ -1,6 +1,20 @@
 # ChangeLog for dev-perl/Crypt-RC4
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-RC4/ChangeLog,v 1.8 2012/08/08 01:27:07 naota Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-RC4/ChangeLog,v 1.12 2012/09/11 15:37:35 armin76 Exp $
+
+  11 Sep 2012; Raúl Porcel <armin76@gentoo.org> Crypt-RC4-2.020.0.ebuild:
+  Add ~alpha/~s390/~sh wrt #428248
+
+  01 Sep 2012; Fabian Groffen <grobian@gentoo.org> Crypt-RC4-2.020.0.ebuild:
+  Marked ~ppc-aix, bug #432288
+
+  29 Aug 2012; Anthony G. Basile <blueness@gentoo.org>
+  Crypt-RC4-2.020.0.ebuild:
+  Keyword ~ppc, bug #428248
+
+  28 Aug 2012; Anthony G. Basile <blueness@gentoo.org>
+  Crypt-RC4-2.020.0.ebuild:
+  Keyword ~mips for bug #428248
 
   08 Aug 2012; Naohiro Aota <naota@gentoo.org> Crypt-RC4-2.020.0.ebuild:
   Add ~x86-fbsd wrt bug #428248

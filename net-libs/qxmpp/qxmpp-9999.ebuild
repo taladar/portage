@@ -1,13 +1,12 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/qxmpp/qxmpp-9999.ebuild,v 1.2 2012/07/15 16:52:03 kensington Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/qxmpp/qxmpp-9999.ebuild,v 1.7 2012/10/04 15:19:59 pinkbyte Exp $
 
-EAPI=3
+EAPI=4
 
-ESVN_REPO_URI="http://qxmpp.googlecode.com/svn/trunk/"
-EGIT_REPO_URI="git://github.com/0xd34df00d/qxmpp-dev.git"
+EGIT_REPO_URI="https://code.google.com/p/qxmpp"
 
-inherit qt4-r2 multilib subversion git-2
+inherit qt4-r2 multilib git-2
 
 DESCRIPTION="A cross-platform C++ XMPP client library based on the Qt framework."
 HOMEPAGE="http://code.google.com/p/qxmpp/"
@@ -15,27 +14,31 @@ HOMEPAGE="http://code.google.com/p/qxmpp/"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug +extras"
+IUSE="debug doc"
 
 DEPEND="x11-libs/qt-core:4
-		x11-libs/qt-gui:4
-		media-libs/speex"
+	x11-libs/qt-gui:4
+	media-libs/speex"
 RDEPEND="${DEPEND}"
 
-src_unpack(){
-	if ! use extras; then
-		subversion_src_unpack
-	else
-		git-2_src_unpack
-	fi
-}
-
 src_prepare(){
-	if ! use extras; then
-		subversion_src_prepare
+	if ! use doc; then
+		sed -i \
+			-e '/SUBDIRS/s/doc//' \
+			-e '/INSTALLS/d' \
+			qxmpp.pro || die "sed for removing docs failed"
 	fi
+	qt4-r2_src_prepare
 }
 
 src_configure(){
 	eqmake4 "${S}"/qxmpp.pro "PREFIX=/usr" "LIBDIR=$(get_libdir)"
+}
+
+src_install() {
+	qt4-r2_src_install
+	if use doc; then
+		# Use proper path for documentation
+		mv "${ED}"/usr/share/doc/${PN} "${ED}"/usr/share/doc/${P} || die "doc mv failed"
+	fi
 }

@@ -1,6 +1,158 @@
 # ChangeLog for www-client/chromium
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/chromium/ChangeLog,v 1.700 2012/08/25 17:23:29 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/chromium/ChangeLog,v 1.727 2012/10/07 16:45:19 phajdan.jr Exp $
+
+  07 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  chromium-22.0.1229.79.ebuild, chromium-22.0.1229.91.ebuild,
+  chromium-23.0.1271.17.ebuild, chromium-24.0.1284.2.ebuild,
+  chromium-9999-r1.ebuild:
+  Add dependency on SELinux policy.
+
+*chromium-23.0.1271.17 (04 Oct 2012)
+
+  04 Oct 2012; Mike Gilbert <floppym@gentoo.org> +chromium-23.0.1271.17.ebuild:
+  Beta channel bump.
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  chromium-22.0.1229.79.ebuild, chromium-22.0.1229.91.ebuild,
+  chromium-23.0.1271.10-r1.ebuild, chromium-24.0.1284.2.ebuild,
+  chromium-9999-r1.ebuild:
+  Add explicit dependency on dbus, bug #434346 by Hans.
+
+*chromium-24.0.1284.2 (03 Oct 2012)
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  +chromium-24.0.1284.2.ebuild, chromium-9999-r1.ebuild:
+  Dev channel bump. NaCl disabled again (pnacl-related build failures).
+
+*chromium-23.0.1271.10-r1 (02 Oct 2012)
+
+  02 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  +files/chromium-system-speex-r0.patch, -chromium-23.0.1271.6.ebuild,
+  +chromium-23.0.1271.10-r1.ebuild, chromium-9999-r1.ebuild:
+  Re-enable NaCl. Build with system speex (bug #432748 by floppym). Remove old.
+
+*chromium-23.0.1271.10 (28 Sep 2012)
+
+  28 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  -chromium-23.0.1271.1.ebuild, +chromium-23.0.1271.10.ebuild,
+  chromium-9999-r1.ebuild, metadata.xml:
+  Dev channel bump. Add experimental tcmalloc USE flag. Remove old.
+
+*chromium-23.0.1271.6 (27 Sep 2012)
+
+  27 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  +files/chromium-dbus-glib-r0.patch, -chromium-23.0.1262.0.ebuild,
+  +chromium-23.0.1271.6.ebuild, chromium-9999-r1.ebuild,
+  +files/chromium-system-icu-r0.patch:
+  Dev channel bump. Drop unneeded dependency on dbus-glib, bug #434346 by Hans.
+  Remove old.
+
+*chromium-22.0.1229.91 (27 Sep 2012)
+
+  27 Sep 2012; Mike Gilbert <floppym@gentoo.org> +chromium-22.0.1229.91.ebuild:
+  Beta channel bump.
+
+  26 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  chromium-22.0.1229.79.ebuild:
+  Skip ChunkDemuxerTest.TestDurationChangeTimestampOffset, bug #431042.
+
+  26 Sep 2012; Agostino Sarubbo <ago@gentoo.org> -chromium-21.0.1180.89.ebuild,
+  -chromium-22.0.1229.64.ebuild:
+  Remove old
+
+  26 Sep 2012; Agostino Sarubbo <ago@gentoo.org> chromium-22.0.1229.79.ebuild:
+  Stable for x86, wrt bug #436234
+
+  26 Sep 2012; Agostino Sarubbo <ago@gentoo.org> chromium-22.0.1229.79.ebuild:
+  Stable for amd64, wrt bug #436234
+
+*chromium-22.0.1229.79 (25 Sep 2012)
+
+  25 Sep 2012; Mike Gilbert <floppym@gentoo.org> +chromium-22.0.1229.79.ebuild,
+  -chromium-22.0.1229.56.ebuild:
+  Stable channel bump.
+
+*chromium-23.0.1271.1 (23 Sep 2012)
+
+  23 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  -chromium-23.0.1255.0.ebuild, +chromium-23.0.1271.1.ebuild,
+  chromium-9999-r1.ebuild:
+  Dev channel bump. Temporarily disable NaCl (build failures). Skip some tests
+  (bug #426630 by marienz). Remove old.
+
+*chromium-22.0.1229.64 (22 Sep 2012)
+
+  22 Sep 2012; Mike Gilbert <floppym@gentoo.org> +chromium-22.0.1229.64.ebuild,
+  -chromium-22.0.1229.52.ebuild:
+  Beta channel bump.
+
+*chromium-22.0.1229.56 (15 Sep 2012)
+
+  15 Sep 2012; Mike Gilbert <floppym@gentoo.org> +chromium-22.0.1229.56.ebuild,
+  -chromium-22.0.1229.39.ebuild:
+  Beta channel bump.
+
+*chromium-22.0.1229.52 (13 Sep 2012)
+
+  13 Sep 2012; Mike Gilbert <floppym@gentoo.org> +chromium-22.0.1229.52.ebuild,
+  -chromium-22.0.1229.36.ebuild:
+  Beta channel bump.
+
+*chromium-23.0.1262.0 (12 Sep 2012)
+
+  12 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  -chromium-22.0.1229.26.ebuild, -chromium-23.0.1251.2.ebuild,
+  +chromium-23.0.1262.0.ebuild, chromium-9999-r1.ebuild:
+  Dev channel bump. Remove old.
+
+*chromium-22.0.1229.39 (08 Sep 2012)
+
+  08 Sep 2012; Mike Gilbert <floppym@gentoo.org> +chromium-22.0.1229.39.ebuild,
+  -chromium-22.0.1229.14.ebuild:
+  Beta channel bump.
+
+*chromium-22.0.1229.36 (07 Sep 2012)
+
+  07 Sep 2012; Mike Gilbert <floppym@gentoo.org> +chromium-22.0.1229.36.ebuild:
+  Beta channel bump. Bundles zlib.
+
+*chromium-23.0.1255.0 (05 Sep 2012)
+
+  05 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  -chromium-23.0.1246.0.ebuild, +chromium-23.0.1255.0.ebuild:
+  Dev channel bump. Remove old.
+
+  02 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  -chromium-21.0.1180.57.ebuild, -chromium-21.0.1180.81.ebuild,
+  chromium-21.0.1180.89.ebuild, -chromium-22.0.1229.12.ebuild:
+  x86 stable wrt security bug #433551. Remove old.
+
+  01 Sep 2012; Agostino Sarubbo <ago@gentoo.org> chromium-21.0.1180.89.ebuild:
+  Stable for amd64, wrt bug #433551
+
+*chromium-23.0.1251.2 (01 Sep 2012)
+
+  01 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  -chromium-23.0.1243.2.ebuild, +chromium-23.0.1251.2.ebuild,
+  chromium-9999-r1.ebuild:
+  Version bump for dev channel release. Incomplete fixes for arm. Remove old.
+
+*chromium-21.0.1180.89 (31 Aug 2012)
+
+  31 Aug 2012; Mike Gilbert <floppym@gentoo.org> +chromium-21.0.1180.89.ebuild:
+  Version bump for stable channel release. Fails gpu_unittests.
+
+*chromium-22.0.1229.26 (30 Aug 2012)
+
+  30 Aug 2012; Mike Gilbert <floppym@gentoo.org> +chromium-22.0.1229.26.ebuild:
+  Version bump for beta channel release.
+
+*chromium-23.0.1246.0 (28 Aug 2012)
+
+  28 Aug 2012; Mike Gilbert <floppym@gentoo.org> +chromium-23.0.1246.0.ebuild,
+  chromium-9999-r1.ebuild:
+  Version bump for dev channel release.
 
 *chromium-23.0.1243.2 (25 Aug 2012)
 

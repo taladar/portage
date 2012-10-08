@@ -1,6 +1,47 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.206 2012/07/03 16:02:35 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.217 2012/10/07 09:01:42 pacho Exp $
+
+  07 Oct 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, #24135.
+
+*tiff-4.0.3 (03 Oct 2012)
+
+  03 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> +tiff-4.0.3.ebuild:
+  Version bump.
+
+  24 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> -tiff-4.0.2.ebuild:
+  old
+
+  23 Sep 2012; Raúl Porcel <armin76@gentoo.org> tiff-4.0.2-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #427166
+
+  20 Sep 2012; Anthony G. Basile <blueness@gentoo.org> tiff-4.0.2-r1.ebuild:
+  stable arm, bug #427166
+
+  18 Sep 2012; Jeroen Roovers <jer@gentoo.org> tiff-4.0.2-r1.ebuild:
+  Stable for HPPA (bug #427166).
+
+  16 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> -tiff-4.0.1-r1.ebuild,
+  -files/tiff-4.0.1-CVE-2012-1173.patch:
+  old
+
+  16 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> tiff-4.0.2-r1.ebuild:
+  amd64/ppc/ppc64/x86 stable wrt #427166
+
+  16 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> tiff-4.0.2-r1.ebuild,
+  +files/tiff-4.0.2-bigendian.patch:
+  Import patch from Fedora for endianess related test issues (test
+  "raw_decode") wrt #422843
+
+*tiff-4.0.2-r1 (16 Sep 2012)
+
+  16 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> +tiff-4.0.2-r1.ebuild,
+  +files/tiff-4.0.2-CVE-2012-3401.patch:
+  Fix security bug #427166 (CVE-2012-3401)
+
+  16 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> tiff-4.0.2.ebuild:
+  ppc64 stable wrt #422673
 
   03 Jul 2012; Brent Baude <ranger@gentoo.org> tiff-4.0.2.ebuild:
   Marking tiff-4.0.2 ppc for bug 422673

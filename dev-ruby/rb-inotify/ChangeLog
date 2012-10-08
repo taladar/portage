@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/rb-inotify
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rb-inotify/ChangeLog,v 1.12 2012/05/01 18:24:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rb-inotify/ChangeLog,v 1.14 2012/09/29 15:18:12 grobian Exp $
+
+  29 Sep 2012; Fabian Groffen <grobian@gentoo.org> rb-inotify-0.8.8.ebuild:
+  Marked ~x64-macos
+
+  25 Sep 2012; Hans de Graaff <graaff@gentoo.org> rb-inotify-0.8.8.ebuild:
+  Avoid mandatory but unneeded dependency on maruku when building yard
+  documentation, bug 436112.
 
   01 May 2012; Raúl Porcel <armin76@gentoo.org> rb-inotify-0.8.8.ebuild:
   Drop ia64/sparc keywords
@@ -49,4 +56,3 @@
   03 Jun 2011; Hans de Graaff <graaff@gentoo.org> +rb-inotify-0.8.5.ebuild,
   +metadata.xml:
   Initial import. Optional but usefull dependency for dev-ruby/fssm.
-

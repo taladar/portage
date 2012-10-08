@@ -1,6 +1,32 @@
 # ChangeLog for www-client/firefox-bin
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/firefox-bin/ChangeLog,v 1.114 2012/07/28 17:00:03 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/firefox-bin/ChangeLog,v 1.119 2012/09/15 12:16:28 nativemad Exp $
+
+  15 Sep 2012; Andreas Schuerch <nativemad@gentoo.org>
+  firefox-bin-10.0.7.ebuild:
+  x86 stable, see bug 433383
+
+*firefox-bin-15.0.1 (11 Sep 2012)
+
+  11 Sep 2012; Lars Wendler <polynomial-c@gentoo.org>
+  -firefox-bin-14.0.1.ebuild, -firefox-bin-15.0.ebuild,
+  +firefox-bin-15.0.1.ebuild:
+  Version bump. Removed old.
+
+  08 Sep 2012; Agostino Sarubbo <ago@gentoo.org> firefox-bin-10.0.7.ebuild:
+  Stable for amd64, wrt bug #433383
+
+*firefox-bin-10.0.7 (02 Sep 2012)
+
+  02 Sep 2012;  <jd@gentoo.org> +firefox-bin-10.0.7.ebuild,
+  -firefox-bin-10.0.5.ebuild:
+  Version bump on ESR branch
+
+*firefox-bin-15.0 (02 Sep 2012)
+
+  02 Sep 2012;  <jd@gentoo.org> +firefox-bin-15.0.ebuild,
+  -firefox-bin-13.0.1.ebuild:
+  Version bump
 
   28 Jul 2012; Agostino Sarubbo <ago@gentoo.org> firefox-bin-10.0.6.ebuild:
   Stable for amd64, wrt bug #427224

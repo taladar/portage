@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.79 2012/05/08 21:27:10 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.83 2012/10/02 08:14:36 kensington Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -42,6 +42,12 @@ CMAKE_REMOVE_MODULES_LIST="${CMAKE_REMOVE_MODULES_LIST:-FindBLAS FindLAPACK}"
 # Do we want to remove anything? yes or whatever else for no
 CMAKE_REMOVE_MODULES="${CMAKE_REMOVE_MODULES:-yes}"
 
+# @ECLASS-VARIABLE: CMAKE_MAKEFILE_GENERATOR
+# @DESCRIPTION:
+# Specify a makefile generator to be used by cmake. At this point only "make"
+# and "ninja" is supported.
+CMAKE_MAKEFILE_GENERATOR="${CMAKE_MAKEFILE_GENERATOR:-make}"
+
 CMAKEDEPEND=""
 case ${WANT_CMAKE} in
 	always)
@@ -55,13 +61,11 @@ inherit toolchain-funcs multilib flag-o-matic base
 
 CMAKE_EXPF="src_compile src_test src_install"
 case ${EAPI:-0} in
-	4|3|2) CMAKE_EXPF+=" src_configure" ;;
+	2|3|4|5) CMAKE_EXPF+=" src_configure" ;;
 	1|0) ;;
 	*) die "Unknown EAPI, Bug eclass maintainers." ;;
 esac
 EXPORT_FUNCTIONS ${CMAKE_EXPF}
-
-: ${DESCRIPTION:="Based on the ${ECLASS} eclass"}
 
 if [[ ${PN} != cmake ]]; then
 	CMAKEDEPEND+=" >=dev-util/cmake-${CMAKE_MIN_VERSION}"
@@ -166,6 +170,15 @@ _check_build_dir() {
 	mkdir -p "${CMAKE_BUILD_DIR}"
 	echo ">>> Working in BUILD_DIR: \"$CMAKE_BUILD_DIR\""
 }
+
+# Determine which generator to use
+_generator_to_use() {
+	if [[ ${CMAKE_MAKEFILE_GENERATOR} = "ninja" ]]; then
+		has_version dev-util/ninja && echo "Ninja" && return
+	fi
+	echo "Unix Makefiles"
+}
+
 # @FUNCTION: cmake-utils_use_with
 # @USAGE: <USE flag> [flag name]
 # @DESCRIPTION:
@@ -353,7 +366,7 @@ enable_cmake-utils_src_configure() {
 	local libdir=$(get_libdir)
 	cat > "${common_config}" <<- _EOF_
 		SET (LIB_SUFFIX ${libdir/lib} CACHE STRING "library path suffix" FORCE)
-		SET (CMAKE_INSTALL_LIBDIR ${PREFIX}/${libdir} CACHE PATH "Output directory for libraries")
+		SET (CMAKE_INSTALL_LIBDIR ${libdir} CACHE PATH "Output directory for libraries")
 	_EOF_
 	[[ "${NOCOLOR}" = true || "${NOCOLOR}" = yes ]] && echo 'SET (CMAKE_COLOR_MAKEFILE OFF CACHE BOOL "pretty colors during make" FORCE)' >> "${common_config}"
 
@@ -372,6 +385,7 @@ enable_cmake-utils_src_configure() {
 	local cmakeargs=(
 		--no-warn-unused-cli
 		-C "${common_config}"
+		-G "$(_generator_to_use)"
 		-DCMAKE_INSTALL_PREFIX="${EPREFIX}${PREFIX}"
 		"${mycmakeargs_local[@]}"
 		-DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE}"
@@ -403,12 +417,23 @@ cmake-utils_src_make() {
 
 	_check_build_dir
 	pushd "${CMAKE_BUILD_DIR}" > /dev/null
-	# first check if Makefile exist otherwise die
-	[[ -e Makefile ]] || die "Makefile not found. Error during configure stage."
-	if [[ "${CMAKE_VERBOSE}" != "OFF" ]]; then
-		emake VERBOSE=1 "$@" || die "Make failed!"
+	if [[ $(_generator_to_use) = Ninja ]]; then
+		# first check if Makefile exist otherwise die
+		[[ -e build.ninja ]] || die "Makefile not found. Error during configure stage."
+		if [[ "${CMAKE_VERBOSE}" != "OFF" ]]; then
+			#TODO get load average from portage (-l option)
+			ninja ${MAKEOPTS} -v "$@"
+		else
+			ninja "$@"
+		fi || die "ninja failed!"
 	else
-		emake "$@" || die "Make failed!"
+		# first check if Makefile exist otherwise die
+		[[ -e Makefile ]] || die "Makefile not found. Error during configure stage."
+		if [[ "${CMAKE_VERBOSE}" != "OFF" ]]; then
+			emake VERBOSE=1 "$@" || die "Make failed!"
+		else
+			emake "$@" || die "Make failed!"
+		fi
 	fi
 	popd > /dev/null
 }
@@ -418,7 +443,12 @@ enable_cmake-utils_src_install() {
 
 	_check_build_dir
 	pushd "${CMAKE_BUILD_DIR}" > /dev/null
-	base_src_install "$@"
+	if [[ $(_generator_to_use) = Ninja ]]; then
+		DESTDIR=${D} ninja install "$@" || die "died running ninja install"
+		base_src_install_docs
+	else
+		base_src_install "$@"
+	fi
 	popd > /dev/null
 
 	# Backward compatibility, for non-array variables
@@ -442,6 +472,8 @@ enable_cmake-utils_src_test() {
 
 	if ctest ${ctestargs} "$@" ; then
 		einfo "Tests succeeded."
+		popd > /dev/null
+		return 0
 	else
 		if [[ -n "${CMAKE_YES_I_WANT_TO_SEE_THE_TEST_LOG}" ]] ; then
 			# on request from Diego
@@ -453,8 +485,11 @@ enable_cmake-utils_src_test() {
 		else
 			die "Tests failed. When you file a bug, please attach the following file: \n\t${CMAKE_BUILD_DIR}/Testing/Temporary/LastTest.log"
 		fi
+
+		# die might not die due to nonfatal
+		popd > /dev/null
+		return 1
 	fi
-	popd > /dev/null
 }
 
 # @FUNCTION: cmake-utils_src_configure

@@ -1,6 +1,18 @@
 # ChangeLog for sys-kernel/linux-docs
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-docs/ChangeLog,v 1.31 2012/06/04 23:17:36 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-docs/ChangeLog,v 1.35 2012/09/29 17:05:52 armin76 Exp $
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org> linux-docs-3.4.1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #429219
+
+  19 Sep 2012; Johannes Huber <johu@gentoo.org> linux-docs-3.4.1.ebuild:
+  Stable for x86, wrt bug #429218
+
+  16 Sep 2012; Markus Meier <maekke@gentoo.org> linux-docs-3.4.1.ebuild:
+  arm stable, bug #429218
+
+  13 Sep 2012; Agostino Sarubbo <ago@gentoo.org> linux-docs-3.4.1.ebuild:
+  Stable for amd64, wrt bug #429218
 
 *linux-docs-3.4.1 (04 Jun 2012)
 

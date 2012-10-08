@@ -1,6 +1,37 @@
 # ChangeLog for net-wireless/gnome-bluetooth
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/gnome-bluetooth/ChangeLog,v 1.111 2012/07/04 23:29:09 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/gnome-bluetooth/ChangeLog,v 1.117 2012/09/27 20:19:00 tetromino Exp $
+
+  27 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  gnome-bluetooth-2.32.0.ebuild, gnome-bluetooth-2.32.0-r1.ebuild,
+  gnome-bluetooth-3.2.2.ebuild, gnome-bluetooth-3.4.2.ebuild,
+  gnome-bluetooth-3.4.2-r1.ebuild:
+  Fix building with older glib (bug #436236, thanks to Sasha Medvedev). Update
+  license. Inherit user.eclass.
+
+  23 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  gnome-bluetooth-3.4.2-r1.ebuild:
+  keyword ~ppc64, bug #379651
+
+  23 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  gnome-bluetooth-3.4.2-r1.ebuild:
+  keyword ~ppc, bug #379651
+
+  13 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  gnome-bluetooth-3.4.2-r1.ebuild:
+  Ensure udev is a build-time dependency for udev.pc use, thanks to Samuli
+  Suominen for noticing.
+
+  13 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  gnome-bluetooth-3.4.2-r1.ebuild:
+  Forgot to inherit toolchain-funcs
+
+*gnome-bluetooth-3.4.2-r1 (13 Sep 2012)
+
+  13 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -gnome-bluetooth-3.4.0.ebuild, +gnome-bluetooth-3.4.2-r1.ebuild:
+  Use pkgconfig to read udevdir from udev.pc (bug #433910, thanks to Martin von
+  Gagern). Drop old.
 
 *gnome-bluetooth-3.4.2 (04 Jul 2012)
 
@@ -539,4 +570,3 @@
   20 Sep 2003; Alastair Tse <liquidx@gentoo.org> gnome-bluetooth-0.4.1.ebuild,
   metadata.xml:
   initial commit. thanks to johnm@gentoo.org (#24302)
-

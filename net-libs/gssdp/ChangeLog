@@ -1,6 +1,28 @@
 # ChangeLog for net-libs/gssdp
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gssdp/ChangeLog,v 1.44 2012/08/24 18:15:33 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gssdp/ChangeLog,v 1.51 2012/10/06 09:55:08 pacho Exp $
+
+  06 Oct 2012; Pacho Ramos <pacho@gentoo.org> -gssdp-0.10.0.ebuild,
+  -gssdp-0.12.1.ebuild, gssdp-0.12.2.1.ebuild:
+  Fix blocker, bug #437078 by Flameeyes and Gilles, drop old.
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> gssdp-0.12.1.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gssdp-0.12.1.ebuild:
+  x86 stable wrt bug #427544
+
+  01 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gssdp-0.12.2.1.ebuild:
+  x86 stable wrt bug #427560
+
+  19 Sep 2012; Jeroen Roovers <jer@gentoo.org> gssdp-0.12.2.1.ebuild:
+  Stable for HPPA (bug #434300).
+
+  18 Sep 2012; Anthony G. Basile <blueness@gentoo.org> gssdp-0.12.2.1.ebuild:
+  stabe ppc ppc64, bug #434300
+
+  07 Sep 2012; Agostino Sarubbo <ago@gentoo.org> gssdp-0.12.2.1.ebuild:
+  Stable for amd64, wrt bug #427560
 
 *gssdp-0.12.2.1 (24 Aug 2012)
 
@@ -166,4 +188,3 @@
 
   23 Aug 2007; Samuli Suominen <ssuominen@gentoo.org> +gssdp-0.4.ebuild:
   Initial commit.
-

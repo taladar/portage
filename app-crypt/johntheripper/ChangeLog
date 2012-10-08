@@ -1,6 +1,15 @@
 # ChangeLog for app-crypt/johntheripper
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.143 2012/07/05 21:11:28 zerochaos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.145 2012/10/06 23:28:17 zerochaos Exp $
+
+  06 Oct 2012; Rick Farina <zerochaos@gentoo.org> johntheripper-1.7.9-r5.ebuild:
+  restricting test per 437426, happy to add it back if it ever works right
+
+*johntheripper-1.7.9-r5 (05 Oct 2012)
+
+  05 Oct 2012; Rick Farina <zerochaos@gentoo.org>
+  +johntheripper-1.7.9-r5.ebuild:
+  bump to jumbo 7, seems to work
 
 *johntheripper-1.7.9-r4 (05 Jul 2012)
 

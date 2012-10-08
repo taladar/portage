@@ -1,6 +1,35 @@
 # ChangeLog for x11-libs/vte
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.330 2012/08/10 00:37:38 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.337 2012/10/06 10:15:34 pacho Exp $
+
+*vte-0.28.2-r204 (06 Oct 2012)
+
+  06 Oct 2012; Pacho Ramos <pacho@gentoo.org>
+  +files/vte-0.28.2-limit-arguments.patch, +vte-0.28.2-r204.ebuild:
+  Fix CVE-2012-2738 for vte:0 also (#427802#c7 by SN (Enlik)).
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> vte-0.32.2.ebuild:
+  arm stable, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> vte-0.32.2.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> vte-0.32.2.ebuild:
+  x86 stable wrt bug #427544
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> vte-0.32.2.ebuild:
+  Stable for HPPA (bug #427544).
+
+  27 Sep 2012; Matt Turner <mattst88@gentoo.org> vte-0.32.2.ebuild:
+  Stable on alpha, bug 427544.
+
+*vte-0.34.0 (25 Sep 2012)
+
+  25 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -vte-0.28.2-r202.ebuild, vte-0.28.2-r203.ebuild, vte-0.30.1-r3.ebuild,
+  -vte-0.32.1.ebuild, vte-0.32.2.ebuild, +vte-0.34.0.ebuild:
+  Version bump with box drawing character improvements. Drop old. Make license
+  more precise and update homepage.
 
   10 Aug 2012; Jeroen Roovers <jer@gentoo.org> vte-0.28.2-r203.ebuild:
   Remove duplicate keyword by zvasylvv (bug #430658).

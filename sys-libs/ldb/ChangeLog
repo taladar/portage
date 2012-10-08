@@ -1,6 +1,27 @@
 # ChangeLog for sys-libs/ldb
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ldb/ChangeLog,v 1.32 2012/08/21 14:35:07 qnikst Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ldb/ChangeLog,v 1.37 2012/10/02 14:58:14 floppym Exp $
+
+  02 Oct 2012; Mike Gilbert <floppym@gentoo.org> ldb-1.1.10.ebuild,
+  ldb-1.1.12.ebuild:
+  Fix PYTHON_DEPEND. Patch by Arfrever.
+
+  23 Sep 2012; Víctor Ostorga <vostorga@gentoo.org> ldb-1.1.10.ebuild,
+  ldb-1.1.12.ebuild:
+  Fixin up tevent version
+
+*ldb-1.1.12 (23 Sep 2012)
+
+  23 Sep 2012; Víctor Ostorga <vostorga@gentoo.org> ldb-1.1.10.ebuild,
+  +ldb-1.1.12.ebuild:
+  Version bump to 1.1.12 bug 435630
+
+  23 Sep 2012; Víctor Ostorga <vostorga@gentoo.org> ldb-1.1.10.ebuild:
+  Fixing up python and tdb DEPEND versions
+
+  13 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> -ldb-1.1.6-r1.ebuild,
+  -ldb-1.1.8.ebuild, ldb-1.1.10.ebuild, ldb-1.1.9.ebuild:
+  Cleanup a bit.
 
 *ldb-1.1.10 (21 Aug 2012)
 

@@ -1,19 +1,19 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tomboy/tomboy-1.10.1.ebuild,v 1.2 2012/05/03 19:41:35 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tomboy/tomboy-1.10.1.ebuild,v 1.5 2012/09/24 03:38:54 blueness Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
 
-inherit gnome2 mono
+inherit autotools eutils gnome2 mono
 
 DESCRIPTION="Desktop note-taking application"
 HOMEPAGE="http://projects.gnome.org/tomboy/"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64 ppc ~x86"
 IUSE="eds test"
 
 RDEPEND="app-text/gtkspell:2
@@ -42,6 +42,12 @@ pkg_setup() {
 		--disable-galago
 		--disable-update-mimedb"
 	DOCS="AUTHORS ChangeLog NEWS README"
+}
+
+src_prepare() {
+	# Fix build with gmime-2.6[mono], bug #435854
+	epatch "${FILESDIR}/${PN}-1.10.1-gmime26.patch"
+	eautoreconf
 }
 
 src_compile() {

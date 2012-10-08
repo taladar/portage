@@ -1,6 +1,52 @@
 # ChangeLog for sys-fs/udev
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/ChangeLog,v 1.717 2012/08/24 16:21:22 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/ChangeLog,v 1.727 2012/10/04 19:30:26 williamh Exp $
+
+*udev-194 (04 Oct 2012)
+
+  04 Oct 2012; William Hubbs <williamh@gentoo.org> +udev-194.ebuild,
+  udev-9999.ebuild:
+  version bump and sync live ebuild.
+
+  01 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> udev-193.ebuild:
+  Fix typo.
+
+*udev-193 (30 Sep 2012)
+
+  30 Sep 2012; William Hubbs <williamh@gentoo.org> +udev-193.ebuild:
+  version bump
+
+*udev-192 (26 Sep 2012)
+
+  26 Sep 2012; William Hubbs <williamh@gentoo.org> +udev-192.ebuild:
+  version bump
+
+*udev-191 (22 Sep 2012)
+
+  22 Sep 2012; William Hubbs <williamh@gentoo.org> +udev-191.ebuild:
+  version bump
+
+*udev-190 (21 Sep 2012)
+
+  21 Sep 2012; William Hubbs <williamh@gentoo.org> +udev-190.ebuild:
+  version bump
+
+  11 Sep 2012; William Hubbs <williamh@gentoo.org> udev-164-r2.ebuild,
+  udev-171-r6.ebuild, udev-189.ebuild, udev-9999.ebuild:
+  According to armin76, udev works fine on sh with glibc-2.11. To keep things
+  simple, I am adjusting the block to allow glibc-2.11 on all archs.
+
+  10 Sep 2012; William Hubbs <williamh@gentoo.org> udev-189.ebuild,
+  udev-9999.ebuild:
+  Add more information on persistent net rules and clean up ewarns. this closes
+  #433746 and #434626. Thanks to James Le Cuirot and Pacho Ramos.
+
+  10 Sep 2012; William Hubbs <williamh@gentoo.org> udev-189.ebuild,
+  udev-9999.ebuild:
+  Fix location for preserved library for #434632, thanks to Pacho Ramos.
+
+  10 Sep 2012; William Hubbs <williamh@gentoo.org> -udev-188.ebuild:
+  remove old version
 
 *udev-189 (24 Aug 2012)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/obs-service.eclass,v 1.3 2012/08/17 13:04:25 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/obs-service.eclass,v 1.5 2012/10/02 10:52:31 scarabeus Exp $
 
 # @ECLASS: obs-service.eclass
 # @MAINTAINER:
@@ -30,17 +30,13 @@
 # @DESCRIPTION:
 # Name of the service. If not set, it is taken from ${PN}.
 
-# @ECLASS-VARIABLE: OPENSUSE_RELEASE
-# @DESCRIPTION:
-# From which stable openSUSE realease to take a package.
-
 # @ECLASS-VARIABLE: ADDITIONAL_FILES
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # If any additional files are needed.
 
 case "${EAPI:-0}" in
-	4) : ;;
+	4|5) : ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
@@ -51,10 +47,9 @@ IUSE=""
 RDEPEND="dev-util/osc"
 
 [[ -n ${OBS_SERVICE_NAME} ]] || OBS_SERVICE_NAME=${PN/obs-service-/}
-[[ -n ${OPENSUSE_RELEASE} ]] || OBS_PROJECT="openSUSE:Tools"
+OBS_PROJECT="openSUSE:Tools"
 
 DESCRIPTION="Open Build Service client module - ${OBS_SERVICE_NAME} service"
-OBS_PACKAGE="obs-service-${OBS_SERVICE_NAME}"
 
 inherit obs-download
 

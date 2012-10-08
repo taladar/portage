@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/xemacs/xemacs-21.5.31.ebuild,v 1.8 2012/06/02 14:12:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/xemacs/xemacs-21.5.31.ebuild,v 1.11 2012/09/07 13:21:53 graaff Exp $
 
 # Note: xemacs currently does not work with a hardened profile. If you
 # want to use xemacs on a hardened profile then compile with the
@@ -39,7 +39,7 @@ RDEPEND="
 	motif? ( >=x11-libs/openmotif-2.3:0[xft=] )
 	athena? ( x11-libs/libXaw )
 	Xaw3d? ( x11-libs/libXaw3d )
-	xft? ( media-libs/freetype x11-libs/libXft x11-libs/libXrender >=media-libs/fontconfig-2.5.0 )
+	xft? ( media-libs/freetype:2 x11-libs/libXft x11-libs/libXrender >=media-libs/fontconfig-2.5.0 )
 	neXt? ( x11-libs/neXtaw )
 	xface? ( media-libs/compface )
 	tiff? ( media-libs/tiff )
@@ -213,11 +213,9 @@ src_install() {
 	cd "${S}"
 	dodoc CHANGES-* ChangeLog INSTALL Installation PROBLEMS README*
 
-	insinto /usr/share/pixmaps
-	newins "${S}"/etc/${PN}-icon.xpm ${PN}.xpm
+	newicon "${S}"/etc/${PN}-icon.xpm ${PN}.xpm
 
-	insinto /usr/share/applications
-	doins "${FILESDIR}"/${PN}.desktop
+	domenu "${FILESDIR}"/${PN}.desktop
 }
 
 pkg_postinst() {

@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/bdelta
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bdelta/ChangeLog,v 1.12 2012/06/10 08:14:29 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bdelta/ChangeLog,v 1.14 2012/10/02 21:52:26 slyfox Exp $
+
+*bdelta-0.3.0-r1 (02 Oct 2012)
+
+  02 Oct 2012; Sergei Trofimovich <slyfox@gentoo.org> +bdelta-0.3.0-r1.ebuild,
+  +files/bdelta-0.3.0-soname.patch, -bdelta-0.3.0.ebuild:
+  Fix missing soname for libbdelta.so (bug #436990 by  Ilya Gordeev).
+
+  27 Sep 2012; Sergei Trofimovich <slyfox@gentoo.org> bdelta-0.3.0.ebuild,
+  bdelta-9999.ebuild:
+  Readded keywords for latest release.
 
 *bdelta-0.3.0 (10 Jun 2012)
 
@@ -60,4 +70,3 @@
   09 May 2005; Stefan Schweizer <genstef@gentoo.org> +metadata.xml,
   +bdelta-0.1.0.ebuild:
   New ebuild based on the one seen on deltup.sf.net
-

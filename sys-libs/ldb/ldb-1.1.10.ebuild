@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ldb/ldb-1.1.10.ebuild,v 1.1 2012/08/21 14:35:07 qnikst Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ldb/ldb-1.1.10.ebuild,v 1.6 2012/10/02 14:58:14 floppym Exp $
 
 EAPI="4"
 PYTHON_DEPEND="2"
@@ -19,7 +19,7 @@ IUSE="doc"
 RDEPEND="dev-libs/popt
 	>=sys-libs/talloc-2.0.7[python]
 	>=sys-libs/tevent-0.9.16
-	>=sys-libs/tdb-1.2.9[python]
+	>=sys-libs/tdb-1.2.10[python]
 	net-nds/openldap
 	!!<net-fs/samba-3.6.0[ldb]
 	!!>=net-fs/samba-4.0.0[ldb]
@@ -39,10 +39,11 @@ pkg_setup() {
 }
 
 src_configure() {
-	waf-utils_src_configure --disable-rpath \
-	--disable-rpath-install --bundled-libraries=NONE \
-	--with-modulesdir="${EPREFIX}"/usr/$(get_libdir)/ldb/modules \
-	--builtin-libraries=NONE
+	waf-utils_src_configure \
+		--disable-rpath \
+		--disable-rpath-install --bundled-libraries=NONE \
+		--with-modulesdir="${EPREFIX}"/usr/$(get_libdir)/ldb/modules \
+		--builtin-libraries=NONE
 }
 
 src_compile(){
@@ -58,7 +59,6 @@ src_test() {
 
 src_install() {
 	waf-utils_src_install
-#	rm "${D}/$(python_get_sitedir)/"_tevent.so
 
 	if use doc; then
 		dohtml -r apidocs/html/*

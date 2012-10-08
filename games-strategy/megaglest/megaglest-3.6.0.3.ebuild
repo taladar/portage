@@ -1,9 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/megaglest/megaglest-3.6.0.3.ebuild,v 1.1 2012/08/19 21:15:08 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/megaglest/megaglest-3.6.0.3.ebuild,v 1.6 2012/09/17 22:30:05 hasufell Exp $
 
 EAPI=4
-inherit eutils flag-o-matic cmake-utils wxwidgets gnome2-utils games
+VIRTUALX_REQUIRED="manual"
+inherit eutils flag-o-matic cmake-utils virtualx wxwidgets gnome2-utils games
 
 DESCRIPTION="Cross-platform 3D realtime strategy game"
 HOMEPAGE="http://www.megaglest.org/"
@@ -12,58 +13,67 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}-source-${PV}.tar.xz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug +editor freetype +ftgl sse sse2 sse3 static +streflop +tools +unicode wxuniversal +model-viewer"
+IUSE="debug +editor sse sse2 sse3 static +streflop +tools +unicode wxuniversal +model-viewer"
 
 RDEPEND="
 	>=dev-lang/lua-5.1
 	dev-libs/icu
 	dev-libs/libxml2
 	media-libs/fontconfig
+	media-libs/freetype
 	media-libs/libsdl[X,audio,joystick,opengl,video]
 	media-libs/libvorbis
 	media-libs/openal
 	net-libs/gnutls
+	>=net-libs/libircclient-1.6-r1
 	sys-libs/zlib
 	virtual/opengl
 	virtual/glu
 	x11-libs/libX11
 	x11-libs/libXext
-	editor? ( x11-libs/wxGTK:2.8[X] )
-	freetype? ( media-libs/freetype )
+	editor? ( x11-libs/wxGTK:2.8[X,opengl] )
 	model-viewer? ( x11-libs/wxGTK:2.8[X] )
 	!static? (
-		dev-libs/xerces-c
+		dev-libs/xerces-c[icu]
+		media-libs/ftgl
 		media-libs/glew
 		media-libs/libogg
 		media-libs/libpng:0
 		net-libs/miniupnpc
 		net-misc/curl
 		virtual/jpeg
-		ftgl? ( media-libs/ftgl )
 	)"
 DEPEND="${RDEPEND}
-	net-libs/libircclient
 	sys-apps/help2man
 	virtual/pkgconfig
+	editor? ( ${VIRTUALX_DEPEND} )
+	model-viewer? ( ${VIRTUALX_DEPEND} )
 	static? (
-		dev-libs/xerces-c[static-libs]
+		dev-libs/xerces-c[icu,static-libs]
+		media-libs/ftgl[static-libs]
 		media-libs/glew[static-libs]
 		media-libs/libogg[static-libs]
 		media-libs/libpng:0[static-libs]
 		net-libs/miniupnpc[static-libs]
 		net-misc/curl[static-libs]
 		virtual/jpeg[static-libs]
-		ftgl? ( media-libs/ftgl[static-libs] )
 	)"
 PDEPEND="~games-strategy/${PN}-data-${PV}"
 
 src_prepare() {
-	if use use editor || use model-viewer ; then
+	if use editor || use model-viewer ; then
 		WX_GTK_VER="2.8"
 		need-wxwidgets unicode
 	fi
 
-	epatch "${FILESDIR}"/${P}-{static-build,build}.patch
+	epatch "${FILESDIR}"/${P}-{static-build,build,as-needed}.patch
+
+	# Workaround for glew >=1.9.0
+	# https://sourceforge.net/tracker/?func=detail&aid=3565658&group_id=300350&atid=1266776
+	sed \
+		-e "/<GL\/glew.h>/a #undef GL_TYPE" \
+		-i source/shared_lib/include/graphics/freetype-gl/vertex-buffer.h \
+		|| die "fixing vertex-buffer.h for glew >=1.9.0 failed"
 }
 
 src_configure() {
@@ -88,8 +98,7 @@ src_configure() {
 		-DMEGAGLEST_DATA_INSTALL_PATH="${GAMES_DATADIR}/${PN}"
 		# icons are used at runtime, wrong default location share/pixmaps
 		-DMEGAGLEST_ICON_INSTALL_PATH="${GAMES_DATADIR}/${PN}"
-		$(cmake-utils_use_use freetype FREETYPEGL)
-		$(cmake-utils_use_use ftgl FTGL)
+		-DUSE_FTGL=ON
 		$(cmake-utils_use_want static STATIC_LIBS)
 		$(cmake-utils_use_want streflop STREFLOP)
 		-DWANT_SVN_STAMP=off
@@ -102,15 +111,16 @@ src_configure() {
 
 	# support CMAKE_BUILD_TYPE=Gentoo
 	append-cppflags '-DCUSTOM_DATA_INSTALL_PATH=\\\"'${GAMES_DATADIR}/${PN}/'\\\"'
-	# as-needed is broken for ld.bfd here
-	# ld.gold works either way
-	append-ldflags $(no-as-needed)
 
 	cmake-utils_src_configure
 }
 
 src_compile() {
-	cmake-utils_src_compile
+	if use editor || use model-viewer; then
+		VIRTUALX_COMMAND="cmake-utils_src_compile" virtualmake
+	else
+		cmake-utils_src_compile
+	fi
 }
 
 src_install() {

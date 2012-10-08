@@ -1,6 +1,30 @@
 # ChangeLog for sys-libs/tevent
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/tevent/ChangeLog,v 1.18 2012/07/06 03:16:12 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/tevent/ChangeLog,v 1.23 2012/09/30 17:56:53 floppym Exp $
+
+  30 Sep 2012; Mike Gilbert <floppym@gentoo.org> tevent-0.9.16.ebuild,
+  tevent-0.9.17.ebuild:
+  Remove minimum python version.
+
+*tevent-0.9.17 (23 Sep 2012)
+
+  23 Sep 2012; Víctor Ostorga <vostorga@gentoo.org> +tevent-0.9.17.ebuild:
+  Version bump to 0.9.17
+
+  20 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/add-py-file-0.9.14.patch, +files/tevent-version.patch:
+  Also add missing patches wrt bug#435568.
+
+*tevent-0.9.14-r1 (13 Sep 2012)
+
+  13 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org> +tevent-0.9.14-r1.ebuild:
+  Restore 0.9.14 it is still needed.
+
+  13 Sep 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/add-py-file-0.9.14.patch, -files/tevent-version.patch,
+  -tevent-0.9.12.ebuild, -tevent-0.9.14-r1.ebuild, -tevent-0.9.15.ebuild,
+  tevent-0.9.16.ebuild:
+  Stabilise latest on amd64 and x86. Drop older.
 
   06 Jul 2012; Jeff Horelick <jdhore@gentoo.org> tevent-0.9.14-r1.ebuild:
   marked x86 per bug 417115

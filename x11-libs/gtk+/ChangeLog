@@ -1,6 +1,63 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.602 2012/07/20 23:58:11 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.614 2012/10/06 21:31:10 blueness Exp $
+
+  06 Oct 2012; Anthony G. Basile <blueness@gentoo.org> gtk+-3.4.4.ebuild:
+  stable ppc ppc64, bug #427544
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> gtk+-2.24.12.ebuild:
+  arm stable, bug #427544
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> gtk+-3.4.4.ebuild:
+  arm stable, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> gtk+-3.4.4.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> gtk+-2.24.12.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  04 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gtk+-3.4.4.ebuild:
+  x86 stable wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gtk+-2.24.12.ebuild:
+  x86 stable wrt bug #427544
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> gtk+-2.24.12.ebuild,
+  gtk+-3.4.4.ebuild:
+  Stable for HPPA (bug #427544).
+
+  28 Sep 2012; Matt Turner <mattst88@gentoo.org> gtk+-2.24.12.ebuild:
+  Stable on alpha, bug 427544.
+
+  26 Sep 2012; Matt Turner <mattst88@gentoo.org> gtk+-3.4.4.ebuild:
+  Stable on alpha, bug 427544.
+
+*gtk+-3.6.0 (25 Sep 2012)
+*gtk+-2.24.13 (25 Sep 2012)
+
+  25 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  gtk+-1.2.10-r12.ebuild, -files/gtk+-2.24.4-old-icons.patch,
+  -files/gtk+-2.24.5-background-repaint.patch,
+  -files/gtk+-2.24.5-darwin-quartz-introspection.patch, -gtk+-2.24.8-r1.ebuild,
+  -files/gtk+-2.24.8-iconview-layout.patch,
+  -files/gtk+-2.24.9-printing-crash.patch, gtk+-2.24.10-r1.ebuild,
+  -gtk+-2.24.11.ebuild, -gtk+-2.24.11-r1.ebuild,
+  -files/gtk+-2.24.11-stuck-grab.patch, gtk+-2.24.12.ebuild,
+  +gtk+-2.24.13.ebuild, +files/gtk+-2.24.13-gold.patch, gtk+-3.0.12-r1.ebuild,
+  -files/gtk+-3.2.2-toolbutton-icon-widget-GtkMisc.patch, -gtk+-3.2.3.ebuild,
+  gtk+-3.2.4-r1.ebuild, -gtk+-3.4.3.ebuild, -gtk+-3.4.3-r1.ebuild,
+  -files/gtk+-3.4.3-gtkprintbackendcups-debug.patch, gtk+-3.4.4.ebuild,
+  +gtk+-3.6.0.ebuild, metadata.xml:
+  Version bump to 3.6.0; adds GtkSearchEntry, GtkMenuButton, and GtkLevelBar
+  widgets, and support for CSS cross-fading, animations, and blur shadows. Also
+  bump gtk2 to 2.24.13 with a fix for the F10 issues (bug #399589). Drop old.
+  Make license more precise.
+
+*gtk+-2.24.12 (07 Sep 2012)
+
+  07 Sep 2012; Nirbheek Chauhan <nirbheek@gentoo.org> +gtk+-2.24.12.ebuild:
+  Bump to 2.24.12; themeing updates, cups-1.6 support, etc
 
 *gtk+-2.24.11-r1 (20 Jul 2012)
 
@@ -2639,5 +2696,3 @@ unmasking the glib-2.0.1 packages
   10 Mar 2002; Bruce A. Locke <blocke@shivan.org> gtk+-1.2.10-r5.ebuild :
 
   NLS fixes submitted by seemant@rocketmail.com (Seemant Kulleen)
-
-

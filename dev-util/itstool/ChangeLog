@@ -1,6 +1,21 @@
 # ChangeLog for dev-util/itstool
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/itstool/ChangeLog,v 1.10 2012/06/25 04:05:35 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/itstool/ChangeLog,v 1.15 2012/10/04 14:51:33 ago Exp $
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> itstool-1.2.0.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> itstool-1.2.0.ebuild:
+  x86 stable wrt bug #427544
+
+  23 Sep 2012; Anthony G. Basile <blueness@gentoo.org> itstool-1.2.0.ebuild:
+  keyword ~ppc, bug #379651
+
+  23 Sep 2012; Anthony G. Basile <blueness@gentoo.org> itstool-1.2.0.ebuild:
+  keyword ~ppc64, bug #379649
+
+  15 Sep 2012; Anthony G. Basile <blueness@gentoo.org> itstool-1.2.0.ebuild:
+  Keyword ~mips
 
 *itstool-1.2.0 (25 Jun 2012)
 
@@ -41,4 +56,3 @@
   24 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
   +itstool-1.1.1.ebuild, +metadata.xml:
   New package, moved from the gnome overlay. Needed for gnome-3.2.
-

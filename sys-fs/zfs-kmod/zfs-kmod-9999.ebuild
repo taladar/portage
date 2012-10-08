@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/zfs-kmod/zfs-kmod-9999.ebuild,v 1.4 2012/08/24 14:57:46 ryao Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/zfs-kmod/zfs-kmod-9999.ebuild,v 1.6 2012/08/31 07:10:29 ryao Exp $
 
 EAPI="4"
 
@@ -25,7 +25,7 @@ fi
 DESCRIPTION="Linux ZFS kernel module for sys-fs/zfs"
 HOMEPAGE="http://zfsonlinux.org/"
 
-LICENSE="BSD-2 CDDL MIT"
+LICENSE="CDDL"
 SLOT="0"
 IUSE="custom-cflags debug +rootfs"
 RESTRICT="test"
@@ -40,7 +40,6 @@ RDEPEND="${DEPEND}
 
 pkg_setup() {
 	CONFIG_CHECK="!DEBUG_LOCK_ALLOC
-		!PREEMPT
 		BLK_DEV_LOOP
 		EFI_PARTITION
 		IOSCHED_NOOP

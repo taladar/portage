@@ -1,6 +1,24 @@
 # ChangeLog for sci-visualization/grace
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/grace/ChangeLog,v 1.59 2012/02/09 09:44:13 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/grace/ChangeLog,v 1.63 2012/09/30 17:17:25 armin76 Exp $
+
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> grace-5.1.22-r2.ebuild,
+  grace-5.1.22-r3.ebuild:
+  Drop ia64/sparc keywords
+
+  30 Sep 2012; Fabian Groffen <grobian@gentoo.org> grace-5.1.22-r3.ebuild:
+  Explicitly point to where X includes and libraries are, such that the right
+  ones are found in Prefix, thanks Johan Hattne, bug #430844
+
+  27 Sep 2012; Matt Turner <mattst88@gentoo.org> grace-5.1.22-r2.ebuild,
+  grace-5.1.22-r3.ebuild:
+  Drop alpha keywords.
+
+*grace-5.1.22-r3 (05 Sep 2012)
+
+  05 Sep 2012; Justin Lecher <jlec@gentoo.org> grace-5.1.22-r2.ebuild,
+  +grace-5.1.22-r3.ebuild, +files/grace.desktop:
+  Steal some patches from fedora
 
   09 Feb 2012; Justin Lecher <jlec@gentoo.org> grace-5.1.22-r2.ebuild,
   metadata.xml:

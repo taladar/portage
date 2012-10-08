@@ -1,6 +1,32 @@
 # ChangeLog for app-shells/gentoo-bashcomp
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.46 2012/05/04 11:07:52 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.52 2012/10/07 15:41:21 armin76 Exp $
+
+  07 Oct 2012; Raúl Porcel <armin76@gentoo.org>
+  gentoo-bashcomp-20101217-r1.ebuild:
+  alpha/ia64/s390/sh/sparc/x86 stable wrt #437384
+
+  07 Oct 2012; Anthony G. Basile <blueness@gentoo.org>
+  gentoo-bashcomp-20101217-r1.ebuild:
+  stable arm, bug #437384
+
+  06 Oct 2012; Anthony G. Basile <blueness@gentoo.org>
+  gentoo-bashcomp-20101217-r1.ebuild:
+  stable ppc ppc64, bug #437384
+
+  06 Oct 2012; Agostino Sarubbo <ago@gentoo.org>
+  gentoo-bashcomp-20101217-r1.ebuild:
+  Stable for amd64, wrt bug #437384
+
+  06 Oct 2012; Pacho Ramos <pacho@gentoo.org>
+  +files/gentoo-bashcomp-20101217-make_globals.patch:
+  Commit forgotten patch, thanks to ago for noticing.
+
+*gentoo-bashcomp-20101217-r1 (06 Oct 2012)
+
+  06 Oct 2012; Pacho Ramos <pacho@gentoo.org>
+  +gentoo-bashcomp-20101217-r1.ebuild:
+  Fix breakage after /etc/make.globals, bug #431034.
 
   04 May 2012; Alexis Ballier <aballier@gentoo.org>
   gentoo-bashcomp-20101217.ebuild:
@@ -219,4 +245,3 @@
   +gentoo-bashcomp-20050316.ebuild:
   New release; broken out from app-shells/bash-completion and into its own
   ebuild.
-

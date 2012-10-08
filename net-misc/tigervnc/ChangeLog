@@ -1,6 +1,28 @@
 # ChangeLog for net-misc/tigervnc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tigervnc/ChangeLog,v 1.137 2012/07/22 18:07:54 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/tigervnc/ChangeLog,v 1.142 2012/09/17 07:31:24 armin76 Exp $
+
+  17 Sep 2012; Raúl Porcel <armin76@gentoo.org> tigervnc-1.2.0.ebuild:
+  Fix QA issues wrt EAPI4, bug #435272
+
+  16 Sep 2012; Raúl Porcel <armin76@gentoo.org> tigervnc-1.1.0-r7.ebuild,
+  tigervnc-1.2.0.ebuild:
+  More strict dependencies, taking those from the respective xorg-server
+  version, bug #338930
+
+  16 Sep 2012; Raúl Porcel <armin76@gentoo.org> files/tigervnc.initd:
+  Do a source /etc/profile, bug #307773
+
+*tigervnc-1.2.0 (16 Sep 2012)
+
+  16 Sep 2012; Raúl Porcel <armin76@gentoo.org> -tigervnc-1.1.0-r6.ebuild,
+  +tigervnc-1.2.0.ebuild, files/tigervnc.initd, metadata.xml:
+  Version bump, thanks to Uroš Vampl <mobile dot leecher at gmail dot com> for
+  the patches and ebuild, bug #410929, customize a bit more the init script
+  thanks to Rafal Lalik <rafallalik at gmail dot com>, bug #434382
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> tigervnc-1.1.0-r7.ebuild:
+  alpha/ia64/sh/sparc stable wrt #421939
 
   22 Jul 2012; Anthony G. Basile <blueness@gentoo.org>
   tigervnc-1.1.0-r7.ebuild:

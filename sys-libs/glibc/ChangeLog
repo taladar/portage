@@ -1,5 +1,42 @@
 # ChangeLog for sys-libs/glibc
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.886 2012/08/25 08:20:48 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.896 2012/10/05 03:36:15 vapier Exp $
+
+  05 Oct 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.15-r3.ebuild,
+  glibc-2.16.0.ebuild:
+  Push out ppc fcntl.h fixes #436108 by Sean McGovern.
+
+  02 Oct 2012; Mike Frysinger <vapier@gentoo.org>
+  files/eblits/pkg_preinst.eblit:
+  Default host.conf:multi to on when /etc/hosts is small #436530 by Eray Aslan.
+
+  02 Oct 2012; Mike Frysinger <vapier@gentoo.org>
+  files/eblits/pkg_preinst.eblit:
+  Drop old /lib64 symlink migration as this has not been an issue for years.
+
+  26 Sep 2012; Matt Turner <mattst88@gentoo.org> glibc-2.15-r2.ebuild:
+  Stable on alpha, bug 430346.
+
+*glibc-2.15-r3 (25 Sep 2012)
+
+  25 Sep 2012; Mike Frysinger <vapier@gentoo.org> +glibc-2.15-r3.ebuild:
+  Add fixes for vfprintf/nargs bug #404993 and for xen/avx misbehavior #433884.
+
+  25 Sep 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.16.0.ebuild:
+  Add fix from upstream for x32 malloc failures #394175.
+
+  15 Sep 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.16.0.ebuild:
+  Drop PaX patch as it doesn't seem to be needed anymore #431810.
+
+  12 Sep 2012; Anthony G. Basile <blueness@gentoo.org> glibc-2.15-r2.ebuild:
+  Stable ppc, bug #430346
+
+  28 Aug 2012; Mike Frysinger <vapier@gentoo.org>
+  files/eblits/src_install.eblit:
+  Rework how we symlink in ldsos so it works for all targets even when
+  SYMLINK_LIB is not enabled.
+
+  27 Aug 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.15-r2.ebuild:
+  Mark ia64/s390 stable #430346.
 
   25 Aug 2012; Anthony G. Basile <blueness@gentoo.org> glibc-2.15-r2.ebuild:
   Stable arm, bug #430346

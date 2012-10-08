@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.10.3.ebuild,v 1.10 2012/07/09 05:19:58 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.10.3.ebuild,v 1.12 2012/09/25 03:50:07 vapier Exp $
 
 EAPI="4"
 
@@ -26,7 +26,7 @@ FFMPEG_REVISION="${PV#*_p}"
 LICENSE="GPL-2 amr? ( GPL-3 ) encode? ( aac? ( GPL-3 ) )"
 SLOT="0"
 if [ "${PV#9999}" = "${PV}" ] ; then
-	KEYWORDS="alpha amd64 arm hppa ia64 ppc ~ppc64 sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
+	KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
 fi
 IUSE="
 	aac aacplus alsa amr bindist +bzip2 cdio celt cpudetection debug
@@ -198,6 +198,7 @@ src_configure() {
 		# as the provided asm decidedly is not PIC for x86.
 		use x86 && myconf="${myconf} --disable-asm"
 	fi
+	[[ ${ABI} == "x32" ]] && myconf+=" --disable-asm" #427004
 
 	# Try to get cpu type based on CFLAGS.
 	# Bug #172723

@@ -1,6 +1,32 @@
 # ChangeLog for www-plugins/google-talkplugin
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-plugins/google-talkplugin/ChangeLog,v 1.30 2012/07/20 20:45:56 ottxor Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-plugins/google-talkplugin/ChangeLog,v 1.34 2012/10/03 14:41:03 ottxor Exp $
+
+*google-talkplugin-3.7.1.0 (03 Oct 2012)
+
+  03 Oct 2012; Christoph Junghans <ottxor@gentoo.org>
+  +google-talkplugin-3.7.1.0.ebuild, -google-talkplugin-3.5.1.0.ebuild,
+  google-talkplugin-3.6.1.0.ebuild:
+  version bump (bug #437042)
+
+  24 Sep 2012; Mike Frysinger <vapier@gentoo.org>
+  google-talkplugin-3.5.1.0.ebuild, google-talkplugin-3.6.1.0.ebuild,
+  google-talkplugin-9999.ebuild:
+  QA_DT_HASH (old/deprecated) -> QA_FLAGS_IGNORED (new hotness).
+
+*google-talkplugin-3.6.1.0 (16 Sep 2012)
+
+  16 Sep 2012; Christoph Junghans <ottxor@gentoo.org>
+  +google-talkplugin-3.6.1.0.ebuild, -google-talkplugin-3.2.4.0.ebuild,
+  google-talkplugin-3.5.1.0.ebuild, google-talkplugin-9999.ebuild:
+  version bump (bug #435038)
+
+*google-talkplugin-3.5.1.0 (26 Aug 2012)
+
+  26 Aug 2012; Christoph Junghans <ottxor@gentoo.org>
+  +google-talkplugin-3.5.1.0.ebuild, -google-talkplugin-3.1.4.0.ebuild,
+  google-talkplugin-3.2.4.0.ebuild, google-talkplugin-9999.ebuild:
+  version bump
 
 *google-talkplugin-3.2.4.0 (20 Jul 2012)
 

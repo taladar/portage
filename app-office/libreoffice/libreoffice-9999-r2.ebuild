@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/libreoffice-9999-r2.ebuild,v 1.106 2012/08/25 08:43:24 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/libreoffice-9999-r2.ebuild,v 1.117 2012/10/08 11:38:20 scarabeus Exp $
 
 EAPI=4
 
@@ -72,8 +72,8 @@ unset ADDONS_URI
 unset EXT_URI
 unset ADDONS_SRC
 
-IUSE="binfilter binfilterdebug +branding +cups dbus eds gnome gstreamer +gtk
-gtk3 jemalloc kde mysql odk opengl postgres svg test +vba +webdav"
+IUSE="binfilter bluetooth +branding +cups dbus eds gnome gstreamer +gtk
+gtk3 jemalloc kde mysql odk opengl postgres svg telepathy test +vba +webdav"
 
 LO_EXTS="nlpsolver pdfimport presenter-console presenter-minimizer scripting-beanshell scripting-javascript wiki-publisher"
 # Unpackaged separate extensions:
@@ -104,12 +104,13 @@ COMMON_DEPEND="
 	app-text/libwpg:0.2
 	>=app-text/libwps-0.2.2
 	>=dev-cpp/clucene-2.3.3.4-r2
-	>=dev-cpp/libcmis-0.2
+	dev-cpp/libcmis:0.3
 	dev-db/unixODBC
 	dev-libs/expat
 	>=dev-libs/glib-2.28
 	>=dev-libs/hyphen-2.7.1
 	>=dev-libs/icu-4.8.1.1
+	dev-libs/liborcus
 	>=dev-libs/nspr-4.8.8
 	>=dev-libs/nss-3.12.9
 	>=dev-lang/perl-5.0
@@ -131,6 +132,7 @@ COMMON_DEPEND="
 	x11-libs/libXinerama
 	x11-libs/libXrandr
 	x11-libs/libXrender
+	bluetooth? ( net-wireless/bluez )
 	cups? ( net-print/cups )
 	dbus? ( >=dev-libs/dbus-glib-0.92 )
 	eds? ( gnome-extra/evolution-data-server )
@@ -156,9 +158,16 @@ COMMON_DEPEND="
 		dev-java/tomcat-servlet-api:3.0
 	)
 	mysql? ( >=dev-db/mysql-connector-c++-1.1.0 )
-	opengl? ( virtual/opengl )
+	opengl? (
+		virtual/glu
+		virtual/opengl
+	)
 	postgres? ( >=dev-db/postgresql-base-9.0[kerberos] )
 	svg? ( gnome-base/librsvg )
+	telepathy? (
+		dev-libs/glib:2
+		>=net-libs/telepathy-glib-0.18.0
+	)
 	webdav? ( net-libs/neon )
 "
 
@@ -197,6 +206,7 @@ DEPEND="${COMMON_DEPEND}
 	sys-devel/flex
 	sys-devel/gettext
 	>=sys-devel/make-3.82
+	sys-devel/ucpp
 	sys-libs/zlib
 	x11-libs/libXt
 	x11-libs/libXtst
@@ -215,10 +225,12 @@ DEPEND="${COMMON_DEPEND}
 
 PATCHES=(
 	# not upstreamable stuff
-	"${FILESDIR}/${PN}-3.6-system-pyuno.patch"
+	"${FILESDIR}/${PN}-3.7-system-pyuno.patch"
+	"${FILESDIR}/${PN}-3.7-separate-checks.patch"
 )
 
 REQUIRED_USE="
+	bluetooth? ( dbus )
 	gnome? ( gtk )
 	eds? ( gnome )
 	libreoffice_extensions_nlpsolver? ( java )
@@ -323,13 +335,6 @@ src_prepare() {
 
 	base_src_prepare
 
-	# please no debug in binfilter, it blows up things insanely
-	if use binfilter && ! use binfilterdebug ; then
-		for name in $(find "${S}/binfilter" -name makefile.mk) ; do
-			sed -i -e '1i\CFLAGS+= -g0' $name || die
-		done
-	fi
-
 	AT_M4DIR="m4"
 	eautoreconf
 	# hack in the autogen.sh
@@ -365,7 +370,11 @@ src_configure() {
 
 	# libreoffice extensions handling
 	for lo_xt in ${LO_EXTS}; do
-		ext_opts+=" $(use_enable libreoffice_extensions_${lo_xt} ext-${lo_xt})"
+		if [[ "${lo_xt}" == "scripting-beanshell" || "${lo_xt}" == "scripting-javascript" ]]; then
+			ext_opts+=" $(use_enable libreoffice_extensions_${lo_xt} ${lo_xt})"
+		else
+			ext_opts+=" $(use_enable libreoffice_extensions_${lo_xt} ext-${lo_xt})"
+		fi
 	done
 
 	if use java; then
@@ -407,9 +416,6 @@ src_configure() {
 		# hack...
 		mv -v "${WORKDIR}/branding-intro.png" "${S}/icon-themes/galaxy/brand/intro.png" || die
 	fi
-
-	# it's not entirely clear to me where the failure is, boost libreoffice gcc come to my mind
-	append-cppflags -DBOOST_NO_0X_HDR_TYPEINDEX
 
 	# system headers/libs/...: enforce using system packages
 	# --enable-unix-qstart-libpng: use libpng splashscreen that is faster
@@ -478,6 +484,7 @@ src_configure() {
 		--with-lang="" \
 		--with-max-jobs=${jbs} \
 		--with-num-cpus=${jbs} \
+		--with-system-ucpp \
 		--with-unix-wrapper=libreoffice \
 		--with-vendor="Gentoo Foundation" \
 		--with-x \
@@ -490,6 +497,7 @@ src_configure() {
 		--with-helppack-integration \
 		--without-sun-templates \
 		$(use_enable binfilter) \
+		$(use_enable bluetooth sdremote) \
 		$(use_enable cups) \
 		$(use_enable dbus) \
 		$(use_enable eds evolution2) \
@@ -505,6 +513,7 @@ src_configure() {
 		$(use_enable opengl) \
 		$(use_enable postgres postgresql-sdbc) \
 		$(use_enable svg librsvg system) \
+		$(use_enable telepathy) \
 		$(use_enable test linkoo) \
 		$(use_enable vba) \
 		$(use_enable webdav neon) \

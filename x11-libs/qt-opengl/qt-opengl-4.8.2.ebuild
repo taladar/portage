@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-opengl/qt-opengl-4.8.2.ebuild,v 1.9 2012/07/19 21:04:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-opengl/qt-opengl-4.8.2.ebuild,v 1.11 2012/09/21 06:55:54 johu Exp $
 
 EAPI=4
 

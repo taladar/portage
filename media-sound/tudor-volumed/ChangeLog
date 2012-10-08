@@ -1,6 +1,14 @@
-# ChangeLog for x11-misc/tudor-volumed
+# ChangeLog for media-sound/tudor-volumed
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/tudor-volumed/ChangeLog,v 1.3 2012/05/29 13:16:51 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/tudor-volumed/ChangeLog,v 1.5 2012/08/27 14:30:08 johu Exp $
+
+  27 Aug 2012; Johannes Huber <johu@gentoo.org>
+  tudor-volumed-0_pre20110427.ebuild:
+  Stable for x86, wrt bug #432734
+
+  26 Aug 2012; Agostino Sarubbo <ago@gentoo.org>
+  tudor-volumed-0_pre20110427.ebuild:
+  Stable for amd64, wrt bug #432734
 
 *tudor-volumed-0_pre20110427 (29 May 2012)
 

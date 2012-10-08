@@ -1,6 +1,92 @@
 # ChangeLog for www-client/opera-next
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/opera-next/ChangeLog,v 1.117 2012/08/23 14:02:52 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/opera-next/ChangeLog,v 1.133 2012/10/04 16:45:25 jer Exp $
+
+*opera-next-12.10.1618 (04 Oct 2012)
+
+  04 Oct 2012; Jeroen Roovers <jer@gentoo.org> -opera-next-12.10.1612.ebuild,
+  -opera-next-12.10.1613.ebuild, +opera-next-12.10.1618.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/10/04/the-snapshot-cycle-continues
+
+*opera-next-12.10.1615 (29 Sep 2012)
+
+  29 Sep 2012; Jeroen Roovers <jer@gentoo.org> +opera-next-12.10.1615.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/09/28/opera-12-10-beta-candidate-5
+
+*opera-next-12.10.1613 (28 Sep 2012)
+
+  28 Sep 2012; Jeroen Roovers <jer@gentoo.org> -opera-next-12.10.1597.ebuild,
+  -opera-next-12.10.1605.ebuild, +opera-next-12.10.1613.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/09/28/opera-12-10-beta-candidate-4
+
+*opera-next-12.10.1612 (26 Sep 2012)
+
+  26 Sep 2012; Jeroen Roovers <jer@gentoo.org> +opera-next-12.10.1612.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/09/26/plugout
+
+  24 Sep 2012; Mike Frysinger <vapier@gentoo.org> opera-next-12.10.1597.ebuild,
+  opera-next-12.10.1605.ebuild, opera-next-12.50.1583.ebuild:
+  QA_DT_HASH (old/deprecated) -> QA_FLAGS_IGNORED (new hotness).
+
+*opera-next-12.10.1605 (21 Sep 2012)
+
+  21 Sep 2012; Jeroen Roovers <jer@gentoo.org> -opera-next-12.10.1592.ebuild,
+  -opera-next-12.10.1593.ebuild, -opera-next-12.10.1594.ebuild,
+  +opera-next-12.10.1605.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/09/21/fridays-12-1-snapshot-more-bu
+  gs-to-kill
+
+*opera-next-12.10.1597 (17 Sep 2012)
+
+  17 Sep 2012; Jeroen Roovers <jer@gentoo.org> +opera-next-12.10.1597.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/09/17/2-more-fixes-coming-your-way-
+  before-beta
+
+*opera-next-12.10.1594 (14 Sep 2012)
+
+  14 Sep 2012; Jeroen Roovers <jer@gentoo.org> +opera-next-12.10.1594.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/09/14/again
+
+*opera-next-12.10.1593 (14 Sep 2012)
+
+  14 Sep 2012; Jeroen Roovers <jer@gentoo.org> +opera-next-12.10.1593.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/09/13/another-opera-12-10-build
+
+*opera-next-12.10.1592 (12 Sep 2012)
+
+  12 Sep 2012; Jeroen Roovers <jer@gentoo.org> +opera-next-12.10.1592.ebuild,
+  -opera-next-12.50.1577.ebuild, -opera-next-12.50.1580.ebuild,
+  -opera-next-12.50.1581.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/09/12/opera-12-10-beta-candidate
+
+  10 Sep 2012; Jeroen Roovers <jer@gentoo.org> Manifest:
+  Redo Manifest as upstream repackaged the tarballs, reported by Nikolay S.
+  Rybaloff (bug #434512).
+
+*opera-next-12.50.1583 (06 Sep 2012)
+
+  06 Sep 2012; Jeroen Roovers <jer@gentoo.org> +opera-next-12.50.1583.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/09/06/increased-security-when-insta
+  lling-extensions
+
+*opera-next-12.50.1581 (04 Sep 2012)
+
+  04 Sep 2012; Jeroen Roovers <jer@gentoo.org> +opera-next-12.50.1581.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/09/04/yet-another-snapshot
+
+*opera-next-12.50.1580 (03 Sep 2012)
+
+  03 Sep 2012; Jeroen Roovers <jer@gentoo.org> +opera-next-12.50.1580.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/09/03/preparing-for-windows-8
+
+  02 Sep 2012; Jeroen Roovers <jer@gentoo.org> -opera-next-12.50.1538.ebuild,
+  -opera-next-12.50.1546.ebuild, opera-next-12.50.1577.ebuild:
+  Add new Opera license, remove old.
+
+*opera-next-12.50.1577 (28 Aug 2012)
+
+  28 Aug 2012; Jeroen Roovers <jer@gentoo.org> +opera-next-12.50.1577.ebuild:
+  http://my.opera.com/desktopteam/blog/2012/08/28/core
 
   23 Aug 2012; Jeroen Roovers <jer@gentoo.org> opera-next-12.50.1546.ebuild:
   Remove unneeded einfo.

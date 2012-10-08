@@ -1,6 +1,43 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.575 2012/08/17 13:05:23 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.584 2012/09/29 15:34:17 aballier Exp $
+
+  29 Sep 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add fdk useflag
+
+  29 Sep 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  tests now work without zlib
+
+*ffmpeg-1.0 (29 Sep 2012)
+
+  29 Sep 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.0.ebuild:
+  bump to 1.0 :)
+
+  29 Sep 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  cpudetection is now enabled by default, disable it if the useflag is not
+  enabled
+
+  25 Sep 2012; Mike Frysinger <vapier@gentoo.org> ffmpeg-0.10.2.ebuild,
+  ffmpeg-0.10.3.ebuild, ffmpeg-0.10.4.ebuild, ffmpeg-0.10.5.ebuild,
+  ffmpeg-0.11.1.ebuild, ffmpeg-0.11.2.ebuild:
+  Disable asm for x32 ABIs for now #427004 by devsk.
+
+  21 Sep 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  update git url
+
+*ffmpeg-0.11.2 (20 Sep 2012)
+
+  20 Sep 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.11.2.ebuild:
+  version bump for the 0.11 branch
+
+*ffmpeg-0.10.5 (20 Sep 2012)
+
+  20 Sep 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.10.5.ebuild:
+  version bump for the 0.10 branch
+
+  20 Sep 2012; Kacper Kowalik <xarthisius@gentoo.org> ffmpeg-0.10.3.ebuild:
+  ppc64 stable wrt #420305
 
   17 Aug 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
   mmx2 is now mmxext

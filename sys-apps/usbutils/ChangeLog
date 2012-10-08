@@ -1,6 +1,30 @@
 # ChangeLog for sys-apps/usbutils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/ChangeLog,v 1.140 2012/07/09 09:10:48 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/ChangeLog,v 1.147 2012/10/02 12:54:36 blueness Exp $
+
+  02 Oct 2012; Anthony G. Basile <blueness@gentoo.org> usbutils-006.ebuild:
+  stable arm, bug #436186
+
+  26 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> usbutils-006.ebuild:
+  amd64/ppc/ppc64/x86 stable wrt #436186
+
+  26 Sep 2012; Jeroen Roovers <jer@gentoo.org> usbutils-006.ebuild:
+  Stable for HPPA (bug #436186).
+
+  25 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> usbutils-006.ebuild,
+  files/usbutils-006-libusbx-1.0.13.patch:
+  Remove ugly has_version usage and use LIBUSBX_API_VERSION in the patch.
+
+  24 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> -usbutils-005.ebuild,
+  -usbutils-005-r1.ebuild, -files/usbutils-005-missing-includes.patch:
+  old
+
+  24 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> usbutils-006.ebuild,
+  +files/usbutils-006-libusbx-1.0.13.patch:
+  Fix building against >=dev-libs/libusbx-1.0.13 wrt #435866 by Zoltan Puskas
+
+  25 Aug 2012; Mike Frysinger <vapier@gentoo.org> usbutils-005.ebuild:
+  Drop useless -vf args to mv #432632 by Joshua B. Kahlenberg.
 
 *usbutils-006 (09 Jul 2012)
 
@@ -531,6 +555,3 @@
   24 Feb 2002; Bruce A. Locke <blocke@gentoo.org> usbutils-0.9.ebuild :
 
   Ebuild contributed by Scott Worley (folokai@earthlink.net)
-
-
-

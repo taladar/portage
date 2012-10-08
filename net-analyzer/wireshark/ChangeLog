@@ -1,6 +1,137 @@
 # ChangeLog for net-analyzer/wireshark
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/ChangeLog,v 1.380 2012/08/22 00:12:42 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/ChangeLog,v 1.412 2012/10/08 05:20:22 zerochaos Exp $
+
+  08 Oct 2012; Rick Farina <zerochaos@gentoo.org> wireshark-1.8.3-r1.ebuild:
+  whitespace fix, sorry
+
+  08 Oct 2012; Rick Farina <zerochaos@gentoo.org> wireshark-1.8.3-r1.ebuild:
+  add installation of header files, this is needed for building plugins
+
+  07 Oct 2012; Jeroen Roovers <jer@gentoo.org> -wireshark-1.8.2-r2.ebuild,
+  -wireshark-1.8.2-r3.ebuild, wireshark-1.8.3.ebuild:
+  Stable for x86 (bug #437026).
+
+  06 Oct 2012; Raúl Porcel <armin76@gentoo.org> wireshark-1.8.3.ebuild:
+  alpha/ia64/sparc stable wrt #437026
+
+  04 Oct 2012; Jeroen Roovers <jer@gentoo.org> wireshark-1.8.3.ebuild:
+  Stable for HPPA (bug #437026).
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> wireshark-1.8.3.ebuild:
+  Stable for amd64, wrt bug #437026
+
+  03 Oct 2012; Anthony G. Basile <blueness@gentoo.org> wireshark-1.8.3.ebuild:
+  stable ppc ppc64, bug #437026
+
+*wireshark-1.8.3-r1 (03 Oct 2012)
+
+  03 Oct 2012; Jeroen Roovers <jer@gentoo.org> +wireshark-1.8.3-r1.ebuild,
+  +files/wireshark-1.8.3-gnutls3.patch, metadata.xml:
+  Add patch to build against net-libs/gnutls-3 by Bartosz Brachaczek (bug
+  #436212). Rename USE=gcrypt to USE=ipsec (name the feature, not the
+  implementation). Add dev-libs/libgcrypt dep when USE=ssl (bug #431888).
+
+  03 Oct 2012; Jeroen Roovers <jer@gentoo.org> wireshark-1.8.3.ebuild,
+  +files/wireshark-1.8.3-dtls-sctp.patch:
+  Add upstream patch (bug #437032).
+
+*wireshark-1.8.3 (02 Oct 2012)
+*wireshark-1.6.11 (02 Oct 2012)
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> +wireshark-1.6.11.ebuild,
+  +wireshark-1.8.3.ebuild:
+  Version bump (bug #437026).
+
+  29 Sep 2012; Jeroen Roovers <jer@gentoo.org> -wireshark-1.6.8.ebuild,
+  -wireshark-1.6.10.ebuild:
+  Old.
+
+  29 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  wireshark-1.6.10-r2.ebuild, wireshark-1.8.2-r2.ebuild:
+  stable ppc, bug #433990
+
+  28 Sep 2012; Kacper Kowalik <xarthisius@gentoo.org>
+  wireshark-1.6.10-r2.ebuild, wireshark-1.8.2-r2.ebuild:
+  ppc64 stable wrt #433990
+
+  24 Sep 2012; Jeroen Roovers <jer@gentoo.org> -wireshark-1.8.2.ebuild:
+  Old (bug #433990).
+
+  24 Sep 2012; Jeroen Roovers <jer@gentoo.org> wireshark-1.8.2-r2.ebuild,
+  wireshark-1.8.2-r3.ebuild, +files/wireshark-1.8.2-python3.patch:
+  Fix building with python3 (bug #435460 by Lars Wendler).
+
+  23 Sep 2012; Raúl Porcel <armin76@gentoo.org> wireshark-1.6.10-r2.ebuild,
+  wireshark-1.8.2-r2.ebuild:
+  alpha/ia64/sparc stable wrt #433990
+
+*wireshark-1.8.2-r3 (22 Sep 2012)
+
+  22 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> +wireshark-1.8.2-r3.ebuild:
+  Fix automagic with c-ares library wrt bug #435542
+
+  19 Sep 2012; Richard Freeman <rich0@gentoo.org> wireshark-1.6.10-r2.ebuild,
+  wireshark-1.8.2-r2.ebuild:
+  amd64 stable - 433990
+
+  19 Sep 2012; Jeroen Roovers <jer@gentoo.org> wireshark-1.6.10-r2.ebuild,
+  wireshark-1.8.2-r2.ebuild:
+  Stable for HPPA (bug #433990).
+
+  19 Sep 2012; Andreas Schuerch <nativemad@gentoo.org>
+  wireshark-1.6.10-r2.ebuild, wireshark-1.8.2-r2.ebuild:
+  x86 stable, see bug 433990
+
+*wireshark-1.8.2-r2 (18 Sep 2012)
+*wireshark-1.6.10-r2 (18 Sep 2012)
+
+  18 Sep 2012; Jeroen Roovers <jer@gentoo.org> -wireshark-1.6.10-r1.ebuild,
+  +wireshark-1.6.10-r2.ebuild, +files/wireshark-1.6.10-CVE-2012-3548.patch,
+  -wireshark-1.8.2-r1.ebuild, +wireshark-1.8.2-r2.ebuild,
+  +files/wireshark-1.8.2-CVE-2012-3548.patch:
+  Add patch for bug #433990.
+
+  31 Aug 2012; Jeroen Roovers <jer@gentoo.org> -wireshark-1.6.9.ebuild,
+  -wireshark-1.6.9-r1.ebuild, -wireshark-1.8.1.ebuild,
+  -wireshark-1.8.1-r1.ebuild:
+  Old.
+
+  31 Aug 2012; Rick Farina <zerochaos@gentoo.org> metadata.xml,
+  wireshark-1.6.10-r1.ebuild:
+  complete changes to remove REQUIRED_USE and update metadata use flag desc
+
+  31 Aug 2012; Rick Farina <zerochaos@gentoo.org> wireshark-1.8.2-r1.ebuild:
+  remove requirement for required use
+
+  31 Aug 2012; Jeroen Roovers <jer@gentoo.org> wireshark-1.6.10-r1.ebuild,
+  wireshark-1.8.2-r1.ebuild:
+  Set REQUIRED_USE for USE=libadns to require USE=adns.
+
+  31 Aug 2012; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Add deprecation notice for USE=libadns.
+
+  31 Aug 2012; Jeroen Roovers <jer@gentoo.org> wireshark-1.6.10-r1.ebuild,
+  wireshark-1.8.2-r1.ebuild:
+  Add spaces before configure switches.
+
+  31 Aug 2012; Jeroen Roovers <jer@gentoo.org> wireshark-1.6.10-r1.ebuild,
+  wireshark-1.8.2-r1.ebuild, metadata.xml:
+  Simplify aDNS support choices by zerochaos.
+
+  31 Aug 2012; Jeroen Roovers <jer@gentoo.org> wireshark-1.6.10-r1.ebuild:
+  Prefer USE=ares.
+
+*wireshark-1.8.2-r1 (31 Aug 2012)
+*wireshark-1.6.10-r1 (31 Aug 2012)
+
+  31 Aug 2012; Jeroen Roovers <jer@gentoo.org> +wireshark-1.6.10-r1.ebuild,
+  +wireshark-1.8.2-r1.ebuild, metadata.xml:
+  Add general USE=adns and distinct USE=ares/libadns.
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> wireshark-1.6.10.ebuild,
+  wireshark-1.8.2.ebuild:
+  alpha/ia64/sparc stable wrt #431572
 
   22 Aug 2012; Agostino Sarubbo <ago@gentoo.org> wireshark-1.8.2.ebuild:
   Stable for AMD64, wrt bug #431572

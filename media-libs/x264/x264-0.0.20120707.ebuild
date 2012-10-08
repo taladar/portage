@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/x264-0.0.20120707.ebuild,v 1.1 2012/07/08 17:27:19 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/x264-0.0.20120707.ebuild,v 1.4 2012/10/04 15:53:30 ottxor Exp $
 
 EAPI=4
 
@@ -44,6 +44,18 @@ fi
 
 DOCS="AUTHORS doc/*.txt"
 
+src_prepare() {
+	# Solaris' /bin/sh doesn't grok the syntax in these files
+	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
+	# for sparc-solaris
+	if [[ ${CHOST} == sparc*-solaris* ]] ; then
+		sed -i -e 's:-DPIC::g' configure || die
+	fi
+	# for OSX
+	sed -i -e "s|-arch x86_64||g" configure || die
+	epatch "${FILESDIR}"/x264-x32.patch #420241
+}
+
 src_configure() {
 	tc-export CC
 
@@ -57,7 +69,7 @@ src_configure() {
 	# let upstream pick the optimization level by default
 	use custom-cflags || filter-flags -O?
 
-	if use x86 && use pic; then
+	if use x86 && use pic || [[ ${ABI} == "x32" ]] ; then
 		myconf+=" --disable-asm"
 	fi
 

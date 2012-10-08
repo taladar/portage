@@ -1,6 +1,24 @@
 # ChangeLog for media-sound/timidity++
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/timidity++/ChangeLog,v 1.148 2012/08/24 17:03:27 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/timidity++/ChangeLog,v 1.154 2012/10/06 01:21:20 blueness Exp $
+
+  06 Oct 2012; Anthony G. Basile <blueness@gentoo.org> timidity++-2.14.0.ebuild:
+  stable ppc64, bug #432608
+
+  04 Oct 2012; Brent Baude <ranger@gentoo.org> timidity++-2.14.0.ebuild:
+  Marking timidity++-2.14.0 ppc for bug 432608
+
+  19 Sep 2012; Jeroen Roovers <jer@gentoo.org> timidity++-2.14.0.ebuild:
+  Stable for HPPA (bug #432608).
+
+  11 Sep 2012; Raúl Porcel <armin76@gentoo.org> timidity++-2.14.0.ebuild:
+  sparc/x86 stable wrt #432608
+
+  01 Sep 2012; Markus Meier <maekke@gentoo.org> timidity++-2.14.0.ebuild:
+  arm stable, bug #432608
+
+  26 Aug 2012; Richard Freeman <rich0@gentoo.org> timidity++-2.14.0.ebuild:
+  amd64 stable - 432608
 
   23 Aug 2012; Samuli Suominen <ssuominen@gentoo.org> timidity++-2.14.0.ebuild,
   +files/timidity.service:

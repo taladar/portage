@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/xinetd/xinetd-2.3.15.ebuild,v 1.7 2012/07/03 16:02:09 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/xinetd/xinetd-2.3.15.ebuild,v 1.9 2012/09/20 12:05:15 xarthisius Exp $
 
 EAPI="4"
 
@@ -12,13 +12,15 @@ SRC_URI="http://www.xinetd.org/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ~ppc64 s390 sh sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd"
 IUSE="perl rpc tcpd"
 
 DEPEND="tcpd? ( >=sys-apps/tcp-wrappers-7.6-r2 )
 	rpc? ( net-libs/libtirpc )"
 RDEPEND="${DEPEND}
 	perl? ( dev-lang/perl )"
+DEPEND="${DEPEND}
+	virtual/pkgconfig"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.3.14-DESTDIR.patch

@@ -1,6 +1,46 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.350 2012/07/25 21:06:45 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.359 2012/10/06 10:49:42 maekke Exp $
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> dbus-1.6.8.ebuild:
+  arm stable, bug #436028
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> dbus-1.6.8.ebuild:
+  Stable for amd64, wrt bug #436028
+
+*dbus-1.6.8-r1 (04 Oct 2012)
+
+  04 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> dbus-1.6.8.ebuild,
+  +dbus-1.6.8-r1.ebuild:
+  x86 stable wrt security bug #436028 (systemd-specific code rolled to -r1,
+  since systemd is not stable)
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> dbus-1.6.8.ebuild:
+  Stable for HPPA (bug #436028).
+
+  29 Sep 2012; Zac Medico <zmedico@gentoo.org> dbus-1.6.8.ebuild:
+  Fix for prefix and add ~x86-linux keyword.
+
+  29 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> -dbus-1.4.16.ebuild,
+  -dbus-1.6.0.ebuild, -dbus-1.6.4.ebuild, -dbus-1.6.4-r1.ebuild,
+  -files/dbus-1.6.4-CVE-2012-3524-Don-t-access-environment-variables-or-.patch:
+  old
+
+*dbus-1.6.8 (29 Sep 2012)
+
+  29 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> +dbus-1.6.8.ebuild:
+  Version bump.
+
+*dbus-1.6.4-r1 (22 Sep 2012)
+
+  22 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> dbus-1.6.4.ebuild,
+  +dbus-1.6.4-r1.ebuild,
+  +files/dbus-1.6.4-CVE-2012-3524-Don-t-access-environment-variables-or-.patch:
+  Import patch for CVE-2012-3524 from Fedora 18. Again, -r0 is for stable and
+  -r1 for ~arch because of the systemd dependency.
+
+  25 Aug 2012; Mike Frysinger <vapier@gentoo.org> dbus-1.4.16.ebuild:
+  Drop useless -vf args to mv #432632 by Joshua B. Kahlenberg.
 
   25 Jul 2012; Markus Meier <maekke@gentoo.org> dbus-1.6.2.ebuild:
   arm stable, bug #416725
@@ -1420,4 +1460,3 @@
   21 Jun 2003; Seemant Kulleen <seemant@gentoo.org> dbus-0.11.ebuild,
   files/dbus-0.11-cvs-update.patch:
   dbus thingy from freedesktop.org -- for upcoming apps like xmms2 etc
-

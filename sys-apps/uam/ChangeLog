@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/uam
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/uam/ChangeLog,v 1.25 2012/06/20 08:04:41 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/uam/ChangeLog,v 1.27 2012/09/07 10:50:41 mgorny Exp $
+
+  07 Sep 2012; Michał Górny <mgorny@gentoo.org> metadata.xml, uam-0.3.ebuild:
+  Sync URIs.
+
+  31 Aug 2012; Michał Górny <mgorny@gentoo.org> -uam-0.2.1.ebuild:
+  Drop old.
 
   20 Jun 2012; Jeff Horelick <jdhore@gentoo.org> uam-0.3.ebuild:
   marked x86 per bug 422193
@@ -113,4 +119,3 @@
   01 Oct 2010; Michał Górny <mgorny@gentoo.org> +uam-0.0.6.ebuild,
   +metadata.xml:
   Import from the Sunrise overlay, per bug #278363.
-

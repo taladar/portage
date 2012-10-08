@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/fortran-2.eclass,v 1.5 2011/08/22 04:46:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/fortran-2.eclass,v 1.11 2012/10/07 14:53:43 jlec Exp $
 
 # @ECLASS: fortran-2.eclass
 # @MAINTAINER:
@@ -33,7 +33,7 @@
 # Valid settings are any combination of: 77 90 95 2003
 : ${FORTRAN_STANDARD:=77}
 
-inherit toolchain-funcs
+inherit eutils toolchain-funcs
 
 # @FUNCTION: _write_testsuite
 # @INTERNAL
@@ -146,9 +146,20 @@ fortran-2_pkg_setup() {
 			die "Please install current gcc with USE=openmp or set the FC variable to a compiler that supports OpenMP"
 	fi
 	tc-export F77 FC
+	einfo "Using following Fortran compiler"
+	einfo "  F77: ${F77}"
+	einfo "  FC: ${FC}"
 }
 
 case ${EAPI:-0} in
-	0|1|2|3|4) EXPORT_FUNCTIONS pkg_setup ;;
+	0|1|2|3|4|5) EXPORT_FUNCTIONS pkg_setup ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
+
+#if in_iuse fortran; then
+#	DEPEND="fortran? ( virtual/fortran )"
+#else
+#	DEPEND="virtual/fortran"
+#fi
+
+#RDEPEND="${DEPEND}"

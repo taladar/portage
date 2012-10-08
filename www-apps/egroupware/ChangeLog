@@ -1,6 +1,26 @@
 # ChangeLog for www-apps/egroupware
-# Copyright 2002-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/egroupware/ChangeLog,v 1.100 2012/06/23 15:25:36 mabi Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-apps/egroupware/ChangeLog,v 1.105 2012/10/06 16:55:20 armin76 Exp $
+
+  06 Oct 2012; Raúl Porcel <armin76@gentoo.org> egroupware-1.4.004.ebuild,
+  egroupware-1.8.004.20120613.ebuild:
+  Drop alpha keywords
+
+  19 Sep 2012; Johannes Huber <johu@gentoo.org>
+  egroupware-1.8.004.20120613.ebuild:
+  Stable for x86, wrt bug #434040
+
+  18 Sep 2012; Jeroen Roovers <jer@gentoo.org>
+  egroupware-1.8.004.20120613.ebuild:
+  Stable for HPPA (bug #434040).
+
+  07 Sep 2012; Agostino Sarubbo <ago@gentoo.org>
+  egroupware-1.8.004.20120613.ebuild:
+  Stable for amd64, wrt bug #434040
+
+  07 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  egroupware-1.8.004.20120613.ebuild:
+  Stable ppc, bug #434040
 
 *egroupware-1.8.004.20120613 (23 Jun 2012)
 

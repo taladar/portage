@@ -1,6 +1,20 @@
 # ChangeLog for dev-libs/nss
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.258 2012/08/25 07:07:21 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.262 2012/09/15 12:12:45 nativemad Exp $
+
+  15 Sep 2012; Andreas Schuerch <nativemad@gentoo.org> nss-3.13.6.ebuild:
+  x86 stable, see bug 433383
+
+  08 Sep 2012; Agostino Sarubbo <ago@gentoo.org> nss-3.13.6.ebuild:
+  Stable for amd64, wrt bug #433383
+
+  04 Sep 2012; Jeroen Roovers <jer@gentoo.org> nss-3.13.6.ebuild:
+  Stable for HPPA (bug #433383).
+
+*nss-3.13.6 (01 Sep 2012)
+
+  01 Sep 2012; <anarchy@gentoo.org> +nss-3.13.6.ebuild:
+  Security bump
 
   25 Aug 2012; Michael Weber <xmw@gentoo.org> nss-3.13.5.ebuild:
   ppc stable (bug 427224)

@@ -1,6 +1,65 @@
 # ChangeLog for app-emulation/virtualbox
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/virtualbox/ChangeLog,v 1.123 2012/08/22 21:15:58 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/virtualbox/ChangeLog,v 1.133 2012/10/01 09:25:39 polynomial-c Exp $
+
+  01 Oct 2012; Lars Wendler <polynomial-c@gentoo.org>
+  -files/virtualbox-ose-3.2.8-mesa-check.patch,
+  -files/virtualbox-4.0.2-restore_old_machines_dir.patch,
+  -files/virtualbox-4.1.2-vboxpci-build.patch,
+  -files/virtualbox-4.1.4-asneeded.patch,
+  -files/virtualbox-4.1.6-yasm120-fix.patch,
+  -files/virtualbox-4.1.8-nopie.patch,
+  -files/virtualbox-4.1.10-libgsoapssl.patch,
+  -files/virtualbox-4.1.20-nopie.patch, virtualbox-4.1.22.ebuild,
+  virtualbox-4.2.0-r1.ebuild, -files/virtualbox-4.2.0-nopie.patch,
+  -files/virtualbox-4-asneeded.patch, -files/virtualbox-4-makeself-check.patch,
+  -files/virtualbox-4-mkisofs-check.patch:
+  Moved all patches into separate tar archives. Added a patch to fix
+  compilation with =dev-libs/libxslt-1.1.27 (bug #435994 and bug #436246).
+  Thanks to Jouni Kosonen for providing a patch.
+
+  18 Sep 2012; Lars Wendler <polynomial-c@gentoo.org>
+  -virtualbox-4.1.12.ebuild, -virtualbox-4.1.18.ebuild:
+  Removed old versions.
+
+  17 Sep 2012; Andreas Schuerch <nativemad@gentoo.org>
+  virtualbox-4.1.22.ebuild:
+  x86 stable, see bug 434872
+
+  16 Sep 2012; Agostino Sarubbo <ago@gentoo.org> virtualbox-4.1.22.ebuild:
+  Stable for amd64, wrt bug #434872
+
+  14 Sep 2012; Lars Wendler <polynomial-c@gentoo.org> virtualbox-4.1.22.ebuild,
+  virtualbox-4.2.0-r1.ebuild:
+  Fixed separators in sed substitute commands to not collide with path
+  separators. Thanks to Zabuldon for reporting this in bug #435000.
+
+*virtualbox-4.2.0-r1 (14 Sep 2012)
+
+  14 Sep 2012; Lars Wendler <polynomial-c@gentoo.org> -virtualbox-4.2.0.ebuild,
+  +virtualbox-4.2.0-r1.ebuild:
+  Revbumped 4.2.0 version because I forgot to pax-mark VBoxSVC.
+
+  14 Sep 2012; Lars Wendler <polynomial-c@gentoo.org> virtualbox-4.2.0.ebuild,
+  +files/virtualbox-4.2.0-nopie.patch:
+  Fixed nopie patch for 4.2 series. Thanks to Alphat-PC for reporting this in
+  bug #434962 and providing a working patch.
+
+*virtualbox-4.2.0 (13 Sep 2012)
+
+  13 Sep 2012; Lars Wendler <polynomial-c@gentoo.org>
+  -virtualbox-4.1.20-r1.ebuild, +virtualbox-4.2.0.ebuild:
+  Version bump. Removed old.
+
+*virtualbox-4.1.22 (09 Sep 2012)
+
+  09 Sep 2012; Lars Wendler <polynomial-c@gentoo.org>
+  +virtualbox-4.1.22.ebuild:
+  Version bump.
+
+  05 Sep 2012; Justin Lecher <jlec@gentoo.org> virtualbox-4.1.12.ebuild,
+  virtualbox-4.1.18.ebuild, virtualbox-4.1.20-r1.ebuild:
+  Use doicon instead insinto + doins to install icon files
 
   22 Aug 2012; Lars Wendler <polynomial-c@gentoo.org>
   +files/virtualbox-4.1.8-nopie.patch, virtualbox-4.1.12.ebuild,

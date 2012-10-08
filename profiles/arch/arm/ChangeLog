@@ -1,6 +1,24 @@
 # ChangeLog for Gentoo/ARM profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/ChangeLog,v 1.165 2012/08/05 16:52:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/ChangeLog,v 1.171 2012/10/07 10:41:10 ssuominen Exp $
+
+  07 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Restore USE="systemd" mask to sys-auth/polkit for stabilization.
+
+  01 Oct 2012; Michał Górny <mgorny@gentoo.org> package.use.mask:
+  Remove systemd[http] mask, libmicrohttpd keyworded now.
+
+  30 Sep 2012; Michał Górny <mgorny@gentoo.org> package.use.mask:
+  Mask systemd[http] due to non-keyworded dep.
+
+  24 Sep 2012; Mike Frysinger <vapier@gentoo.org> package.use.mask:
+  Drop old alsa/webm masks #433930.
+
+  16 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> use.mask:
+  Revert part of last commit, better wait for package.use.stable.mask
+
+  16 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> use.mask:
+  Unmask java, bug #305773.
 
   05 Aug 2012; Raúl Porcel <armin76@gentoo.org> make.defaults, use.mask:
   Unmask video_cards_omap and add exynos and omap to VIDEO_CARDS

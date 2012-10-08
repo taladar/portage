@@ -1,6 +1,31 @@
 # ChangeLog for media-video/vlc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/ChangeLog,v 1.816 2012/08/06 14:15:43 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/ChangeLog,v 1.824 2012/10/07 14:07:19 armin76 Exp $
+
+  07 Oct 2012; Raúl Porcel <armin76@gentoo.org> vlc-2.0.3.ebuild:
+  alpha stable wrt #424435
+
+  05 Oct 2012; Brent Baude <ranger@gentoo.org> vlc-2.0.3.ebuild:
+  Marking vlc-2.0.3 ppc for bug 424435
+
+  24 Sep 2012; Agostino Sarubbo <ago@gentoo.org> vlc-2.0.3.ebuild:
+  Stable for X86, wrt bug #424435
+
+  24 Sep 2012; Agostino Sarubbo <ago@gentoo.org> vlc-2.0.3.ebuild:
+  Stable for amd64, wrt bug #424435
+
+  14 Sep 2012; Alexis Ballier <aballier@gentoo.org> metadata.xml:
+  drop maintainership to herd
+
+  13 Sep 2012; Anthony G. Basile <blueness@gentoo.org> -vlc-1.1.13.ebuild:
+  Remove vulnerable version, bug #408881
+
+  13 Sep 2012; Anthony G. Basile <blueness@gentoo.org> vlc-2.0.1.ebuild:
+  Stable ppc64, bug #408881
+
+  11 Sep 2012; Raúl Porcel <armin76@gentoo.org> vlc-2.0.1.ebuild,
+  vlc-2.0.2.ebuild, vlc-2.0.3.ebuild, vlc-2.0.9999.ebuild, vlc-9999.ebuild:
+  alpha stable wrt #408881, mark -sparc on 2.x since it sigbuses
 
   06 Aug 2012; Alexis Ballier <aballier@gentoo.org> vlc-2.0.1.ebuild,
   vlc-2.0.2.ebuild, vlc-2.0.3.ebuild, vlc-2.0.9999.ebuild, vlc-9999.ebuild:

@@ -1,6 +1,47 @@
 # ChangeLog for net-print/hplip
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-print/hplip/ChangeLog,v 1.233 2012/08/18 08:31:27 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-print/hplip/ChangeLog,v 1.242 2012/10/05 18:02:05 ranger Exp $
+
+  05 Oct 2012; Brent Baude <ranger@gentoo.org> hplip-3.12.9-r1.ebuild:
+  Marking hplip-3.12.9-r1 ppc64 for bug 436858
+
+*hplip-3.12.10 (05 Oct 2012)
+
+  05 Oct 2012; Daniel Pielmeier <billie@gentoo.org> +hplip-3.12.10.ebuild:
+  Version bump.
+
+*hplip-3.12.9-r2 (03 Oct 2012)
+
+  03 Oct 2012; Daniel Pielmeier <billie@gentoo.org> +hplip-3.12.9-r2.ebuild:
+  Fix bug #436794 - hp-scan fails in directories containing unicode characters.
+  Thanks to Arne Babenhauserheide for the report and the patch.
+
+  03 Oct 2012; Agostino Sarubbo <ago@gentoo.org> hplip-3.12.9-r1.ebuild:
+  Stable for amd64, wrt bug #436858
+
+  01 Oct 2012; Daniel Pielmeier <billie@gentoo.org> -hplip-3.12.6-r1.ebuild,
+  -hplip-3.12.9.ebuild:
+  Remove old.
+
+*hplip-3.12.9-r1 (22 Sep 2012)
+
+  22 Sep 2012; Daniel Pielmeier <billie@gentoo.org> +hplip-3.12.9-r1.ebuild,
+  metadata.xml:
+  Fix bug #435606, cron file not working with locales other than english.
+  Thanks to Eckard Brauer for the report. Remove unused acl USE-description.
+
+  18 Sep 2012; Daniel Pielmeier <billie@gentoo.org> hplip-3.11.10.ebuild,
+  hplip-3.12.4.ebuild, hplip-3.12.6-r1.ebuild, hplip-3.12.9.ebuild:
+  Remove dependency upon udev-acl. This fixes bug #435226. Thanks to Samuli
+  Suominen for the report.
+
+*hplip-3.12.9 (16 Sep 2012)
+
+  16 Sep 2012; Daniel Pielmeier <billie@gentoo.org> +hplip-3.12.9.ebuild:
+  Version bump. This fixes bug #434282.
+
+  13 Sep 2012; Daniel Pielmeier <billie@gentoo.org> -hplip-3.12.6.ebuild:
+  Remove old.
 
   18 Aug 2012; Daniel Pielmeier <billie@gentoo.org> hplip-3.12.6.ebuild,
   hplip-3.12.6-r1.ebuild:

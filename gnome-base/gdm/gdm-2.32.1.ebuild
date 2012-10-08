@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gdm/gdm-2.32.1.ebuild,v 1.4 2012/06/07 22:18:53 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gdm/gdm-2.32.1.ebuild,v 1.6 2012/09/27 08:54:42 tetromino Exp $
 
 EAPI="3"
 GCONF_DEBUG="yes"
@@ -8,9 +8,9 @@ GCONF_DEBUG="yes"
 inherit autotools eutils gnome2 pam user
 
 DESCRIPTION="GNOME Display Manager"
-HOMEPAGE="http://www.gnome.org/projects/gdm/"
+HOMEPAGE="https://live.gnome.org/GDM"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~sh ~sparc ~x86"
 

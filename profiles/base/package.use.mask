@@ -1,9 +1,36 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.384 2012/08/21 14:54:50 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/package.use.mask,v 1.395 2012/10/02 18:27:07 ssuominen Exp $
 
 # This file requires >=portage-2.1.1
 # New entries go on top.
+
+# GNOME <gnome@gentoo.org> (02 Oct 2012)
+# Mask USE="udisks" and use USE="gdu" as the default for <gnome-base/gvfs-1.12.3-r1
+# This allows stabilization without sys-fs/udisks:2 which requires too new udev for now
+# Temporary mask until sys-fs/udisks:2 is stable
+<gnome-base/gvfs-1.12.3-r1 udisks
+
+# Pawel Hajdan jr <phajdan.jr@gentoo.org> (28 Sep 2012)
+# Causes problems with e.g. NVidia drivers, bug #413637.
+www-client/chromium tcmalloc
+
+# Johannes Huber <johu@gentoo.org> (14 Sep 2012)
+# Masked for stabilization as the use flag pulls a dep tree of hell.
+media-libs/phonon zeitgeist
+
+# Johannes Huber <johu@gentoo.org> (10 Sep 2012)
+# Requires >=net-libs/telepathy-farstream-0.2.2 stable, otherwise repoman will
+# scream.
+net-libs/telepathy-qt farstream
+
+# Samuli Suominen <ssuominen@gentoo.org> (31 Aug 2012)
+# Pending on GNOME 3.x stabilization (brasero-3 to be precise)
+app-pda/gtkpod cdr
+
+# Diego Elio Pettenò (27 Aug 2012)
+# The libpci access is only used for linux.
+net-analyzer/net-snmp pci
 
 # Diego Elio Pettenò (20 Aug 2012)
 # The prevent-removal USE flag is only implemented for Linux.
@@ -53,6 +80,7 @@ sys-boot/grub libzfs
 # Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (19 Jun 2012)
 # mask wayland flag for stable mesa, #419473
 =media-libs/mesa-8.0.3 wayland
+=media-libs/mesa-8.0.4-r1 wayland
 
 # Zac Medico <zmedico@gentoo.org> (13 Jun 2012)
 # Mask USE=pypy1_9 for sys-apps/portage, since pypy has limited KEYWORDS.
@@ -70,10 +98,6 @@ dev-db/firebird client
 # Requires icc which does not emerge (distfile unavailable)
 media-libs/opencv ipp
 
-# Alexandre Rostovtsev <tetromino@gentoo.org> (14 May 2012)
-# This is the GNOME 3.4 package.use mask
-=media-gfx/eog-plugins-3.4* map
-
 # Alexandre Rostovtsev <tetromino@gentoo.org> (10 May 2012)
 # This entry can be removed by anyone after gnome-panel-3.* is stabilized
 # Mask to allow stabilization (bug #414983)
@@ -82,11 +106,6 @@ media-libs/opencv ipp
 # Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (02 May 2012)
 # Causes crashes and build failures, not needed by any package, bug #412177
 <x11-libs/cairo-1.12 qt4
-
-# Johannes Huber <johu@gentoo.org> (19 Apr 2012)
-# Required dep >=net-libs/telepathy-farstream is masked by gnome herd. Feel
-# free to remove this entry, if mask is lifted.
-net-libs/telepathy-qt farstream
 
 # Alexandre Rostovtsev <tetromino@gentoo.org> (13 Apr 2012)
 # Packages with optional systemd support. Masked in base and unmasked on arches
@@ -127,7 +146,7 @@ media-sound/pulseaudio webrtc-aec xen
 # Alexandre Rostovtsev <tetromino@gentoo.org> (27 Mar 2012)
 # Requires libxkbcommon from the x11 overlay
 dev-cpp/gtkmm wayland
-x11-libs/gtk+ wayland
+x11-libs/gtk+ egl wayland
 
 # Johannes Huber <johu@gentoo.org> (23 Mar 2012)
 # Broken dep upnp, see bug #389833.

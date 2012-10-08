@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/twisted-words
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-words/ChangeLog,v 1.73 2012/03/24 22:22:59 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-words/ChangeLog,v 1.75 2012/10/05 14:46:45 marienz Exp $
+
+  05 Oct 2012; Marien Zwart <marienz@gentoo.org> twisted-words-10.2.0-r1.ebuild,
+  twisted-words-11.0.0.ebuild:
+  Restrict pypy in twisted < 11.1.0 (bug #420653).
+
+*twisted-words-12.2.0 (27 Sep 2012)
+
+  27 Sep 2012; Marien Zwart <marienz@gentoo.org> +twisted-words-12.2.0.ebuild:
+  Bump to 12.2.0 (bug #423793)
 
   24 Mar 2012; Mike Gilbert <floppym@gentoo.org> twisted-words-12.0.0.ebuild:
   Copy 11.1.0 to 12.0.0.
@@ -299,4 +308,3 @@
   08 Apr 2005; Thomas Raschbacher <lordvan@gentoo.org> twisted-words-0.1.0:
   initial import
   twisted-words was part of the main twisted release
-

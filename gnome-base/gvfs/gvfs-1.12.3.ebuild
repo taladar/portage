@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.12.3.ebuild,v 1.2 2012/05/29 16:19:05 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.12.3.ebuild,v 1.8 2012/10/07 01:59:36 blueness Exp $
 
 EAPI=4
 GCONF_DEBUG=no
@@ -13,14 +13,14 @@ inherit autotools bash-completion-r1 eutils gnome2
 DESCRIPTION="GNOME Virtual Filesystem Layer"
 HOMEPAGE="http://www.gnome.org"
 
-LICENSE="LGPL-2"
+LICENSE="LGPL-2+"
 SLOT="0"
 
 if [[ ${PV} = 9999 ]]; then
 	KEYWORDS=""
 	DOCS=""
 else
-	KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+	KEYWORDS="~alpha amd64 arm ~ia64 ~mips ~ppc ppc64 ~sh ~sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 	DOCS="AUTHORS ChangeLog NEWS MAINTAINERS README TODO" # ChangeLog.pre-1.2 README.commits
 fi
 
@@ -92,7 +92,10 @@ pkg_setup() {
 
 src_prepare() {
 	# Conditional patching purely to avoid eautoreconf
-	use gphoto2 && epatch "${FILESDIR}"/${PN}-1.2.2-gphoto2-stricter-checks.patch
+	if use gphoto2; then
+		epatch "${FILESDIR}"/${PN}-1.12.3-gphoto2-stricter-checks.patch
+		epatch "${FILESDIR}"/${PN}-1.12.3-gphoto2-2.5-{1,2}.patch
+	fi
 
 	if use archive; then
 		epatch "${FILESDIR}"/${PN}-1.2.2-expose-archive-backend.patch

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/ati-drivers/ati-drivers-12.6_beta_pre897.ebuild,v 1.2 2012/07/26 15:08:38 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/ati-drivers/ati-drivers-12.6_beta_pre897.ebuild,v 1.4 2012/09/24 00:48:41 vapier Exp $
 
 EAPI=4
 
@@ -21,7 +21,7 @@ fi
 IUSE="debug +modules multilib qt4 static-libs"
 
 LICENSE="AMD GPL-2 QPL-1.0 as-is"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 x86"
 SLOT="1"
 
 RDEPEND="
@@ -103,7 +103,7 @@ QA_SONAME="
 	usr/lib\(32\|64\)\?/libamdocl\(32\|64\)\?.so
 "
 
-QA_DT_HASH="
+QA_FLAGS_IGNORED="
 	opt/bin/amdcccle
 	opt/bin/aticonfig
 	opt/bin/atiodcli

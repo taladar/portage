@@ -1,6 +1,30 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.427 2012/08/21 14:38:30 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.432 2012/09/19 19:43:19 darkside Exp $
+
+  19 Sep 2012; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  update metadata
+
+*eix-0.27.1 (19 Sep 2012)
+
+  19 Sep 2012; Jeremy Olexa <darkside@gentoo.org> -eix-0.27.0.ebuild,
+  +eix-0.27.1.ebuild:
+  Version bump from upstream, support 256 color terminals, fix regression in
+  previous versions
+
+*eix-0.27.0 (17 Sep 2012)
+
+  17 Sep 2012; Jeremy Olexa <darkside@gentoo.org> +eix-0.27.0.ebuild:
+  Version bump from upstream, fixes bug 434616 as well
+
+*eix-0.26.4 (27 Aug 2012)
+
+  27 Aug 2012; Jeremy Olexa <darkside@gentoo.org> -eix-0.26.3.ebuild,
+  +eix-0.26.4.ebuild:
+  Version bump, fixes Gentoo bugs 432122, 432238, 432478
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> eix-0.25.5.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #427100
 
 *eix-0.26.3 (21 Aug 2012)
 

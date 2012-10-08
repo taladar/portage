@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/quazip
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/quazip/ChangeLog,v 1.18 2012/05/30 13:24:17 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/quazip/ChangeLog,v 1.21 2012/09/13 00:20:59 blueness Exp $
+
+  13 Sep 2012; Anthony G. Basile <blueness@gentoo.org> quazip-0.5.ebuild:
+  Keyword ~ppc64, for bug #383945
+
+  12 Sep 2012; Anthony G. Basile <blueness@gentoo.org> quazip-0.5.ebuild:
+  Keyword ~ppc, bug #383945
+
+*quazip-0.5 (10 Sep 2012)
+
+  10 Sep 2012; Justin Lecher <jlec@gentoo.org> quazip-0.4.4.ebuild,
+  +quazip-0.5.ebuild, -files/rpath.cmake:
+  Version Bump; drop rpath hack
 
   30 May 2012; Justin Lecher <jlec@gentoo.org> quazip-0.4.4.ebuild,
   +files/rpath.cmake:

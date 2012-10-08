@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/kmess/kmess-2.0.6.2.ebuild,v 1.1 2012/05/09 18:07:07 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/kmess/kmess-2.0.6.2.ebuild,v 1.4 2012/08/31 13:07:32 johu Exp $
 
-EAPI=3
+EAPI=4
 
 KDE_LINGUAS="ar ca de el es et fi fr gl hu it ja nl pt_BR ru sk tr zh_CN zh_TW"
 inherit kde4-base
@@ -14,7 +14,7 @@ HOMEPAGE="http://www.kmess.org"
 SRC_URI="mirror://sourceforge/${PN}/Latest%20versions/${PV}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 SLOT="4"
 IUSE="debug gif konqueror libnotify xscreensaver"
 RESTRICT="test"
@@ -38,6 +38,12 @@ RDEPEND="${COMMONDEPEND}
 "
 
 S="${WORKDIR}/${MY_P}"
+
+src_prepare() {
+	sed -e 's:Terminal=0:Terminal=false:' \
+		-i data/kmess.desktop || die "fixing .desktop file failed"
+	kde4-base_src_prepare
+}
 
 src_configure() {
 	mycmakeargs="${mycmakeargs}

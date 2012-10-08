@@ -1,6 +1,20 @@
 # ChangeLog for www-client/elinks
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.144 2012/07/04 18:45:08 axs Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.148 2012/10/06 03:25:54 blueness Exp $
+
+  06 Oct 2012; Anthony G. Basile <blueness@gentoo.org>
+  elinks-0.12_pre5-r2.ebuild:
+  stable ppc, bug #437196
+
+  05 Oct 2012; Brent Baude <ranger@gentoo.org> elinks-0.12_pre5-r2.ebuild:
+  Marking elinks-0.12_pre5-r2 ppc64 for bug 437196
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> elinks-0.12_pre5-r2.ebuild:
+  Stable for amd64, wrt bug #437196
+
+  16 Sep 2012; Pacho Ramos <pacho@gentoo.org>
+  +files/elinks-0.12_pre5-ruby-1.9.patch, elinks-0.12_pre5-r2.ebuild:
+  Fix build against ruby, bug #424789 by tman and patch by Ian Abbott.
 
   04 Jul 2012; Ian Stakenvicius <axs@gentoo.org> elinks-0.12_pre5-r2.ebuild,
   +files/elinks-0.12_pre5-ruby-config.patch:

@@ -1,6 +1,28 @@
 # ChangeLog for www-client/firefox
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/firefox/ChangeLog,v 1.173 2012/08/25 07:09:30 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/firefox/ChangeLog,v 1.178 2012/09/15 12:14:46 nativemad Exp $
+
+  15 Sep 2012; Andreas Schuerch <nativemad@gentoo.org> firefox-10.0.7.ebuild:
+  x86 stable, see bug 433383
+
+  08 Sep 2012; Agostino Sarubbo <ago@gentoo.org> firefox-10.0.7.ebuild:
+  Stable for amd64, wrt bug #433383
+
+  07 Sep 2012; <anarchy@gentoo.org> firefox-10.0.7.ebuild:
+  Exclude failing resource_urls patch in esr release
+
+*firefox-15.0.1 (07 Sep 2012)
+
+  07 Sep 2012;  <anarchy@gentoo.org> +firefox-15.0.1.ebuild,
+  -firefox-14.0.1.ebuild, -firefox-15.0.ebuild:
+  Update for private browsing issues
+
+*firefox-15.0 (01 Sep 2012)
+*firefox-10.0.7 (01 Sep 2012)
+
+  01 Sep 2012; <anarchy@gentoo.org> +firefox-10.0.7.ebuild,
+  +firefox-15.0.ebuild, +files/firefox-15.0-fix-gstreamer-html5-crash.patch:
+  Security/Version Bump
 
   25 Aug 2012; Michael Weber <xmw@gentoo.org> firefox-10.0.6.ebuild:
   ppc stable (bug 427224)

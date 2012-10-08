@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/network-2.3.0.14.ebuild,v 1.1 2012/06/15 13:50:11 gienah Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/network-2.3.0.14.ebuild,v 1.5 2012/09/30 11:08:06 blueness Exp $
 
 EAPI="4"
 
@@ -9,11 +9,11 @@ inherit base haskell-cabal autotools
 
 DESCRIPTION="Low-level networking interface"
 HOMEPAGE="http://github.com/haskell/network"
-SRC_URI="http://hackage.haskell.org/packages/archive/${PN}/${PV}/${P}.tar.gz"
+SRC_URI="mirror://hackage/packages/archive/${PN}/${PV}/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~alpha amd64 ~ia64 ppc ~ppc64 ~sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="test"
 
 RDEPEND="dev-haskell/parsec[profile?]

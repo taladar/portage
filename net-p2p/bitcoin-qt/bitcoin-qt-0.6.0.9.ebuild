@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bitcoin-qt/bitcoin-qt-0.6.0.9.ebuild,v 1.2 2012/07/26 17:12:19 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bitcoin-qt/bitcoin-qt-0.6.0.9.ebuild,v 1.4 2012/09/16 12:48:57 blueness Exp $
 
 EAPI=4
 

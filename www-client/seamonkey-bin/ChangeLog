@@ -1,6 +1,27 @@
 # ChangeLog for www-client/seamonkey-bin
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/seamonkey-bin/ChangeLog,v 1.146 2012/07/28 17:03:24 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/seamonkey-bin/ChangeLog,v 1.150 2012/09/15 12:25:33 nativemad Exp $
+
+  15 Sep 2012; Andreas Schuerch <nativemad@gentoo.org>
+  seamonkey-bin-2.12.1.ebuild:
+  x86 stable, see bug 433383
+
+*seamonkey-bin-2.12.1 (11 Sep 2012)
+
+  11 Sep 2012; Lars Wendler <polynomial-c@gentoo.org>
+  -seamonkey-bin-2.12.ebuild, +seamonkey-bin-2.12.1.ebuild:
+  Bumped seamonkey-bin-2.12 to 2.12.1. As it's a privacy relevant bugfix
+  release I bumped it straight to stable for amd64 (which had 2.12 stable
+  already).
+
+  08 Sep 2012; Agostino Sarubbo <ago@gentoo.org> seamonkey-bin-2.12.ebuild:
+  Stable for amd64, wrt bug #433383
+
+*seamonkey-bin-2.12 (02 Sep 2012)
+
+  02 Sep 2012; Jeff Horelick <jdhore@gentoo.org> +seamonkey-bin-2.12.ebuild,
+  -seamonkey-bin-2.10.1.ebuild:
+  Version bump
 
   28 Jul 2012; Agostino Sarubbo <ago@gentoo.org> seamonkey-bin-2.11.ebuild:
   Stable for amd64, wrt bug #427224

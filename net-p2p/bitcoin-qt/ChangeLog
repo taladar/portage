@@ -1,6 +1,39 @@
 # ChangeLog for net-p2p/bitcoin-qt
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bitcoin-qt/ChangeLog,v 1.36 2012/07/31 02:21:23 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bitcoin-qt/ChangeLog,v 1.41 2012/09/18 20:46:58 johu Exp $
+
+  18 Sep 2012; Johannes Huber <johu@gentoo.org> bitcoin-qt-0.6.3.ebuild:
+  Stable for x86, wrt bug #429188
+
+*bitcoin-qt-0.7.0_rc2 (16 Sep 2012)
+*bitcoin-qt-0.6.4_rc2 (16 Sep 2012)
+*bitcoin-qt-0.6.0.10_rc2 (16 Sep 2012)
+*bitcoin-qt-0.5.7_rc2 (16 Sep 2012)
+
+  16 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  +bitcoin-qt-0.5.7_rc2.ebuild, +bitcoin-qt-0.6.0.9.ebuild,
+  -bitcoin-qt-0.6.0.9-r1.ebuild, +bitcoin-qt-0.6.0.10_rc2.ebuild,
+  +bitcoin-qt-0.6.4_rc2.ebuild, +bitcoin-qt-0.7.0_rc2.ebuild:
+  Version bump RC's
+
+  15 Sep 2012; Agostino Sarubbo <ago@gentoo.org> bitcoin-qt-0.6.3.ebuild:
+  Stable for amd64, wrt bug #429188
+
+*bitcoin-qt-0.6.0.9-r1 (02 Sep 2012)
+
+  02 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  -bitcoin-qt-0.6.0.9.ebuild, +bitcoin-qt-0.6.0.9-r1.ebuild:
+  Fix bad tarball issue from gitorious
+
+*bitcoin-qt-0.7.0_rc1 (30 Aug 2012)
+*bitcoin-qt-0.6.4_rc1 (30 Aug 2012)
+*bitcoin-qt-0.6.0.10_rc1 (30 Aug 2012)
+*bitcoin-qt-0.5.7_rc1 (30 Aug 2012)
+
+  30 Aug 2012; Anthony G. Basile <blueness@gentoo.org>
+  +bitcoin-qt-0.5.7_rc1.ebuild, +bitcoin-qt-0.6.0.10_rc1.ebuild,
+  +bitcoin-qt-0.6.4_rc1.ebuild, +bitcoin-qt-0.7.0_rc1.ebuild:
+  Add RC's for next versions
 
 *bitcoin-qt-0.5.6 (31 Jul 2012)
 

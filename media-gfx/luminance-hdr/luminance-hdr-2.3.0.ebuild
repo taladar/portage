@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/luminance-hdr/luminance-hdr-2.3.0.ebuild,v 1.2 2012/07/10 18:57:06 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/luminance-hdr/luminance-hdr-2.3.0.ebuild,v 1.5 2012/09/23 08:51:14 phajdan.jr Exp $
 
 EAPI="4"
 
-inherit cmake-utils toolchain-funcs eutils
+inherit cmake-utils toolchain-funcs eutils flag-o-matic
 
 MY_P=${P/_/.}
 DESCRIPTION="Luminance HDR is a graphical user interface that provides a workflow for HDR imaging."
@@ -13,9 +13,9 @@ SRC_URI="mirror://sourceforge/qtpfsgui/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 LANGS=" cs de es fi fr hi hu id it pl ro ru sk tr zh"
-IUSE="${LANGS// / linguas_} openmp"
+IUSE="sse2 ${LANGS// / linguas_} openmp"
 
 DEPEND="
 	>=media-gfx/exiv2-0.14
@@ -37,7 +37,14 @@ DOCS=( AUTHORS BUGS Changelog README TODO )
 
 S=${WORKDIR}/${MY_P}
 
-pkg_setup() {
+pkg_pretend() {
+	if use sse2 ; then
+		append-flags -msse2
+	else
+		eerror "This package requires a CPU supporting the SSE2 instruction set."
+		die "SSE2 support missing"
+	fi
+
 	if use openmp ; then
 		tc-has-openmp || die "Please switch to an openmp compatible compiler"
 	fi

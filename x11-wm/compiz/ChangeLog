@@ -1,6 +1,50 @@
 # ChangeLog for x11-wm/compiz
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/compiz/ChangeLog,v 1.67 2012/07/31 22:36:58 naota Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/compiz/ChangeLog,v 1.76 2012/09/25 14:45:47 pinkbyte Exp $
+
+  25 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> -compiz-0.8.6-r3.ebuild,
+  -files/compiz-0.8.6-gdk-display-deprecated.patch,
+  -files/compiz-0.8.6-r2-fontcorruption.patch:
+  Drop old compiz version
+
+  12 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> files/compiz-gcc-4.7.patch:
+  Updated version of gcc 4.7 compatibility patch
+
+  12 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> compiz-0.8.8-r1.ebuild,
+  +files/compiz-gcc-4.7.patch:
+  Add patch for compatibility with gcc 4.7 or higher, wrt bug #433870. Thanks
+  to Christian for discovering this issue and megabaks - for providing solution
+  to it
+
+*compiz-0.8.8-r1 (12 Sep 2012)
+
+  12 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> -compiz-0.8.8.ebuild,
+  +compiz-0.8.8-r1.ebuild:
+  Revision bump, add missing run-time dependencies, needed for compiz-manager
+  script
+
+  12 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> compiz-0.8.8.ebuild:
+  Add missing dependency on dev-libs/dbus-glib when building compiz with dbus
+  USE-flag
+
+  11 Sep 2012; Sergey Popov <pinkbyte@gentoo.org>
+  -files/compiz-0.6.2-CVE-2007-3920.patch, -files/compiz-0.7.8-framesvg.patch,
+  -files/compiz-0.8.2-gtk-gnome-missing-gconf-flags.patch,
+  -files/compiz-0.8.4-crash-on-opening-windows.patch,
+  -files/compiz-0.8.4-gtk+-2.20-build.patch, -files/compiz-0.8.4-kde44.patch,
+  -files/compiz-0.8.4-libpng14.patch, -files/compiz-0.8.4-place-plugin.patch,
+  -files/compiz-0.8.4-window-region-calculation.patch:
+  Remove unneeded files
+
+  11 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> -files/0.3.6/compiz-start:
+  Remove old script
+
+  11 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> compiz-0.8.8.ebuild,
+  +files/compiz-kde-4.9.patch:
+  Add compatibility patch for KDE 4.9
+
+  31 Aug 2012; Sergey Popov <pinkbyte@gentoo.org> metadata.xml:
+  Remove myself and proxy maintainer from maintainers
 
   31 Jul 2012; Naohiro Aota <naota@gentoo.org> compiz-0.8.6-r3.ebuild,
   compiz-0.8.8.ebuild:

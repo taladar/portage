@@ -1,6 +1,46 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.376 2012/08/15 23:03:04 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.385 2012/10/06 17:14:01 armin76 Exp $
+
+  06 Oct 2012; Raúl Porcel <armin76@gentoo.org> gnutls-2.12.20.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc/x86 stable wrt #436368
+
+  03 Oct 2012; Agostino Sarubbo <ago@gentoo.org> gnutls-2.12.20.ebuild:
+  Stable for amd64, wrt bug #436368
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> gnutls-2.12.20.ebuild:
+  Stable for HPPA (bug #436368).
+
+  28 Sep 2012; Anthony G. Basile <blueness@gentoo.org> gnutls-2.12.20.ebuild:
+  stable arm, bug #436368
+
+  27 Sep 2012; Anthony G. Basile <blueness@gentoo.org> gnutls-2.12.20.ebuild:
+  stable ppc ppc64, bug #436368
+
+  26 Sep 2012; Tim Harder <radhermit@gentoo.org> gnutls-2.12.20.ebuild,
+  +files/gnutls-2.12.20-glibc-2.16.patch, +files/gnutls-2.12.20-libadd.patch:
+  Fix build with glibc-2.16 (bug #424988 by Christian Hagau) and link against
+  the built libgnutls library instead of the system version (bug #436146 by
+  Bartosz Brachaczek).
+
+  26 Sep 2012; Tim Harder <radhermit@gentoo.org> -gnutls-2.12.19.ebuild,
+  -gnutls-3.0.20.ebuild, -gnutls-3.0.21.ebuild, -gnutls-3.0.22.ebuild,
+  -gnutls-3.1.0.ebuild:
+  Remove old.
+
+*gnutls-3.1.2 (26 Sep 2012)
+*gnutls-3.0.24 (26 Sep 2012)
+
+  26 Sep 2012; Tim Harder <radhermit@gentoo.org> +gnutls-3.0.24.ebuild,
+  +gnutls-3.1.2.ebuild:
+  Version bumps.
+
+*gnutls-3.1.1 (02 Sep 2012)
+*gnutls-3.0.23 (02 Sep 2012)
+
+  02 Sep 2012; Tim Harder <radhermit@gentoo.org> +gnutls-3.0.23.ebuild,
+  +gnutls-3.1.1.ebuild:
+  Version bumps.
 
 *gnutls-3.1.0 (15 Aug 2012)
 

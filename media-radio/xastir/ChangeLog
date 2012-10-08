@@ -1,6 +1,20 @@
 # ChangeLog for media-radio/xastir
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-radio/xastir/ChangeLog,v 1.23 2012/06/18 09:04:04 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-radio/xastir/ChangeLog,v 1.27 2012/09/23 08:35:07 phajdan.jr Exp $
+
+  23 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> xastir-2.0.0-r2.ebuild:
+  x86 stable wrt bug #432988
+
+  06 Sep 2012; Thomas Beierlein <tomjbe@gentoo.org> xastir-2.0.0-r2.ebuild:
+  Add missing RDEPENDS. Thanks ago.
+
+  06 Sep 2012; Agostino Sarubbo <ago@gentoo.org> xastir-2.0.0-r2.ebuild:
+  Stable for amd64, wrt bug #432988
+
+  27 Aug 2012; Thomas Beierlein <tomjbe@gentoo.org> xastir-2.0.0-r2.ebuild,
+  +files/xastir-2.0.0-no-builtin-shapelib.diff:
+  Do not use builtin shapelib if sci-libs/shapelib is not installed. Build 
+  without shapelib support instead. (bug #430704). Thanks Diego.
 
   18 Jun 2012; Agostino Sarubbo <ago@gentoo.org> -xastir-1.9.8.ebuild:
   Remove old

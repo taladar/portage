@@ -1,6 +1,20 @@
 # ChangeLog for x11-base/xorg-drivers
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-base/xorg-drivers/ChangeLog,v 1.78 2012/07/12 17:26:18 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-base/xorg-drivers/ChangeLog,v 1.81 2012/10/06 20:46:33 ulm Exp $
+
+  06 Oct 2012; Ulrich Müller <ulm@gentoo.org> xorg-drivers-1.9.ebuild,
+  xorg-drivers-1.10.ebuild, xorg-drivers-1.11.ebuild, xorg-drivers-1.12.ebuild,
+  xorg-drivers-1.13.ebuild:
+  Update LICENSE to "metapackage" non-license, bug 436608.
+
+*xorg-drivers-1.13 (06 Sep 2012)
+
+  06 Sep 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +xorg-drivers-1.13.ebuild:
+  Version bump.
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> xorg-drivers-1.12.ebuild:
+  alpha/ia64/sh/sparc stable wrt #419473
 
   12 Jul 2012; Brent Baude <ranger@gentoo.org> xorg-drivers-1.12.ebuild:
   Marking xorg-drivers-1.12 ppc stable for bug 419473
@@ -288,4 +302,3 @@
   04 Sep 2009; Rémi Cardona <remi@gentoo.org> +xorg-drivers-1.6.ebuild,
   +metadata.xml:
   add xorg-drivers meta ebuild from the x11 overlay
-

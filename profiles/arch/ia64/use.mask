@@ -47,6 +47,7 @@ celt
 capi
 lensfun
 kde
+metalink
 quvi
 upnp
 systemd
@@ -58,7 +59,6 @@ lasi
 mpi
 networkmanager
 octave
-oracle
 timidity
 semantic-desktop
 tunepimp

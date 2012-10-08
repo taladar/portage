@@ -1,6 +1,31 @@
 # ChangeLog for media-plugins/grilo-plugins
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/grilo-plugins/ChangeLog,v 1.8 2012/05/05 08:27:19 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/grilo-plugins/ChangeLog,v 1.12 2012/10/04 14:57:16 ago Exp $
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> grilo-plugins-0.1.18.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  grilo-plugins-0.1.18.ebuild:
+  x86 stable wrt bug #427544
+
+  29 Sep 2012; Pacho Ramos <pacho@gentoo.org> grilo-plugins-0.1.18.ebuild:
+  Drop tracker support for version to stabilize as tracker is still not ready
+  for stable.
+
+*grilo-plugins-0.2.0 (16 Sep 2012)
+*grilo-plugins-0.1.20 (16 Sep 2012)
+
+  16 Sep 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -grilo-plugins-0.1.17-r2.ebuild,
+  -files/grilo-plugins-0.1.17-apple-trailers-fix.patch,
+  -files/grilo-plugins-0.1.17-tracker-0.12.patch,
+  -files/grilo-plugins-0.1.17-upnp-filter-containers.patch,
+  grilo-plugins-0.1.18.ebuild, +grilo-plugins-0.1.20.ebuild,
+  +grilo-plugins-0.2.0.ebuild:
+  Version bump with optical media support and lots of bugfixes; slot to allow
+  parallel installation of 0.2.x and 0.1.x; disable USE=debug (it only adds
+  debugging CFLAGS). Drop old.
 
   05 May 2012; Jeff Horelick <jdhore@gentoo.org>
   grilo-plugins-0.1.17-r2.ebuild, grilo-plugins-0.1.18.ebuild:
@@ -64,4 +89,3 @@
   02 Jun 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
   +grilo-plugins-0.1.15.ebuild, +metadata.xml:
   Add new ebuild for grilo plugins
-

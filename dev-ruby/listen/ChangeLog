@@ -1,6 +1,22 @@
 # ChangeLog for dev-ruby/listen
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/listen/ChangeLog,v 1.4 2012/08/25 06:20:32 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/listen/ChangeLog,v 1.8 2012/09/29 15:21:11 grobian Exp $
+
+  29 Sep 2012; Fabian Groffen <grobian@gentoo.org> listen-0.5.2.ebuild:
+  Marked ~x64-macos
+
+  27 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> listen-0.5.2.ebuild:
+  Keyword ~ppc/~ppc64 wrt #433129
+
+*listen-0.5.2 (25 Sep 2012)
+
+  25 Sep 2012; Hans de Graaff <graaff@gentoo.org> +listen-0.5.2.ebuild:
+  Version bump.
+
+*listen-0.5.0 (04 Sep 2012)
+
+  04 Sep 2012; Hans de Graaff <graaff@gentoo.org> +listen-0.5.0.ebuild:
+  Version bump.
 
   25 Aug 2012; Hans de Graaff <graaff@gentoo.org> -listen-0.4.2.ebuild:
   Cleanup.

@@ -1,6 +1,19 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.466 2012/08/22 14:16:33 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.469 2012/09/29 16:06:32 armin76 Exp $
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org> binutils-2.22-r1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #414865
+
+*binutils-2.23.51.0.3 (19 Sep 2012)
+
+  19 Sep 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.51.0.3.ebuild:
+  Version bump.
+
+*binutils-2.23.51.0.2 (11 Sep 2012)
+
+  11 Sep 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.51.0.2.ebuild:
+  Version bump.
 
   22 Aug 2012; Michael Weber <xmw@gentoo.org> binutils-2.22-r1.ebuild:
   ppc stable (bug 414865).

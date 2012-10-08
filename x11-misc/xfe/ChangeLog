@@ -1,6 +1,20 @@
 # ChangeLog for x11-misc/xfe
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xfe/ChangeLog,v 1.74 2012/05/12 23:38:17 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xfe/ChangeLog,v 1.78 2012/10/05 18:04:40 ranger Exp $
+
+  05 Oct 2012; Brent Baude <ranger@gentoo.org> xfe-1.32.5.ebuild:
+  Marking xfe-1.32.5 ppc64 for bug 437014
+
+  04 Oct 2012; Brent Baude <ranger@gentoo.org> xfe-1.32.5.ebuild:
+  Marking xfe-1.32.5 ppc for bug 437014
+
+  03 Oct 2012; Agostino Sarubbo <ago@gentoo.org> xfe-1.32.5.ebuild:
+  Stable for amd64, wrt bug #437014
+
+*xfe-1.33 (02 Oct 2012)
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> +xfe-1.33.ebuild:
+  Version bump. Add LINGUAS support.
 
 *xfe-1.32.5 (12 May 2012)
 

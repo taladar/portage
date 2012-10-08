@@ -1,6 +1,20 @@
 # ChangeLog for www-apps/curator
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/curator/ChangeLog,v 1.11 2012/07/26 08:18:36 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/curator/ChangeLog,v 1.15 2012/10/06 16:56:09 armin76 Exp $
+
+  06 Oct 2012; Raúl Porcel <armin76@gentoo.org> curator-2.0.ebuild,
+  curator-2.1.ebuild, curator-3.0_p20110120.ebuild:
+  Drop alpha/sparc keywords
+
+  22 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  curator-3.0_p20110120.ebuild:
+  stable ppc, bug #435240
+
+  18 Sep 2012; Johannes Huber <johu@gentoo.org> curator-3.0_p20110120.ebuild:
+  Stable for x86, wrt bug #435240
+
+  17 Sep 2012; Agostino Sarubbo <ago@gentoo.org> curator-3.0_p20110120.ebuild:
+  Stable for amd64, wrt bug #435240
 
   26 Jul 2012; Christian Faulhammer <fauli@gentoo.org>
   curator-3.0_p20110120.ebuild:

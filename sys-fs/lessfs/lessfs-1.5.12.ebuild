@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/lessfs/lessfs-1.5.12.ebuild,v 1.1 2012/05/05 10:17:09 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/lessfs/lessfs-1.5.12.ebuild,v 1.4 2012/09/23 08:19:57 phajdan.jr Exp $
 
 EAPI="4"
 
@@ -12,11 +12,11 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}/${MY_P}/${MY_P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="berkdb crypt debug filelog memtrace lzo"
 
 DEPEND="berkdb? ( sys-libs/db )
-		!berkdb? ( >=dev-db/tokyocabinet-1.4.42 )
+		>=dev-db/tokyocabinet-1.4.42
 		app-crypt/mhash
 		>=sys-fs/fuse-2.8.0
 		crypt? ( dev-libs/openssl )

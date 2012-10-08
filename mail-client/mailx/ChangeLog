@@ -1,6 +1,32 @@
 # ChangeLog for mail-client/mailx
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mailx/ChangeLog,v 1.76 2012/07/31 14:28:11 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mailx/ChangeLog,v 1.83 2012/10/01 19:21:55 eras Exp $
+
+  01 Oct 2012; Eray Aslan <eraya@gentoo.org> -mailx-8.1.2.20050715-r5.ebuild,
+  mailx-8.1.2.20050715-r6.ebuild:
+  Remove old
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org>
+  mailx-8.1.2.20050715-r6.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #433295
+
+  18 Sep 2012; Jeroen Roovers <jer@gentoo.org> mailx-8.1.2.20050715-r6.ebuild:
+  Stable for HPPA (bug #433295).
+
+  12 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  mailx-8.1.2.20050715-r6.ebuild:
+  stable ppc ppc64, bug #433295
+
+  08 Sep 2012; Johannes Huber <johu@gentoo.org> mailx-8.1.2.20050715-r6.ebuild:
+  Stable for x86, wrt bug #433295
+
+  08 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  mailx-8.1.2.20050715-r6.ebuild:
+  Stable arm, bug #433295
+
+  07 Sep 2012; Agostino Sarubbo <ago@gentoo.org>
+  mailx-8.1.2.20050715-r6.ebuild:
+  Stable for amd64, wrt bug #433295
 
   31 Jul 2012; Eray Aslan <eras@gentoo.org> -mailx-8.1.2.20050715-r1.ebuild,
   -mailx-8.1.2.20050715-r3.ebuild:

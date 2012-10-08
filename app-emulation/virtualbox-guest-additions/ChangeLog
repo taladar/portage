@@ -1,6 +1,28 @@
 # ChangeLog for app-emulation/virtualbox-guest-additions
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/virtualbox-guest-additions/ChangeLog,v 1.101 2012/08/21 09:20:50 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/virtualbox-guest-additions/ChangeLog,v 1.105 2012/09/18 05:37:56 polynomial-c Exp $
+
+  18 Sep 2012; Lars Wendler <polynomial-c@gentoo.org>
+  -virtualbox-guest-additions-4.1.12.ebuild,
+  -virtualbox-guest-additions-4.1.18.ebuild:
+  Removed old versions.
+
+  17 Sep 2012; Andreas Schuerch <nativemad@gentoo.org>
+  virtualbox-guest-additions-4.1.22.ebuild:
+  x86 stable, see bug 434872
+
+  16 Sep 2012; Agostino Sarubbo <ago@gentoo.org>
+  virtualbox-guest-additions-4.1.22.ebuild:
+  Stable for amd64, wrt bug #434872
+
+*virtualbox-guest-additions-4.2.0 (13 Sep 2012)
+*virtualbox-guest-additions-4.1.22 (13 Sep 2012)
+
+  13 Sep 2012; Lars Wendler <polynomial-c@gentoo.org>
+  -virtualbox-guest-additions-4.1.20.ebuild,
+  +virtualbox-guest-additions-4.1.22.ebuild,
+  +virtualbox-guest-additions-4.2.0.ebuild:
+  Version bump. Removed old. Added forgotten 4.1.22 version as well.
 
 *virtualbox-guest-additions-4.1.20 (21 Aug 2012)
 

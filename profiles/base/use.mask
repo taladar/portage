@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/use.mask,v 1.144 2012/08/21 15:16:15 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/use.mask,v 1.146 2012/09/30 06:59:28 flameeyes Exp $
 
 # not ready for primetime
 packagekit
@@ -91,6 +91,7 @@ nvidia
 
 # dev-db/oracle-instantclient-basic is only available on x86
 oci8-instant-client
+oracle
 
 # net-libs/osptoolkit is only available on x86 (used by asterisk, bug 115798)
 osp
@@ -292,3 +293,7 @@ prelude
 # Diego Elio Pettenò <flameeyes@gentoo.org> (21 Aug 2012)
 # IPMI is only implemented for x86, amd64 and ia64
 ipmi
+
+# Diego Elio Pettenò <flameeyes@gentoo.org> (27 Aug 2012)
+# netlink is a Linux-specific interface
+netlink

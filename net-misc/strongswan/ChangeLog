@@ -1,6 +1,29 @@
 # ChangeLog for net-misc/strongswan
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/strongswan/ChangeLog,v 1.96 2012/07/01 10:45:17 gurligebis Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/strongswan/ChangeLog,v 1.103 2012/09/30 17:59:38 ago Exp $
+
+  30 Sep 2012; Agostino Sarubbo <ago@gentoo.org> strongswan-5.0.0.ebuild:
+  Stable for AMD64, wrt bug #435614
+
+  30 Sep 2012; <gurligebis@gentoo.org> strongswan-5.0.0.ebuild:
+  Removing reference to missing ipsec.secrets file, fixing bug #436682
+
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> strongswan-5.0.0.ebuild:
+  Drop sparc keywords
+
+  24 Sep 2012; Anthony G. Basile <blueness@gentoo.org> strongswan-5.0.0.ebuild:
+  stable arm, bug #435614
+
+  24 Sep 2012; Anthony G. Basile <blueness@gentoo.org> strongswan-5.0.0.ebuild:
+  stable ppc, keyword ~ppc64, bug #435614
+
+  21 Sep 2012; <gurligebis@gentoo.org> -strongswan-4.6.4.ebuild,
+  strongswan-5.0.0.ebuild, metadata.xml:
+  Making IKEv1 and IKEv2 required, since it makes no sense without them, fixing
+  compiling problems in bug #435614, and removing old version.
+
+  06 Sep 2012; <gurligebis@gentoo.org> strongswan-5.0.0.ebuild, metadata.xml:
+  Fixing building with -pam and +eap use flags, fixing bug #434128
 
 *strongswan-5.0.0 (01 Jul 2012)
 

@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/gdl
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gdl/ChangeLog,v 1.74 2012/07/15 16:38:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gdl/ChangeLog,v 1.78 2012/10/07 01:35:33 blueness Exp $
+
+  07 Oct 2012; Anthony G. Basile <blueness@gentoo.org> gdl-3.4.2.ebuild:
+  stable ppc64, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> gdl-3.4.2.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gdl-3.4.2.ebuild:
+  x86 stable wrt bug #427544
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> gdl-3.4.2.ebuild:
+  Stable for HPPA (bug #427544).
 
   15 Jul 2012; Raúl Porcel <armin76@gentoo.org> gdl-3.2.0.ebuild:
   alpha/ia64/sparc stable wrt #410611
@@ -284,4 +296,3 @@
   29 Jun 2006; Martin Schlemmer <azarah@gentoo.org> +metadata.xml,
   +gdl-0.6.1.ebuild:
   Import.  Only saw bug #8561 after I added, so imported some changes.
-

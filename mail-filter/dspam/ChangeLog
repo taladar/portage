@@ -1,6 +1,16 @@
 # ChangeLog for mail-filter/dspam
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/dspam/ChangeLog,v 1.151 2012/07/22 09:48:25 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/dspam/ChangeLog,v 1.154 2012/09/25 11:42:59 eras Exp $
+
+  25 Sep 2012; Eray Aslan <eras@gentoo.org> -dspam-3.10.1-r1.ebuild,
+  -dspam-3.10.2.ebuild:
+  Drop old
+
+  23 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> dspam-3.10.2-r1.ebuild:
+  x86 stable wrt bug #433299
+
+  08 Sep 2012; Agostino Sarubbo <ago@gentoo.org> dspam-3.10.2-r1.ebuild:
+  Stable for amd64, wrt bug #433299
 
 *dspam-3.10.2-r1 (22 Jul 2012)
 
@@ -738,4 +748,3 @@
   Initial commit.  Most of the ebuild was thanks to work done by Mark Renouf
   <mark@tweakt.net> on bug #26744.  I just tried harder to be anal about it. :)
   Closing bug.
-

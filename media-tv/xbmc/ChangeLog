@@ -1,6 +1,24 @@
 # ChangeLog for media-tv/xbmc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/xbmc/ChangeLog,v 1.143 2012/08/04 16:25:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-tv/xbmc/ChangeLog,v 1.148 2012/09/24 18:02:24 vapier Exp $
+
+  24 Sep 2012; Mike Frysinger <vapier@gentoo.org> metadata.xml,
+  xbmc-9999.ebuild:
+  Control NFS support via USE=nfs #436034 by oceand.dev.
+
+  16 Sep 2012; Mike Frysinger <vapier@gentoo.org> xbmc-9999.ebuild:
+  Depend on taglib-1.8 to match upstream #434658 by BT.
+
+  08 Sep 2012; Mike Frysinger <vapier@gentoo.org> xbmc-9999.ebuild:
+  Add USE=upnp support #434270 by BT.
+
+  08 Sep 2012; Mike Frysinger <vapier@gentoo.org>
+  files/xbmc-9999-no-arm-flags.patch:
+  Update arm flags patch to latest git #434182 by BT.
+
+  05 Sep 2012; Justin Lecher <jlec@gentoo.org> xbmc-11.0.ebuild,
+  xbmc-9999.ebuild:
+  Use domenu instead insinto + doins to install .desktop files
 
   04 Aug 2012; Mike Frysinger <vapier@gentoo.org>
   files/xbmc-9999-nomythtv.patch:

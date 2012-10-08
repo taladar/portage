@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-print/cups/cups-1.6.1.ebuild,v 1.3 2012/08/16 17:07:16 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-print/cups/cups-1.6.1.ebuild,v 1.6 2012/10/04 08:07:30 naota Exp $
 
 EAPI=4
 
@@ -13,7 +13,7 @@ MY_PV=${PV/_beta/b}
 
 if [[ "${PV}" != "9999" ]]; then
 	SRC_URI="mirror://easysw/${PN}/${MY_PV}/${MY_P}-source.tar.bz2"
-	KEYWORDS="~amd64 ~arm ~hppa ~mips ~x86"
+	KEYWORDS="~amd64 ~arm ~hppa ~mips ~ppc ~x86 ~x86-fbsd"
 else
 	inherit subversion
 	ESVN_REPO_URI="http://svn.easysw.com/public/cups/trunk"
@@ -273,6 +273,16 @@ pkg_postinst() {
 	elog "To (re-)enable it, edit /etc/cups/cupsd.conf and set \"Browsing On\", "
 	elog "afterwards re-start or reload cups."
 	echo
+
+	# not slotted - at most one value
+	if [[ "${REPLACING_VERSIONS}" ]] && [[ "${REPLACING_VERSIONS}" < "1.6" ]]; then
+		echo
+		elog "CUPS-1.6 no longer supports automatic remote printers or implicit classes"
+		elog "via the CUPS, LDAP, or SLP protocols, i.e. \"network browsing\"."
+		elog "You will have to find printers using zeroconf/avahi instead, or enter"
+		elog "the location manually."
+		echo
+	fi
 }
 
 pkg_postrm() {

@@ -1,6 +1,32 @@
 # ChangeLog for net-analyzer/ettercap
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ettercap/ChangeLog,v 1.92 2012/08/24 19:05:02 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ettercap/ChangeLog,v 1.97 2012/10/06 08:49:28 ago Exp $
+
+*ettercap-0.7.5_pre20121006 (06 Oct 2012)
+
+  06 Oct 2012; Agostino Sarubbo <ago@gentoo.org>
+  +ettercap-0.7.5_pre20121006.ebuild, -ettercap-0.7.5_pre20120928.ebuild:
+  New snapshot
+
+  05 Oct 2012; Agostino Sarubbo <ago@gentoo.org>
+  ettercap-0.7.5_pre20120928.ebuild:
+  Add app-text/ghostscript-gpl as a DEPEND
+
+*ettercap-0.7.5_pre20120928 (28 Sep 2012)
+
+  28 Sep 2012; Agostino Sarubbo <ago@gentoo.org>
+  +ettercap-0.7.5_pre20120928.ebuild, -ettercap-0.7.5_pre20120903.ebuild:
+  Add new snapshot
+
+  03 Sep 2012; Agostino Sarubbo <ago@gentoo.org> -ettercap-0.7.4.ebuild:
+  Remove old
+
+*ettercap-0.7.5_pre20120903 (03 Sep 2012)
+
+  03 Sep 2012; Agostino Sarubbo <ago@gentoo.org>
+  +ettercap-0.7.5_pre20120903.ebuild, metadata.xml:
+  Add pre release for the 0.7.5 series; ebuild completely rewritten, now the
+  buildsystem is based on cmake.
 
   24 Aug 2012; Agostino Sarubbo <ago@gentoo.org> metadata.xml:
   Add myself as maintainer

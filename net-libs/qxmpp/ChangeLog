@@ -1,6 +1,36 @@
 # ChangeLog for net-libs/qxmpp
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/qxmpp/ChangeLog,v 1.15 2012/07/15 16:52:03 kensington Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/qxmpp/ChangeLog,v 1.23 2012/10/05 07:07:01 pinkbyte Exp $
+
+  05 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> -qxmpp-0.3.45.2.ebuild,
+  -qxmpp-0.7.3.ebuild:
+  Drop old versions
+
+  04 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> qxmpp-0.7.4.ebuild,
+  qxmpp-9999.ebuild:
+  Add doc USE-flag wrt bug #437174, thanks to Nikoli
+
+  01 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> qxmpp-9999.ebuild:
+  Use proper path for documentation in live ebuild too
+
+*qxmpp-0.7.4 (01 Oct 2012)
+
+  01 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> +qxmpp-0.7.4.ebuild:
+  Version bump
+
+*qxmpp-0.7.3 (07 Sep 2012)
+
+  07 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> +qxmpp-0.7.3.ebuild:
+  Version bump
+
+  07 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> qxmpp-9999.ebuild:
+  Bump live ebuild to EAPI 4
+
+  04 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> qxmpp-9999.ebuild:
+  Remove extras USE flag from IUSE
+
+  04 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> qxmpp-9999.ebuild:
+  Remove extras USE flag from live ebuild and set new URL for upstream repo
 
   15 Jul 2012; Michael Palimaka <kensington@gentoo.org> qxmpp-0.3.45.2.ebuild,
   qxmpp-0.3.61-r2.ebuild, qxmpp-9999.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-8.1_rc1_pre20120814.ebuild,v 1.1 2012/08/14 21:27:15 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-8.1_rc1_pre20120814.ebuild,v 1.4 2012/10/05 06:08:59 naota Exp $
 
 EAPI=4
 
@@ -46,12 +46,11 @@ for card in ${VIDEO_CARDS}; do
 done
 
 IUSE="${IUSE_VIDEO_CARDS}
-	bindist +classic d3d debug +egl g3dvl +gallium gbm gles1 gles2 +llvm +nptl
+	bindist +classic debug +egl g3dvl +gallium gbm gles1 gles2 +llvm +nptl
 	openvg osmesa pax_kernel pic r600-llvm-compiler selinux +shared-glapi vdpau
 	wayland xvmc xa xorg kernel_FreeBSD"
 
 REQUIRED_USE="
-	d3d?    ( gallium )
 	g3dvl?  ( gallium )
 	llvm?   ( gallium )
 	openvg? ( egl gallium )
@@ -98,7 +97,6 @@ RDEPEND="${EXTERNAL_DEPEND}
 	x11-libs/libXext
 	x11-libs/libXxf86vm
 	>=x11-libs/libxcb-1.8
-	d3d? ( app-emulation/wine )
 	vdpau? ( >=x11-libs/libvdpau-0.4.1 )
 	wayland? ( dev-libs/wayland )
 	xorg? (
@@ -182,6 +180,9 @@ src_prepare() {
 	# Tests fail against python-3, bug #407887
 	sed -i 's|/usr/bin/env python|/usr/bin/env python2|' src/glsl/tests/compare_ir || die
 
+	# Fix bash-ism test bug 435496
+	epatch "${FILESDIR}"/${PN}-8.0.4-configure-bsd.patch
+
 	base_src_prepare
 
 	eautoreconf
@@ -223,7 +224,6 @@ src_configure() {
 
 	if use gallium; then
 		myconf+="
-			$(use_enable d3d d3d1x)
 			$(use_enable g3dvl gallium-g3dvl)
 			$(use_enable llvm gallium-llvm)
 			$(use_enable openvg)
@@ -254,6 +254,8 @@ src_configure() {
 			$(use_enable x86 glx-rts)
 		"
 	fi
+
+	use userland_GNU || export INDENT=cat
 
 	econf \
 		--enable-dri \

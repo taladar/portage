@@ -1,6 +1,21 @@
 # ChangeLog for net-print/lprng
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-print/lprng/ChangeLog,v 1.62 2012/08/24 14:22:08 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-print/lprng/ChangeLog,v 1.67 2012/10/07 14:13:31 armin76 Exp $
+
+  07 Oct 2012; Raúl Porcel <armin76@gentoo.org> lprng-3.8.35-r1.ebuild:
+  alpha/ia64/sh/sparc/x86 stable wrt #432488
+
+  05 Oct 2012; Brent Baude <ranger@gentoo.org> lprng-3.8.35-r1.ebuild:
+  Marking lprng-3.8.35-r1 ppc64 for bug 432488
+
+  04 Oct 2012; Brent Baude <ranger@gentoo.org> lprng-3.8.35-r1.ebuild:
+  Marking lprng-3.8.35-r1 ppc for bug 432488
+
+  19 Sep 2012; Jeroen Roovers <jer@gentoo.org> lprng-3.8.35-r1.ebuild:
+  Stable for HPPA (bug #432488).
+
+  01 Sep 2012; Markus Meier <maekke@gentoo.org> lprng-3.8.35-r1.ebuild:
+  arm stable, bug #432488
 
   24 Aug 2012; Agostino Sarubbo <ago@gentoo.org> lprng-3.8.35-r1.ebuild:
   Stable for amd64, wrt bug #432488

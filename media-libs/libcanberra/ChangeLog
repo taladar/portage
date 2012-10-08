@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.84 2012/08/22 02:41:49 ottxor Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.89 2012/10/07 01:28:57 blueness Exp $
+
+  07 Oct 2012; Anthony G. Basile <blueness@gentoo.org> libcanberra-0.29.ebuild:
+  stable ppc64, bug #427544
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> libcanberra-0.29.ebuild:
+  arm stable, bug #427544
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> libcanberra-0.29.ebuild:
+  Stable for amd64, wrt bug #427544
+
+  03 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> libcanberra-0.29.ebuild:
+  x86 stable wrt bug #427544
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> libcanberra-0.29.ebuild:
+  Stable for HPPA (bug #427544).
 
   22 Aug 2012; Christoph Junghans <ottxor@gentoo.org> libcanberra-0.29.ebuild:
   added prefix keywords
