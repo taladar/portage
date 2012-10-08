@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile configure install prepare test unpack
+DEPEND=~net-misc/leechcraft-core-9999 >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) dev-vcs/git
+DESCRIPTION=Tab++ provides enhanced tab-related features like tab tree for LeechCraft
+EAPI=4
+HOMEPAGE=http://leechcraft.org/
+IUSE=debug
+LICENSE=GPL-3
+RDEPEND=~net-misc/leechcraft-core-9999
+SLOT=0
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	2e18cd8b379d307b2473aa632de5a077	eutils	2fd401453e32e8c9a676cd0361b82a5f	flag-o-matic	2c938a1fe61ea9899a2b97ea1e065f5f	git-2	15733ab6a6feb34af9837b41623c2bad	leechcraft	a6f99cd88871f3b426878ad28d5796f4	multilib	c2b85b5c63a44798c1e442147ac14c5c	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
+_md5_=7d55ef2c5e5dfd51b54df6c021855db9

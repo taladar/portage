@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst prepare test unpack
+DEPEND=x11-libs/qt-gui:4 x11-libs/qt-sql:4[sqlite] >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=A development environment entirely dedicated to Qt4.
+EAPI=4
+HOMEPAGE=http://biord-software.org/qdevelop/
+IUSE=debug plugins
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=x11-libs/qt-gui:4 x11-libs/qt-sql:4[sqlite]
+SLOT=0
+SRC_URI=http://biord-software.org/downloads/qdevelop-v0.28.tar.gz
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	2e18cd8b379d307b2473aa632de5a077	eutils	2fd401453e32e8c9a676cd0361b82a5f	flag-o-matic	2c938a1fe61ea9899a2b97ea1e065f5f	multilib	c2b85b5c63a44798c1e442147ac14c5c	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=f3633c16c6a30d6750f5fe80b7fec771

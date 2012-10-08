@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare unpack
+DEPEND=app-text/poppler[qt4] x11-libs/qt-core:4[iconv] x11-libs/qt-gui:4 cups? ( net-print/cups ) dbus? ( x11-libs/qt-dbus:4 ) svg? ( x11-libs/qt-svg:4 ) virtual/pkgconfig
+DESCRIPTION=A tabbed PDF viewer using the poppler library
+EAPI=4
+HOMEPAGE=http://launchpad.net/qpdfview
+IUSE=cups dbus svg linguas_cs linguas_de linguas_el linguas_pt_BR linguas_ru linguas_sk linguas_uk
+KEYWORDS=amd64 ~arm ~x86
+LICENSE=GPL-2
+RDEPEND=app-text/poppler[qt4] x11-libs/qt-core:4[iconv] x11-libs/qt-gui:4 cups? ( net-print/cups ) dbus? ( x11-libs/qt-dbus:4 ) svg? ( x11-libs/qt-svg:4 )
+SLOT=0
+SRC_URI=https://launchpad.net/qpdfview/trunk/0.3.4/+download/qpdfview-0.3.4.tar.gz
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	eutils	2fd401453e32e8c9a676cd0361b82a5f	l10n	33bde4fb0cfd3a21a277b66bfd837e19	multilib	c2b85b5c63a44798c1e442147ac14c5c	qt4-r2	75aa32643ef22632eb9b45989b4c03fc	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=cde54e465b29eca4a74c4957005f30c7

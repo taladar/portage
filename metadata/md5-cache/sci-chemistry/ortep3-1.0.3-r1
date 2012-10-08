@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install setup unpack
+DEPEND=virtual/fortran sci-libs/pgplot x11-libs/libX11
+DESCRIPTION=Thermal ellipsoid plot program for crystal structure illustrations
+EAPI=4
+HOMEPAGE=http://www.ornl.gov/sci/ortep/
+KEYWORDS=~amd64 ~x86
+LICENSE=public-domain
+RDEPEND=virtual/fortran sci-libs/pgplot x11-libs/libX11
+SLOT=0
+SRC_URI=ftp://ftp.ornl.gov/pub/ortep/src/ortep.f
+_eclasses_=eutils	2fd401453e32e8c9a676cd0361b82a5f	fortran-2	10b674bd28e4fbddd7354ab832a57e1d	multilib	c2b85b5c63a44798c1e442147ac14c5c	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=eaf33c2a32b5acee56162671e04f0638

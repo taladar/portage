@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare test unpack
+DEPEND=>=sys-apps/sed-4 !<sys-apps/portage-2.1.10.58 python_targets_python2_6? ( dev-lang/python:2.6 ) python_targets_python2_7? ( dev-lang/python:2.7 )
+DESCRIPTION=Flickr uploader for GNOME
+EAPI=4
+HOMEPAGE=http://projects.gnome.org/postr/
+IUSE=python_targets_python2_6 python_targets_python2_7
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=dev-python/bsddb3 dev-python/gconf-python dev-python/pygobject:2 dev-python/pygtk:2 dev-python/twisted dev-python/twisted-web python_targets_python2_6? ( dev-lang/python:2.6 ) python_targets_python2_7? ( dev-lang/python:2.7 )
+REQUIRED_USE=|| ( python_targets_python2_6 python_targets_python2_7 )
+SLOT=0
+SRC_URI=mirror://gnome/sources/postr/0.12/postr-0.12.4.tar.bz2
+_eclasses_=eutils	2fd401453e32e8c9a676cd0361b82a5f	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	45847910ffbe4d8bfb814e3527de1920	gnome2-utils	0d2178d7f87923f3c110366ece3c930f	libtool	2b273eea1976cfaed3449345d94331ac	multilib	c2b85b5c63a44798c1e442147ac14c5c	python-distutils-ng	3e9b44e207485638f0e2b21c6749bf7e	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
+_md5_=85b642c9df393d261759548f89d919b8

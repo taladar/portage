@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install
+DEPEND=virtual/pkgconfig
+DESCRIPTION=An audio codec to connect bluetooth high quality audio devices like headphones or loudspeakers
+EAPI=4
+HOMEPAGE=http://git.kernel.org/?p=bluetooth/sbc.git http://www.bluez.org/sbc-10/
+IUSE=static-libs
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2 LGPL-2.1
+RESTRICT=test
+SLOT=0
+SRC_URI=mirror://kernel/linux/bluetooth/sbc-1.0.tar.xz
+_eclasses_=eutils	2fd401453e32e8c9a676cd0361b82a5f	multilib	c2b85b5c63a44798c1e442147ac14c5c	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=a676eb6276f6e00690514a0295ce33d3

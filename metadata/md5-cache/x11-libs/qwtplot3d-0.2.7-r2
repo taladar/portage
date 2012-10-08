@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare unpack
+DEPEND=x11-libs/qt-gui:4 x11-libs/qt-opengl:4 x11-libs/gl2ps doc? ( app-doc/doxygen )
+DESCRIPTION=Qt4/OpenGL-based 3D widget library for C++
+EAPI=4
+HOMEPAGE=http://qwtplot3d.sourceforge.net/
+IUSE=doc examples
+KEYWORDS=amd64 ~ppc ~ppc64 x86
+LICENSE=ZLIB
+RDEPEND=x11-libs/qt-gui:4 x11-libs/qt-opengl:4 x11-libs/gl2ps
+SLOT=0
+SRC_URI=mirror://sourceforge/qwtplot3d/qwtplot3d-0.2.7.tgz
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	eutils	2fd401453e32e8c9a676cd0361b82a5f	multilib	c2b85b5c63a44798c1e442147ac14c5c	qt4-r2	75aa32643ef22632eb9b45989b4c03fc	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=c9bf44b7d6508d0a156d9289df1d02d0

@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test unpack
+DEPEND=dev-libs/libpcre expat? ( dev-libs/expat ) !expat? ( dev-libs/libxml2 ) media-libs/lib3ds sys-libs/zlib dev-libs/zziplib sys-apps/findutils sys-apps/sed >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=Stream based read/write library for COLLADA files
+EAPI=3
+HOMEPAGE=http://www.opencollada.org/
+IUSE=expat
+KEYWORDS=~amd64 ~ppc64 ~x86
+LICENSE=MIT
+RDEPEND=dev-libs/libpcre expat? ( dev-libs/expat ) !expat? ( dev-libs/libxml2 ) media-libs/lib3ds sys-libs/zlib dev-libs/zziplib
+SLOT=0
+SRC_URI=http://www.hartwork.org/public/opencollada-0_p864.tar.xz
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	2e18cd8b379d307b2473aa632de5a077	eutils	2fd401453e32e8c9a676cd0361b82a5f	flag-o-matic	2c938a1fe61ea9899a2b97ea1e065f5f	multilib	c2b85b5c63a44798c1e442147ac14c5c	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=0031c420d8f6add9971366dc82470ecd

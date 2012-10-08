@@ -1,0 +1,12 @@
+DEFINED_PHASES=install prepare
+DEPEND=>=virtual/jdk-1.6 dev-libs/openssl[-bindist]
+DESCRIPTION=Decrypt keys from an AACS source (HD DVD / Blu-Ray)
+EAPI=2
+HOMEPAGE=http://forum.doom9.org/showthread.php?t=123311
+KEYWORDS=amd64 x86
+LICENSE=as-is
+RDEPEND=dev-libs/openssl[-bindist]
+SLOT=0
+SRC_URI=mirror://gentoo/aacskeys-0.4.0c.tar.gz
+_eclasses_=eutils	2fd401453e32e8c9a676cd0361b82a5f	multilib	c2b85b5c63a44798c1e442147ac14c5c	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=d762d095752fd8800dfd56ddbb216d1c

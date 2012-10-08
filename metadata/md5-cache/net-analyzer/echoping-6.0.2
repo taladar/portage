@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install
+DEPEND=gnutls? ( >=net-libs/gnutls-1.0.17 ) ssl? ( >=dev-libs/openssl-0.9.7d ) idn? ( net-dns/libidn ) postgres? ( dev-db/postgresql-base ) ldap? ( net-nds/openldap )
+DESCRIPTION=echoping is a small program to test performances of remote servers
+HOMEPAGE=http://echoping.sourceforge.net/
+IUSE=gnutls http icp idn priority smtp ssl tos postgres ldap
+KEYWORDS=~amd64 x86
+LICENSE=GPL-2
+RDEPEND=gnutls? ( >=net-libs/gnutls-1.0.17 ) ssl? ( >=dev-libs/openssl-0.9.7d ) idn? ( net-dns/libidn ) postgres? ( dev-db/postgresql-base ) ldap? ( net-nds/openldap )
+RESTRICT=test
+SLOT=0
+SRC_URI=mirror://sourceforge/echoping/echoping-6.0.2.tar.gz
+_eclasses_=eutils	2fd401453e32e8c9a676cd0361b82a5f	multilib	c2b85b5c63a44798c1e442147ac14c5c	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=04aa6ad91ea47605c326e096c49133c7

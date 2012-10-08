@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare setup
+DEPEND=icu? ( >=dev-libs/icu-4.2 ) curl? ( net-misc/curl ) virtual/libiconv doc? ( app-doc/doxygen )
+DESCRIPTION=A validating XML parser written in a portable subset of C++.
+EAPI=2
+HOMEPAGE=http://xerces.apache.org/xerces-c/
+IUSE=curl doc iconv icu sse2 static-libs threads elibc_Darwin elibc_FreeBSD
+KEYWORDS=alpha amd64 hppa ppc ppc64 sparc x86 ~x86-fbsd
+LICENSE=Apache-2.0
+RDEPEND=icu? ( >=dev-libs/icu-4.2 ) curl? ( net-misc/curl ) virtual/libiconv
+SLOT=0
+SRC_URI=mirror://apache/xerces/c/3/sources/xerces-c-3.1.1.tar.gz
+_eclasses_=eutils	2fd401453e32e8c9a676cd0361b82a5f	multilib	c2b85b5c63a44798c1e442147ac14c5c	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=653c115118ffa8aee1ef41bd957921c0

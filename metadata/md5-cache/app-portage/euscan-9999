@@ -1,0 +1,10 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup unpack
+DEPEND=sys-apps/portage dev-lang/python[xml] dev-lang/python dev-vcs/git
+DESCRIPTION=Ebuild upstream scan utility
+EAPI=3
+HOMEPAGE=http://euscan.iksaif.net
+LICENSE=GPL-2
+RDEPEND=sys-apps/portage >=app-portage/gentoolkit-0.2.8 dev-python/argparse dev-python/setuptools dev-python/beautifulsoup:python-2 dev-lang/python[xml] dev-lang/python
+SLOT=0
+_eclasses_=distutils	15ae23f6f8219a009bfcfff7724fe727	git-2	15733ab6a6feb34af9837b41623c2bad	multilib	c2b85b5c63a44798c1e442147ac14c5c	python	3db636724bc2886c6425058e210067d2	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4
+_md5_=e16088dd6a9e52e6e99b669b9e3bd000

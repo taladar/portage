@@ -1,0 +1,9 @@
+DEFINED_PHASES=install unpack
+DEPEND=dev-vcs/git
+DESCRIPTION=A library to decode Bluetooth baseband packets
+EAPI=4
+HOMEPAGE=http://libbtbb.sourceforge.net/
+LICENSE=GPL-2
+SLOT=0
+_eclasses_=git-2	15733ab6a6feb34af9837b41623c2bad	multilib	c2b85b5c63a44798c1e442147ac14c5c	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4
+_md5_=cc00101d79404708b9da77d1878d4981

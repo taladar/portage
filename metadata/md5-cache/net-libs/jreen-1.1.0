@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test unpack
+DEPEND=>=app-crypt/qca-2.0.3 >=net-dns/libidn-1.20 >=x11-libs/qt-core-4.6.0:4 >=x11-libs/qt-gui-4.6.0:4 >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=Qt XMPP library
+EAPI=4
+HOMEPAGE=https://github.com/euroelessar/jreen
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=>=app-crypt/qca-2.0.3 >=net-dns/libidn-1.20 >=x11-libs/qt-core-4.6.0:4 >=x11-libs/qt-gui-4.6.0:4
+SLOT=0
+SRC_URI=http://qutim.org/downloads/libjreen-1.1.0.tar.bz2 -> jreen-1.1.0.tar.bz2
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	2e18cd8b379d307b2473aa632de5a077	eutils	2fd401453e32e8c9a676cd0361b82a5f	flag-o-matic	2c938a1fe61ea9899a2b97ea1e065f5f	multilib	c2b85b5c63a44798c1e442147ac14c5c	qt4-r2	75aa32643ef22632eb9b45989b4c03fc	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=5f3aa4d1835d05032dd184eacdbfa5bf
