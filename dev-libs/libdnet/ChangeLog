@@ -1,6 +1,20 @@
 # ChangeLog for dev-libs/libdnet
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libdnet/ChangeLog,v 1.56 2012/07/08 17:29:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libdnet/ChangeLog,v 1.59 2012/10/10 18:17:08 jer Exp $
+
+  10 Oct 2012; Jeroen Roovers <jer@gentoo.org> -libdnet-1.11-r1.ebuild,
+  libdnet-1.12.ebuild:
+  With RESTRICT=test it is useful to know about the dependency, but it need not
+  be set. Remove useless trunk/ subdir.
+
+  10 Oct 2012; Jeroen Roovers <jer@gentoo.org> libdnet-1.12.ebuild:
+  Readd keywords (bug #437800).
+
+*libdnet-1.12 (10 Oct 2012)
+
+  10 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> +libdnet-1.12.ebuild,
+  metadata.xml:
+  Version bump with optional ipv6 support, add upstream info to metadata
 
   08 Jul 2012; Raúl Porcel <armin76@gentoo.org> libdnet-1.11-r2.ebuild:
   alpha/ia64/sparc stable wrt #418751

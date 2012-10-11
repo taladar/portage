@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-9999.ebuild,v 1.59 2012/09/21 22:49:15 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-9999.ebuild,v 1.60 2012/10/10 22:16:47 zmedico Exp $
 
 EAPI=3
 inherit git-2 eutils python
@@ -240,7 +240,7 @@ src_install() {
 	# Set PYTHONPATH for portage API consumers. This way we don't have
 	# to rely on patched python having the correct path, since it has
 	# been known to incorrectly add /usr/libx32/portage/pym to sys.path.
-	echo "PYTHONPATH=${EPREFIX}/usr/lib/portage/pym" > \
+	echo "PYTHONPATH=\"${EPREFIX}/usr/lib/portage/pym\"" > \
 		"${T}/05portage" || die
 	doenvd "${T}/05portage"
 }
