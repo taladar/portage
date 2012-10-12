@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-rpg/egoboo/egoboo-2.8.1.ebuild,v 1.2 2012/07/02 04:48:45 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-rpg/egoboo/egoboo-2.8.1.ebuild,v 1.4 2012/10/11 22:55:09 mr_bones_ Exp $
 
 EAPI=2
 inherit eutils games
@@ -11,12 +11,12 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ppc ~x86"
 IUSE=""
 
 DEPEND="virtual/opengl
 	virtual/glu
-	media-libs/libsdl[video]
+	media-libs/libsdl[joystick,video]
 	media-libs/sdl-image
 	media-libs/sdl-mixer[vorbis]
 	media-libs/sdl-ttf

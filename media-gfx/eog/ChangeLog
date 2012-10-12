@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/eog
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/eog/ChangeLog,v 1.292 2012/07/16 06:52:09 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/eog/ChangeLog,v 1.294 2012/10/11 14:12:19 tetromino Exp $
+
+*eog-3.4.3-r1 (11 Oct 2012)
+
+  11 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org> eog-2.32.1.ebuild,
+  -eog-3.2.2.ebuild, -eog-3.4.1.ebuild, eog-3.4.3.ebuild, +eog-3.4.3-r1.ebuild,
+  +files/eog-3.4.3-libm.patch, +files/eog-3.4.3-require-librsvg-2.36.2.patch,
+  +files/eog-3.6.0-eog.desktop.patch:
+  Fix USE=-svg build failure (bug #437880, thanks to Francesco Turco). Remove
+  useless USE=doc, it only regenerated documentation. Update license. Drop old.
 
 *eog-3.4.3 (16 Jul 2012)
 

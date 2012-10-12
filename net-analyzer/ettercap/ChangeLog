@@ -1,6 +1,15 @@
 # ChangeLog for net-analyzer/ettercap
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ettercap/ChangeLog,v 1.98 2012/10/10 19:52:18 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ettercap/ChangeLog,v 1.101 2012/10/11 23:07:31 blueness Exp $
+
+  11 Oct 2012; Anthony G. Basile <blueness@gentoo.org> ettercap-0.7.5.ebuild:
+  stable ppc ppc64, bug #340897
+
+  11 Oct 2012; Agostino Sarubbo <ago@gentoo.org> ettercap-0.7.5.ebuild:
+  Stable for AMD64, wrt bug #430897
+
+  11 Oct 2012; Andreas Schuerch <nativemad@gentoo.org> ettercap-0.7.5.ebuild:
+  x86 stable, see bug 340897
 
 *ettercap-0.7.5 (10 Oct 2012)
 

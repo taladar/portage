@@ -467,11 +467,13 @@ app-emulation/qemu:alsa - Enable alsa output for sound emulation
 app-emulation/qemu:brltty - Adds support for braille displays using brltty
 app-emulation/qemu:curl - Support ISOs / -cdrom directives vis HTTP or HTTPS.
 app-emulation/qemu:fdt - Enables firmware device tree support
+app-emulation/qemu:jpeg - Enable jpeg image support for the VNC console server
 app-emulation/qemu:kqemu - Enable old kqemu acceleration
 app-emulation/qemu:kvm - Enable Linux KVM support
 app-emulation/qemu:mixemu - Enable audio mixer emulation. On Fedora, known to cause performance problems when using SDL output and ALSA. For OSS, locks the sound device from other applications.
 app-emulation/qemu:ncurses - Enable the ncurses-based console
 app-emulation/qemu:nss - Enable smartcard support
+app-emulation/qemu:png - Enable png image support for the VNC console server
 app-emulation/qemu:pulseaudio - Enable pulseaudio output for sound emulation
 app-emulation/qemu:qemu-ifup - Provides the qemu-ifup script for use with QEMU's built in bridging
 app-emulation/qemu:rbd - Enable rados block device backend support, see http://ceph.newdream.net/wiki/QEMU-RBD
@@ -1972,10 +1974,9 @@ games-rpg/nwn-data:nowin - For those people who cant grab the 1.2 gigs of data f
 games-rpg/nwn-data:sou - Installs the Shadows of Undrentide expension pack
 games-rpg/sumwars:tools - Builds editor tools
 games-simulation/flightgear:jsbsim - Enables JSBSim Flight Dynamics Model (default)
-games-simulation/flightgear:larcsim - Enables LaRCsim Flight Dynamics Model
+games-simulation/flightgear:oldfdm - Enables deprecated Flight Dynamics Models (LaRCsim, UIUC)
 games-simulation/flightgear:subversion - Enables terrasync scenery downloader
 games-simulation/flightgear:udev - Enables event-based Input devices through sys-fs/udev
-games-simulation/flightgear:uiuc - Enables UIUC Flight Dynamics Model
 games-simulation/flightgear:yasim - Enables YASim Flight Dynamics Model
 games-simulation/openttd:aplaymidi - Enables midi music in game, using aplaymidi as an external player
 games-simulation/openttd:dedicated - Build only the openttd server, and not the client.
@@ -2353,6 +2354,9 @@ mail-client/thunderbird:mozdom - Enable Mozilla's DOM inspector
 mail-client/thunderbird:system-sqlite - Use the system-wide dev-db/sqlite installation with secure-delete enabled
 mail-client/thunderbird:webm - Use system media-libs/libvpx for HTML5 WebM video support.
 mail-client/thunderbird-bin:crashreporter - Enable crash reporter for bugs
+mail-filter/MailScanner:exim - Set mail-mta to used MTA
+mail-filter/MailScanner:postfix - Set mail-mta/postfix to used MTA
+mail-filter/MailScanner:spamassassin - Enable usage of mail-filter/spamassassin for spam protection
 mail-filter/amavisd-new:courier - Add courier support
 mail-filter/amavisd-new:dkim - Add DomainKeys Identified Mail support
 mail-filter/amavisd-new:qmail - Add qmail support
@@ -5797,6 +5801,8 @@ x11-libs/libqxt:sql - Build the QxtSql module
 x11-libs/libqxt:web - Build the QxtWeb module
 x11-libs/libqxt:zeroconf - Build the QxtZeroconf module
 x11-libs/libva:egl - Enables EGL support.
+x11-libs/libva:wayland - Enable dev-libs/wayland backend.
+x11-libs/libva-intel-driver:wayland - Enable dev-libs/wayland backend.
 x11-libs/libwnck:introspection - Use dev-libs/gobject-introspection for introspection
 x11-libs/libwnck:tools - Install wnckprop-3 and wnck-urgency-monitor-3 command-line tools
 x11-libs/libxklavier:introspection - Use dev-libs/gobject-introspection for introspection

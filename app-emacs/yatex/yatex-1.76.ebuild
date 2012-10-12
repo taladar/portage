@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/yatex/yatex-1.76.ebuild,v 1.4 2012/10/10 15:39:16 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/yatex/yatex-1.76.ebuild,v 1.9 2012/10/11 18:59:14 ulm Exp $
 
 EAPI=4
 
@@ -15,24 +15,21 @@ SLOT="0"
 LICENSE="YaTeX"
 IUSE="linguas_ja"
 
-S=${WORKDIR}/${P/-/}
+S="${WORKDIR}/${P/-/}"
+ELISP_PATCHES="${PN}-1.76-gentoo.patch
+	${PN}-1.76-direntry.patch"
 SITEFILE="50${PN}-gentoo.el"
-
-src_prepare() {
-	epatch "${FILESDIR}/${PN}-1.76-gentoo.patch"
-}
 
 src_compile() {
 	# byte-compilation fails (as of 1.74): yatexlib.el requires fonts
 	# that are only available under X
 
+	local texi="yatexe.tex yahtmle.tex"
+	use linguas_ja && texi+=" yatexj.tex yahtmlj.tex"
+
 	cd docs
-	cp yatexe yatex.info || die
-	cp yahtmle yahtml.info || die
-	if use linguas_ja; then
-		iconv -f ISO-2022-JP -t EUC-JP yatexj > yatex-ja.info || die
-		iconv -f ISO-2022-JP -t EUC-JP yahtmlj > yahtml-ja.info || die
-	fi
+	# makeinfo fails, so use Emacs to generate Info from Texinfo
+	${EMACS} ${EMACSFLAGS} -l texinfmt -f batch-texinfo-format ${texi} || die
 }
 
 src_install() {
@@ -41,12 +38,12 @@ src_install() {
 
 	insinto ${SITEETC}/${PN}
 	doins help/YATEXHLP.eng
-
-	doinfo docs/*.info
+	doinfo docs/yatex.info docs/yahtml.info
 	dodoc docs/*.eng
 
 	if use linguas_ja; then
 		doins help/YATEXHLP.jp
+		doinfo docs/yatex-ja.info docs/yahtml-ja.info
 		dodoc 00readme install docs/{htmlqa,qanda} docs/*.doc
 	fi
 }

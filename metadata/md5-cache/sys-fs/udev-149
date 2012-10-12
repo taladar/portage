@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=selinux? ( sys-libs/libselinux ) extras? ( sys-apps/acl >=sys-apps/usbutils-0.82 virtual/libusb:0 sys-apps/pciutils dev-libs/glib:2 ) >=sys-apps/util-linux-2.16 !<sys-libs/glibc-2.9 !sys-apps/coldplug !<sys-fs/lvm2-2.02.45 !sys-fs/device-mapper >=sys-apps/baselayout-1.12.5
 SLOT=0
 SRC_URI=mirror://kernel/linux/utils/kernel/hotplug/udev-149.tar.bz2 test? ( mirror://gentoo/udev-149-testsys.tar.bz2 ) mirror://gentoo/udev-149-gentoo-patchset-v1.tar.bz2
-_eclasses_=eutils	2fd401453e32e8c9a676cd0361b82a5f	flag-o-matic	2c938a1fe61ea9899a2b97ea1e065f5f	linux-info	0b7adf68a2edb4e5a32b07bb6e68121c	multilib	c2b85b5c63a44798c1e442147ac14c5c	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
+_eclasses_=eutils	5a98daf52f7430a4a6f46cee24cfe3e2	flag-o-matic	2c938a1fe61ea9899a2b97ea1e065f5f	linux-info	0b7adf68a2edb4e5a32b07bb6e68121c	multilib	c2b85b5c63a44798c1e442147ac14c5c	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
 _md5_=339b76a43ee7acb630fd321642509bdf
