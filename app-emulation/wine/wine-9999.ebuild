@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/wine/wine-9999.ebuild,v 1.115 2012/09/10 06:02:11 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/wine/wine-9999.ebuild,v 1.116 2012/10/12 21:17:20 tetromino Exp $
 
 EAPI="4"
 
@@ -18,7 +18,7 @@ else
 	S=${WORKDIR}/${MY_P}
 fi
 
-GV="1.7"
+GV="1.8"
 MV="0.0.4"
 PULSE_PATCH="winepulse-2012.06.15.patch"
 DESCRIPTION="free implementation of Windows(tm) on Unix"
@@ -33,7 +33,7 @@ SRC_URI="${SRC_URI}
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-IUSE="alsa capi cups custom-cflags elibc_glibc fontconfig +gecko gnutls gphoto2 gsm gstreamer hardened jpeg lcms ldap +mono mp3 ncurses nls odbc openal opencl +opengl osmesa +oss +perl png pulseaudio samba scanner selinux ssl test +threads +truetype udisks v4l +win32 +win64 +X xcomposite xinerama xml"
+IUSE="alsa capi cups custom-cflags elibc_glibc fontconfig +gecko gnutls gphoto2 gsm gstreamer hardened jpeg lcms ldap +mono mp3 ncurses nls odbc openal opencl +opengl osmesa osmesa-multilib +oss +perl png pulseaudio samba scanner selinux ssl test +threads +truetype udisks v4l +win32 +win64 +X xcomposite xinerama xml"
 REQUIRED_USE="elibc_glibc? ( threads )
 	mono? ( || ( win32 !win64 ) )
 	osmesa? ( opengl )" #286560
@@ -69,6 +69,7 @@ RDEPEND="truetype? ( >=media-libs/freetype-2.0.0 media-fonts/corefonts )
 	gstreamer? ( media-libs/gstreamer media-libs/gst-plugins-base )
 	X? (
 		x11-libs/libXcursor
+		x11-libs/libXext
 		x11-libs/libXrandr
 		x11-libs/libXi
 		x11-libs/libXmu
@@ -153,9 +154,13 @@ do_configure() {
 	pushd "${builddir}" >/dev/null
 
 	with_osmesa=$(use_with osmesa)
-	if use osmesa && use amd64 && [[ $1 = 32 ]]; then #430268
-		elog "win32 osmesa support is disabled for now, see bug #430268"
-		with_osmesa=--without-osmesa
+	if use amd64 && [[ $1 = 32 ]]; then #430268
+		if use osmesa-multilib; then
+			with_osmesa=--with-osmesa
+		else
+			elog "win32 osmesa support is disabled for now, see bug #430268"
+			with_osmesa=--without-osmesa
+		fi
 	fi
 
 	ECONF_SOURCE=${S} \

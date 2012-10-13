@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ifenslave/ifenslave-1.1.0-r6.ebuild,v 1.3 2012/10/10 15:43:44 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ifenslave/ifenslave-1.1.0-r6.ebuild,v 1.5 2012/10/12 21:09:49 robbat2 Exp $
 
 EAPI=4
 
@@ -10,7 +10,7 @@ DEBIANPKG_TARBALL="${MY_PN}_${PV}.orig.tar.gz"
 DEBIANPKG_PATCH="${MY_PN}_${PV}-${DEBIAN_PV}.debian.tar.gz"
 DEBIANPKG_BASE="mirror://debian/pool/main/${MY_PN:0:1}/${MY_PN}"
 
-inherit toolchain-funcs
+inherit toolchain-funcs linux-info
 
 DESCRIPTION="Attach and detach slave interfaces to a bonding device"
 HOMEPAGE="http://sf.net/projects/bonding/"
@@ -19,13 +19,16 @@ SRC_URI="${DEBIANPKG_BASE}/${DEBIANPKG_TARBALL}
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ppc ~sparc ~x86"
+KEYWORDS="amd64 ~arm ppc ~sparc ~x86"
 IUSE=""
 
 RDEPEND=""
 DEPEND="sys-devel/gcc
 	>=sys-kernel/linux-headers-2.4.22
 	${RDEPEND}"
+
+CONFIG_CHECK="~BONDING"
+WARNING_BONDING="CONFIG_BONDING is required to get bond devices in the kernel"
 
 src_compile() {
 	$(tc-getCC) ${CFLAGS} ${LDFLAGS} ${PN}.c -o ${PN} || die "Failed to compile!"

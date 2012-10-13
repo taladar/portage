@@ -1,6 +1,17 @@
 # ChangeLog for x11-misc/xteddy
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xteddy/ChangeLog,v 1.9 2012/05/05 04:53:52 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xteddy/ChangeLog,v 1.12 2012/10/12 18:23:40 pinkbyte Exp $
+
+  12 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> xteddy-2.2.ebuild:
+  Default xteddy image files format is png, so add apropriate USE-flag
+  dependency on imlib2
+
+  12 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> xteddy-2.2.ebuild:
+  Fix imlib2 dependency wrt bug #438102. Thanks to Vicente Olivert Riera for
+  discovering this issue
+
+  12 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> xteddy-2.2.ebuild:
+  Fix paths in xtoys script wrt bug #404899
 
   05 May 2012; Jeff Horelick <jdhore@gentoo.org> xteddy-2.2.ebuild:
   dev-util/pkgconfig -> virtual/pkgconfig
