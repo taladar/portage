@@ -1,10 +1,27 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7027 2012/10/12 06:09:02 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7032 2012/10/14 17:48:38 pinkbyte Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  14 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> package.mask:
+  Unmask net-analyzer/fragroute, cause all of it's dependencies are also
+  unmasked now
+
+  14 Oct 2012; Andreas K. Huettel <dilfridge@gentoo.org> updates/4Q-2012:
+  Move media-libs/libmediawiki to net-libs
+
+  14 Oct 2012; Michał Górny <mgorny@gentoo.org> base/package.use.force:
+  Force-enable all Python implementations for python-exec.
+
+  14 Oct 2012; Markos Chandras <hwoarang@gentoo.org>
+  -default/linux/amd64/10.0/server/profile.bashrc:
+  Get rid of the ewarn message for the amd64/10.0/server profile
+
+  13 Oct 2012; <naota@gentoo.org> package.mask:
+  Mask unstable ibus which depend on newer dconf.
 
   12 Oct 2012; Patrick Lauer <patrick@gentoo.org> package.mask:
   Removing apache 2.4 mask

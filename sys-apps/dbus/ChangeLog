@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.359 2012/10/06 10:49:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.362 2012/10/14 14:38:52 armin76 Exp $
+
+  14 Oct 2012; Raúl Porcel <armin76@gentoo.org> dbus-1.6.8.ebuild:
+  ia64/s390/sh/sparc stable wrt #416725
+
+  14 Oct 2012; Anthony G. Basile <blueness@gentoo.org> dbus-1.6.8.ebuild:
+  stable ppc ppc64, bug #436028
+
+  14 Oct 2012; Matt Turner <mattst88@gentoo.org> dbus-1.6.8.ebuild:
+  Stable on alpha, bug 436028.
 
   06 Oct 2012; Markus Meier <maekke@gentoo.org> dbus-1.6.8.ebuild:
   arm stable, bug #436028
