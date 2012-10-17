@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/gnome-icon-theme-3.4.0.ebuild,v 1.7 2012/10/14 23:41:57 mattst88 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/gnome-icon-theme-3.4.0.ebuild,v 1.9 2012/10/16 21:45:05 tetromino Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
@@ -16,7 +16,7 @@ SRC_URI="${SRC_URI}
 LICENSE="|| ( LGPL-3 CCPL-Attribution-ShareAlike-3.0 )
 	branding? ( CCPL-Sampling-Plus-1.0 )"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ~ia64 ~mips ~ppc ppc64 ~sh ~sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm ~ia64 ~mips ppc ppc64 ~sh ~sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="branding"
 
 RDEPEND=">=x11-themes/hicolor-icon-theme-0.10"
@@ -50,6 +50,7 @@ src_prepare() {
 
 	# Revert upstream commit that is wrongly updating icon cache, upstream bug #642449
 	EPATCH_OPTS="-R" epatch "${FILESDIR}/${PN}-2.91.7-update-cache.patch"
-	intltoolize --force --copy --automake || die "intltoolize failed"
+
+	eaclocal --force # workaround for weird autotools.eclass bug #438296, #419933
 	eautoreconf
 }

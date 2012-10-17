@@ -4161,6 +4161,9 @@ net-libs/libpcap:canusb - Use virtual/libusb to support Controller Area Network 
 net-libs/libpcap:netlink - Use dev-libs/libnl to put wireless interfaces in monitor mode.
 net-libs/libproxy:gnome - Enable support for reading proxy settings from GNOME
 net-libs/libproxy:kde - Enable support for reading proxy settings from KDE
+net-libs/libproxy:pac - Enable support for PAC and WPAD (proxy auto-config and autodiscovery)
+net-libs/libproxy:spidermonkey - Use libmozjs from dev-lang/spidermonkey for PAC parsing
+net-libs/libproxy:webkit - Use libjavascriptcoregtk from net-libs/webkit-gtk for PAC parsing
 net-libs/libsocialweb:connman - Use net-misc/connman for getting network connection status information
 net-libs/libsocialweb:gnome - Extract proxy information using net-libs/libsoup-gnome
 net-libs/libsocialweb:introspection - Use dev-libs/gobject-introspection for introspection
@@ -4428,7 +4431,14 @@ net-misc/iputils:SECURITY_HAZARD - Allow non-root users to flood (ping -f). This
 net-misc/knock:server - Installs the knockd server daemon.
 net-misc/leechcraft-netstoremanager:googledrive - Support Google Drive storage backend
 net-misc/leechcraft-netstoremanager:yandexdisk - Support Yandex.Disk storage backend
+net-misc/lldpd:cdp - Enable Cisco Discovery Protocol
+net-misc/lldpd:dot1 - Enable Dot1 extension (VLAN stuff)
+net-misc/lldpd:dot3 - Enable Dot3 extension (PHY stuff)
+net-misc/lldpd:edp - Enable Extreme Discovery Protocol
+net-misc/lldpd:fdp - Enable Foundry Discovery Protocol
+net-misc/lldpd:lldpmed - Enable LLDP-MED extension
 net-misc/lldpd:snmp - Enable the use of SNMP
+net-misc/lldpd:sonmp - Enable SynOptics Network Management
 net-misc/mediatomb:id3tag - Use media-libs/libid3tag for reading files' metadata rather than taglib
 net-misc/mediatomb:inotify - Enable inotify filesystem monitoring support
 net-misc/mediatomb:lastfm - Enable last.fm support
@@ -4969,7 +4979,6 @@ sci-libs/mathgl:double-precision - Add double precision calculations
 sci-libs/mathgl:hdf - Add support for the Hierarchical Data Format v.4 sci-libs/hdf
 sci-libs/mathgl:octave - Add bindings for sci-mathematics/octave
 sci-libs/matio:sparse - Extend formats for sparse matrix (not matlab)
-sci-libs/metis:int64 - Build the 64 bits integer library (metis >=5 only)
 sci-libs/mkl:fortran95 - Installs the BLAS/LAPACK FORTRAN95 static libraries
 sci-libs/mkl:int64 - Installs the 64 bits integer libraries
 sci-libs/mkl:serial - Installs the serial (as non-threaded) libraries
@@ -5710,6 +5719,7 @@ www-plugins/gnash:cygnal - Enable building of the cygnal server
 www-plugins/gnash:dump - Enable dump output module for creating video from SWF
 www-plugins/gnash:egl - Enable EGL support for the OpenVG, OpenGL and X11 renderers
 www-plugins/gnash:gconf - Enable GConf configuration backend
+www-plugins/gnash:harden - Enable upstream recommended hardening build flags (may conflict with system ones)
 www-plugins/gnash:openvg - Rendering based on the OpenVG graphics acceleration API
 www-plugins/gnash:sdl-sound - Enable SDL audio output for the standalone player
 www-plugins/gnash:ssh - Enable using SSH for network authentication in libnet
