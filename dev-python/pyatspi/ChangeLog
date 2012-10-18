@@ -1,6 +1,18 @@
 # ChangeLog for dev-python/pyatspi
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyatspi/ChangeLog,v 1.12 2012/09/25 15:18:36 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyatspi/ChangeLog,v 1.15 2012/10/17 04:34:27 mattst88 Exp $
+
+  17 Oct 2012; Matt Turner <mattst88@gentoo.org> pyatspi-2.6.0.ebuild:
+  Added ~alpha.
+
+  17 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  pyatspi-2.2.1.ebuild, pyatspi-2.4.0.ebuild, pyatspi-2.6.0.ebuild:
+  Disable tests: as pointed out by Matt Turner, src_test was not running the
+  test suite properly, and attempting to run it properly showed that it is
+  obsolete and unpassable.
+
+  17 Oct 2012; Matt Turner <mattst88@gentoo.org> pyatspi-2.4.0.ebuild:
+  Added ~alpha, bug 411761.
 
 *pyatspi-2.6.0 (25 Sep 2012)
 
@@ -56,4 +68,3 @@
   19 Aug 2011; Nirbheek Chauhan <nirbheek@gentoo.org> +pyatspi-2.0.2.ebuild,
   +metadata.xml:
   Move from gnome overlay for GNOME 3
-

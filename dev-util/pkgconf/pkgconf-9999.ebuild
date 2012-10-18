@@ -1,21 +1,20 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconf/pkgconf-9999.ebuild,v 1.10 2012/08/26 17:41:02 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconf/pkgconf-9999.ebuild,v 1.12 2012/10/17 15:51:49 ryao Exp $
 
 EAPI="4"
 
 if [[ ${PV} == "9999" ]] ; then
-	EGIT_REPO_URI="git://github.com/nenolod/pkgconf.git"
+	EGIT_REPO_URI="git://github.com/pkgconf/pkgconf.git"
 	inherit autotools git-2
 else
-	#inherit autotools vcs-snapshot
-	#SRC_URI="https://github.com/nenolod/pkgconf/tarball/${P} -> ${P}.tar.gz"
-	SRC_URI="http://tortois.es/~nenolod/distfiles/${P}.tar.bz2"
+	inherit autotools vcs-snapshot
+	SRC_URI="https://github.com/pkgconf/pkgconf/tarball/${P} -> ${P}.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd"
 fi
 
 DESCRIPTION="pkg-config compatible replacement with no dependencies other than ANSI C89"
-HOMEPAGE="https://github.com/nenolod/pkgconf"
+HOMEPAGE="https://github.com/pkgconf/pkgconf"
 
 LICENSE="BSD-1"
 SLOT="0"
