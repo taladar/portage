@@ -4691,6 +4691,7 @@ net-print/hplip:hpcups - Build the hpcups driver for cups (by HP)
 net-print/hplip:hpijs - Build the IJS driver for cups (Foomatic)
 net-print/hplip:kde - Enables kde-misc/skanlite as scanner GUI with USE="scanner X"
 net-print/hplip:libnotify - Enables desktop notifications
+net-print/hplip:libusb0 - Depend on virtual/libusb:0. Some old printers do not work with virtual/libusb:1
 net-print/hplip:minimal - Only build internal hpijs/hpcups driver (not recommended at all, make sure you know what you are doing)
 net-print/hplip:parport - Enable parallel port for devices which require it
 net-print/hplip:qt4 - Enable graphical interface using Qt 4
@@ -5718,6 +5719,8 @@ www-plugins/adobe-flash:64bit - For amd64-multilib, installs the native 64-bit p
 www-plugins/adobe-flash:kde - Enables a KCM plugin for configuring flash player preferences
 www-plugins/adobe-flash:sse2check - This flag, enabled by default, will check for sse2 support on your cpu and die if not found. If you are remote-building this package, you can disable this flag but you have been warned
 www-plugins/adobe-flash:vdpau - Enables VDPAU support to offload video processing (32-bit flash player only)
+www-plugins/chrome-binary-plugins:flash - Install Chrome's native Pepper Flash.
+www-plugins/chrome-binary-plugins:pdf - Install Chrome's native PDF reader plugin.
 www-plugins/gnash:agg - Rendering based on the Anti-Grain Geometry Rendering Engine library
 www-plugins/gnash:cygnal - Enable building of the cygnal server
 www-plugins/gnash:dump - Enable dump output module for creating video from SWF
