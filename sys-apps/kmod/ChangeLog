@@ -1,5 +1,19 @@
 # ChangeLog for sys-apps/kmod
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/ChangeLog,v 1.51 2012/09/20 12:18:55 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/ChangeLog,v 1.53 2012/10/20 09:30:13 ssuominen Exp $
+
+*kmod-10-r2 (20 Oct 2012)
+
+  20 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> +kmod-10-r2.ebuild,
+  kmod-9999.ebuild:
+  Convert from modprobe install to softdep wrt #396147 by Gustavo Sverzut
+  Barbieri
+
+*kmod-10-r1 (20 Oct 2012)
+
+  20 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> +kmod-10-r1.ebuild,
+  kmod-9999.ebuild:
+  Forward /etc/modprobe.d/usb-load-ehci-first.conf from module-init-tools to
+  kmod wrt #260139
 
   20 Sep 2012; Tim Harder <radhermit@gentoo.org> metadata.xml:
   Remove extraneous character from email address.
