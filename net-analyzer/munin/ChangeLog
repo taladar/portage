@@ -1,6 +1,30 @@
 # ChangeLog for net-analyzer/munin
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/munin/ChangeLog,v 1.109 2012/10/18 19:06:33 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/munin/ChangeLog,v 1.114 2012/10/21 06:00:13 flameeyes Exp $
+
+  21 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/munin-asyncd.init.2:
+  Fix init script's spooldir path.
+
+*munin-2.0.7-r4 (21 Oct 2012)
+
+  21 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> +munin-2.0.7-r4.ebuild,
+  -munin-2.0.7-r3.ebuild:
+  Revert to patchset 3.
+
+*munin-2.0.7-r3 (21 Oct 2012)
+
+  21 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> +munin-2.0.7-r3.ebuild,
+  -munin-2.0.7-r2.ebuild:
+  Bump to fix the ipmi plugin, also add one more patch for async.
+
+  21 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> +files/munin.env,
+  munin-2.0.7-r2.ebuild:
+  Add a CONFIG_PROTECT setting for the munin-asyncd allowed keys.
+
+  21 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> munin-2.0.7-r2.ebuild:
+  Make sure to set the correct owner to /var/spool/munin-async out of the
+  ebuild.
 
   18 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> metadata.xml,
   munin-2.0.7-r2.ebuild:
