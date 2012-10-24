@@ -10,5 +10,5 @@ RDEPEND=>=x11-themes/hicolor-icon-theme-0.12
 RESTRICT=binchecks strip
 SLOT=0
 SRC_URI=http://tango.freedesktop.org/releases/tango-icon-theme-0.8.90.tar.gz
-_eclasses_=gnome2-utils	0d2178d7f87923f3c110366ece3c930f
+_eclasses_=gnome2-utils	caae323c204f383b8831f0d6039a6c99
 _md5_=6f08f2a47d4a6df3fa484717aa83af19

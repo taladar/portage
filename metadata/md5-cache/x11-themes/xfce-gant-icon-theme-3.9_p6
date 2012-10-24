@@ -8,5 +8,5 @@ RDEPEND=x11-themes/hicolor-icon-theme
 RESTRICT=binchecks strip
 SLOT=0
 SRC_URI=http://overlay.uberpenguin.net/icons-xfce-gant-3.9-6.tar.bz2
-_eclasses_=gnome2-utils	0d2178d7f87923f3c110366ece3c930f
+_eclasses_=gnome2-utils	caae323c204f383b8831f0d6039a6c99
 _md5_=2f6e2bb59df4db9b9088c11ee602f551
