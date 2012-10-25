@@ -1,6 +1,21 @@
 # ChangeLog for app-crypt/libsecret
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/libsecret/ChangeLog,v 1.1 2012/09/25 10:06:41 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/libsecret/ChangeLog,v 1.4 2012/10/24 16:47:22 tetromino Exp $
+
+  24 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  libsecret-0.11.ebuild:
+  Correctly order python_set_active_version / python_pkg_setup.
+
+  24 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  libsecret-0.11.ebuild:
+  G2CONF usage fix.
+
+*libsecret-0.11 (24 Oct 2012)
+
+  24 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +libsecret-0.11.ebuild, metadata.xml:
+  Version bump with stricter error handling. Respect USE=-introspection. Enable
+  vala bindings. Add missing dependencies for the test suite.
 
 *libsecret-0.10 (25 Sep 2012)
 

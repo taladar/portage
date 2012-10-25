@@ -290,6 +290,7 @@ app-crypt/johntheripper:cuda - Use nvidia cuda toolkit for speeding up cracking 
 app-crypt/johntheripper:opencl - Enable opencl support for speeding up cracking on capable devices
 app-crypt/kstart:afs - Enables afs support which means you can acquire an afs token and set PAGs. It's recommended to set this USE if you need authenticated access to an AFS cell for your daemon/app.
 app-crypt/libsecret:introspection - Use dev-libs/gobject-introspection for introspection
+app-crypt/libsecret:vala - Enable bindings for dev-lang/vala
 app-crypt/mit-krb5:doc - Creates and installs the API and implementation documentation. This is only useful if you want to develop software which depends on kerberos.
 app-crypt/mit-krb5:keyutils - Enable for the keyring ccache using keyutils.
 app-crypt/mit-krb5:openldap - Enable support for ldap as a database backend.
@@ -2634,6 +2635,7 @@ media-libs/gst-plugins-good:orc - Use dev-lang/orc for runtime optimisations
 media-libs/gst-rtsp-server:introspection - Use dev-libs/gobject-introspection for introspection
 media-libs/gst-rtsp-server:vala - Add support for dev-lang/vala
 media-libs/gstreamer:introspection - Use dev-libs/gobject-introspection for introspection
+media-libs/gstreamer:orc - Disable some PaX memory protections to allow plugins that use dev-lang/orc for runtime optimization to be used on hardened PaX systems
 media-libs/gupnp-dlna:introspection - Use dev-libs/gobject-introspection for introspection
 media-libs/harfbuzz:glib - Enable support for C library routines from dev-libs/glib
 media-libs/harfbuzz:graphite - Enable support for non-Roman fonts via media-gfx/graphite2
