@@ -1,10 +1,30 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7060 2012/10/24 22:25:29 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7066 2012/10/25 22:36:25 eva Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  25 Oct 2012; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Add rygel to gstreamer mask.
+
+  25 Oct 2012; Mike Gilbert <floppym@gentoo.org> package.mask:
+  Update boost mask for 1.51.
+
+  25 Oct 2012; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Add mask for new rhythmbox.
+
+  25 Oct 2012; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Mask >=app-mobilephone/obexd-0.47 as recommended in distributor-list at gnome
+  dot org due unexpected API changes.
+
+  25 Oct 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Remove pf-sources that are affected by the ext4 bug
+
+  25 Oct 2012; Anthony G. Basile <blueness@gentoo.org>
+  hardened/linux/uclibc/make.defaults, hardened/linux/uclibc/use.mask:
+  Remove redundant default USE flags for hardened/linux/uclibc profiles
 
   24 Oct 2012; Alex Alexander <wired@gentoo.org> package.mask:
   (re-)masked pf-sources-3.6.{3,4} due to ext4 data loss regression, bug
