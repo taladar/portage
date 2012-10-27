@@ -1,6 +1,25 @@
 # ChangeLog for x11-drivers/ati-drivers
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/ati-drivers/ChangeLog,v 1.299 2012/10/15 14:33:06 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/ati-drivers/ChangeLog,v 1.302 2012/10/26 17:37:55 chithanh Exp $
+
+  26 Oct 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  ati-drivers-12.6_beta_pre897.ebuild:
+  Apply kernel-3.7 patch to legacy drivers too, bug #438516.
+
+  26 Oct 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  ati-drivers-12.6_beta_pre897.ebuild:
+  Mark stable on amd64 and warn about bug #436252.
+
+*ati-drivers-12.10 (26 Oct 2012)
+*ati-drivers-12.11_beta (26 Oct 2012)
+
+  26 Oct 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +ati-drivers-12.10.ebuild, +ati-drivers-12.11_beta.ebuild,
+  +files/ati-drivers-vm-reserverd.patch, -ati-drivers-12.2.ebuild,
+  -ati-drivers-12.9_beta.ebuild, -ati-drivers-12.9_beta9000.ebuild,
+  ati-drivers-12.4.ebuild:
+  New release and prerelease, import of Emil Karlson's ebuild from the x11
+  overlay. Drop some old ebuilds.
 
 *ati-drivers-12.9_beta9000 (15 Oct 2012)
 
