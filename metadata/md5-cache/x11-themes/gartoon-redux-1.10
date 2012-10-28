@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RESTRICT=binchecks strip
 SLOT=0
 SRC_URI=http://tweenk.artfx.pl/gartoon/source/gartoon-redux-1.10.tar.gz
-_eclasses_=gnome2-utils	caae323c204f383b8831f0d6039a6c99
+_eclasses_=gnome2-utils	794d2847b4af390a1e020924876c8297
 _md5_=502a54422a2ef6b7b3c490178ad08c86
