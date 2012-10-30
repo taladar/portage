@@ -1,6 +1,44 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.473 2012/10/28 09:43:49 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.484 2012/10/29 13:34:02 mgorny Exp $
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> distutils-r1.eclass:
+  Support and use out-of-source builds by default.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> distutils-r1.eclass:
+  Introduce an esetup.py wrapper function and mydistutilsargs=() for it.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> python-r1.eclass:
+  Enable python3.3 support.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> distutils-r1.eclass:
+  Remove redundant "cd ${BUILD_DIR}" calls.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> distutils-r1.eclass,
+  python-r1.eclass:
+  Move python-exec dependency to python-r1. That eclass now provides means to
+  create versioned scripts as well.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> distutils-r1.eclass:
+  Use find instead of hard-coded executable locations list when linking the
+  wrapper.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> distutils-r1.eclass:
+  Use new python-r1 functions.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> python-r1.eclass:
+  Introduce python_replicate_script(), to create copies of a Python script for
+  all installed implementations.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> python-r1.eclass:
+  Introduce python_export_best() to obtain variables for the most preferred
+  Python implementation enabled.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> python-r1.eclass:
+  Add getters for common Python variables.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> python-r1.eclass:
+  Add support for obtaining Python site-packages directory.
 
   28 Oct 2012; Pacho Ramos <pacho@gentoo.org> emul-linux-x86.eclass:
   Do not hardcode lib32, bug #429726 by SpanKY.

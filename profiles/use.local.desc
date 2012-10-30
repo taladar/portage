@@ -481,6 +481,7 @@ app-emulation/qemu:png - Enable png image support for the VNC console server
 app-emulation/qemu:pulseaudio - Enable pulseaudio output for sound emulation
 app-emulation/qemu:rbd - Enable rados block device backend support, see http://ceph.newdream.net/wiki/QEMU-RBD
 app-emulation/qemu:sdl - Enable the SDL-based console
+app-emulation/qemu:seccomp - Utilize sys-libs/libseccomp to enable kernel filtering of system calls to prevent malicious guests from doing damage.
 app-emulation/qemu:spice - Enable Spice protocol support via app-emulation/spice
 app-emulation/qemu:systemtap - Enable SystemTAP/DTrace tracing
 app-emulation/qemu:tci - Enable the TCG Interpreter which can speed up or slowdown workloads depending on the host and guest CPUs being emulated. In the future it will be a runtime option but for now its compile time.
@@ -535,7 +536,6 @@ app-emulation/wine:gecko - Add support for the Gecko engine when using iexplore
 app-emulation/wine:mono - Add support for .NET using Wine's Mono add-on
 app-emulation/wine:opencl - Enable OpenCL support
 app-emulation/wine:osmesa - Add support for OpenGL in bitmaps using libOSMesa
-app-emulation/wine:osmesa-multilib - Enable libOSMesa support for Win32 on amd64. WARNING: you must install an appropriate version of 32-bit libOSMesa manually or from an overlay; see bug #430268
 app-emulation/wine:perl - Install helpers written in perl (winedump/winemaker)
 app-emulation/wine:samba - Add support for NTLM auth. see http://wiki.winehq.org/NtlmAuthSetupGuide and http://wiki.winehq.org/NtlmSigningAndSealing
 app-emulation/wine:udisks - Support dynamic storage devices using sys-fs/udisks
@@ -1504,6 +1504,7 @@ dev-perl/Eidetic:auth - Enables dev-perl/Apache-AuthTicket based cookie authenti
 dev-perl/GD:animgif - Enable animated gif support
 dev-perl/Graphics-ColorNames:recommended - Install recommended support modules
 dev-perl/HTML-Mason:modperl - Enable www-apache/mod_perl support
+dev-perl/Net-OpenSSH:sftp - Enable SFTP protocol support.
 dev-perl/PDL:badval - Enable bad values support
 dev-perl/PDL:hdf - Enable HDF (version 4) format support
 dev-perl/PDL:netpbm - Enable NETPBM and MPEG support
@@ -3605,6 +3606,7 @@ net-analyzer/netperf:sctp - Include tests to measure SCTP performance
 net-analyzer/nfdump:compat15 - Enable read support for nfdump data files created with nfdump 1.5.x
 net-analyzer/nfdump:ftconv - Build the flow-tools to nfdump converter
 net-analyzer/nfdump:nfprofile - Build nfprofile used by NfSen
+net-analyzer/nfdump:nftrack - Build nfprofile used by PortTracker
 net-analyzer/nfdump:sflow - Build sflow collector sfcpad
 net-analyzer/nmap:ncat - Install the ncat utility
 net-analyzer/nmap:ndiff - Install the ndiff utility
@@ -3628,8 +3630,8 @@ net-analyzer/scapy:tcpreplay - Enable net-analyzer/tcpreply support for fast pac
 net-analyzer/scapy:visual - Enable dev-python/visual support for 3d graphs
 net-analyzer/smokeping:dig - Install net-dns/bind-tools for dig functionality
 net-analyzer/smokeping:echoping - Install net-analyzer/echoping for echoping functionality
-net-analyzer/smokeping:fcgi - Use dev-perl/FCGI for CGI
 net-analyzer/smokeping:speedy - Use dev-perl/SpeedyCGI instead of perl to speed up cgi scripts
+net-analyzer/smokeping:ssh - Install ssh functionality
 net-analyzer/smokeping:telnet - Install dev-perl/Net-Telnet for telnet functionality
 net-analyzer/snort:active-response - Enables support for automatically sending TCP resets and ICMP unreachable messages to terminate connections. Used with inline deployments.
 net-analyzer/snort:aruba - Adds support for monitoring wireless traffic using a Aruba Mobility Controler.
@@ -4377,6 +4379,7 @@ net-misc/bfgminer:padlock - Enable support for mining with VIA Padlock CPUs
 net-misc/bfgminer:scrypt - Enable support for scrypt mining algorithm
 net-misc/bfgminer:sse2_4way - Enable support for CPU SSE2 4way mining algorithm
 net-misc/bfgminer:sse4 - Enable support for CPU SSE4 mining algorithm
+net-misc/bfgminer:x6500 - Enable support for CPU X6500 mining algorithm
 net-misc/bfgminer:ztex - Enable support for mining with Ztex FPGAs
 net-misc/cfengine:html - Install HTML documentation
 net-misc/cfengine:libvirt - Enable support for virtual machine management through app-emulation/libvirt
@@ -5414,6 +5417,7 @@ sys-firmware/ipxe:qemu - Build the required PXE ROM images for app-emulation/qem
 sys-firmware/ipxe:undi - Build a Universal Network Device Interface driver chainloading your existing PXE NIC into iPXE
 sys-firmware/ipxe:usb - Build a bootable USB image for using PXE
 sys-firmware/ipxe:vmware - Build the PXE ROM images that VMWare uses
+sys-firmware/seabios:binary - Use official upstream pre-built binaries
 sys-freebsd/boot0:tftp - Enable PXE/TFTP boot support.
 sys-freebsd/boot0:zfs - Enable booting on ZFS filesystems.
 sys-freebsd/freebsd-lib:hesiod - Enable support for net-dns/hesiod
@@ -5522,6 +5526,7 @@ sys-infiniband/ofed:srp - Suport for userspace part for srp initiator
 sys-kernel/ck-sources:bfsonly - BFS by itslef vs The full ck patchset
 sys-kernel/ck-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
 sys-kernel/ck-sources:experimental - Allow experimental code. Can break or degrade performances. (UNSUPPORTED)
+sys-kernel/ck-sources:kvm - Enable boot on kvm
 sys-kernel/ck-sources:urwlocks - Use upgradable read/write locks in place of the grq spinlock. (EXPERIMENTAL)
 sys-kernel/dracut:debug - Module installing additional tools like strace, file editor, ssh and more
 sys-kernel/dracut:device-mapper - Set of helper modules providing support for device mapper. You need to enable this only if emerge says so.

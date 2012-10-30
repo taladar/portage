@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/fcgi
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.55 2012/07/29 23:56:22 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.57 2012/10/29 15:00:44 ottxor Exp $
+
+*fcgi-2.4.1_pre0910052249-r1 (29 Oct 2012)
+
+  29 Oct 2012; Christoph Junghans <ottxor@gentoo.org>
+  +fcgi-2.4.1_pre0910052249-r1.ebuild:
+  added prefix support (bug #440070)
+
+  29 Oct 2012; Hans de Graaff <graaff@gentoo.org>
+  -fcgi-2.4.1_pre0311112127.ebuild:
+  Cleanup.
 
   29 Jul 2012; Anthony G. Basile <blueness@gentoo.org>
   fcgi-2.4.1_pre0910052249.ebuild:
@@ -206,4 +216,3 @@
 
   04 Sep 2003; Matthew Kennedy <mkennedy@gentoo.org> :
   Initial import.
-
