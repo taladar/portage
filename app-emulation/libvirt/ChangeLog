@@ -1,6 +1,29 @@
 # ChangeLog for app-emulation/libvirt
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/libvirt/ChangeLog,v 1.225 2012/10/29 07:16:29 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/libvirt/ChangeLog,v 1.230 2012/10/30 12:01:54 ago Exp $
+
+  30 Oct 2012; <ago@gentoo.org> libvirt-0.10.2-r3.ebuild:
+  Stable for amd64, wrt bug #439298
+
+  30 Oct 2012; Doug Goldstein <cardoe@gentoo.org> libvirt-9999.ebuild:
+  Update the live ebuild.
+
+  30 Oct 2012; Doug Goldstein <cardoe@gentoo.org> libvirt-0.10.2.1.ebuild,
+  files/libvirtd.init-r10:
+  Add a temporary use on dbus until we can come up with a better no-op use to
+  depend on.
+
+  30 Oct 2012; Doug Goldstein <cardoe@gentoo.org> libvirt-0.10.2-r3.ebuild,
+  libvirt-0.10.2.1.ebuild:
+  Explicitly disable firewalld support, which was getting enabled just from
+  having DBus support, which could come from Avahi support. bug #439764
+
+*libvirt-0.10.2.1 (30 Oct 2012)
+
+  30 Oct 2012; Doug Goldstein <cardoe@gentoo.org> +libvirt-0.10.2.1.ebuild,
+  +files/libvirtd.confd-r4, +files/libvirtd.init-r10:
+  Version bump. Tweak to the init script to better support need net in newer
+  OpenRC and to start up init scripts we are dependant on based on USE flags.
 
   29 Oct 2012; Doug Goldstein <cardoe@gentoo.org> libvirt-0.10.2-r3.ebuild:
   Handle kernel CONFIG option rename for 3.6 and newer. Clean up kernel CONFIG
