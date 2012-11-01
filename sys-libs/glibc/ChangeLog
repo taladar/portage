@@ -1,5 +1,11 @@
 # ChangeLog for sys-libs/glibc
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.900 2012/10/21 17:17:18 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/ChangeLog,v 1.902 2012/10/31 19:20:20 vapier Exp $
+
+  31 Oct 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.16.0.ebuild:
+  Move into ~arch.
+
+  31 Oct 2012; Mike Frysinger <vapier@gentoo.org> glibc-2.15-r3.ebuild:
+  Mark alpha/ia64/s390 stable #404993.
 
   21 Oct 2012; Anthony G. Basile <blueness@gentoo.org> glibc-2.15-r3.ebuild:
   stable arm, bug #404993

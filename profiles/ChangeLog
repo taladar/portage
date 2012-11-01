@@ -1,10 +1,20 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7082 2012/10/30 21:57:11 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7085 2012/10/31 22:28:25 chithanh Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  31 Oct 2012; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.mask:
+  Mask x11-apps/grandr for removal.
+
+  31 Oct 2012; Julian Ospald <hasufell@gentoo.org> package.mask:
+  mask broken pornview
+
+  31 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> updates/4Q-2012:
+  Slotmove all boost and boost-build to slot 0.
 
   30 Oct 2012; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
   Add dev-cpp/gstreamermm to gstreamer-0.10.36 mask.
