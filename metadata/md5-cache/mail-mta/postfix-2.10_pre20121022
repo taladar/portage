@@ -11,4 +11,4 @@ REQUIRED_USE=ldap-bind? ( ldap sasl )
 SLOT=0
 SRC_URI=ftp://ftp.porcupine.org/mirrors/postfix-release/experimental/postfix-2.10-20121022.tar.gz vda? ( http://vda.sourceforge.net/VDA/postfix-vda-v11-2.9.1.patch )
 _eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	192fcbe64c4a25ea391beffaaeca2537	multilib	9aa8a023e062fca0ba79362d9d0cc488	pam	5c1a9ef4892062f9ec25c8ef7c1f1e52	ssl-cert	7f678cd359743d336ecf3a6cc4ce1521	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28	versionator	6601b4c5b3f019a993db59a50e1854e4
-_md5_=b6ffed56caf63b1134478be9fa8e98d3
+_md5_=4c77ed8b5e4a5f7fd10962e55fe1fa44
