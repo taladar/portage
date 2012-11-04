@@ -249,6 +249,10 @@ app-backup/tsm:hsm - Installs Tivoli Storage Manager for Space Management
 app-backup/tsm:tsm_cit - IBM Tivoli Common Inventory Technology
 app-backup/tsm:tsm_hw - Difference snapshot support for NetApp and N-Series file servers
 app-benchmarks/jmeter:beanshell - Enable BeanShell scripting support
+app-benchmarks/ltp:expect - Build against the expect library for interactive testing
+app-benchmarks/ltp:open-posix - Build and install the POSIX testsuite
+app-benchmarks/ltp:pm - Build and install the power management testsuite
+app-benchmarks/ltp:rt - Build and install the realtime testsuite
 app-benchmarks/sysbench:aio - Enable libaio support
 app-cdr/backlite:mplayer - Add support for mplayer preview in addition to X11 and phonon
 app-cdr/brasero:introspection - Use dev-libs/gobject-introspection for introspection
