@@ -1,10 +1,32 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7099 2012/11/03 18:39:30 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7106 2012/11/04 20:49:38 ulm Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  04 Nov 2012; Ulrich Müller <ulm@gentoo.org> license_groups:
+  Remove unused RSA-MD4, RSA-MD5, and RSA-PKCS11 licenses; replaced by RSA.
+
+  04 Nov 2012; Joerg Bornkessel <hd_brummy@gentoo.org> package.mask:
+  masked media-plugins/vdr-softdevice-0.5.0.20110417 for testing on bug #422605
+
+  04 Nov 2012; Ulrich Müller <ulm@gentoo.org> license_groups:
+  PBZIP2 is gone (replace by BZIP2 template); remove it from MISC-FREE license
+  group. Add RSA license template to MISC-FREE.
+
+  04 Nov 2012; Tomáš Chvátal <scarabeus@gentoo.org> package.mask:
+  Mask new icu for now.
+
+  04 Nov 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Mask new avidemux
+
+  04 Nov 2012; Justin Lecher <jlec@gentoo.org> updates/4Q-2012:
+  Move sci-chemistry/mmtk to sci-libs/mmtk due to duplication, #441648
+
+  04 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask some packages that depend on the old 1.46 version of boost.
 
   03 Nov 2012; Markos Chandras <hwoarang@gentoo.org> package.mask:
   Update mask for app-benchmarks/ltp
