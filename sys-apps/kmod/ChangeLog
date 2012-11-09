@@ -1,5 +1,17 @@
 # ChangeLog for sys-apps/kmod
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/ChangeLog,v 1.53 2012/10/20 09:30:13 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/ChangeLog,v 1.55 2012/11/08 22:20:51 williamh Exp $
+
+*kmod-11-r1 (08 Nov 2012)
+
+  08 Nov 2012; William Hubbs <williamh@gentoo.org> +kmod-11-r1.ebuild,
+  kmod-9999.ebuild:
+  kmod reads from /lib/modprobe.d not /usr/lib/modprobe.d
+
+*kmod-11 (08 Nov 2012)
+
+  08 Nov 2012; William Hubbs <williamh@gentoo.org> +kmod-11.ebuild,
+  kmod-9999.ebuild:
+  version bump and sync live ebuild
 
 *kmod-10-r2 (20 Oct 2012)
 
