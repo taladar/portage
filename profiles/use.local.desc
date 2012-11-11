@@ -1623,7 +1623,8 @@ dev-python/pygobject:introspection - Use dev-libs/gobject-introspection for intr
 dev-python/pylons:genshi - Add optional genshi support
 dev-python/pylons:jinja - Add optional jinja support
 dev-python/pymongo:mod_wsgi - Disable the C extension to work with mod_wsgi.
-dev-python/pypax:xtpax - Enable XT_PAX and prefer it to PT_PAX.
+dev-python/pypax:ptpax - Enable PT_PAX_FLAGS support.
+dev-python/pypax:xtpax - Enable XATTR_PAX_FLAGS support.
 dev-python/pypy:sandbox - Enable sandboxing functionality
 dev-python/pypy:shadowstack - Use a shadow stack for finding GC roots
 dev-python/pyside:X - Build QtGui, QtDesigner, QtTest and QtUiTools modules
@@ -3934,6 +3935,7 @@ net-im/leechcraft-azoth:nativeemoticons - Build support for native Azoth's emoti
 net-im/leechcraft-azoth:otroid - Build OTRoid, plugin for the Off-the-Record deniable encryption system
 net-im/leechcraft-azoth:p100q - Build p100q, plugin for psto.net microblogging service
 net-im/leechcraft-azoth:rosenthal - Build Rosenthal, the spellchecker plugin
+net-im/leechcraft-azoth:shx - Build shell command executor plugin
 net-im/leechcraft-azoth:standardstyles - Build support for standard Azoth styles engine
 net-im/leechcraft-azoth:xoox - Build Xoox, gloox-based plugin for XMPP support
 net-im/leechcraft-azoth:xtazy - Build Xtazy for publishing currently playing tune
@@ -5183,7 +5185,8 @@ sys-apps/dbus:systemd - Build with sys-apps/systemd at_console support
 sys-apps/dmtcp:fast - Enable experimental performance options such as mmap allocator.
 sys-apps/dmtcp:trace - Enable ptrace support (only valid with debug enabled).
 sys-apps/dstat:wifi - Enable wireless network functions
-sys-apps/elfix:xtpax - Enable XATTR_PAX_FLAGS support (EXPERIMENTAL).
+sys-apps/elfix:ptpax - Enable PT_PAX_FLAGS support.
+sys-apps/elfix:xtpax - Enable XATTR_PAX_FLAGS support.
 sys-apps/etckeeper:bazaar - Support dev-vcs/bzr based repository
 sys-apps/flashrom:atahpt - Highpoint (HPT) ATA/RAID controller support
 sys-apps/flashrom:bitbang_spi - Bitbanging SPI infrastructure
