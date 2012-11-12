@@ -9,4 +9,4 @@ LICENSE=LGPL-2.1
 RDEPEND=ssl? ( dev-libs/libgcrypt net-libs/gnutls )
 SLOT=0
 SRC_URI=mirror://gnu/libmicrohttpd/libmicrohttpd-0.9.23.tar.gz
-_md5_=f4c9d8b0c43942ed3b7dc4c664e1e704
+_md5_=c0fd8eba73442290b4b7458c6a7721df
