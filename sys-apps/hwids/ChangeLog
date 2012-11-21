@@ -1,6 +1,16 @@
 # ChangeLog for sys-apps/hwids
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/hwids/ChangeLog,v 1.34 2012/11/19 17:59:52 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/hwids/ChangeLog,v 1.37 2012/11/20 18:33:02 jer Exp $
+
+  20 Nov 2012; Jeroen Roovers <jer@gentoo.org> hwids-20121119.ebuild:
+  Stable for HPPA (bug #443940).
+
+  20 Nov 2012; Agostino Sarubbo <ago@gentoo.org> hwids-20121119.ebuild:
+  Stable for ppc, tested by Vicente Olivert Riera <peratu@carrosses.com>, wrt
+  bug #443940
+
+  20 Nov 2012; Sergey Popov <pinkbyte@gentoo.org> hwids-20121119.ebuild:
+  amd64 stable, bug #443940
 
 *hwids-20121119 (19 Nov 2012)
 
