@@ -1,6 +1,20 @@
 # ChangeLog for app-office/libreoffice-bin
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice-bin/ChangeLog,v 1.93 2012/11/07 21:08:03 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice-bin/ChangeLog,v 1.96 2012/11/24 21:47:47 ago Exp $
+
+  24 Nov 2012; Agostino Sarubbo <ago@gentoo.org>
+  libreoffice-bin-3.6.3.2.ebuild:
+  Stable for x86, wrt bug #440922
+
+  24 Nov 2012; Agostino Sarubbo <ago@gentoo.org>
+  libreoffice-bin-3.6.3.2.ebuild:
+  Stable for amd64, wrt bug #440922
+
+*libreoffice-bin-3.6.3.2 (24 Nov 2012)
+
+  24 Nov 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  +libreoffice-bin-3.6.3.2.ebuild:
+  Version bump
 
   07 Nov 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
   libreoffice-bin-3.5.5.3.ebuild:
