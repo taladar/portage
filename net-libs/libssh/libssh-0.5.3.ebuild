@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh/libssh-0.5.3.ebuild,v 1.1 2012/11/24 22:50:59 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh/libssh-0.5.3.ebuild,v 1.3 2012/11/25 23:13:25 radhermit Exp $
 
 EAPI=4
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.libssh.org/"
 SRC_URI="https://red.libssh.org/attachments/download/38/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~s390 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
+KEYWORDS="amd64 ~arm ~hppa ~ppc ~ppc64 ~s390 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 SLOT="0"
 IUSE="debug doc examples gcrypt pcap +sftp ssh1 server static-libs test zlib"
 # Maintainer: check IUSE-defaults at DefineOptions.cmake
@@ -25,8 +25,6 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )
 	test? ( dev-util/cmockery )
 "
-
-REQUIRED_USE="test? ( static-libs )"
 
 DOCS=( AUTHORS README ChangeLog )
 
@@ -50,6 +48,7 @@ src_configure() {
 		$(cmake-utils_use_with sftp)
 		$(cmake-utils_use_with ssh1)
 		$(cmake-utils_use_with static-libs STATIC_LIB)
+		$(cmake-utils_use_with test STATIC_LIB)
 		$(cmake-utils_use_with test TESTING)
 		$(cmake-utils_use_with zlib LIBZ)
 	)
