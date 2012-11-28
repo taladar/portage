@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libnl/libnl-3.2.16.ebuild,v 1.1 2012/11/26 17:41:47 zerochaos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libnl/libnl-3.2.16.ebuild,v 1.4 2012/11/27 23:03:14 jer Exp $
 
 EAPI=4
 inherit eutils libtool multilib
@@ -8,8 +8,8 @@ inherit eutils libtool multilib
 DESCRIPTION="A library for applications dealing with netlink socket"
 HOMEPAGE="http://www.infradead.org/~tgr/libnl/"
 SRC_URI="
-	http://www.infradead.org/~tgr/libnl/files/${P}.tar.gz
-	http://www.infradead.org/~tgr/libnl/files/${PN}-doc-${PV}.tar.gz
+	http://www.infradead.org/~tgr/${PN}/files/${P}.tar.gz
+	doc? ( http://www.infradead.org/~tgr/${PN}/files/${PN}-doc-${PV}.tar.gz )
 "
 LICENSE="LGPL-2.1 doc? ( GPL-2 ) utils? ( GPL-2 )"
 SLOT="3"
@@ -24,6 +24,7 @@ DEPEND="
 src_prepare() {
 	elibtoolize
 	epatch "${FILESDIR}"/${PN}-1.1-vlan-header.patch
+	mv "${WORKDIR}"/${PN}-doc-3.2.15 "${WORKDIR}"/${PN}-doc-${PV} || die
 }
 
 src_configure() {

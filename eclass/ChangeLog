@@ -1,6 +1,16 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.523 2012/11/26 15:47:20 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.526 2012/11/27 17:39:48 jer Exp $
+
+  27 Nov 2012; Jeroen Roovers <jer@gentoo.org> nvidia-driver.eclass:
+  Remove ebeep because newer nvidia-drivers have EAPI=4.
+
+  27 Nov 2012; Ulrich Müller <ulm@gentoo.org> scsh.eclass:
+  Drop default LICENSE assignment.
+
+  27 Nov 2012; Alexandre Rostovtsev <tetromino@gentoo.org> gnome2.eclass:
+  Handle DOCS when it is an exported array, i.e. "declare -ax" (bug #444740,
+  thanks to Arfrever).
 
   26 Nov 2012; Alexandre Rostovtsev <tetromino@gentoo.org> gnome2.eclass:
   Typo, probably caused by strange font in pms.pdf (bug #444740, thanks to
