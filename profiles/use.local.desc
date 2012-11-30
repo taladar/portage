@@ -1987,7 +1987,8 @@ games-puzzle/jag:editor - Install level editor
 games-puzzle/jag:extras - Install additional graphics
 games-puzzle/xlogical:alt_gfx - Use alternate graphics which are closer to the original Amiga version
 games-roguelike/angband:sound - Enable and install sounds
-games-roguelike/stone-soup:tiles - Enable for graphical (tiled) build. Uses ncurses if disabled.
+games-roguelike/stone-soup:ncurses - Enable for console based build (uses ncurses).
+games-roguelike/stone-soup:tiles - Enable for graphical (tiled) build.
 games-rpg/arx-libertatis:crash-reporter - Build a x11-libs/qt-gui-based tool that allows to submit crash information to the upstream backtracker.
 games-rpg/arx-libertatis:debug - Enable asserts and debug logging.
 games-rpg/arx-libertatis:demo - Install the Arx Fatalis demo data.
@@ -4318,6 +4319,7 @@ net-mail/dovecot:imapc - Add imap client storage support
 net-mail/dovecot:lucene - Add lucene full text search (FTS) support using dev-cpp/clucene
 net-mail/dovecot:managesieve - Add managesieve protocol support
 net-mail/dovecot:mdbox - Add mdbox storage support
+net-mail/dovecot:pop3c - Add pop3 client storage support
 net-mail/dovecot:sdbox - Add sdbox storage support
 net-mail/dovecot:sieve - Add sieve support
 net-mail/dovecot:vpopmail - Add vpopmail support
@@ -5582,6 +5584,7 @@ sys-infiniband/ofed:rds - Tools to manage rds sockets
 sys-infiniband/ofed:sdp - Add SDP tools
 sys-infiniband/ofed:srp - Suport for userspace part for srp initiator
 sys-kernel/aufs-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
+sys-kernel/aufs-sources:module - Patch kernel to allow aufs being build as a module.
 sys-kernel/ck-sources:bfsonly - BFS by itslef vs The full ck patchset
 sys-kernel/ck-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
 sys-kernel/ck-sources:experimental - Allow experimental code. Can break or degrade performances. (UNSUPPORTED)

@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14262 2012/11/28 03:03:57 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14264 2012/11/29 22:19:30 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -81,11 +81,6 @@ net-wireless/linux-wlan-ng-modules
 net-wireless/linux-wlan-ng-utils
 net-wireless/linux-wlan-ng-firmware
 net-wireless/linux-wlan-ng
-
-# Pacho Ramos <pacho@gentoo.org> (24 Nov 2012)
-# Doesn't compile (#270269), it's also hardware specific and, then,
-# needs a dedicated maintainer. Removal in a month.
-net-wireless/rfswitch
 
 # Pacho Ramos <pacho@gentoo.org> (24 Nov 2012)
 # Runtime problems (#272751), no update since 2005 (bluez-3 times),
@@ -508,11 +503,6 @@ net-misc/libteam
 ~media-plugins/gst-plugins-sidplay-0.10.19
 ~media-plugins/gst-plugins-twolame-0.10.19
 ~media-plugins/gst-plugins-x264-0.10.19
-
-# Michael Sterrett <mr_bones_@gentoo.org> (20 Oct 2012)
-# Last version from 2009 and superseded by snes9x[gtk]
-# Masked for removal on 20121119
-games-emulation/snes9express
 
 # Michael Palimaka <kensington@gentoo.org> (19 Oct 2012)
 # New major release breaks almost all existing consumers.
