@@ -1,6 +1,12 @@
 # ChangeLog for Gentoo/PPC profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ChangeLog,v 1.201 2012/11/24 22:03:42 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ChangeLog,v 1.203 2012/11/30 18:00:27 josejx Exp $
+
+  30 Nov 2012; Joseph Jezak <josejx@gentoo.org> +ppc64/32ul/packages:
+  Removed kgcc64 from ppc64-32ul profile, it's no longer needed.
+
+  30 Nov 2012; Agostino Sarubbo <ago@gentoo.org> ppc64/32ul/package.mask:
+  Lirc now works on ppc32 with 64bit kernel, removing mask
 
   24 Nov 2012; Mike Gilbert <floppym@gentoo.org> use.mask:
   Mask python_single_target values not supported on this arch.
