@@ -1,6 +1,40 @@
 # ChangeLog for sys-apps/hwids
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/hwids/ChangeLog,v 1.43 2012/12/01 15:12:15 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/hwids/ChangeLog,v 1.49 2012/12/02 17:50:56 flameeyes Exp $
+
+*hwids-20121202.3 (02 Dec 2012)
+
+  02 Dec 2012; Diego E. Pettenò <flameeyes@gentoo.org> +hwids-20121202.3.ebuild,
+  -hwids-20121202.2.ebuild, hwids-99999999.ebuild:
+  Change license to public-domain for oui.txt. Use the new version of hwids that
+  carries the script instead of downloading live versions that will most likely
+  break later on.
+
+  02 Dec 2012; Samuli Suominen <ssuominen@gentoo.org> hwids-20121202.2.ebuild,
+  hwids-99999999.ebuild:
+  Call udevadm with the hwdb target only if it's supported.
+
+  02 Dec 2012; Samuli Suominen <ssuominen@gentoo.org> hwids-20121202.2.ebuild,
+  hwids-99999999.ebuild:
+  Install missing 20-acpi-vendor.hwdb which seems to be a table of approved
+  ACPI PNP vendors (as per internet search)
+
+  02 Dec 2012; Samuli Suominen <ssuominen@gentoo.org> hwids-20121202.2.ebuild,
+  hwids-99999999.ebuild:
+  Use ids-update.pl from systemd tarball to regenerate udev.bin binary
+  formatted database from files: pci.ids, usb.ids and oui.txt
+
+*hwids-20121202.2 (02 Dec 2012)
+
+  02 Dec 2012; Diego E. Pettenò <flameeyes@gentoo.org> +hwids-20121202.2.ebuild,
+  hwids-99999999.ebuild:
+  Now install oui.txt as well (due to udev/bluez requirements).
+
+*hwids-20121202 (02 Dec 2012)
+
+  02 Dec 2012; Diego E. Pettenò <flameeyes@gentoo.org> +hwids-20121202.ebuild,
+  -hwids-20120922.ebuild, -hwids-20121123.ebuild, -hwids-20121130.ebuild:
+  Version bump; remove old.
 
   01 Dec 2012; Anthony G. Basile <blueness@gentoo.org> hwids-20121119.ebuild:
   stable ppc64, bug #443940
