@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen/xen-4.1.1-r2.ebuild,v 1.8 2012/06/01 00:12:36 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/xen/xen-4.1.1-r2.ebuild,v 1.10 2012/12/04 19:24:19 scarabeus Exp $
 
 EAPI="4"
 
