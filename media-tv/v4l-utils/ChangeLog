@@ -1,6 +1,14 @@
 # ChangeLog for media-tv/v4l-utils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/v4l-utils/ChangeLog,v 1.26 2012/11/20 20:44:42 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-tv/v4l-utils/ChangeLog,v 1.28 2012/12/05 21:05:41 tetromino Exp $
+
+  05 Dec 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  v4l-utils-0.8.9.ebuild:
+  Add an '|| die', suggested by Chema Alonso.
+
+  05 Dec 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -v4l-utils-0.8.5.ebuild, -v4l-utils-0.8.8.ebuild:
+  Drop old.
 
   20 Nov 2012; Agostino Sarubbo <ago@gentoo.org> v4l-utils-0.8.8-r1.ebuild:
   Stable for x86, wrt bug #439036

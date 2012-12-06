@@ -1,6 +1,16 @@
 # ChangeLog for app-emulation/qemu
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/ChangeLog,v 1.150 2012/12/04 10:20:45 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/ChangeLog,v 1.152 2012/12/05 21:37:29 cardoe Exp $
+
+  05 Dec 2012; Doug Goldstein <cardoe@gentoo.org> qemu-1.1.1-r1.ebuild,
+  qemu-1.1.2-r1.ebuild, qemu-1.1.2-r2.ebuild, qemu-1.1.2-r3.ebuild,
+  qemu-1.2.0.ebuild, qemu-1.2.1.ebuild, qemu-9999.ebuild:
+  Fix spelling mistake found by Francisco Riera <klondike@gentoo.org>. bug
+  #441632
+
+  05 Dec 2012; Sergei Trofimovich <slyfox@gentoo.org>
+  -files/qemu-9999-fix-mipsen.patch, qemu-9999.ebuild:
+  Drop mips patch as fix gone upstream.
 
   04 Dec 2012; Sergei Trofimovich <slyfox@gentoo.org> qemu-9999.ebuild:
   Follow upstream bump of minimal spice protocol versions.
