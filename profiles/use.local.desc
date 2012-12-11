@@ -275,7 +275,6 @@ app-cdr/cuetools:extras - Install additional script that tag files based on cue/
 app-cdr/disc-cover:cdrom - Enable audio CD support. This is not needed to make www-apps/disc-cover work.
 app-cdr/gaffitter:scripts - Install additional gaffitter scripts for external programs
 app-cdr/k3b:emovix - Enable burning support for eMoviX images
-app-cdr/k3b:wav - Enable support for reading WAVE files
 app-cdr/mirage2iso:pinentry - Support app-crypt/pinentry password input backend.
 app-cdr/mybashburn:normalize - Add support for normalizing audio file volume levels
 app-crypt/ccid:twinserial - Enable twinserial reader
@@ -1237,8 +1236,6 @@ dev-lang/ghc:llvm - Enable llvm code geenrator for ghc (-fllvm).
 dev-lang/icc:eclipse - Install the dev-util/eclipse-sdk plugins
 dev-lang/icon:iplsrc - install the icon programming library source
 dev-lang/idb:eclipse - Install the dev-util/eclipse-sdk plugins
-dev-lang/idb:icc - Use dev-lang/icc to install idb (default)
-dev-lang/idb:ifc - Use dev-lang/ifc to install idb
 dev-lang/io:clutter - Build add-on for media-libs/clutter
 dev-lang/io:editline - Build add-on for dev-libs/libedit
 dev-lang/io:google - Build the google search add-on
@@ -1632,7 +1629,6 @@ dev-python/pandas:excel - Pull a few Python packages Microsoft Excel i/o
 dev-python/paste:flup - enable support for flup (and therefore for various wgsi servers and middleware)
 dev-python/paste:openid - enable OpenID support
 dev-python/psycopg:mxdatetime - Enable support for MX DateTime and use it instead of Python's built-in datetime module
-dev-python/pygobject:introspection - Use dev-libs/gobject-introspection for introspection
 dev-python/pylons:genshi - Add optional genshi support
 dev-python/pylons:jinja - Add optional jinja support
 dev-python/pymongo:mod_wsgi - Disable the C extension to work with mod_wsgi.
@@ -2142,7 +2138,6 @@ gnome-extra/gnome-games:artworkextra - Installs extra artwork for various games
 gnome-extra/gnome-games:clutter - Install games that use media-libs/clutter
 gnome-extra/gnome-games:glchess - Install Chess written in dev-lang/vala and OpenGL
 gnome-extra/gnome-games:introspection - Use dev-libs/gobject-introspection for introspection
-gnome-extra/gnome-games:seed - Install swell-foop and lightsoff which are written in JavaScript using dev-libs/seed
 gnome-extra/gnome-games:sudoku - Install the game Sudoku which uses dev-python/pygobject and introspection
 gnome-extra/gnome-media:twolame - Allow encoding MPEG Audio Layer 2 (MP2) files using twolame
 gnome-extra/gnome-packagekit:systemd - Use sys-apps/systemd instead of sys-auth/consolekit for rebooting
@@ -4902,7 +4897,6 @@ sci-biology/bioperl:run - Install sci-biology/bioperl-run
 sci-biology/clustalw-mpi:mpi_njtree - Use MPI (as opposed to serial) code for computing neighbor-joining trees
 sci-biology/clustalw-mpi:static_pairalign - Use static (as opposed to dynamic) scheduling for pair alignments
 sci-biology/exonerate:utils - Install all utilities
-sci-biology/fasta:icc - Use intel compiler instead of gcc
 sci-biology/gmap:goby - Enable support for goby
 sci-biology/gmap:samtools - Enable support for samtools
 sci-biology/goby:cpp - Compile C/C++ API
@@ -5084,6 +5078,7 @@ sci-libs/plplot:ada - Add bindings for the ADA programming language
 sci-libs/plplot:dynamic - Build with dynamic drivers
 sci-libs/plplot:octave - Add bindings for sci-mathematics/octave
 sci-libs/plplot:qhull - Add bindings for media-libs/qhull
+sci-libs/scikits_image:freeimage - Enable support for image i/o via media-libs/freeimage
 sci-libs/scipy:umfpack - Adds support for sparse solving with sci-libs/umfpack
 sci-libs/scotch:int64 - Build the 64 bits integer library (needed for > 2^31 vertices)
 sci-libs/scotch:tools - Build and install extra exec tools
@@ -5461,6 +5456,8 @@ sys-cluster/torque:drmaa - Enable the Distributed Resource Management Applicatio
 sys-cluster/torque:munge - Enable authentication via munge
 sys-cluster/torque:nvidia - Enable management of Nvidia GPUs
 sys-cluster/torque:server - Enable compilation of pbs_server and pbs_sched
+sys-cluster/vzctl:cgroup - Add support to Linux kernel cgroup subsytem
+sys-cluster/vzctl:ploop - Add support for ploop devices via sys-cluster/ploop
 sys-devel/binutils:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
 sys-devel/binutils:multitarget - Adds support to binutils for cross compiling (does not work with gas)
 sys-devel/binutils-apple:lto - Add support for Link-Time Optimization with LLVM
@@ -5558,6 +5555,10 @@ sys-fs/ecryptfs-utils:gpg - Enable app-crypt/gnupg key module
 sys-fs/ecryptfs-utils:openssl - Enable dev-libs/openssl key module
 sys-fs/ecryptfs-utils:pkcs11 - Enable PKCS#11 (Smartcards) key module
 sys-fs/ecryptfs-utils:tpm - Enable support for Trusted Platform Module (TPM) using app-crypt/trousers
+sys-fs/eudev:action_modeswitch - for eudev-0: switch Mobile Action cables into serial mode
+sys-fs/eudev:edd - for eudev-0: create /dev/disk/by-id/edd-* links for BIOS EDD data
+sys-fs/eudev:extras - for eudev-0: Compile udev-extras requiring external dependencies
+sys-fs/eudev:floppy - for eudev-0: create historical floppy kernel device nodes (/dev/fd0h1440, ...)
 sys-fs/eudev:gudev - enable libudev gobject interface
 sys-fs/eudev:hwdb - read vendor/device string database and add it to udev database
 sys-fs/eudev:introspection - Use dev-libs/gobject-introspection for introspection
@@ -5565,6 +5566,7 @@ sys-fs/eudev:keymap - map custom hardware's multimedia keys
 sys-fs/eudev:kmod - enable module loading through libkmod (requires modules)
 sys-fs/eudev:modutils - enable module loading support
 sys-fs/eudev:openrc - install the OpenRC init scripts
+sys-fs/eudev:rule_generator - for eudev-0: enable persistent network and optical device rule generator
 sys-fs/fur:void-chmod - Enable fake hook for "chmod" that will only return 0
 sys-fs/lessfs:filelog - Enable the ability to log to a file instead of syslog
 sys-fs/lessfs:memtrace - Enable leefs to create a report regarding the memory allocation. This feature should be used for debugging purposes to avoid performance degradation
