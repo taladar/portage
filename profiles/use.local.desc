@@ -732,7 +732,6 @@ app-misc/tracker:miner-fs - Enable tracker-miner-fs (required for filesystem ind
 app-misc/tracker:nautilus - Enable tracker to integrate with gnome-base/nautilus by providing entries in its context menu
 app-misc/tracker:playlist - Add support for playlists
 app-misc/tracker:thunderbird - Install email data miner plugin for mail-client/thunderbird and mail-client/thunderbird-bin
-app-misc/tracker:upnp - Add support for video extraction via media-libs/gupnp-dlna.
 app-misc/tracker:xps - Add support for XPS file format through app-text/libgxps.
 app-misc/unfoo:minimal - Do not install all support archive binaries
 app-misc/vifm:compatibility - Compatibility with previous versions of vifm
@@ -1325,7 +1324,6 @@ dev-libs/bitset:tcmalloc - Use tcmalloc from dev-util/google-perftools for alloc
 dev-libs/blitz:boost - Enable usage of boost::serialization
 dev-libs/boost:debug - Build and install only the debug version of the Boost libraries. Only enable this flag if you're developing against boost.
 dev-libs/boost:doc - Install the full API documentation documentation. This takes over 200MB of extra disk space.
-dev-libs/boost:eselect - Run "eselect boost update" even if version is already selected
 dev-libs/boost:nls - Build libboost_locale. This library requires compatible C library interfaces, which might not be provided by uClibc or other embedded libraries.
 dev-libs/boost:threads - Build multi-thread-compatible libraries instead of single-threaded only.
 dev-libs/boost:tools - Build and install the boost tools (bcp, quickbook, inspect, wave)
@@ -2161,7 +2159,6 @@ gnome-extra/nautilus-actions:deprecated - Enable deprecated functions
 gnome-extra/nautilus-sendto:gajim - Enables support for net-im/gajim
 gnome-extra/nautilus-sendto:mail - Enables support for mailto using gnome-extra/evolution-data-server
 gnome-extra/nautilus-sendto:pidgin - Enables support for net-im/pidgin
-gnome-extra/nautilus-sendto:upnp - Enables support for sending files over upnp using net-libs/gupnp-av
 gnome-extra/nemo:introspection - Use dev-libs/gobject-introspection for introspection
 gnome-extra/nemo:packagekit - Use packagekit to search for programs to open unknown file types
 gnome-extra/nemo:sendto - Enable the nemo-sendto extension to send files to various locations/devices
@@ -2842,7 +2839,6 @@ media-plugins/frei0r-plugins:scale0tilt - Enables building of scale0tilt and vec
 media-plugins/gkrellmpc:threads - Use separate thread to init connection (unsafe)
 media-plugins/grilo-plugins:daap - Enable dmap support through net-libs/libdmapsharing
 media-plugins/grilo-plugins:tracker - Build support for content discovery using the app-misc/tracker indexer
-media-plugins/grilo-plugins:upnp - Build support for UPnP Audio/Video streaming using net-libs/gupnp-av
 media-plugins/grilo-plugins:vimeo - Build support for Vimeo content discovery using net-libs/libsoup and dev-libs/libgcrypt
 media-plugins/grilo-plugins:youtube - Build support for YouTube content discovery using dev-libs/libgdata
 media-plugins/gst-plugins-a52dec:orc - Use dev-lang/orc for runtime detection of CPU MMX/MMXEXT/3dNow! capabilities to pass down to a52dec library.
@@ -3126,7 +3122,6 @@ media-sound/rhythmbox:dbus - Allow the im-status plugin to set the status of you
 media-sound/rhythmbox:html - Use net-libs/webkit-gtk for detecting and displaying HTML podcast episode descriptions.
 media-sound/rhythmbox:lastfm - Build a plugin for Last.fm and Librefm scrobbling
 media-sound/rhythmbox:udev - Enable hardware detection via sys-fs/udev replacing the deprecated sys-apps/hal code
-media-sound/rhythmbox:upnp - Build a plugin for local network music sharing which uses UPnP protocols using media-video/coherence, dev-python/louie, and dev-python/twisted
 media-sound/rhythmbox:webkit - Enable context panel plugin
 media-sound/rhythmbox:zeitgeist - Build the plugin to inject events to gnome-extra/zeitgeist
 media-sound/rubyripper:cdrdao - Add support for advanced toc scanning using app-cdr/cdrdao
@@ -3444,7 +3439,6 @@ media-video/totem:lirc - Enable support for controlling Totem with a remote cont
 media-video/totem:nautilus - Enable the nautilus extension
 media-video/totem:python - Build support for dev-lang/python plugins
 media-video/totem:tracker - Enable support for searching media files using the indexer app-misc/tracker
-media-video/totem:upnp - Enable DLNA support through media-video/coherence
 media-video/totem:vala - Enable bindings for dev-lang/vala
 media-video/totem:youtube - Enable youtube plugin
 media-video/totem:zeitgeist - Build the plugin to inject events to gnome-extra/zeitgeist
@@ -3908,8 +3902,11 @@ net-im/ekg2:gnutls - Enable SSL/TLS support through GnuTLS for the plugins suppo
 net-im/ekg2:gpg - Enable jabber message encryption through app-crypt/gpgme.
 net-im/ekg2:inotify - Enable inotify-based filesystem moniotoring support for xmsg&mail plugins.
 net-im/ekg2:jpeg - JPEG token support for Gadu-Gadu protocol.
+net-im/ekg2:minimal - Disable building extra plugins with no additional deps.
+net-im/ekg2:openssl - Support encryption in sim plugin, using OpenSSL.
 net-im/ekg2:oracle - Support logging messages into Oracle database.
 net-im/ekg2:sqlite - Support logging messages into SQLite2 database. If 'sqlite3' is set too, it will be used instead.
+net-im/ekg2:sqlite2 - Prefer SQLite2 over SQLite3 (if USE=sqlite is set).
 net-im/ekg2:sqlite3 - Support logging messages into SQLite3 database. If 'sqlite' is set too, SQLite3 will be used.
 net-im/ekg2:ssl - Enable the complete SSL/TLS support through OpenSSL. This also enables the 'sim' plugin which relies on OpenSSL.
 net-im/empathy:call - Enable Call channel support using net-libs/telepathy-farstream for audio/video calls
