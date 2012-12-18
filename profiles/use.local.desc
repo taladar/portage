@@ -819,6 +819,7 @@ app-office/texmacs:netpbm - Add support for media-libs/netpbm
 app-office/texstudio:video - Use phonon for video embedding
 app-office/tpp:figlet - Install app-misc/figlet to support the --huge command
 app-pda/barry:boost - Enable boost support
+app-pda/barry:desktop - Install the GUI desktop control panel
 app-pda/barry:gui - Install the GUI backup tool
 app-pda/barry:opensync - Install the barry-sync plugin for OpenSync 0.22
 app-pda/gtkpod:clutter - Enable clutter support for displaying coverart
@@ -1355,7 +1356,6 @@ dev-libs/folks:socialweb - Load web service contacts using net-libs/libsocialweb
 dev-libs/folks:tracker - Load contacts from app-misc/tracker index
 dev-libs/folks:utils - Build the folks-inspect utility
 dev-libs/folks:vala - Regenerate pre-generated C code from Vala source
-dev-libs/gdl:introspection - Use dev-libs/gobject-introspection for introspection
 dev-libs/gecode:gist - Enable Gist, the Gecode Interactive Search Tool
 dev-libs/geoip:perl-geoipupdate - Install pure perl version of geoipupdate, with Proxy Server support via the "http_proxy" environment variable and easy to customize.
 dev-libs/glib:systemtap - Build support for profiling and tracing using dev-util/systemtap
@@ -1757,7 +1757,6 @@ dev-tex/dot2texi:pstricks - Enable pstricks support
 dev-tex/latex-beamer:lyx - Install with app-office/lyx layouts
 dev-util/anjuta:devhelp - Enable devhelp integration
 dev-util/anjuta:glade - Build glade plugin for anjuta
-dev-util/anjuta:introspection - Use dev-libs/gobject-introspection for introspection
 dev-util/anjuta:packagekit - Use packagekit to search for missing tools
 dev-util/anjuta:vala - Enable support for the Vala programming language
 dev-util/apitrace:egl - Enable EGL support
@@ -1772,6 +1771,7 @@ dev-util/cppcheck:htmlreport - install cppcheck-htmlreport
 dev-util/ctags:ada - Enable Ada support
 dev-util/cwdiff:a2ps - install app-text/a2ps for postscript output
 dev-util/cwdiff:mercurial - install hg wdiff alias for dev-vcs/mercurial
+dev-util/devhelp:gedit - Install plugin for app-editors/gedit
 dev-util/dialog:minimal - Disable library, install command-line program only
 dev-util/fatrace:powertop - Add powetop integration
 dev-util/geany:vte - Enable Terminal support (x11-libs/vte)
@@ -1783,7 +1783,6 @@ dev-util/geany-plugins:gtkspell - Use gtkspell for dictionary support
 dev-util/geany-plugins:multiterm - Enable the multiterm plugin
 dev-util/geany-plugins:soup - Enable updatechecker and geniuspaste plugins which require net-libs/libsoup
 dev-util/geany-plugins:webkit - Enable webhelper plugin which requires net-libs/webkit-gtk
-dev-util/glade:introspection - Use dev-libs/gobject-introspection for introspection
 dev-util/global:vim - Integrate the GNU GLOBAL source code tag system with Vim
 dev-util/google-perftools:debug - Build a set of libraries with debug support (so-called debugalloc). These are available by default but are not needed unless you're actually developing using tcmalloc.
 dev-util/google-perftools:largepages - Use (experimental) larger pages for tcmalloc, this increases memory usage, but should speed up the allocation/free operations.
@@ -2099,7 +2098,7 @@ gnome-base/gvfs:http - Enable the HTTP/DAV backend using net-libs/libsoup-gnome
 gnome-base/gvfs:systemd - Use sys-apps/systemd seat information for tracking owners of removable volumes
 gnome-base/gvfs:udev - Enable udev base replacement code for cdda feature
 gnome-base/gvfs:udisks - Enable volume monitoring using sys-fs/udisks
-gnome-base/libgnome-keyring:introspection - Use dev-libs/gobject-introspection for introspection
+gnome-base/libgnome-keyring:vala - Enable bindings for dev-lang/vala
 gnome-base/libgnomecanvas:glade - Enable glade support
 gnome-base/libgnomekbd:introspection - Use dev-libs/gobject-introspection for introspection
 gnome-base/libgtop:introspection - Use dev-libs/gobject-introspection for introspection
@@ -2141,9 +2140,9 @@ gnome-extra/gnome-utils:bonobo - Enable applets (gdict one) still not ported to 
 gnome-extra/gucharmap:introspection - Use dev-libs/gobject-introspection for introspection
 gnome-extra/libgda:canvas - Enable support for x11-libs/goocanvas
 gnome-extra/libgda:http - Enable embedded net-libs/libsoup based server
-gnome-extra/libgda:introspection - Use dev-libs/gobject-introspection for introspection
 gnome-extra/libgda:json - Enable support for JSON format
 gnome-extra/libgda:mdb - Enable support for Microsoft Access database using app-office/mdbtools
+gnome-extra/libgda:reports - Install tools for generating graphical reports
 gnome-extra/libgda:sourceview - Enable support for x11-libs/gtksourceview
 gnome-extra/libgsf:gtk - Enable use of gdk in thumbnailer
 gnome-extra/libgsf:introspection - Use dev-libs/gobject-introspection for introspection
@@ -2612,7 +2611,6 @@ media-libs/cal3d:16bit-indices - Enables use of 16bit indices
 media-libs/chromaprint:tools - Build and install fpcalc and fpcollect tools
 media-libs/clutter:gtk - Use gdk-pixbuf from x11-libs/gtk+ as image rendering backend
 media-libs/clutter-gst:introspection - Use dev-libs/gobject-introspection for introspection
-media-libs/clutter-gtk:introspection - Use dev-libs/gobject-introspection for introspection
 media-libs/cogl:gles2 - Enable OpenGL ES 2.0 support
 media-libs/cogl:pango - Build cogl-pango library for x11-libs/pango integration
 media-libs/coin:simage - Texture loading via media-libs/simage library
@@ -4209,9 +4207,7 @@ net-libs/libsocialweb:connman - Use net-misc/connman for getting network connect
 net-libs/libsocialweb:gnome - Extract proxy information using net-libs/libsoup-gnome
 net-libs/libsocialweb:introspection - Use dev-libs/gobject-introspection for introspection
 net-libs/libsocialweb:vala - Build bindings for dev-lang/vala
-net-libs/libsoup:introspection - Use dev-libs/gobject-introspection for introspection
 net-libs/libsoup:samba - Use net-fs/samba for NTLM Single Sign-On
-net-libs/libsoup-gnome:introspection - Use dev-libs/gobject-introspection for introspection
 net-libs/libsrtp:aesicm - Use AES ICM cryptographic algorithm
 net-libs/libsrtp:console - Use /dev/console instead of stdout for error messages
 net-libs/libsrtp:syslog - Use syslog for error messages
@@ -5423,6 +5419,7 @@ sys-cluster/pacemaker-gui:gtk - Enable the GTK+ based GUI client.
 sys-cluster/pacemaker-gui:heartbeat - Enable support for heartbeat based sys-cluster/pacemaker.
 sys-cluster/resource-agents:libnet - Force use of net-libs/libnet
 sys-cluster/slurm:maui - Enable maui scheduler support
+sys-cluster/slurm:multiple-slurmd - Allow multiple slurmd to run
 sys-cluster/slurm:munge - Enable authentication via munge
 sys-cluster/slurm:torque - Enable perl scripts that emulates pbs (qstat, qsub etc.)
 sys-cluster/slurm:ypbind - Enable ypbind based auth
