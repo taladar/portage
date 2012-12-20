@@ -1,6 +1,18 @@
 # ChangeLog for app-misc/uptimed
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/uptimed/ChangeLog,v 1.82 2012/05/23 13:23:07 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/uptimed/ChangeLog,v 1.84 2012/12/19 16:32:17 polynomial-c Exp $
+
+  19 Dec 2012; Lars Wendler <polynomial-c@gentoo.org> metadata.xml:
+  Took over maintenance.
+
+*uptimed-0.3.17 (19 Dec 2012)
+*uptimed-0.3.16-r5 (19 Dec 2012)
+
+  19 Dec 2012; Lars Wendler <polynomial-c@gentoo.org>
+  -uptimed-0.3.16-r4.ebuild, +uptimed-0.3.16-r5.ebuild, +uptimed-0.3.17.ebuild,
+  -files/uptimed, files/uptimed.init:
+  Non-maintainer commit: Revision bump so stable users get a working
+  (completely rewritten) init script again (bug #445398). Version bump.
 
   23 May 2012; Kacper Kowalik <xarthisius@gentoo.org> uptimed-0.3.16-r4.ebuild:
   Add missing user.eclass for enewgroup. Fixes #417153 by Eugene Ho
