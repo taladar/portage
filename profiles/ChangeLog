@@ -1,10 +1,24 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7286 2012/12/23 12:32:31 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7290 2012/12/24 22:57:10 pchrist Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  24 Dec 2012; Panagiotis Christopoulos <pchrist@gentoo.org> package.mask:
+  remask =dev-lisp/gentoo-init-1.0, =dev-lisp/asdf-2.26, =dev-lisp/sbcl-1.1.2,
+  need more testing
+
+  24 Dec 2012; Anthony G. Basile <blueness@gentoo.org>
+  hardened/linux/uclibc/mips/package.mask:
+  Update hardened/linux/uclibc/mips to reflect changes to virtual/udev
+
+  24 Dec 2012; Andrey Grozin <grozin@gentoo.org> package.mask:
+  Unmasked >=dev-lisp/gentoo-init-1.0, >=dev-lisp/asdf-2.26, >=dev-lisp/sbcl-1.1.2
+
+  24 Dec 2012; Sergey Popov <pinkbyte@gentoo.org> package.mask:
+  Remove mask for net-misc/ups-monitor, cause package was removed from tree
 
   23 Dec 2012; Samuli Suominen <ssuominen@gentoo.org>
   targets/desktop/package.use:
