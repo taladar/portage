@@ -1,10 +1,35 @@
 # ChangeLog for profile directory
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7299 2012/12/26 22:52:22 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7306 2012/12/27 21:18:14 slyfox Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  27 Dec 2012; Sergei Trofimovich <slyfox@gentoo.org> package.mask:
+  Mask dev-haskell/wxc as it requires masked wxGTK.
+
+  27 Dec 2012; Sergey Popov <pinkbyte@gentoo.org> package.mask:
+  Remove obsolete masks, wrt bug #444181
+
+  27 Dec 2012; Sergey Popov <pinkbyte@gentoo.org>
+  default/linux/m68k/10.0/package.mask:
+  Remove obsolete masks, wrt bug #444181
+
+  27 Dec 2012; Sergey Popov <pinkbyte@gentoo.org> hardened/linux/package.mask,
+  hardened/linux/powerpc/package.use.mask,
+  hardened/linux/powerpc/ppc64/32bit-userland/package.mask:
+  Remove obsolete masks, wrt bug #444181
+
+  27 Dec 2012; Sergey Popov <pinkbyte@gentoo.org>
+  hardened/linux/x86/package.use.mask:
+  Remove obsolete masks, wrt bug #444181
+
+  27 Dec 2012; Sergey Popov <pinkbyte@gentoo.org> releases/10.0/package.mask:
+  Remove obsolete masks, wrt bug #444181
+
+  27 Dec 2012; Alexandre Rostovtsev <tetromino@gentoo.org> package.mask:
+  Unmask ibus-1.4.99, should have been unmasked with gnome-shell-3.6
 
   26 Dec 2012; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
   Drop Gnome 3.6 mask.
