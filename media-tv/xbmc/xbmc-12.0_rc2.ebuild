@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/xbmc/xbmc-12.0_rc2.ebuild,v 1.2 2012/12/25 19:25:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-tv/xbmc/xbmc-12.0_rc2.ebuild,v 1.5 2012/12/29 20:12:18 vapier Exp $
 
 EAPI="4"
 
@@ -52,7 +52,7 @@ COMMON_DEPEND="virtual/glu
 	cec? ( >=dev-libs/libcec-2 )
 	dev-libs/libpcre[cxx]
 	>=dev-libs/lzo-2.04
-	dev-libs/tinyxml
+	dev-libs/tinyxml[stl]
 	dev-libs/yajl
 	>=dev-python/pysqlite-2
 	dev-python/simplejson
@@ -89,7 +89,7 @@ COMMON_DEPEND="virtual/glu
 	rtmp? ( media-video/rtmpdump )
 	avahi? ( net-dns/avahi )
 	nfs? ( net-fs/libnfs )
-	webserver? ( net-libs/libmicrohttpd )
+	webserver? ( net-libs/libmicrohttpd[messages] )
 	sftp? ( net-libs/libssh )
 	net-misc/curl
 	samba? ( >=net-fs/samba-3.4.6[smbclient] )
