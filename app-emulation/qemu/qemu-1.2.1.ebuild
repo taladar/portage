@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/qemu-1.2.1.ebuild,v 1.6 2013/01/11 23:54:15 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/qemu/qemu-1.2.1.ebuild,v 1.8 2013/01/12 23:08:29 cardoe Exp $
 
 EAPI="4"
 
@@ -80,9 +80,9 @@ LIB_DEPEND=">=dev-libs/glib-2.0[static-libs(+)]
 RDEPEND="!static? ( ${LIB_DEPEND//\[static-libs(+)]} )
 	!app-emulation/kqemu
 	sys-firmware/ipxe
-	>=sys-firmware/seabios-1.7.0
-	sys-firmware/sgabios
-	sys-firmware/vgabios
+	~sys-firmware/seabios-1.7.1
+	~sys-firmware/sgabios-0.1_pre8
+	~sys-firmware/vgabios-0.7a
 	alsa? ( >=media-libs/alsa-lib-1.0.13 )
 	bluetooth? ( net-wireless/bluez )
 	brltty? ( app-accessibility/brltty )
@@ -94,10 +94,7 @@ RDEPEND="!static? ( ${LIB_DEPEND//\[static-libs(+)]} )
 	smartcard? ( dev-libs/nss )
 	spice? ( >=app-emulation/spice-protocol-0.12.0 )
 	systemtap? ( dev-util/systemtap )
-	usbredir? (
-		>=sys-apps/usbredir-0.3.4
-		x86? ( <sys-apps/usbredir-0.5 )
-		)
+	usbredir? ( ~sys-apps/usbredir-0.4.4 )
 	virtfs? ( sys-libs/libcap )
 	xen? ( app-emulation/xen-tools )"
 
