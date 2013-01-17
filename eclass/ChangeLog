@@ -1,6 +1,29 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.618 2013/01/15 12:09:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.625 2013/01/16 23:57:37 anarchy Exp $
+
+  16 Jan 2013; Jory A. Pratt <anarchy@gentoo.org> mozconfig-3.eclass:
+  Remove webrtc block as it is supported on all archs now.
+
+  16 Jan 2013; Gilles Dartiguelongue <eva@gentoo.org> gnome2.eclass:
+  Drop deprecated SCROLLKEEPER_UPDATE and switch to in_iuse.
+
+  16 Jan 2013; Gilles Dartiguelongue <eva@gentoo.org> gnome2.eclass,
+  gst-plugins10.eclass:
+  Update eclass documentation to be correclty parsed, bug #452204.
+
+  16 Jan 2013; Ralph Sennhauser <sera@gentoo.org> java-utils-2.eclass:
+  Be graceful if no system vm is set if trying to determine build vm from
+  handle.
+
+  16 Jan 2013; Michał Górny <mgorny@gentoo.org> mozcoreconf-2.eclass:
+  Migrate Mozilla packages to python-any-r1 for build-time Python dep.
+
+  16 Jan 2013; Jory A. Pratt <anarchy@gentoo.org> mozcoreconf-2.eclass:
+  Fix sqlite dep so pysqlite can go away.
+
+  16 Jan 2013; Zac Medico <zmedico@gentoo.org> linux-info.eclass:
+  Fix localRESULT typo in linux_chkconfig_builtin.
 
   15 Jan 2013; Jeroen Roovers <jer@gentoo.org> ChangeLog:
   DECRIPTION -> DESCRIPTION (bug #451654 by Christopher Schwan).

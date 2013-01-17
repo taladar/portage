@@ -1,11 +1,11 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-6.01.ebuild,v 1.17 2013/01/15 17:03:14 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-6.01.ebuild,v 1.21 2013/01/16 19:21:09 jer Exp $
 
 EAPI="4"
 PYTHON_DEPEND="2"
 
-inherit eutils flag-o-matic python
+inherit eutils flag-o-matic python toolchain-funcs
 
 MY_P=${P/_beta/BETA}
 
@@ -86,6 +86,12 @@ src_configure() {
 		$(use_with nping) \
 		$(use_with ssl openssl) \
 		--with-libdnet=included
+}
+
+src_compile() {
+	emake \
+		AR=$(tc-getAR) \
+		RANLIB=$(tc-getRANLIB)
 }
 
 src_install() {
