@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-197-r2.ebuild,v 1.8 2013/01/16 13:55:29 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-197-r2.ebuild,v 1.10 2013/01/17 19:35:25 williamh Exp $
 
 EAPI=4
 
@@ -46,7 +46,7 @@ DEPEND="${COMMON_DEPEND}
 	virtual/os-headers
 	virtual/pkgconfig
 	!<sys-kernel/linux-headers-${KV_min}
-	doc? ( dev-util/gtk-doc )
+	doc? ( >=dev-util/gtk-doc-1.18 )
 	hwdb? ( >=sys-apps/hwids-20121202.2[udev] )"
 
 if [[ ${PV} = 9999* ]]
@@ -376,8 +376,11 @@ pkg_postinst()
 		ewarn "Your system has /usr on a separate partition. This means"
 		ewarn "you will need to use an initramfs to pre-mount /usr before"
 		ewarn "udev runs."
-		ewarn "This must be set up before your next reboot, or you may"
-		ewarn "experience failures which are very difficult to troubleshoot."
+		ewarn
+		ewarn "If this is not set up before your next reboot, udev may work;"
+		ewarn "However, you also may experience failures which are very"
+		ewarn "difficult to troubleshoot."
+		ewarn
 		ewarn "For a more detailed explanation, see the following URL:"
 		ewarn "http://www.freedesktop.org/wiki/Software/systemd/separate-usr-is-broken"
 		ewarn
