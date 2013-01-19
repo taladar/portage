@@ -1365,6 +1365,7 @@ dev-libs/igraph:lapack - Use external lapack numerical library
 dev-libs/intel-common:compiler - Install the libraries needed for the icc and ifort compilers
 dev-libs/jemalloc:stats - Enable statistics calculation/reporting
 dev-libs/keybinder:introspection - Use dev-libs/gobject-introspection for introspection
+dev-libs/libRocket:samples - Build samples
 dev-libs/libappindicator:introspection - Use dev-libs/gobject-introspection for introspection
 dev-libs/libburn:cdio - Enable EXPERIMENTAL use of libcdio as system adapter
 dev-libs/libburn:track-src-odirect - Read track input with O_DIRECT (see man 2 open), this may deliver a better write performance in some situations
@@ -4519,8 +4520,10 @@ net-misc/ofono:tools - Enable testing tools
 net-misc/oidentd:masquerade - Enable support for masqueraded/NAT connections
 net-misc/openconnect:openssl - Enable dev-libs/openssl support
 net-misc/openssh:X509 - Adds support for X.509 certificate authentication
+net-misc/openssh:bindist - Disable EC/RC5 algorithms in OpenSSL for patent reasons.
 net-misc/openssh:hpn - Enable high performance ssh
 net-misc/openssh:ldap - Add support for storing SSH public keys in LDAP
+net-misc/openssh:ldns - Use LDNS for DNSSEC/SSHFP validation.
 net-misc/openswan:curl - Include curl support (used for fetching CRLs)
 net-misc/openswan:extra-algorithms - Include additional strong algorithms (Blowfish, Twofish, Serpent and SHA2)
 net-misc/openswan:ldap - Include LDAP support (used for fetching CRLs)
@@ -5416,6 +5419,7 @@ sys-cluster/pacemaker:smtp - Enable SMTP support via net-libs/libsmtp
 sys-cluster/pacemaker-gui:gtk - Enable the GTK+ based GUI client.
 sys-cluster/pacemaker-gui:heartbeat - Enable support for heartbeat based sys-cluster/pacemaker.
 sys-cluster/resource-agents:libnet - Force use of net-libs/libnet
+sys-cluster/resource-agents:rgmanager - Install resources for sys-cluster/rgmanager
 sys-cluster/slurm:maui - Enable maui scheduler support
 sys-cluster/slurm:multiple-slurmd - Allow multiple slurmd to run
 sys-cluster/slurm:munge - Enable authentication via munge
@@ -5609,6 +5613,7 @@ sys-infiniband/ofed:sdp - Add SDP tools
 sys-infiniband/ofed:srp - Suport for userspace part for srp initiator
 sys-kernel/aufs-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
 sys-kernel/aufs-sources:module - Patch kernel to allow aufs being build as a module.
+sys-kernel/aufs-sources:proc - Support for /proc/maps and lsof(1)
 sys-kernel/ck-sources:bfsonly - BFS by itslef vs The full ck patchset
 sys-kernel/ck-sources:deblob - Remove binary blobs from kernel sources to provide libre license compliance.
 sys-kernel/ck-sources:experimental - Allow experimental code. Can break or degrade performances. (UNSUPPORTED)
