@@ -1,6 +1,46 @@
 # ChangeLog for sys-fs/udev-init-scripts
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev-init-scripts/ChangeLog,v 1.27 2013/01/20 19:54:07 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev-init-scripts/ChangeLog,v 1.33 2013/01/21 21:30:17 ssuominen Exp $
+
+  21 Jan 2013; Samuli Suominen <ssuominen@gentoo.org>
+  udev-init-scripts-19-r1.ebuild, udev-init-scripts-21.ebuild,
+  udev-init-scripts-9999.ebuild:
+  Use rc-update instead of rc-config to avoid eselect dependency.
+
+  21 Jan 2013; Samuli Suominen <ssuominen@gentoo.org>
+  udev-init-scripts-19-r1.ebuild, udev-init-scripts-21.ebuild,
+  udev-init-scripts-9999.ebuild:
+  Only print warning about udev-postmount if it's present in runlevels boot,
+  default or sysinit wrt #453408 by Pacho Ramos
+
+*udev-init-scripts-21 (21 Jan 2013)
+
+  21 Jan 2013; William Hubbs <williamh@gentoo.org>
+  -udev-init-scripts-20.ebuild, +udev-init-scripts-21.ebuild:
+  version bump to add code to stop udev if udevadm control fails, pointed out
+  by Nikoli.
+
+*udev-init-scripts-20 (21 Jan 2013)
+
+  21 Jan 2013; William Hubbs <williamh@gentoo.org>
+  +udev-init-scripts-20.ebuild, udev-init-scripts-9999.ebuild:
+  version bump for running the udev executable only; not the symbolic link.
+  This is the same fix as 19-r1.
+
+  21 Jan 2013; Samuli Suominen <ssuominen@gentoo.org>
+  -udev-init-scripts-10.ebuild, -udev-init-scripts-12.ebuild,
+  -udev-init-scripts-14.ebuild, -udev-init-scripts-15.ebuild,
+  -udev-init-scripts-16.ebuild, -udev-init-scripts-17.ebuild,
+  -udev-init-scripts-17-r1.ebuild, -udev-init-scripts-18.ebuild,
+  -udev-init-scripts-19.ebuild:
+  old
+
+*udev-init-scripts-19-r1 (21 Jan 2013)
+
+  21 Jan 2013; Samuli Suominen <ssuominen@gentoo.org>
+  +udev-init-scripts-19-r1.ebuild,
+  +files/udev-init-scripts-19-start-only-regular-file.patch:
+  Skip systemd-udevd if it's a symlink.
 
   20 Jan 2013; Agostino Sarubbo <ago@gentoo.org> udev-init-scripts-19.ebuild:
   Stable for x86, wrt bug #452556

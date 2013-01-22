@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999.ebuild,v 1.8 2013/01/20 17:20:49 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999.ebuild,v 1.13 2013/01/21 19:48:28 tetromino Exp $
 
 EAPI=5
 
@@ -52,8 +52,9 @@ RDEPEND="${COMMON_DEPEND}
 		>=sys-apps/util-linux-2.22
 		<sys-apps/sysvinit-2.88-r4
 	)
+	!sys-auth/nss-myhostname
 	!<sys-libs/glibc-2.10
-	!<sys-fs/udev-197-r2"
+	!<sys-fs/udev-197-r3"
 
 # sys-fs/quota is necessary to store correct paths in unit files
 DEPEND="${COMMON_DEPEND}
@@ -69,7 +70,7 @@ DEPEND="${COMMON_DEPEND}
 SRC_URI=
 KEYWORDS=
 
-DEPEND="dev-libs/gobject-introspection
+DEPEND+=" dev-libs/gobject-introspection
 	>=dev-util/gtk-doc-1.18"
 #endif
 
@@ -110,6 +111,9 @@ src_configure() {
 		--with-pamlibdir=/$(get_libdir)/security
 		# make sure we get /bin:/sbin in $PATH
 		--enable-split-usr
+		# disable sysv compatibility
+		--with-sysvinit-path=
+		--with-sysvrcnd-path=
 		# udev parts
 		--disable-introspection
 		--disable-gtk-doc
@@ -137,10 +141,6 @@ src_install() {
 	autotools-utils_src_install \
 		bashcompletiondir=/tmp \
 		udevlibexecdir=/lib/udev
-
-	# README files stating 'hey, this directory was replaced by our
-	# awesome whatever'
-	rm "${D}"/{etc/init.d,var/log}/README || die
 
 	# remove pam.d plugin .la-file
 	prune_libtool_files --modules
