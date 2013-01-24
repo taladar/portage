@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-197-r3.ebuild,v 1.24 2013/01/21 20:41:00 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-197-r3.ebuild,v 1.28 2013/01/23 20:41:29 ssuominen Exp $
 
 EAPI=4
 
@@ -138,17 +138,6 @@ src_prepare()
 			configure || die
 		eval export INTLTOOL_{EXTRACT,MERGE,UPDATE}=/bin/true
 		eval export {MSG{FMT,MERGE},XGETTEXT}=/bin/true
-	fi
-
-	# This check is for maintainers only
-	if [[ ${PV} = 9999* ]]; then
-		# Support uClibc wrt bug #443030 with a safe kludge so we know when
-		# to check for other uses than logs. See the echo for secure_getenv
-		# at the end of src_prepare().
-		if ! [[ $(grep -r secure_getenv * | wc -l) -eq 16 ]]; then
-			eerror "The line count of secure_getenv failed, see bug #443030"
-			die
-		fi
 	fi
 
 	# apply user patches
@@ -357,6 +346,10 @@ src_install()
 	dosym /sbin/udevd "$(systemd_get_utildir)"/systemd-udevd
 	find "${ED}/$(systemd_get_unitdir)" -name '*.service' -exec \
 		sed -i -e "/ExecStart/s:/lib/systemd:$(systemd_get_utildir):" {} +
+
+	docinto gentoo
+	dodoc "${FILESDIR}"/80-net-name-slot.rules
+	docompress -x /usr/share/doc/${PF}/gentoo/80-net-name-slot.rules
 }
 
 pkg_preinst()
@@ -374,9 +367,6 @@ pkg_preinst()
 		fi
 	done
 	preserve_old_lib /$(get_libdir)/libudev.so.0
-
-	net_rules="${ROOT}"etc/udev/rules.d/80-net-name-slot.rules
-	[[ -f ${net_rules} ]] || cp "${FILESDIR}"/80-net-name-slot.rules "${net_rules}"
 }
 
 # This function determines if a directory is a mount point.
@@ -392,6 +382,9 @@ ismounted()
 pkg_postinst()
 {
 	mkdir -p "${ROOT}"/run
+
+	net_rules="${ROOT}"etc/udev/rules.d/80-net-name-slot.rules
+	[[ -f ${net_rules} ]] || cp "${ROOT}"usr/share/doc/${PF}/gentoo/80-net-name-slot.rules "${net_rules}"
 
 	# "losetup -f" is confused if there is an empty /dev/loop/, Bug #338766
 	# So try to remove it here (will only work if empty).
@@ -468,6 +461,17 @@ pkg_postinst()
 		ewarn "One way to do this is to run the following command:"
 		ewarn "emerge -av1 \$(qfile -q -S -C /usr/lib/udev)"
 		ewarn "Note that qfile can be found in app-portage/portage-utils"
+	fi
+
+	old_net_rules=${ROOT}etc/udev/rules.d/70-persistent-net.rules
+	if [[ -f ${old_net_rules} ]]; then
+		ewarn "You still have ${old_net_rules} in place from previous udev release."
+		ewarn "Upstream has removed the possibility of renaming to existing"
+		ewarn "network interfaces. For example, it's not possible to assign based"
+		ewarn "on MAC address to existing interface eth0."
+		ewarn "See http://bugs.gentoo.org/453494 for more information."
+		ewarn "Rename your file to something else starting with 70- to silence"
+		ewarn "this warning."
 	fi
 
 	ewarn

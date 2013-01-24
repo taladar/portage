@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/libreoffice-4.0.9999.ebuild,v 1.15 2013/01/15 15:45:50 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/libreoffice-4.0.9999.ebuild,v 1.17 2013/01/23 20:33:25 scarabeus Exp $
 
 EAPI=5
 
@@ -110,7 +110,7 @@ COMMON_DEPEND="
 	dev-db/unixODBC
 	dev-libs/expat
 	>=dev-libs/hyphen-2.7.1
-	>=dev-libs/icu-4.8.1.1
+	>=dev-libs/icu-4.8.1.1:=
 	>=dev-libs/liborcus-0.3
 	>=dev-libs/nspr-4.8.8
 	>=dev-libs/nss-3.12.9
@@ -181,7 +181,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 PDEPEND="
-	=app-office/libreoffice-l10n-3.6*
+	=app-office/libreoffice-l10n-4.0*
 "
 
 # FIXME: cppunit should be moved to test conditional
