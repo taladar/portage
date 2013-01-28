@@ -1,6 +1,40 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.641 2013/01/26 15:01:52 swift Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.652 2013/01/27 23:59:35 radhermit Exp $
+
+  27 Jan 2013; Tim Harder <radhermit@gentoo.org> vim-plugin.eclass:
+  Remove all hidden files in the main tarball dir.
+
+  27 Jan 2013; Michał Górny <mgorny@gentoo.org> python-r1.eclass:
+  Fix output redirections in run_in_build_dir().
+
+  27 Jan 2013; Michał Górny <mgorny@gentoo.org> distutils-r1.eclass:
+  Support using distutils-r1 along with python-single-r1.
+
+  27 Jan 2013; Michał Górny <mgorny@gentoo.org> distutils-r1.eclass:
+  Support making dependency and phase function enforcement optional.
+
+  27 Jan 2013; Michał Górny <mgorny@gentoo.org> python-r1.eclass:
+  Introduce run_in_build_dir() function as used by GNOME ebuilds.
+
+  27 Jan 2013; Michał Górny <mgorny@gentoo.org> python-utils-r1.eclass:
+  Introduce python_doheader(), to install headers specific to a Python
+  implementation.
+
+  27 Jan 2013; Joerg Bornkessel <hd_brummy@gentoo.org> vdr-plugin-2.eclass:
+  reverted last changes
+
+  27 Jan 2013; Tim Harder <radhermit@gentoo.org> vim-plugin.eclass:
+  Remove files before installing docs.
+
+  27 Jan 2013; Tim Harder <radhermit@gentoo.org> vim-plugin.eclass:
+  Also remove stray makefiles.
+
+  27 Jan 2013; Tim Harder <radhermit@gentoo.org> vim-plugin.eclass:
+  Remove unwanted files that may exist.
+
+  27 Jan 2013; Joerg Bornkessel <hd_brummy@gentoo.org> vdr-plugin-2.eclass:
+  some fixes, install new makefilehandling; thx to zoolock@irc gentoo.vdr
 
   26 Jan 2013; Sven Vermeulen <swift@gentoo.org> selinux-policy-2.eclass:
   Supporting removal of SELinux modules
