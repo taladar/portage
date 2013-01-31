@@ -1,6 +1,19 @@
 # ChangeLog for sys-libs/pam
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.314 2012/10/07 18:52:57 flameeyes Exp $
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.317 2013/01/30 22:43:52 ago Exp $
+
+  30 Jan 2013; Agostino Sarubbo <ago@gentoo.org> pam-1.1.6-r1.ebuild:
+  Stable for x86, wrt bug #454664
+
+  30 Jan 2013; Agostino Sarubbo <ago@gentoo.org> pam-1.1.6-r1.ebuild:
+  Stable for amd64, wrt bug #454664
+
+*pam-1.1.6-r1 (30 Jan 2013)
+
+  30 Jan 2013; Diego E. Pettenò <flameeyes@gentoo.org> +pam-1.1.6-r1.ebuild,
+  -pam-1.1.6.ebuild:
+  Finally close bug #451068 by using /run/sepermit directly, and installing a
+  tmpfiles.d file for it to be re-created at boot time.
 
   07 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org>
   +files/Linux-PAM-1.1.6+glibc-2.16.patch, pam-1.1.6.ebuild:
