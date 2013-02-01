@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14417 2013/01/31 00:31:10 rafaelmartins Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14423 2013/02/01 00:08:31 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,22 @@
 
 #--- END OF EXAMPLES ---
 
+# Michael Sterrett <mr_bones_@gentoo.org> (31 Jan 2013)
+# Old, dead upstream, slightly broken and uses imake.
+# Masked for removal on 20130302
+games-arcade/xboing
+
+# Michael Sterrett <mr_bones_@gentoo.org> (31 Jan 2013)
+# Old, dead upstream and require guile[deprecated]
+# Masked for removal on 20130302
+games-action/trackballs
+games-misc/gnurobots
+
+# Michael Sterrett <mr_bones_@gentoo.org> (31 Jan 2013)
+# Upstream is dead and gone.
+# Masked for removal on 20130302
+games-arcade/bitefusion
+
 # Rafael G. Martins <rafaelmartins@gentoo.org> (31 Jan 2013)
 # Renamed to xombrero. Please install www-client/xombrero (bug #417555)
 # The package was not pkg-moved to fix the upstream versioning mess.
@@ -46,7 +62,6 @@ games-puzzle/kmagnet
 # Uncompatible with current udev and baselayout
 # Bug 220121 and the ones it Blocks
 # Removal in 30 days
-x11-misc/mkxf86config
 <app-misc/livecd-tools-2.0
 
 # Alexandre Rostovtsev <tetromino@gentoo.org> (28 Jan 2013)
@@ -394,22 +409,6 @@ net-wireless/madwifi-ng
 # Masked for removal in 30 days. (17 Jan 2012)
 # This is provided by USE=xtended webalizer, bug #445226
 app-admin/webalizer-xtended
-
-# Sebastien Fabbro <bicatali@gentoo.org> (13 Dec 2012)
-# Necessary removal to get rid of very unstable sci-libs/lapack-atlas
-# Packages are in the science overlay
-# until sci-libs/atlas replacement make it to the main tree
-<sci-astronomy/sextractor-2.8.6-r1
-sci-astronomy/scamp
-
-# Justin Lecher <jlec@gentoo.org> (13 Dec 2012)
-# sci-libs/(lapack/blas)-altas will be removed due to
-# fragile build and runtime behaviour #372323.
-# Alternatives are sci-libs/lapack-reference & sci-libs/blas-reference.
-# Follow up package named sci-libs/atlas can be found in
-# sci overlay and will be moved once ready for prime time
-sci-libs/blas-atlas
-sci-libs/lapack-atlas
 
 # Michał Górny <mgorny@gentoo.org> (07 Dec 2012)
 # Experimental version disabling XDM-AUTHENTICATION-1 (in favor

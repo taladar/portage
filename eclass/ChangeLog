@@ -1,6 +1,18 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.654 2013/01/30 10:42:25 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.657 2013/01/31 19:59:54 eva Exp $
+
+  31 Jan 2013; Gilles Dartiguelongue <eva@gentoo.org> gst-plugins10.eclass:
+  Allow build of multiple plugins in different directories. Make variables more
+  easily override-able.
+
+  31 Jan 2013; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  xorg-2.eclass:
+  Add EAPI 5 sub-slot dependency on x11-base/xorg-server for packages which
+  require rebuilding when the server is upgraded.
+
+  31 Jan 2013; Tomáš Chvátal <scarabeus@gentoo.org> obs-service.eclass:
+  Additional files also must be versioned as they change between versions.
 
   30 Jan 2013; Michał Górny <mgorny@gentoo.org> python-r1.eclass,
   python-single-r1.eclass:
