@@ -1,6 +1,16 @@
 # ChangeLog for sys-fs/udev
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/ChangeLog,v 1.813 2013/01/31 23:08:05 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/ChangeLog,v 1.815 2013/02/01 17:31:33 ssuominen Exp $
+
+*udev-197-r6 (01 Feb 2013)
+
+  01 Feb 2013; Samuli Suominen <ssuominen@gentoo.org> +udev-197-r6.ebuild,
+  udev-9999.ebuild:
+  Trim 40-gentoo.rules in favour of upstream 50-udev-default.rules; and
+  write it using the ebuild.
+
+  01 Feb 2013; Samuli Suominen <ssuominen@gentoo.org> -udev-197-r3.ebuild:
+  old
 
   31 Jan 2013; Agostino Sarubbo <ago@gentoo.org> udev-197-r4.ebuild:
   Stable for ppc, wrt bug #452556
