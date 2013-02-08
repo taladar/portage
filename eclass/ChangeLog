@@ -1,6 +1,14 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.661 2013/02/04 18:39:47 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.663 2013/02/07 15:41:34 kensington Exp $
+
+  07 Feb 2013; Michael Palimaka <kensington@gentoo.org> cmake-utils.eclass:
+  Export src_prepare. Improve support for dev-util/ninja wrt bug #439608. Add
+  support for CMAKE_DISABLE_FIND_PACKAGE wrt bug #453746.
+
+  07 Feb 2013; Alexey Shvetsov <alexxy@gentoo.org> kde4-base.eclass,
+  kde4-functions.eclass, kde4-meta.eclass, kde4-meta-pkg.eclass:
+  Version bump KDE SC 4.10.0
 
   04 Feb 2013; Pacho Ramos <pacho@gentoo.org> readme.gentoo.eclass:
   Add a variable to stop autoformatting when not desired, use '-e' option for
