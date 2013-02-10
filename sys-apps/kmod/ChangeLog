@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/kmod
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/ChangeLog,v 1.71 2013/02/08 14:47:33 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/ChangeLog,v 1.73 2013/02/09 23:02:14 ssuominen Exp $
+
+  09 Feb 2013; Samuli Suominen <ssuominen@gentoo.org> kmod-12-r1.ebuild:
+  arm/ppc64 stable wrt #452556
+
+  09 Feb 2013; Agostino Sarubbo <ago@gentoo.org> kmod-12-r1.ebuild:
+  Stable for ia64, wrt bug #452556
 
   08 Feb 2013; Jeroen Roovers <jer@gentoo.org> kmod-12-r1.ebuild:
   Stable for HPPA (bug #452556).
