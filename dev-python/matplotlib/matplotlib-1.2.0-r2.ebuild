@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-1.2.0-r2.ebuild,v 1.2 2013/02/07 11:54:44 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-1.2.0-r2.ebuild,v 1.5 2013/02/10 22:28:02 mgorny Exp $
 
 EAPI=5
 
@@ -23,6 +23,7 @@ KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-maco
 # Fonts: BitstreamVera, OFL-1.1
 LICENSE="BitstreamVera BSD matplotlib MIT OFL-1.1"
 
+# #456704 -- a lot of py2-only deps
 PY2_USEDEP=$(python_gen_usedep python2*)
 COMMON_DEPEND="dev-python/numpy[${PYTHON_USEDEP}]
 	dev-python/python-dateutil[${PYTHON_USEDEP}]
@@ -160,7 +161,6 @@ wrap_setup() {
 }
 
 python_compile() {
-	unset DISPLAY # bug #278524
 	wrap_setup distutils-r1_python_compile
 }
 
@@ -168,18 +168,14 @@ python_compile_all() {
 	if use doc; then
 		cd doc || die
 
+		unset DISPLAY # bug #278524
 		VARTEXFONTS="${T}"/fonts \
 		"${PYTHON}" ./make.py --small html || die
 	fi
 }
 
 python_test() {
-	local test_dir="${BUILD_DIR}"/tests/lib
-	mkdir -p "${test_dir}" || die
-	local PYTHONPATH=${test_dir}:${PYTHONPATH}
-	export PYTHONPATH
-
-	wrap_setup esetup.py install --install-lib="${test_dir}"
+	wrap_setup distutils_install_for_testing
 
 	cd "${TMPDIR}" || die
 	"${PYTHON}" -c "
