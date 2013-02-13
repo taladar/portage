@@ -632,6 +632,7 @@ app-laptop/prey:secure - Delete or hide sensitive user data
 app-laptop/prey:session - Get screenshots from user session
 app-laptop/prey:userpriv - Create a prey user group so regular users can access and modify the prey configuration. Use it with caution
 app-laptop/prey:webcam - Use computer's webcam to take screenshots of the thief
+app-laptop/thinkfan:atasmart - include libatasmart support to get disc temperature
 app-laptop/tp_smapi:hdaps - Install a compatible HDAPS module
 app-misc/anki:furigana - Enable support for furigana generation
 app-misc/anki:graph - Enable support for making graphs
@@ -2374,6 +2375,7 @@ kde-misc/kcm-grub2:hwinfo - Used to work out supported framebuffer resolutions
 kde-misc/kcm-grub2:imagemagick - Create splash images compatible with GRUB2
 kde-misc/kcm-grub2:packagekit - Add support for packagekit integration
 kde-misc/krusader:bookmarks - Add dependency on bookmark package.
+kde-misc/networkmanagement:openconnect - Build support for the OpenConnect VPN client
 kde-misc/synaptiks:upower - Handle mouse devices correctly across suspend and resume with upower
 kde-misc/tellico:addressbook - Add support for kdepim addressbook (kabc)
 lxde-base/lxdm:gtk3 - Use GTK+3 instead of 2
@@ -3721,7 +3723,6 @@ net-analyzer/tcpreplay:tcpdump - Use net-analyzer/tcpdump for packet decoding fe
 net-analyzer/wireshark:adns - Use the GNU net-dns/c-ares library to resolve DNS names
 net-analyzer/wireshark:crypt - Use dev-libs/libgcrypt to decrypt traffic
 net-analyzer/wireshark:doc-pdf - Build documentation in pdf format (US and a4 paper sizes)
-net-analyzer/wireshark:gcrypt - Use dev-libs/libgcrypt to decrypt IPsec traffic
 net-analyzer/wireshark:libadns - Use net-lib/adns (DEPRECATED) instead of net-dns/c-ares to resolve DNS names
 net-analyzer/wireshark:pcap - Use net-libs/libpcap for network packet capturing (build dumpcap, rawshark)
 net-analyzer/wireshark:smi - Use net-libs/libsmi to resolve numeric OIDs into human readable format
@@ -4962,7 +4963,7 @@ sci-chemistry/gromacs:mkl - Use sci-libs/mkl for fft, blas, lapack routines
 sci-chemistry/gromacs:offensive - Enable gromacs partly offensive quotes
 sci-chemistry/gromacs:openmm - Add acceleration through sci-libs/openmm
 sci-chemistry/gromacs:single-precision - Single precision version of gromacs (default)
-sci-chemistry/gromacs:sse41 - Enable sse4.1 acceleration
+sci-chemistry/gromacs:sse4_1 - Enable sse4.1 acceleration
 sci-chemistry/gsim:emf - Support for .emf export
 sci-chemistry/icm:32bit - Automatically generated description for 32bit
 sci-chemistry/icm:64bit - Automatically generated description for 64bit
@@ -5032,6 +5033,7 @@ sci-geosciences/mapserver:xslt - Enable xslt and exslt support xml-mapfile suppo
 sci-geosciences/merkaartor:libproxy - Use net-libs/libproxy for getting the HTTP/HTTPS/SOCKS proxy configuration
 sci-geosciences/merkaartor:webkit - Enable Webkit browser plugin using x11-libs/qt-webkit
 sci-geosciences/opencpn:gpsd - Add support for using a GPS device through the GPSD deamon
+sci-geosciences/qgis:bundled-libs - Use internal copy of x11-libs/qwtpolar
 sci-geosciences/qgis:grass - Add support for sci-geosciences/grass
 sci-geosciences/qgis:spatialite - Enable Spatial DBMS over sqlite dev-db/spatialite
 sci-geosciences/qlandkartegt:dmtx - Enable libdmtx support for summarizing waypoints as 2D barcode
@@ -5244,10 +5246,9 @@ sci-visualization/opendx:cdf - Add support for sci-libs/cdf data exchange format
 sci-visualization/opendx:hdf - Add support for the Hierarchical Data Format (sci-libs/hdf)
 sci-visualization/paraview:boost - Enable the usage of dev-libs/boost
 sci-visualization/paraview:cg - Add support for nvidia's cg shaders
-sci-visualization/paraview:gui - Build paraview's gui not just the server
-sci-visualization/paraview:overview - Enable the OverView plugin framework
+sci-visualization/paraview:coprocessing - Enable the coprocessing infrastructure which is mainly useful in the context of clusters
+sci-visualization/paraview:nvcontrol - Add NVCONTROL support for OpenGL options
 sci-visualization/paraview:plugins - Build and install additional plugins
-sci-visualization/paraview:streaming - Enable streaming paraview application
 sci-visualization/veusz:fits - Add FITS format via dev-python/pyfits
 sec-policy/selinux-base:open_perms - Enable the open permissions for file object classes (SELinux policy capability).
 sec-policy/selinux-base:peer_perms - Enable the labeled networking peer permissions (SELinux policy capability).
@@ -6215,6 +6216,7 @@ x11-themes/gtk-engines-murrine:animation-rtl - Progressbar animation from right 
 x11-themes/gtk-engines-murrine:themes - Pull in themes via x11-themes/murrine-themes
 x11-themes/gtk-engines-nodoka:animation-rtl - Progressbar animation from right to left
 x11-themes/gtk-engines-qtcurve:mozilla - Install GUI theme tweaks for mozilla based browsers www-client/firefox
+x11-themes/kfaenza:additional - Install additional KFaenza icons. See third homepage for details
 x11-themes/light-themes:gtk3 - Support GTK 3.x, too
 x11-themes/qtcurve-qt4:kde - Enable KDE4 support. This adds a QtCurve configuration module to KDE's SystemSettings
 x11-themes/qtcurve-qt4:windeco - Enable window decoration for KWin

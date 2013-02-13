@@ -1,10 +1,55 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7475 2013/02/10 21:52:43 mattst88 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7489 2013/02/12 16:04:45 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  12 Feb 2013; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Unmask bluez-firwmare now that license has been fixed wrt #456948 by Daniel
+  Westermann-Clark
+
+  12 Feb 2013; Samuli Suominen <ssuominen@gentoo.org> updates/1Q-2013:
+  Move bluez-firmware from net-wireless category to sys-firmware category.
+
+  12 Feb 2013; Tim Harder <radhermit@gentoo.org> updates/1Q-2013:
+  Rename app-vim/bufferexplorer to app-vim/bufexplorer to follow upstream.
+
+  12 Feb 2013; Tim Harder <radhermit@gentoo.org> updates/1Q-2013:
+  Rename app-vim/threesome to app-vim/splice following upstream.
+
+  12 Feb 2013; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Use proper email address in entry.
+
+  11 Feb 2013; Julian Ospald <hasufell@gentoo.org> package.mask:
+  unmask sci-visualization/paraview, I bumped it
+
+  11 Feb 2013; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask cx18-firmware since the files from it are part of the linux-firmware
+  package.
+
+  11 Feb 2013; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Mask Rails 3.0 and its dependencies due to lack of upstream security support.
+
+  11 Feb 2013; Ole Markus With <olemarkus@gentoo.org> package.mask:
+  Removing mask of ezc-*. Packages gone from the tree
+
+  11 Feb 2013; Samuli Suominen <ssuominen@gentoo.org> updates/1Q-2013:
+  Move ipw2100-, ipw2200-, zd1201-, zd1211-firmware(s) from net-wireless
+  category to sys-firmware category.
+
+  11 Feb 2013; Ben de Groot <yngwin@gentoo.org> arch/sparc/package.use.mask:
+  Remove redundant cairo[qt4] use mask (now masked for all versions in
+  base/p.use.mask)
+
+  11 Feb 2013; Ben de Groot <yngwin@gentoo.org> base/package.use.mask:
+  Adjust cairo[qt4] usemask to cover all versions, since it still leads to
+  build errors (bug #454066)
+
+  11 Feb 2013; Alexandre Rostovtsev <tetromino@gentoo.org> package.mask:
+  Add media-plugins/gst-plugins-ffmpeg-0.10.13_p201211 prereleases to libav
+  package.mask (bug #423717).
 
   10 Feb 2013; Matt Turner <mattst88@gentoo.org> package.mask:
   package.mask net-wireless/at76c503a for removal.
