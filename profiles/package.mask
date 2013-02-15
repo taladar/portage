@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14468 2013/02/13 19:18:10 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14471 2013/02/14 22:33:47 ssuominen Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -127,8 +127,8 @@ net-wireless/ar9271-firmware
 net-wireless/libertas-firmware
 net-wireless/rt2860-firmware
 net-wireless/rt2870-firmware
-net-wireless/rt61-firmware
 net-wireless/rt73-firmware
+sys-firmware/rt61-firmware
 net-wireless/i2400m-fw
 
 # Samuli Suominen <ssuominen@gentoo.org> (10 Feb 2013)
@@ -218,6 +218,10 @@ net-misc/gtk-youtube-viewer
 # ago. Ruby 1.9 has almost all of the benefits of REE, so the
 # recommendation is to switch to that if you are still using REE.
 dev-lang/ruby-enterprise
+=virtual/rubygems-3
+=virtual/ruby-rdoc-3
+=virtual/ruby-ssl-3
+=virtual/ruby-threads-3
 
 # Ben de Groot <yngwin@gentoo.org> (20 Jan 2013)
 # 2.5* has known security and other issues due to bundled ffmpeg,
