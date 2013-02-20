@@ -1,6 +1,26 @@
 # ChangeLog for virtual/perl-ExtUtils-CBuilder
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-ExtUtils-CBuilder/ChangeLog,v 1.51 2013/02/18 23:53:45 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-ExtUtils-CBuilder/ChangeLog,v 1.56 2013/02/19 22:02:55 ago Exp $
+
+  19 Feb 2013; Agostino Sarubbo <ago@gentoo.org>
+  perl-ExtUtils-CBuilder-0.280.205.ebuild:
+  Stable for arm, wrt bug #458122
+
+  19 Feb 2013; Agostino Sarubbo <ago@gentoo.org>
+  perl-ExtUtils-CBuilder-0.280.205.ebuild:
+  Stable for s390, wrt bug #458122
+
+  19 Feb 2013; Agostino Sarubbo <ago@gentoo.org>
+  perl-ExtUtils-CBuilder-0.280.205.ebuild:
+  Stable for alpha, wrt bug #458122
+
+  19 Feb 2013; Agostino Sarubbo <ago@gentoo.org>
+  perl-ExtUtils-CBuilder-0.280.205.ebuild:
+  Stable for hppa, wrt bug #458122
+
+  19 Feb 2013; Zac Medico <zmedico@gentoo.org>
+  perl-ExtUtils-CBuilder-0.280.205.ebuild:
+  Add ~arm-linux keyword.
 
   18 Feb 2013; Agostino Sarubbo <ago@gentoo.org>
   perl-ExtUtils-CBuilder-0.280.205.ebuild:
