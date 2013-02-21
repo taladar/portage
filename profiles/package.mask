@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14483 2013/02/19 03:23:37 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14485 2013/02/20 23:32:19 pinkbyte Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -290,11 +290,6 @@ app-misc/secure-delete
 app-misc/ccal
 
 # Pacho Ramos <pacho@gentoo.org>
-# Upstream dead for a long time, broken php support (#356841).
-# Removal in a month.
-www-apache/mod_vhs
-
-# Pacho Ramos <pacho@gentoo.org>
 # Still uses depend.php (#449820), upstream dead for ages and
 # newer versions don't work. Removal in a month.
 www-apps/online-bookmarks
@@ -357,7 +352,7 @@ dev-perl/Class-MOP
 
 # Alexander Vershilov <qnikst@gentoo.org> (06 Jan 2013)
 # Requires >=net-fs/samba-4 (bug #450226)
->=sys-auth/sssd-1.9.3
+=sys-auth/sssd-1.9.4
 
 # Sergei Trofimovich <slyfox@gentoo.org> (05 Jan 2013)
 # Masked for testing. Is not compatible with cvsps-2 (bug #450424).
