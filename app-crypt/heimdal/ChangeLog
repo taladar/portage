@@ -1,6 +1,15 @@
 # ChangeLog for app-crypt/heimdal
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/heimdal/ChangeLog,v 1.197 2013/01/16 21:07:18 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/heimdal/ChangeLog,v 1.200 2013/02/25 22:13:05 ago Exp $
+
+  25 Feb 2013; Agostino Sarubbo <ago@gentoo.org> heimdal-1.5.3.ebuild:
+  Stable for ppc64, wrt bug #459166
+
+  25 Feb 2013; Agostino Sarubbo <ago@gentoo.org> heimdal-1.5.3.ebuild:
+  Stable for ppc, wrt bug #459166
+
+  25 Feb 2013; Eray Aslan <eras@gentoo.org> heimdal-1.5.3.ebuild:
+  Drop ~m68k - bug #459164
 
 *heimdal-1.5.3 (16 Jan 2013)
 
