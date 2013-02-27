@@ -1,10 +1,40 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7530 2013/02/25 15:09:24 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7540 2013/02/26 23:34:53 ulm Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  26 Feb 2013; Ulrich Müller <ulm@gentoo.org> package.mask:
+  app-emacs/yow masked for removal.
+
+  26 Feb 2013; Mike Gilbert <floppym@gentoo.org> package.mask:
+  Update the google-chrome mask.
+
+  26 Feb 2013; Michał Górny <mgorny@gentoo.org> package.mask:
+  Mask the multilib freetype for testing due to header location change.
+
+  26 Feb 2013; Pawel Hajdan jr <phajdan.jr@gentoo.org> package.mask:
+  Roll dev-lang/v8, www-client/chromium p.mask entries for M27.
+
+  26 Feb 2013; Michał Górny <mgorny@gentoo.org> package.mask:
+  Unmask freetype after fixing the demo build bug.
+
+  26 Feb 2013; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask devmanual live ebuild.
+
+  26 Feb 2013; Eray Aslan <eras@gentoo.org> package.mask:
+  Remove mask for net-mail/dovecot-2.2_beta* - no longer in the tree
+
+  26 Feb 2013; Eray Aslan <eras@gentoo.org> package.mask:
+  Mask net-mail/dovecot-2.2_rc* releases
+
+  26 Feb 2013; Eray Aslan <eras@gentoo.org> package.mask:
+  Remove mask for mail-filter/opendkim-2.8.0_beta* - no longer in the tree
+
+  26 Feb 2013; Michał Górny <mgorny@gentoo.org> package.mask:
+  Temporarily mask new fontconfig & freetype because of USE=utils being broken.
 
   25 Feb 2013; Luca Barbato <lu_zero@gentoo.org> package.mask:
   Update mask for libav-9.2

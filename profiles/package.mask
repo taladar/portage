@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14504 2013/02/25 15:09:24 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14514 2013/02/26 23:34:53 ulm Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,39 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Ulrich Müller <ulm@gentoo.org> (26 Feb 2013)
+# Declared as obsolete by upstream. Use fortune.el with
+# the zippy file from games-misc/fortune-mod instead.
+# Masked for removal in 30 days, bug #459358.
+app-emacs/yow
+
+# Mike Gilbert <floppym@gentoo.org> (26 Feb 2013)
+# Dev channel releases are only for people who are developers or want more
+# experimental features and accept a more unstable release.
+>=www-client/google-chrome-27
+
+# Michał Górny <mgorny@gentoo.org> (26 Feb 2013)
+# Mask the multilib version of freetype2 and dependencies since
+# the header install location has been changed, and packages not using
+# pkg-config nor freetype-config need be fixed.
+=app-emulation/emul-linux-x86-xlibs-20130224-r1
+=media-libs/fontconfig-2.10.2-r1
+=media-libs/freetype-2.4.11-r1
+=x11-libs/libXft-2.3.1-r1
+
+# Pawel Hajdan jr <phajdan.jr@gentoo.org> (26 Feb 2013)
+# Dev channel releases are only for people who are developers or want more
+# experimental features and accept a more unstable release.
+>=www-client/chromium-27
+
+# Pawel Hajdan jr <phajdan.jr@gentoo.org> (26 Feb 2013)
+# Mask v8 versions used for www-client/chromium dev channel releases.
+>=dev-lang/v8-3.17
+
+# Eray Aslan <eras@gentoo.org> (26 Feb 2013)
+# Mask release candidates
+=net-mail/dovecot-2.2_rc*
 
 # Doug Goldstein <cardoe@gentoo.org> (24 Feb 2013)
 # Working on the next stable patchset
@@ -64,10 +97,6 @@ net-misc/wxdfast
 # Development versions of net-analyzer/wireshark
 =net-analyzer/wireshark-1.9*
 
-# Eray Aslan <eras@gentoo.org> (22 Feb 2013)
-# Mask beta versions
-=net-mail/dovecot-2.2_beta*
-
 # Justin Lecher <jlec@gentoo.org> (21 Feb 2013)
 # Temporary mask, because compatibility with recent tcl is not proven
 =dev-tcltk/tcllib-1.15
@@ -76,10 +105,6 @@ net-misc/wxdfast
 # Quite dead.  Use games-engines/stratagus instead.
 # Masked for removal on 20130320.
 games-strategy/freecraft
-
-# Eray Aslan <eras@gentoo.org> (18 Feb 2013)
-# Mask beta versions
-=mail-filter/opendkim-2.8.0_beta*
 
 # Davide Pesavento <pesa@gentoo.org> (17 Feb 2013)
 # Mask beta version for testing.
@@ -334,20 +359,6 @@ sys-apps/i2c
 # Not really compatible with TeX Live 2012, breaks texdoc, produces some non
 # fatal errors in some documents, mask until fixed or TeX Live 2013 is out.
 >=dev-tex/luatex-0.74
-
-# Pawel Hajdan jr <phajdan.jr@gentoo.org> (14 Jan 2013)
-# Dev channel releases are only for people who are developers or want more
-# experimental features and accept a more unstable release.
->=www-client/chromium-26
-
-# Pawel Hajdan jr <phajdan.jr@gentoo.org> (14 Jan 2013)
-# Mask v8 versions used for www-client/chromium dev channel releases.
->=dev-lang/v8-3.16
-
-# Mike Gilbert <floppym@gentoo.org> (13 Jan 2013)
-# Dev channel releases are only for people who are developers or want more
-# experimental features and accept a more unstable release.
->=www-client/google-chrome-26
 
 # Tim Harder <radhermit@gentoo.org> (13 Jan 2013)
 # Masked for testing
@@ -897,6 +908,7 @@ dev-ruby/rcsparse
 dev-vcs/fromcvs
 sci-biology/picard
 ~dev-libs/libg15-9999
+~app-doc/devmanual-9999
 
 # Federico Ferri <mescalinum@gentoo.org> (08 Aug 2009)
 # Doesn't build with Tcl 8.5, has several bugs open
