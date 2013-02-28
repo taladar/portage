@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/multilib-build.eclass,v 1.4 2013/02/26 21:05:39 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/multilib-build.eclass,v 1.6 2013/02/27 23:23:11 mgorny Exp $
 
 # @ECLASS: multilib-build.eclass
 # @MAINTAINER:
@@ -32,6 +32,7 @@ inherit multilib multiprocessing
 _MULTILIB_FLAGS=(
 	abi_x86_32:x86
 	abi_x86_64:amd64
+	abi_x86_x32:x32
 )
 
 # @ECLASS-VARIABLE: MULTILIB_USEDEP
@@ -100,8 +101,7 @@ multilib_foreach_abi() {
 	local ABI
 	for ABI in $(multilib_get_enabled_abis); do
 		multilib_toolchain_setup "${ABI}"
-		local BUILD_DIR=${initial_dir%%/}-${ABI}
-		"${@}" | tee -a "${T}/build-${ABI}.log"
+		BUILD_DIR=${initial_dir%%/}-${ABI} "${@}"
 	done
 }
 
@@ -128,8 +128,8 @@ multilib_parallel_foreach_abi() {
 			multijob_child_init
 
 			multilib_toolchain_setup "${ABI}"
-			local BUILD_DIR=${initial_dir%%/}-${ABI}
-			"${@}" 2>&1 | tee -a "${T}/build-${ABI}.log"
+			BUILD_DIR=${initial_dir%%/}-${ABI}
+			"${@}"
 		) &
 
 		multijob_post_fork
