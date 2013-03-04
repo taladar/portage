@@ -1,6 +1,18 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.700 2013/03/02 18:18:13 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.703 2013/03/03 12:05:08 pacho Exp $
+
+  03 Mar 2013; Pacho Ramos <pacho@gentoo.org> readme.gentoo.eclass:
+  Change formatting tool as discussed with Ulrich Müller in bug #460050,
+  thanks a lot to him for his help.
+
+  03 Mar 2013; Davide Pesavento <pesa@gentoo.org> autotools-utils.eclass,
+  kde4-base.eclass, qt4-build.eclass:
+  Qt category move.
+
+  02 Mar 2013; Davide Pesavento <pesa@gentoo.org> qt4-build.eclass:
+  Remove blockers: portage is perfectly capable of handling our deps correctly
+  by itself nowadays.
 
   02 Mar 2013; Michał Górny <mgorny@gentoo.org> multilib-build.eclass:
   Improve the no-multilib fallback to respect ${ABI} set by multilib-portage.
