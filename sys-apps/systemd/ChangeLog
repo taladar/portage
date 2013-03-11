@@ -1,6 +1,32 @@
 # ChangeLog for sys-apps/systemd
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/ChangeLog,v 1.81 2013/03/09 13:47:44 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/ChangeLog,v 1.87 2013/03/10 17:57:28 mgorny Exp $
+
+  10 Mar 2013; Michał Górny <mgorny@gentoo.org> systemd-198.ebuild,
+  systemd-9999.ebuild:
+  Add libgcrypt to autoreconf deps.
+
+  10 Mar 2013; Mike Gilbert <floppym@gentoo.org> systemd-198.ebuild,
+  systemd-9999.ebuild:
+  Create libdir before we move files into it, bug 460640.
+
+  10 Mar 2013; Mike Gilbert <floppym@gentoo.org> systemd-198.ebuild,
+  systemd-9999.ebuild:
+  Create systemd-journal-gateway user/group if USE=http. Bug 461044 by Michał
+  Bartoszkiewicz.
+
+  10 Mar 2013; Michał Górny <mgorny@gentoo.org> systemd-198.ebuild,
+  systemd-9999.ebuild:
+  Install zsh-completion file as _systemd, still bug #460640.
+
+  10 Mar 2013; Michał Górny <mgorny@gentoo.org> systemd-198.ebuild,
+  systemd-9999.ebuild:
+  Unconditionally add dependencies for full autoreconf, due to automake version
+  mismatch potential resulting in autoreconf.
+
+  10 Mar 2013; Michał Górny <mgorny@gentoo.org> systemd-198.ebuild,
+  systemd-9999.ebuild:
+  Add missing multilib inherit.
 
 *systemd-198 (09 Mar 2013)
 
