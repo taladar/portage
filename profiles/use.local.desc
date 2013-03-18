@@ -480,6 +480,7 @@ app-emulation/qemu:alsa - Enable alsa output for sound emulation
 app-emulation/qemu:brltty - Adds support for braille displays using brltty
 app-emulation/qemu:curl - Support ISOs / -cdrom directives vis HTTP or HTTPS.
 app-emulation/qemu:fdt - Enables firmware device tree support
+app-emulation/qemu:iscsi - Enable direct iSCSI support via net-libs/libiscsi instead of indirectly via the Linux block layer that sys-block/open-iscsi does.
 app-emulation/qemu:jpeg - Enable jpeg image support for the VNC console server
 app-emulation/qemu:mixemu - Enable audio mixer emulation. On Fedora, known to cause performance problems when using SDL output and ALSA. For OSS, locks the sound device from other applications.
 app-emulation/qemu:ncurses - Enable the ncurses-based console
@@ -2140,6 +2141,8 @@ games-fps/doomsday:snowberry - Install Snowberry doomsday front-end
 games-fps/duke3d:demo - Install the demo files
 games-fps/duke3d:pic - disable optimized assembly code that is not PIC friendly
 games-fps/eduke32:demo - Install games-fps/duke3d-demodata as well
+games-fps/eduke32:gtk - Compile with gtk launcher
+games-fps/eduke32:samples - Install samples
 games-fps/eduke32:server - Compile with server support
 games-fps/eduke32:tools - Build several tools for modding and development
 games-fps/eduke32:vpx - Enable support for WebM VP8 Codecs
@@ -5245,7 +5248,7 @@ sci-libs/gdal:armadillo - Use sci-libs/armadillo for faster TPS transform comput
 sci-libs/gdal:aux_xml - Enable Portable Auxilliary Metadata generation
 sci-libs/gdal:ecwj2k - Enable support for alternate jpeg2k library sci-libs/libecwj2
 sci-libs/gdal:fits - Enable support for NASA's sci-libs/cfitsio library
-sci-libs/gdal:geos - Add support for geometry engine (sci-libs/geos
+sci-libs/gdal:geos - Add support for geometry engine (sci-libs/geos)
 sci-libs/gdal:gml - Enable support for dev-libs/xerces-c C++ API
 sci-libs/gdal:hdf - Add support for the Hierarchical Data Format v. 4 (sci-libs/hdf)
 sci-libs/gdal:mdb - Enable support for Microsoft Access database
