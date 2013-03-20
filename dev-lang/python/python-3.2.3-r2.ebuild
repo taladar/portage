@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.2.3-r2.ebuild,v 1.9 2013/03/18 19:16:14 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.2.3-r2.ebuild,v 1.13 2013/03/19 04:46:35 vapier Exp $
 
 EAPI="3"
 WANT_AUTOMAKE="none"
@@ -19,7 +19,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 LICENSE="PSF-2"
 SLOT="3.2"
 KEYWORDS="~alpha amd64 ~arm ~hppa ~ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh ~sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd"
-IUSE="build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
+IUSE="build doc elibc_uclibc examples gdbm hardened ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 # Do not add a dependency on dev-lang/python to this ebuild.
 # If you need to apply a patch which requires python for bootstrapping, please
@@ -148,6 +148,10 @@ src_configure() {
 			-e "/^HOSTPYTHON/s:=.*:=./hostpython:" \
 			-e "/^HOSTPGEN/s:=.*:=./Parser/hostpgen:" \
 			Makefile.pre.in || die "sed failed"
+
+		# The configure script assumes it's buggy when cross-compiling.
+		export ac_cv_buggy_getaddrinfo=no
+		export ac_cv_have_long_long_format=yes
 	fi
 
 	# Export CXX so it ends up in /usr/lib/python3.X/config/Makefile.
@@ -259,6 +263,10 @@ src_install() {
 		find Tools -name __pycache__ -print0 | xargs -0 rm -fr
 		doins -r Tools || die "doins failed"
 	fi
+	insinto /usr/share/gdb/auto-load/usr/$(get_libdir) #443510
+	local libname=$(printf 'e:\n\t@echo $(INSTSONAME)\ninclude Makefile\n' | \
+		emake --no-print-directory -s -f - 2>/dev/null)
+	newins Tools/gdb/libpython.py "${libname}"-gdb.py
 
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
