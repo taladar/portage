@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.202 2013/03/19 12:39:23 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-9999.ebuild,v 1.205 2013/03/23 07:38:11 ssuominen Exp $
 
 EAPI=4
 
@@ -76,6 +76,8 @@ PDEPEND=">=virtual/udev-197-r1
 
 S=${WORKDIR}/systemd-${PV}
 
+#QA_MULTILIB_PATHS="lib/systemd/systemd-udevd"
+
 udev_check_KV() {
 	if kernel_is lt ${KV_min//./ }; then
 		return 1
@@ -86,7 +88,7 @@ udev_check_KV() {
 check_default_rules() {
 	# Make sure there are no sudden changes to upstream rules file
 	# (more for my own needs than anything else ...)
-	local udev_rules_md5=a3e16362de3750807b52eae9525c102c
+	local udev_rules_md5=e602584bcabf09cde0f7f9a3c1adda28
 	MD5=$(md5sum < "${S}"/rules/50-udev-default.rules)
 	MD5=${MD5/  -/}
 	if [[ ${MD5} != ${udev_rules_md5} ]]; then
@@ -321,7 +323,8 @@ src_install() {
 				units/systemd-udevd-kernel.socket"
 		nodist_systemunit_DATA="units/systemd-udevd.service \
 				units/systemd-udev-trigger.service \
-				units/systemd-udev-settle.service"
+				units/systemd-udev-settle.service \
+				units/initrd-udevadm-cleanup-db.service"
 		pkgconfiglib_DATA="${pkgconfiglib_DATA}"
 		systemunitdir="$(systemd_get_unitdir)"
 		INSTALL_DIRS='$(sysconfdir)/udev/rules.d \
@@ -346,14 +349,19 @@ src_install() {
 	# install udevadm symlink
 	dosym ../bin/udevadm /sbin/udevadm
 
-	# move udevd where it should be and remove unlogical /lib/systemd
-	mv "${ED}"/lib/systemd/systemd-udevd "${ED}"/sbin/udevd || die
+	# move udevd where it used to be and prevent it from showing up
+	# as systemd-udevd named process
+	mv "${ED}"/{lib/systemd/systemd-udevd,sbin/udevd} || die
 	rm -r "${ED}"/lib/systemd
 
-	# install compability symlink for systemd and initramfs tools
-	dosym /sbin/udevd "$(systemd_get_utildir)"/systemd-udevd
-	find "${ED}/$(systemd_get_unitdir)" -name '*.service' -exec \
-		sed -i -e "/ExecStart/s:/lib/systemd:$(systemd_get_utildir):" {} +
+	# with systemd installing to /usr/lib/systed having /lib/systemd
+	# is redudant (and breaking initramfs tools)
+	local systemddir=$(systemd_get_utildir)
+	dosym /sbin/udevd ${systemddir}/systemd-udevd
+	find "${ED}"/${systemddir} -name '*systemd-udev*.service' -exec \
+		sed -i -e "/ExecStart/s:/lib/systemd:${systemddir}:" {} +
+	find "${ED}"/${systemddir} -name '*udevadm*.service' -exec \
+		sed -i -e "/ExecStart/s:/usr/bin/udevadm:/bin/udevadm:" {} +
 
 	# see src_prepare() where this is created
 	doman "${T}"/udevd.8
