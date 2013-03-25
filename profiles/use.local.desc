@@ -1025,6 +1025,8 @@ app-text/wpd2odt:wpg - Add support for wpg format using app-text/libwpg
 app-text/wpd2odt:wps - Add support for wps format using app-text/libwps
 app-text/wv:tools - Install optional utilities considered deprecated in favor of using AbiWord.
 app-text/xiphos:webkit - Use net-libs/webkit-gtk instead of gnome-extra/gtkhtml
+app-text/yagf:cuneiform - Enable support for the app-text/cuneiform OCR engine.
+app-text/yagf:tesseract - Enable support for the app-text/tesseract OCR engine.
 app-text/zathura-meta:cb - Install plug-in for ComicBook support
 app-vim/gentoo-syntax:ignore-glep31 - Remove GLEP 31 (UTF-8 file encodings) settings
 app-vim/vim-latex:html - Install HTML documentation
@@ -1366,10 +1368,6 @@ dev-lang/ruby:rdoc - Install dev-ruby/rdoc after installing Ruby.
 dev-lang/ruby:readline - Use the sys-libs/readline library to provide the readline extension, used for instance by the irb tool. This flag is meaningful only if the libedit USE flag is disabled. If neither libedit nor readline USE flags are enabled, the readline extension will not be built (and irb will lose line editing functionality).
 dev-lang/ruby:rubytests - Install ruby tests that can only be run after ruby is installed
 dev-lang/ruby:yaml - Use the dev-libs/libyaml library to build the psych extension, available since Ruby 1.9.2_rc2, in alternative to the bundled syck-based parser.
-dev-lang/ruby-enterprise:fastthreading - EXPERIMENTAL Enables fast threading routines. Removes support for callcc.
-dev-lang/ruby-enterprise:libedit - Use the dev-libs/libedit library to provide the readline extension, used for instance by the irb tool. This flag will take precedence over the readline USE flag. If neither libedit nor readline USE flags are enabled, the readline extension will not be built (and irb will lose line editing functionality).
-dev-lang/ruby-enterprise:readline - Use the sys-libs/readline library to provide the readline extension, used for instance by the irb tool. This flag is meaningful only if the libedit USE flag is disabled. If neither libedit nor readline USE flags are enabled, the readline extension will not be built (and irb will lose line editing functionality).
-dev-lang/ruby-enterprise:rubytests - Install ruby tests that can only be run after ruby is installed
 dev-lang/scala:binary - Install from (Gentoo-compiled) binary instead of building from sources. Set this when you run out of memory during build.
 dev-lang/spidermonkey:threadsafe - Build a threadsafe version of spidermonkey
 dev-lang/swi-prolog:archive - Use libarchive for extension packs
@@ -4021,6 +4019,7 @@ net-fs/nfs-utils:nfsv3 - Enable support for NFSv3
 net-fs/nfs-utils:nfsv4 - Enable support for NFSv4
 net-fs/nfs-utils:nfsv41 - Enable support for NFSv4.1
 net-fs/nfs-utils:nonfsv4 - Disable support for NFSv4
+net-fs/nfs-utils:uuid - Support UUID lookups in rpc.mountd
 net-fs/samba:addns - Enable AD DNS integration
 net-fs/samba:ads - Enable Active Directory support
 net-fs/samba:aio - Enable asynchronous IO support
@@ -4950,7 +4949,6 @@ net-p2p/mldonkey:fasttrack - enable fasttrack support
 net-p2p/mldonkey:gnutella - enable gnutella and gnutella2 support
 net-p2p/mldonkey:guionly - enable client build only
 net-p2p/mldonkey:magic - enable use of libmagic
-net-p2p/ncdc:db-upgrade - Build db-upgrade utility
 net-p2p/rtorrent:color - Add custom color support for torrent list
 net-p2p/rtorrent:daemon - Uses app-misc/screen to daemonize this application
 net-p2p/transmission:lightweight - Optimize transmission for low-resource systems (smaller cache size, prefer unencrypted peer connections, etc.)
@@ -5562,6 +5560,7 @@ sys-apps/systemd:audit - Enable support for sys-process/audit
 sys-apps/systemd:cryptsetup - Use libcryptsetup
 sys-apps/systemd:efi - Enable EFI support (installs bootctl)
 sys-apps/systemd:gcrypt - Enable sealing of journal files using gcrypt
+sys-apps/systemd:gudev - enable libudev gobject interface
 sys-apps/systemd:http - Enable embedded HTTP server in journald
 sys-apps/systemd:kmod - Enable kernel module loading via sys-apps/kmod
 sys-apps/systemd:qrcode - Enable qrcode output support in journal
