@@ -309,6 +309,8 @@ app-crypt/ophcrack:tables - Require the additional tables used to carry out crac
 app-crypt/ophcrack-tables:vistafree - Installs the free Vista ophcrack tables
 app-crypt/ophcrack-tables:xpfast - Installs the fast XP ophcrack tables
 app-crypt/ophcrack-tables:xpsmall - Installs the small free XP ophcrack tables
+app-crypt/p11-kit:asn1 - Enable ASN.1 certificate support
+app-crypt/p11-kit:trust - Build the trust policy module
 app-crypt/seahorse:ldap - Enable seahorse to manipulate GPG keys on a LDAP server.
 app-crypt/seahorse-plugins:applet - Enable seahorse applet for gnome-base/gnome-panel
 app-crypt/seahorse-plugins:gedit - Enable text encryption plugin to integrate into app-editors/gedit
@@ -410,6 +412,7 @@ app-emulation/bochs:avx - Enable support for Advanced Vector Extensions (AVX)
 app-emulation/bochs:debugger - Enable debugger (slows down emulation)
 app-emulation/bochs:gdb - Enable support for the remote GDB stub
 app-emulation/bochs:x86-64 - Enable support for emulation of 64-bit CPUs
+app-emulation/crossover-bin:capi - Enable ISDN support via CAPI
 app-emulation/e-uae:capslib - Add CAPS library support
 app-emulation/e-uae:sdl-sound - Use media-libs/sdl-sound for audio output
 app-emulation/emul-linux-x86-baselibs:development - Install pkgconfig files
@@ -2262,10 +2265,6 @@ games-strategy/uqm:remix - download and install music remix files (large)
 games-strategy/uqm:voice - download and install voice files (large)
 games-strategy/warzone2100:qt4 - Use qt-gui/qt-opengl for backend rendering instead of sdl
 games-strategy/wesnoth:server - Enable compilation of server
-games-strategy/x2:bonusscripts - Add bonus scripts
-games-strategy/x2:dynamic - Use dynamic binaries instead of static
-games-strategy/x2:langpacks - Install additional language packs
-games-strategy/x2:modkit - Install the modkit
 games-util/gslist:web - Enable the web interface
 games-util/pyfa:graph - Enable support for graphs
 gnome-base/dconf:vala - Add support for dev-lang/vala
@@ -5213,6 +5212,7 @@ sci-geosciences/googleearth:qt-bundled - Use bundled Qt4 libraries instead of sy
 sci-geosciences/googleearth:system-mdns - Use nss-mdns library from portagen instead of the bundled one.
 sci-geosciences/googleearth:system-qt - Use Qt4 libraries from portage instead of the bundled ones.
 sci-geosciences/gpsd:dbus - export gpsd data over dbus connections
+sci-geosciences/gpsd:latency_timing - support latency timing information
 sci-geosciences/gpsd:ntp - Enable net-misc/ntp shared memory interface and PPS kernel support for GPS time
 sci-geosciences/gpsd:shm - export gpsd over shared memory
 sci-geosciences/gpsd:sockets - export gpsd over unix sockets
@@ -5510,6 +5510,13 @@ sys-apps/kexec-tools:booke - Include support for Book-E memory management
 sys-apps/kexec-tools:lzma - Enables support for LZMA compressed kernel images
 sys-apps/kexec-tools:xen - Enable extended xen support
 sys-apps/kmod:tools - Install module loading/unloading tools.
+sys-apps/kmscon:drm - Enable Linux DRM for backend
+sys-apps/kmscon:fbdev - Enable Linux FBDev for backend
+sys-apps/kmscon:gles2 - Enable GLES2 for backend
+sys-apps/kmscon:multiseat - Enable multiseat support via systemd
+sys-apps/kmscon:optimizations - Enable optimizations
+sys-apps/kmscon:pango - Enable pango font rendering
+sys-apps/kmscon:pixman - Enable pixman font rendering
 sys-apps/lm_sensors:sensord - Enable sensord - a daemon that can be used to periodically log sensor readings from hardware health-monitoring chips
 sys-apps/memtest86:serial - Compile with serial console support
 sys-apps/memtest86+:floppy - Install a script to create floppy disks containing memtest86+ binaries.
