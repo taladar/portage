@@ -1,10 +1,35 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7663 2013/03/28 20:53:54 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7670 2013/03/29 22:24:52 titanofold Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  29 Mar 2013; Aaron W. Swenson <titanofold@gentoo.org> package.mask:
+  Update removal time of dev-db/postgresql-{base,docs,server}:8.3 in
+  preparation of a serious security fix.
+
+  29 Mar 2013; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Update gnome 3.8 mask entry
+
+  29 Mar 2013; Michał Górny <mgorny@gentoo.org> package.mask:
+  Unmask new sys-apps/systemd releases since they do not introduce new
+  regressions and improve the current situation.
+
+  29 Mar 2013; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Update gnome 3.8 mask entry
+
+  29 Mar 2013; Pacho Ramos <pacho@gentoo.org>
+  targets/desktop/gnome/make.defaults:
+  Enable libsecret USE flag as it's the gnome-keyring replacement and will
+  start to be used a lot.
+
+  29 Mar 2013; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Update gnome 3.8 mask entry
+
+  29 Mar 2013; Michał Górny <mgorny@gentoo.org> package.mask:
+  Forward-mask sys-apps/systemd-200.
 
   28 Mar 2013; Mike Gilbert <floppym@gentoo.org> package.mask:
   Unmask sqlite.
