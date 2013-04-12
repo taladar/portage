@@ -1,6 +1,29 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.634 2013/04/04 07:34:43 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.641 2013/04/11 21:43:24 ago Exp $
+
+  11 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for amd64, wrt bug #465496
+
+  11 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for x86, wrt bug #465496
+
+  11 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for alpha, wrt bug #465496
+
+  11 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for ppc64, wrt bug #465496
+
+  11 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for ppc, wrt bug #465496
+
+  11 Apr 2013; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for HPPA (bug #465496).
+
+*ffmpeg-0.10.7 (11 Apr 2013)
+
+  11 Apr 2013; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.10.7.ebuild:
+  version bump for the 0.10 branch
 
   04 Apr 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-1.0.6.ebuild,
   ffmpeg-1.1.4.ebuild, ffmpeg-1.2.ebuild, ffmpeg-9999.ebuild, metadata.xml:

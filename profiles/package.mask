@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14648 2013/04/10 14:37:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14652 2013/04/11 20:30:42 pacho Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,8 +31,13 @@
 
 #--- END OF EXAMPLES ---
 
+# Pacho Ramos <pacho@gentoo.org> (11 Apr 2013)
+# Breaks reverse deps, bug #464994
+=dev-cpp/gtkmm-2.24.3
+
 # Jeroen Roovers <jer@gentoo.org> (10 Apr 2013)
-# Mask beta Nvidia driver
+# Mask beta Nvidia driver because of severe instability
+# Please report any usage issues upstream (bug #465462)
 >x11-drivers/nvidia-drivers-319
 
 # Samuli Suominen <ssuominen@gentoo.org> (09 Apr 2013)
@@ -246,7 +251,6 @@ net-proxy/swiftiply
 >=sys-apps/baobab-3.8
 >=sys-apps/gnome-disk-utility-3.8
 >=www-client/epiphany-3.8
->=x11-libs/gdk-pixbuf-2.28
 >=x11-libs/gnome-pty-helper-0.34.3
 >=x11-libs/gtk+-3.8
 >=x11-libs/gtksourceview-3.8
@@ -271,6 +275,11 @@ net-proxy/swiftiply
 >=net-misc/networkmanager-pptp-0.9.8
 >=net-misc/networkmanager-sstp-0.9.8
 >=net-misc/networkmanager-vpnc-0.9.8
+>=gnome-base/gnome-core-libs-3.8.0
+>=gnome-base/gnome-core-apps-3.8.0
+>=gnome-base/gnome-extra-apps-3.8.0
+>=gnome-base/gnome-3.8.0
+>=gnome-base/gnome-light-3.8.0
 
 # Sebastien Fabbro <bicatali@gentoo.org> (26 Mar 2013)
 # Now included in sci-mathematics/mathgl
