@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999.ebuild,v 1.41 2013/04/06 01:39:15 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999.ebuild,v 1.43 2013/04/15 20:13:01 mgorny Exp $
 
 EAPI=5
 
@@ -61,14 +61,12 @@ RDEPEND="${COMMON_DEPEND}
 
 PDEPEND=">=sys-apps/hwids-20130326.1[udev]"
 
-# sys-fs/quota is necessary to store correct paths in unit files
 DEPEND="${COMMON_DEPEND}
 	app-arch/xz-utils
 	app-text/docbook-xsl-stylesheets
 	dev-libs/libxslt
 	dev-util/gperf
 	>=dev-util/intltool-0.50
-	sys-fs/quota
 	>=sys-kernel/linux-headers-${MINKV}
 	virtual/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1.18 )"
@@ -99,9 +97,6 @@ src_configure() {
 	local myeconfargs=(
 		--localstatedir=/var
 		--with-firmware-path="/lib/firmware/updates:/lib/firmware"
-		# install everything to /usr
-		--with-rootprefix=/usr
-		--with-rootlibdir=/usr/$(get_libdir)
 		# but pam modules have to lie in /lib*
 		--with-pamlibdir=$(getpam_mod_dir)
 		# make sure we get /bin:/sbin in $PATH
@@ -132,6 +127,14 @@ src_configure() {
 		$(use_enable selinux)
 		$(use_enable tcpd tcpwrap)
 		$(use_enable xattr)
+
+		# not supported (avoid automagic deps in the future)
+		--disable-chkconfig
+		--disable-ima
+
+		# hardcode a few paths to spare some deps
+		QUOTAON=/usr/sbin/quotaon
+		QUOTACHECK=/usr/sbin/quotacheck
 	)
 
 	# Keep using the one where the rules were installed.
