@@ -1,9 +1,9 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libnet/libnet-1.0.2a-r5.ebuild,v 1.2 2013/04/16 19:19:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libnet/libnet-1.0.2a-r5.ebuild,v 1.5 2013/04/17 13:54:07 jer Exp $
 
 EAPI=4
-inherit autotools eutils
+inherit autotools eutils toolchain-funcs
 
 DESCRIPTION="library to provide an API for commonly used low-level network functions (mainly packet injection)"
 HOMEPAGE="http://www.packetfactory.net/libnet/"
@@ -11,7 +11,7 @@ SRC_URI="http://www.packetfactory.net/libnet/dist/deprecated/${P}.tar.gz"
 
 LICENSE="BSD BSD-2 HPND"
 SLOT="1.0"
-KEYWORDS="~alpha ~amd64 ~arm hppa ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~alpha amd64 ~arm hppa ~ppc ~ppc64 ~sparc x86 ~x86-fbsd"
 IUSE=""
 
 S=${WORKDIR}/Libnet-${PV}
@@ -40,6 +40,8 @@ src_prepare() {
 	sed -i configure.in -e '/CCOPTS=/d;/CFLAGS=/s|.*|:|' || die
 
 	eautoconf
+
+	tc-export AR RANLIB
 }
 
 src_install() {
