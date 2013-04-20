@@ -1,10 +1,21 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7742 2013/04/18 16:21:03 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7745 2013/04/19 15:26:01 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  19 Apr 2013; Samuli Suominen <ssuominen@gentoo.org> default/linux/use.mask:
+  Unmask USE="kmod" for Linux only.
+
+  19 Apr 2013; Ben de Groot <yngwin@gentoo.org> package.mask:
+  media-libs/fontconfig non-maintainer ebuild with experimental multilib features
+  masked for further testing
+
+  19 Apr 2013; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Change mask message for ~sys-fs/udev-171 so it won't be removed before bug
+  466424 is solved somehow.
 
   18 Apr 2013; Michael Weber <xmw@gentoo.org> package.mask:
   app-arch/advancecomp-1.17 masked due test failures
@@ -104,7 +115,7 @@
   11 Apr 2013; Magnus Granberg <zorry@gentoo.org>
   hardened/linux/amd64/package.mask, hardened/linux/x86/package.mask:
   Mask media-video/nvidia-settings
-  
+
   09 Apr 2013; Ulrich Müller <ulm@gentoo.org> license_groups:
   Add LambdaMOO license to MISC-FREE group, bug 465280.
 
@@ -155,7 +166,7 @@
 
   05 Apr 2013; Tom Wijsman <TomWij@gentoo.org> package.mask:
   Masked www-servers/meteor for removal in 30 days, different installation
-  approach and bundled binaries are unsustainable. 
+  approach and bundled binaries are unsustainable.
 
   05 Apr 2013; Lars Wendler <polynomial-c@gentoo.org> package.mask:
   Modified mask message.
@@ -1258,7 +1269,7 @@
   Mask portpeek for testing
 
   18 Jan 2013; Kacper Kowalik <xarthisius@gentoo.org> package.mask:
-  Restrict mask on sci-astronomy/sextractor so that people can install 
+  Restrict mask on sci-astronomy/sextractor so that people can install
   version from science overlay
 
   18 Jan 2013; Mike Gilbert <floppym@gentoo.org> package.mask:
