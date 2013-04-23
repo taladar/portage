@@ -1,6 +1,18 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.213 2013/04/03 16:55:39 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.216 2013/04/22 16:49:42 ottxor Exp $
+
+  22 Apr 2013; Christoph Junghans <ottxor@gentoo.org> gnuplot-4.6.3.ebuild:
+  fix info build (bug #464092#c12 and #466758)
+
+  22 Apr 2013; Christoph Junghans <ottxor@gentoo.org> gnuplot-4.6.3.ebuild:
+  use 4.6.2 info file
+
+*gnuplot-4.6.3 (22 Apr 2013)
+
+  22 Apr 2013; Christoph Junghans <ottxor@gentoo.org>
+  +files/gnuplot-4.6.3-eldoc.patch, +gnuplot-4.6.3.ebuild:
+  version bump
 
   03 Apr 2013; Ulrich Müller <ulm@gentoo.org> gnuplot-4.6.2-r1.ebuild:
   Use a pre-built gnuplot.info file, to fix a build failure with texinfo-5.1.
