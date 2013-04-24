@@ -309,6 +309,8 @@ app-crypt/mit-krb5:doc - Creates and installs the API and implementation documen
 app-crypt/mit-krb5:keyutils - Enable for the keyring ccache using keyutils.
 app-crypt/mit-krb5:openldap - Enable support for ldap as a database backend.
 app-crypt/mit-krb5:pkinit - Enable pkinit support for the initial ticket.
+app-crypt/oclhashcat-lite-bin:virtualcl - Support for Mosix VirtualCL Clustering Platform
+app-crypt/oclhashcat-plus-bin:virtualcl - Support for Mosix VirtualCL Clustering Platform
 app-crypt/ophcrack:tables - Require the additional tables used to carry out cracking (app-crypt/ophcrack-tables)
 app-crypt/ophcrack-tables:vistafree - Installs the free Vista ophcrack tables
 app-crypt/ophcrack-tables:xpfast - Installs the fast XP ophcrack tables
@@ -971,9 +973,6 @@ app-text/evince:t1lib - Enable the Type-1 fonts for the built-in DVI viewer (med
 app-text/evince:xps - Enable XPS viewer using app-text/libgxps
 app-text/getxbook:ocr - Use app-text/tesseract for optical character recognition
 app-text/ghostscript-gpl:bindist - Disable dejavu support for binary distribution because of licensing issue
-app-text/gonzui:lha - Enable LHA archive support
-app-text/gonzui:rpm - Enable rpm support
-app-text/gonzui:zip - Enable ZIP archive support
 app-text/gtranslator:http - Enable support for open translation plugin using net-libs/libsoup
 app-text/hyperestraier:mecab - Enable app-text/mecab support for Estraier
 app-text/lcdf-typetools:kpathsea - Enable integration with kpathsea search library (TeX related)
