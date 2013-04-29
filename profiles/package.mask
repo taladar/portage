@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14693 2013/04/27 18:24:52 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14697 2013/04/28 20:34:35 floppym Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,20 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Markos Chandras <hwoarang@gentoo.org> (28 Apr 2013)
+# Early release of pcmanfm Qt4 port
+x11-misc/pcmanfm-qt
+
+# Ulrich Müller <ulm@gentoo.org> (28 Apr 2013)
+# HOMEPAGE and SRC_URI dead, license issues.
+# Use timidity-freepats or timidity-eawpatches as replacement.
+# Masked for removal in 30 days, bug #441640.
+media-sound/timidity-shompatches
+
+# Michael Sterrett <mr_bones_@gentoo.org> (28 Jan 2013)
+# testing mask for new syslog-ng
+>=app-admin/syslog-ng-3.4.0
 
 # Ulrich Müller <ulm@gentoo.org> (27 Apr 2013)
 # HOMEPAGE and SRC_URI dead, no license, upstream cannot
@@ -127,11 +141,6 @@ mail-client/postler
 # Patrick Lauer <patrick@gentoo.org> (09 Apr 2013)
 # Masked to get 0.10 tested
 =net-libs/nodejs-0.11*
-
-# Mike Gilbert <floppym@gentoo.org> (07 Apr 2013)
-# Masked for testing.
-=dev-lang/python-2.7.4
-=dev-lang/python-3.2.4
 
 # Ryan Hill <dirtyepic@gentoo.org> (06 Apr 2013)
 # Restrictive licence, basically demo versions of paid software.  14 versions
