@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.89 2013/04/28 19:44:09 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-boot/grub/grub-9999.ebuild,v 1.92 2013/04/29 01:13:49 floppym Exp $
 
 EAPI=5
 AUTOTOOLS_AUTO_DEPEND=yes
@@ -40,7 +40,7 @@ HOMEPAGE="http://www.gnu.org/software/grub/"
 
 LICENSE="GPL-3"
 SLOT="2"
-IUSE="custom-cflags debug device-mapper doc efiemu mount multislot nls static sdl truetype libzfs"
+IUSE="custom-cflags debug device-mapper doc efiemu mount multislot nls static sdl test truetype libzfs"
 
 GRUB_ALL_PLATFORMS=(
 	# everywhere:
@@ -92,6 +92,10 @@ DEPEND="${RDEPEND}
 			media-libs/freetype[static-libs(+)]
 			sys-libs/zlib[static-libs(+)]
 		)
+	)
+	test? (
+		dev-libs/libisoburn
+		app-emulation/qemu
 	)
 "
 RDEPEND+="
@@ -167,8 +171,8 @@ grub_configure() {
 	local myeconfargs=(
 		--disable-werror
 		--program-prefix=
-		--libdir=/usr/lib
-		--htmldir=/usr/share/doc/${PF}/html
+		--libdir="${EPREFIX}"/usr/lib
+		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html
 		$(use_enable debug mm-debug)
 		$(use_enable debug grub-emu-usb)
 		$(use_enable efiemu)
@@ -209,6 +213,12 @@ src_compile() {
 		autotools-utils_src_compile -C docs html
 }
 
+src_test() {
+	# The qemu dependency is a bit complex.
+	# You will need to adjust QEMU_SOFTMMU_TARGETS to match the cpu/platform.
+	multibuild_foreach_variant autotools-utils_src_test
+}
+
 src_install() {
 	multibuild_foreach_variant autotools-utils_src_install \
 		bashcompletiondir=/usr/share/bash-completion
@@ -217,7 +227,7 @@ src_install() {
 		emake -C docs DESTDIR="${D}" install-html
 
 	if use multislot; then
-		mv "${ED}"usr/share/info/grub{,2}.info || die
+		mv "${ED%/}"/usr/share/info/grub{,2}.info || die
 	fi
 
 	insinto /etc/default
