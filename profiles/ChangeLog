@@ -1,10 +1,36 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7785 2013/04/30 20:19:12 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7792 2013/05/01 21:13:45 mgorny Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  01 May 2013; Michał Górny <mgorny@gentoo.org> package.mask:
+  Mask new multilib libvorbis & flac.
+
+  01 May 2013; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask (temporarily) new libogg with autotools-multilib.eclass inherit.
+
+  01 May 2013; Ulrich Müller <ulm@gentoo.org> package.mask:
+  Mask www-apache/mod_watch and www-apache/mod_loopback for removal, bugs
+  464934 and 464938.
+
+  01 May 2013; Kacper Kowalik <xarthisius@gentoo.org> package.mask:
+  x11-themes/pidgin-smileys removal due to licensing issue wrt #452420
+
+  01 May 2013; Andrey Grozin <grozin@gentoo.org> package.mask:
+  Unmasking new ebuilds for maxima, fricas, and related common-lisp stuff
+
+  01 May 2013; Andrey Grozin <grozin@gentoo.org> arch/amd64/package.use.mask,
+  arch/amd64/use.mask, arch/powerpc/use.mask, arch/sparc/use.mask,
+  arch/x86/package.use.mask, arch/x86/use.mask, base/package.use.mask,
+  base/use.mask:
+  Manage use masks gcl, cmucl, clozurecl (for maxima and fricas) centrally and
+  consistently
+
+  01 May 2013; Sebastian Pipping <sping@gentoo.org> base/package.use.mask:
+  Unmask ~media-libs/gegl-0.2.0[introspection] (bug #416587)
 
   30 Apr 2013; Sebastian Pipping <sping@gentoo.org> base/package.use.mask:
   Unmask ~media-libs/babl-0.1.8[introspection] (bug #413663)
