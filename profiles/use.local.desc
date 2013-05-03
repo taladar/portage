@@ -2262,6 +2262,7 @@ games-rpg/nwn-data:hou - Install the Hordes of the Underdark expansion pack
 games-rpg/nwn-data:nowin - For those people who cant grab the 1.2 gigs of data files from a windows partition
 games-rpg/nwn-data:sou - Installs the Shadows of Undrentide expension pack
 games-rpg/sumwars:tools - Builds editor tools
+games-rpg/valyriatear:editor - Compile the Qt editor along with the game
 games-simulation/flightgear:fgpanel - Enables standalone lightweight 2D-panel rendering utility
 games-simulation/flightgear:jsbsim - Enables JSBSim Flight Dynamics Model (default)
 games-simulation/flightgear:oldfdm - Enables deprecated Flight Dynamics Models (LaRCsim, UIUC)
@@ -3022,9 +3023,6 @@ media-libs/opencv:cuda - Enable NVIDIA Cuda computations support
 media-libs/opencv:eigen - Enable usage of dev-cpp/eigen for computations
 media-libs/opencv:ipp - Enable Intel Integrated Primitive support
 media-libs/opencv:opencl - Add support for OpenCL
-media-libs/opencv:sse3 - Enable optimization for SSE3 capable chips
-media-libs/opencv:ssse3 - faster floating point optimization for SSSE3 capable chips (Intel Core 2 and later chips)
-media-libs/opencv:tbb - Add support for the Intel threadingbuildingblocks library
 media-libs/opencv:testprograms - Build and install programs for testing OpenCV (performance)
 media-libs/openimageio:colorio - Use media-gfx/opencolorio
 media-libs/openimageio:opencv - Use media-libs/opencv

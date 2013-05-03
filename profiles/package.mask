@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14706 2013/05/01 21:13:45 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14713 2013/05/02 19:28:44 tomwij Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,10 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeroen Roovers <jer@gentoo.org> (02 May 2013)
+# Has long surpassed its use, removal in thirty days
+www-plugins/diamondx
+
 # Ulrich Müller <ulm@gentoo.org> (01 May 2013)
 # HOMEPAGE and SRC_URI dead, tarball not redistributable.
 # Last upstream release in 2004.
@@ -52,12 +56,6 @@ x11-themes/pidgin-smileys
 # Doug Goldstein <cardoe@gentoo.org> (30 Apr 2013)
 # Fails to build. bug #468058
 =gnome-extra/zeitgeist-0.9.12-r1
-
-# Ian Delaney <idella4@gentoo.org> (29 Apr 2013)
-# Issues with python implementations in deps
-# This pacakge and version needs further work re its deps.
-# Makes for a 'start'
-=dev-python/celery-3.0.19
 
 # Markos Chandras <hwoarang@gentoo.org> (28 Apr 2013)
 # Early release of pcmanfm Qt4 port
@@ -224,12 +222,6 @@ net-irc/xchat
 kde-base/printer-applet
 kde-base/system-config-printer-kde
 
-# Tom Wijsman <TomWij@gentoo.org> (31 Mar 2013)
-# Broken because dependency dev-ruby/cgi_multipart_eof_fix
-# is masked for removal, we need to fix net-proxy/swiftiply
-# to no longer depend on it and then apply more testing.
-net-proxy/swiftiply
-
 # Pacho Ramos <pacho@gentoo.org> (28 Mar 2013)
 # Gnome 3.8 Mask
 >=app-accessibility/accerciser-3.8
@@ -365,6 +357,7 @@ net-proxy/swiftiply
 >=dev-cpp/pangomm-2.34
 >=app-misc/bijiben-3.8
 >=gnome-extra/gnome-weather-3.8
+>=media-gfx/gnome-photos-3.8
 
 # Sebastien Fabbro <bicatali@gentoo.org> (26 Mar 2013)
 # Now included in sci-mathematics/mathgl
@@ -421,6 +414,7 @@ dev-libs/dvutil
 # Samuli Suominen <ssuominen@gentoo.org> (16 Mar 2013)
 # Waiting for new emul-linux-x86-{media,sound}libs without
 # the duplicate files.
+>=media-libs/audiofile-0.3.6-r1
 >=media-libs/flac-1.2.1-r5
 >=media-libs/libmikmod-3.2.0-r1
 >=media-libs/libv4l-0.8.9-r1
@@ -492,10 +486,6 @@ media-gfx/yafaray
 # Jeroen Roovers <jer@gentoo.org> (22 Feb 2013)
 # Masked until bug #456788 is fixed.
 =net-analyzer/mtr-0.83
-
-# Jeroen Roovers <jer@gentoo.org> (22 Feb 2013)
-# Development versions of net-analyzer/wireshark
->net-analyzer/wireshark-1.9
 
 # Markos Chandras <hwoarang@gentoo.org> (17 Feb 2013)
 # Does not build with libav-0.8
@@ -781,8 +771,7 @@ dev-ml/ocamlduce
 
 # Maxim Koltsov <maksbotan@gentoo.org> (19 Apr 2012)
 # Broken, masking by maintainer's request
-net-ftp/leechcraft-lcftp
-net-p2p/leechcraft-eiskaltdcpp
+app-leechcraft/lc-lcftp
 
 # Jeroen Roovers <jer@gentoo.org> (04 Apr 2012)
 # Alpha versions of dev-libs/libevent are considered unstable
