@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sysvinit/sysvinit-2.88-r4.ebuild,v 1.14 2013/04/20 03:51:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sysvinit/sysvinit-2.88-r4.ebuild,v 1.16 2013/05/04 09:04:15 ssuominen Exp $
 
 EAPI="4"
 
