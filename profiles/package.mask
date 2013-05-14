@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14751 2013/05/12 15:14:38 idella4 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14756 2013/05/13 19:54:28 johu Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -32,6 +32,18 @@
 
 #--- END OF EXAMPLES ---
 
+# Johannes Huber <johu@gentoo.org> (13 May 2013)
+# Masked for removal in 30 days. Package is obsolete.
+# Merged into kde-base/plasma-workspace by upstream 
+# since KDE SC 4.10.
+kde-misc/ktouchpadenabler
+
+# Ulrich Müller <ulm@gentoo.org> (13 May 2013)
+# Unclear licensing situation. Distfile not redistributable
+# and not available at copyright owner's site.
+# Masked for removal in 30 days, bug #468406
+media-libs/win32codecs
+
 # Ian Delaney <idella4@gentoo.org> (12 May 2013)
 # Recommended by upstream's own maintainer to drop the
 # package, no longer valid.
@@ -46,7 +58,8 @@ dev-python/blockcanvas
 
 # Ian Delaney <idella4@gentoo.org> (12 May 2013)
 # version 3 package now superseded by
-# dev-python/envisage version 4.
+# dev-python/envisage version 4. # envisageplugins-3.2.0-r1 
+# has envisagecore-3 substituted with envisage-4.0.0; #466342
 # Masked for removal in 30 days
 dev-python/envisagecore
 
@@ -137,6 +150,7 @@ app-text/duconv
 =media-libs/freetype-1.4*
 games-action/heavygear2
 media-libs/vflib
+app-text/tex-guy
 
 # Ulrich Müller <ulm@gentoo.org> (25 Apr 2013)
 # Dependency of kernel.eclass which was obsoleted in 2004,
@@ -1089,6 +1103,10 @@ dev-embedded/avr-libc
 
 # Steve Dibb <beandog@gentoo.org> (05 Nov 2008)
 # Mask realplayer codecs for security bug 245662
+# Ulrich Müller <ulm@gentoo.org> (13 May 2013)
+# Unclear licensing situation. Distfile not redistributable
+# and not available at copyright owner's site. Fetch failure.
+# Masked for removal in 30 days, bugs #468406 and #468370.
 media-libs/amd64codecs
 media-libs/realcodecs
 

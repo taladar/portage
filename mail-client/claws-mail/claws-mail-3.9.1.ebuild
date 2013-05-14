@@ -1,6 +1,7 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/claws-mail/claws-mail-3.9.1.ebuild,v 1.7 2013/05/12 19:50:46 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/claws-mail/claws-mail-3.9.1.ebuild,v 1.9 2013/05/13 21:32:22 fauli Exp $
+
 EAPI="5"
 
 PYTHON_COMPAT=( python2_{5,6,7} )
@@ -19,6 +20,7 @@ KEYWORDS="~amd64 ~hppa ~mips ~x86 ~x86-fbsd"
 
 IUSE="archive bogofilter calendar clamav dbus debug doc gdata gtk3 +imap ipv6 ldap +libcanberra +libindicate +libnotify networkmanager nntp +notification pda pdf perl +pgp python rss session smime spamassassin spam-report spell +gnutls startup-notification valgrind webkit xface"
 REQUIRED_USE="networkmanager? ( dbus )
+	smime? ( pgp )
 	libcanberra? ( notification )
 	libindicate? ( notification )
 	libnotify? ( notification )"
@@ -120,7 +122,7 @@ src_configure() {
 		$(use_enable calendar vcalendar-plugin)
 		$(use_enable clamav clamd-plugin)
 		$(use_enable gdata gdata-plugin)
-		$(use_enable libnotify notification-plugin)
+		$(use_enable notification notification-plugin)
 		$(use_enable pdf pdf_viewer-plugin)
 		$(use_enable perl perl-plugin)
 		$(use_enable pgp pgpmime-plugin)
