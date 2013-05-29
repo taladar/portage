@@ -1,6 +1,15 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.135 2013/03/31 14:28:02 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.137 2013/05/28 13:53:42 chithanh Exp $
+
+# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (28 May 2013)
+# depends on sys-devel/llvm[video_cards_radeon]
+media-libs/mesa r600-llvm-compiler
+
+# Patrick Lauer <patrick@gentoo.org> (27 May 2013)
+# stable keywords missing on tagpy/coherence
+media-video/totem upnp-av
+media-sound/rhythmbox upnp-av
 
 # Julian Ospald <hasufell@gentoo.org> (31 Mar 2013)
 # depends on mono

@@ -193,6 +193,7 @@ app-admin/salt:openssl - Add support for using TLS via OpenSSL.
 app-admin/salt:redis - Support returning data to a redis database.
 app-admin/sshguard:ipfilter - Enable ipfilter firewall support (only for *bsd)
 app-admin/sudo:offensive - Let sudo print insults when the user types the wrong password.
+app-admin/sudo:sendmail - Allow sudo to send emails with sendmail.
 app-admin/sysklogd:logrotate - use app-admin/logrotate for rotating logs rather than custom cron scripts
 app-admin/syslog-ng:json - Enable support for JSON template formatting via dev-libs/json-glib
 app-admin/syslog-ng:mongodb - Enable support for mongodb destinations
@@ -1354,6 +1355,7 @@ dev-lang/logtalk:xsbpl - Support XSB back-end compiler
 dev-lang/logtalk:xslt - Support for generating html documentation using xslt
 dev-lang/logtalk:yappl - Support YAP back-end compiler
 dev-lang/lua:deprecated - make deprecated data structures/routines available
+dev-lang/luajit:lua52compat - Enable some upwards-compatible features from Lua 5.2 that are unlikely to break existing code.
 dev-lang/mercury:erlang - Support Mercury Erlang grade
 dev-lang/mlton:binary - install a binary version (need to do this once to bootstrap, until smlnj is supported)
 dev-lang/mono:pax_kernel - Enable if the user plans to run the package under a pax enabled hardened kernel
@@ -1726,6 +1728,7 @@ dev-python/django-tastypie:yaml - An optional serialiser dev-python/yaml
 dev-python/docutils:glep - Install support for GLEPs
 dev-python/falcon:cython - Build cython-based python modules
 dev-python/icalendar:doc - Generate examples and other extra documentation
+dev-python/imaging:webp - Enable support for webp image format.
 dev-python/ipython:matplotlib - Add support for dev-python/matplotlib
 dev-python/ipython:mongodb - Enable support for MongoDB via dev-python/pymongo
 dev-python/ipython:notebook - Install requirements for the web notebook based on www-servers/tornado
@@ -2710,6 +2713,7 @@ mail-mta/netqmail:authcram - Enable AUTHCRAM support
 mail-mta/netqmail:gencertdaily - Generate SSL certificates daily instead of hourly
 mail-mta/netqmail:highvolume - Prepare netqmail for high volume servers
 mail-mta/netqmail:noauthcram - If you do NOT want AUTHCRAM to be available
+mail-mta/opensmtpd:mta - Enable this to install as system-wide MTA
 mail-mta/postfix:dovecot-sasl - Enable net-mail/dovecot protocol version 1 (server only) SASL implementation
 mail-mta/postfix:ldap-bind - Adds support for binding to LDAP backend using dev-libs/cyrus-sasl
 mail-mta/postfix:memcached - Adds support for using net-misc/memcached for lookup tables
@@ -2916,7 +2920,6 @@ media-libs/freetype:auto-hinter - Use the unpatented auto-hinter instead of the 
 media-libs/freetype:bzip2 - Support bzip2 compressed PCF fonts.
 media-libs/freetype:fontforge - Install internal headers required for TrueType debugger in media-gfx/fontforge (built with USE=truetype-debugger)
 media-libs/freetype:infinality - Enable infinality options for improved LCD filtering
-media-libs/freetype:kpathsea - Enable TeX support (ttf2pk and ttf2pfb)
 media-libs/freetype:utils - Install utilities and examples from ft2demos
 media-libs/freeverb3:audacious - Build Audacious plugin
 media-libs/freeverb3:avx - Adds support for Advanced Vector Extensions instructions
@@ -3874,6 +3877,7 @@ net-analyzer/flowgrind:pcap - Enable packet capturing support using net-libs/lib
 net-analyzer/fprobe:messages - enable console messages
 net-analyzer/httping:tfo - Enable support for TCP Fast Open
 net-analyzer/hydra:ncp - NCP protocol (NetWare) support through net-fs/ncpfs
+net-analyzer/icinga:contrib - additional scripts
 net-analyzer/icinga:eventhandler - Adds support for running custom scripts whenever a host or service state change occurs
 net-analyzer/icinga:idoutils - Adds DB support
 net-analyzer/icinga:lighttpd - Adds Lighttpd support
@@ -5324,7 +5328,7 @@ sci-geosciences/gmt:octave - Enable octave support
 sci-geosciences/googleearth:bundled-libs - Use bundled libraries.
 sci-geosciences/googleearth:mdns-bundled - Use bundled nss-mdns library instead of depending on sys-auth/nss-mdns. Enable this if you want to avoid the deptree.
 sci-geosciences/googleearth:qt-bundled - Use bundled Qt4 libraries instead of system ones. Recommended only for troubleshooting.
-sci-geosciences/googleearth:system-mdns - Use nss-mdns library from portagen instead of the bundled one.
+sci-geosciences/googleearth:system-mdns - Use nss-mdns library from portage instead of the bundled one.
 sci-geosciences/googleearth:system-qt - Use Qt4 libraries from portage instead of the bundled ones.
 sci-geosciences/gpsd:dbus - export gpsd data over dbus connections
 sci-geosciences/gpsd:latency_timing - support latency timing information
@@ -6153,6 +6157,7 @@ www-client/firefox:custom-optimization - Fine-tune custom compiler optimizations
 www-client/firefox:ipc - Use inter-process communication between tabs and plugins. Allows for greater stability in case of plugin crashes
 www-client/firefox:minimal - Prevent sdk and headers from being installed
 www-client/firefox:pgo - Add support for profile-guided optimization using gcc-4.5, for faster binaries. This option will double the compile time.
+www-client/firefox:system-cairo - Use the system-wide x11-libs/cairo Use system cairo instead of bundled.
 www-client/firefox:system-jpeg - Use the system-wide media-libs/libjpeg-turbo Use system jpeg instead of bundled.
 www-client/firefox:system-sqlite - Use the system-wide dev-db/sqlite installation with secure-delete enabled
 www-client/firefox:webm - Use system media-libs/libvpx for HTML5 WebM video support.
@@ -6249,6 +6254,8 @@ www-servers/lighttpd:mmap - Use mmap with files owned by lighttpd. This is a dan
 www-servers/lighttpd:rrdtool - Enable rrdtool support via mod_rrdtool
 www-servers/lighttpd:uploadprogress - Apply experimental patch for upload progress module
 www-servers/lighttpd:webdav - Enable webdav properties
+www-servers/monkeyd:debug - Enable lots of debugging info
+www-servers/monkeyd:shared-lib - Install shared lib
 www-servers/nginx:aio - Enables file AIO support
 www-servers/nginx:http - Enable HTTP core support
 www-servers/nginx:http-cache - Enable HTTP cache support
