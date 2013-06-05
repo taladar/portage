@@ -1,6 +1,23 @@
 # ChangeLog for net-misc/dhcpcd
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/dhcpcd/ChangeLog,v 1.355 2013/04/23 22:58:25 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/dhcpcd/ChangeLog,v 1.358 2013/06/04 16:23:20 williamh Exp $
+
+  04 Jun 2013; William Hubbs <williamh@gentoo.org>
+  -files/dhcpcd-5.6.2-if-bsd.patch, -files/dhcpcd.initd-1:
+  remove old files
+
+*dhcpcd-5.99.7 (04 Jun 2013)
+
+  04 Jun 2013; William Hubbs <williamh@gentoo.org> +dhcpcd-5.99.7.ebuild,
+  -dhcpcd-5.99.6.ebuild:
+  version bump, 5.99.7 was just released
+
+*dhcpcd-5.99.6 (04 Jun 2013)
+
+  04 Jun 2013; William Hubbs <williamh@gentoo.org> +dhcpcd-5.99.6.ebuild,
+  dhcpcd-9999.ebuild:
+  version bump and sync live ebuild. Also drop the zeroconf use flag since I
+  was advised that use flags should not manipulate configuration files.
 
 *dhcpcd-5.6.8 (23 Apr 2013)
 
