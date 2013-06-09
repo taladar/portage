@@ -360,6 +360,7 @@ app-editors/emacs:wide-int - Prefer wide Emacs integers (typically 62-bit). This
 app-editors/emacs-vcs:athena - Enable the MIT Athena widget set (x11-libs/libXaw)
 app-editors/emacs-vcs:games - Support shared score files for games
 app-editors/emacs-vcs:gconf - Use gnome-base/gconf to read the system font name
+app-editors/emacs-vcs:gfile - Use gfile (dev-libs/glib) for file notification
 app-editors/emacs-vcs:gsettings - Use gsettings (dev-libs/glib) to read the system font name
 app-editors/emacs-vcs:gtk3 - Link against version 3 of the GIMP Toolkit instead of version 2 (x11-libs/gtk+)
 app-editors/emacs-vcs:gzip-el - Compress bundled Emacs Lisp source
@@ -990,7 +991,6 @@ app-text/liblangtag:introspection - Use dev-libs/gobject-introspection for intro
 app-text/libwpd:tools - Build miscellaneous tools
 app-text/lodgeit:vim - Install a vim plugin allowing to paste and download from within vim
 app-text/mathtex:png - Generate png images by default instead of gif
-app-text/mupdf:shared-libs - Build shared libraries
 app-text/pandoc:embed_data_files - Embed data files in binary for relocatable executable.
 app-text/pastebinit:crypt - Install pbputs for gpg-encrypted pastes
 app-text/pdf2djvu:graphicsmagick - Enable media-gfx/graphicsmagick support
