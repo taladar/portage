@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/zathura-pdf-mupdf/zathura-pdf-mupdf-0.2.3.ebuild,v 1.1 2013/06/08 23:21:25 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/zathura-pdf-mupdf/zathura-pdf-mupdf-0.2.3.ebuild,v 1.2 2013/06/08 23:51:03 xmw Exp $
 
 EAPI=5
 
@@ -24,7 +24,7 @@ RDEPEND="!app-text/zathura-pdf-poppler
 	virtual/jpeg
 	cairo? ( x11-libs/cairo )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 pkg_setup() {
 	myzathuraconf=(
