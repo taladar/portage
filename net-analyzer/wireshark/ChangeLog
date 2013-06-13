@@ -1,6 +1,19 @@
 # ChangeLog for net-analyzer/wireshark
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/ChangeLog,v 1.514 2013/06/10 03:38:17 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/wireshark/ChangeLog,v 1.517 2013/06/12 16:07:13 jer Exp $
+
+  12 Jun 2013; Jeroen Roovers <jer@gentoo.org> wireshark-1.10.0-r1.ebuild:
+  Have USE=qt4 depend on xdg-utils too.
+
+  12 Jun 2013; Jeroen Roovers <jer@gentoo.org> wireshark-1.10.0-r1.ebuild:
+  Install icons and desktop file with USE=qt4 by Andrei Slavoiu (bug #473114).
+
+*wireshark-1.10.0-r1 (11 Jun 2013)
+
+  11 Jun 2013; Jeroen Roovers <jer@gentoo.org> +wireshark-1.10.0-r1.ebuild,
+  metadata.xml:
+  Remove broken python support. Remove ewarn messages in favour of local USE
+  flag descriptions. Add Qt4 support by Andrei Slavoiu (bug #472992).
 
   10 Jun 2013; Jeroen Roovers <jer@gentoo.org> wireshark-1.6.16.ebuild,
   wireshark-1.8.8.ebuild, wireshark-1.10.0.ebuild:
