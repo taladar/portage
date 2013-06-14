@@ -1804,6 +1804,7 @@ dev-python/sympy:mathml - Add support for mathml
 dev-python/sympy:pyglet - Use dev-python/pyglet for plots and print preview
 dev-python/sympy:system-mpmath - Use mpmath from portage instead of the bundled one
 dev-python/sympy:texmacs - Add app-office/texmacs interface
+dev-python/tdaemon:coverage - Enable code coverage support
 dev-python/translate-toolkit:html - Support conversion between po and html files
 dev-python/translate-toolkit:ical - Support conversion between po and ical files
 dev-python/translate-toolkit:ini - Support conversion between po and ini files
@@ -1972,7 +1973,6 @@ dev-scheme/kawa:swt - Assume SWT is available with dev-java/swt
 dev-scheme/kawa:xqtests - Support XQuery Test Suite
 dev-scheme/racket:backtrace - Support GC backtrace dumps
 dev-scheme/racket:futures - Enable racket/future library for fine-grained hardware parallelism
-dev-scheme/racket:jit - Enable just-in-time compiler
 dev-scheme/racket:places - Enable racket/place library for share-nothing parallelism and message-passing communication. Compared to futures, places are heavyweight, but they have a simpler performance model.
 dev-scheme/racket:plot - Enable plot libraries
 dev-scheme/racket:threads - Enable support for green threads
@@ -3665,7 +3665,6 @@ media-video/mplayer:pnm - Add PNM video output option, to create PPM/PGM/PGMYUV 
 media-video/mplayer:pvr - Enable Video4Linux2 MPEG PVR
 media-video/mplayer:radio - Enable V4L2 radio interface and support
 media-video/mplayer:rar - Enable Unique RAR File Library
-media-video/mplayer:real - Adds Real audio/video support
 media-video/mplayer:rtc - Enables usage of the linux real time clock. The alternative is software emulation of rtc
 media-video/mplayer:rtmp - Enables RTMPDump Streaming Media support
 media-video/mplayer:shm - Enable support for shm
@@ -3684,7 +3683,6 @@ media-video/mplayer2:bluray - Enable playback of Blu-ray filesystems
 media-video/mplayer2:bs2b - Enable Bauer stereophonic-to-binaural headphone filter
 media-video/mplayer2:cdio - Use libcdio for CD support (instead of cdparanoia)
 media-video/mplayer2:cpudetection - Enables runtime CPU detection (useful for bindist, compatibility on other CPUs)
-media-video/mplayer2:custom-cpuopts - Fine-tune custom CPU optimizations (UNSUPPORTED)
 media-video/mplayer2:dvdnav - Use forked libdvdnav, navigate menus in GUIs
 media-video/mplayer2:dxr3 - Enable DXR3/H+ video output
 media-video/mplayer2:enca - Enables support for charset discovery and conversion
@@ -3701,7 +3699,6 @@ media-video/mplayer2:pvr - Enable Video4Linux2 MPEG PVR
 media-video/mplayer2:quvi - Enable support for streaming sites using media-libs/libquvi
 media-video/mplayer2:radio - Enable V4L2 radio interface and support
 media-video/mplayer2:rar - Enable Unique RAR File Library
-media-video/mplayer2:real - Adds real audo/video support
 media-video/mplayer2:rtc - Enables usage of the linux real time clock. The alternative is software emulation of rtc
 media-video/mplayer2:shm - Enable support for shm
 media-video/mplayer2:ssse3 - Faster floating point optimization for SSSE3 capable chips (Intel Core 2 and later chips)
@@ -4375,6 +4372,7 @@ net-irc/epic5:archive - Use app-arch/libarchive to use zip and tar archives from
 net-irc/epic5:valgrind - Compile against dev-util/valgrind headers to improve memory-leak checking when running epic5 under valgrind.
 net-irc/ezbounce:boost - Compile against dev-libs/boost libraries
 net-irc/hexchat:fastscroll - Make scrolling of large text buffers faster by circumventing some of pango's overhead
+net-irc/hexchat:libcanberra - Enable sound event support using media-libs/libcanberra
 net-irc/hexchat:libproxy - Enable proxy support.
 net-irc/hexchat:ntlm - Enable NTLM authentication
 net-irc/hexchat:plugin-checksum - Build Checksum plugin (needs plugins)
