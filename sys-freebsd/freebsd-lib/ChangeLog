@@ -1,6 +1,32 @@
 # ChangeLog for sys-freebsd/freebsd-lib
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-freebsd/freebsd-lib/ChangeLog,v 1.176 2013/06/17 17:34:47 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-freebsd/freebsd-lib/ChangeLog,v 1.182 2013/06/18 23:18:11 aballier Exp $
+
+  18 Jun 2013; Alexis Ballier <aballier@gentoo.org> freebsd-lib-9.1-r8.ebuild:
+  Do not built libstand anymore and remove the now useless bootstrap useflag
+
+  18 Jun 2013; Alexis Ballier <aballier@gentoo.org> freebsd-lib-9.1-r8.ebuild:
+  Simplify a bit get_subdirs and do not treat differently USE=build/-build for
+  non-native ABIs since we bootstrap when needed anyway.
+
+  18 Jun 2013; Alexis Ballier <aballier@gentoo.org> freebsd-lib-9.1-r8.ebuild:
+  Make a full bootstrap only when needed for multilib.
+
+*freebsd-lib-9.1-r8 (18 Jun 2013)
+
+  18 Jun 2013; Alexis Ballier <aballier@gentoo.org> +freebsd-lib-9.1-r8.ebuild:
+  Generate the libc ldscript when doing multilib too.
+
+*freebsd-lib-9.1-r7 (18 Jun 2013)
+
+  18 Jun 2013; Alexis Ballier <aballier@gentoo.org> +freebsd-lib-9.1-r7.ebuild:
+  Include the DEFAULT_ABI header in our wrappers if all the previous conditions
+  fail: This breaks lint otherwise.
+
+*freebsd-lib-9.1-r6 (18 Jun 2013)
+
+  18 Jun 2013; Alexis Ballier <aballier@gentoo.org> +freebsd-lib-9.1-r6.ebuild:
+  Wrap abi specific headers when doing a multilib build.
 
 *freebsd-lib-9.1-r5 (17 Jun 2013)
 
