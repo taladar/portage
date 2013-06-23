@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14846 2013/06/21 23:02:04 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.14848 2013/06/22 19:57:28 lu_zero Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -176,7 +176,7 @@ dev-util/lafilefixer
 =dev-python/imaging-2.0.0
 
 # Joerg Bornkessel <hd_brummy@gentoo.org> (26 May 2013)
-# dead on upstream, homepage dead 
+# dead on upstream, homepage dead
 # failed on compile >=media-video/vdr-1.7.27
 # see wrt bug 414245 414177, use as alternative media-plugins/vdr-cdplayer
 # Removal in ~ 30 days
@@ -224,18 +224,6 @@ x11-themes/pekwm-themes-hewphoria
 # Needs masked ffmpeg-9
 =media-video/mplayer2-2.0_p20130428
 =media-libs/ffmpegsource-2.17.4_pre755
-
-# Ian Delaney <idella4@gentoo.org> (14 May 2013)
-# package, no longer valid, otherwise replaced in new packages
-# Revised list, masked for removal in 30 days
-dev-python/setupdocs
-dev-python/etsprojecttools
-dev-python/envisagecore
-dev-python/traitsbackendwx
-dev-python/traitsbackendqt
-dev-python/traitsgui
-dev-python/enthoughtbase
-dev-python/envisageplugins
 
 # Markos Chandras <hwoarang@gentoo.org> (12 May 2013)
 # Does not build. Dead upstream. Bug #467286
@@ -709,7 +697,6 @@ dev-vcs/gitosis-gentoo
 # Diego Elio Pettenò <flameeyes@gentoo.org> (14 Nov 2012)
 # Masked for testing as some packages fail.
 # See bug #443230 for tracking the progress
-=media-video/libav-9.7*
 ~virtual/ffmpeg-9
 
 # Joerg Bornkessel <hd_brummy@gentoo.org> (04 Nov 2012)
