@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/libreoffice-9999-r2.ebuild,v 1.178 2013/06/20 11:40:50 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libreoffice/libreoffice-9999-r2.ebuild,v 1.180 2013/06/23 20:02:09 scarabeus Exp $
 
 EAPI=5
 
@@ -121,7 +121,7 @@ COMMON_DEPEND="
 	media-gfx/graphite2
 	>=media-libs/fontconfig-2.8.0
 	media-libs/freetype:2
-	>=media-libs/harfbuzz-0.9.10:=
+	>=media-libs/harfbuzz-0.9.10:=[icu(+)]
 	media-libs/lcms:2
 	>=media-libs/libpng-1.4
 	>=media-libs/libcdr-0.0.5
@@ -236,6 +236,7 @@ REQUIRED_USE="
 	bluetooth? ( dbus )
 	gnome? ( gtk )
 	eds? ( gnome )
+	telepathy? ( gtk )
 	libreoffice_extensions_nlpsolver? ( java )
 	libreoffice_extensions_scripting-beanshell? ( java )
 	libreoffice_extensions_scripting-javascript? ( java )
