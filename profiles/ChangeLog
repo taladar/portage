@@ -1,10 +1,29 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7968 2013/06/23 17:50:06 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.7974 2013/06/25 23:07:58 aballier Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  25 Jun 2013; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask multilib lame
+
+  25 Jun 2013; Michael Weber <xmw@gentoo.org> package.mask:
+  broken hotot was removed
+
+  25 Jun 2013; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.mask:
+  Mask new ptlib/opal for breakage, tracked in bug #474742
+
+  25 Jun 2013; Sergey Popov <pinkbyte@gentoo.org> desc/linguas.desc:
+  Add tg_TJ locale description
+
+  25 Jun 2013; Tim Harder <radhermit@gentoo.org> package.mask:
+  Unmask =media-libs/libraw-0.15*.
+
+  25 Jun 2013; Michael Weber <xmw@gentoo.org> package.mask:
+  Remove mask for oyranos-0.9.4
 
   23 Jun 2013; Samuli Suominen <ssuominen@gentoo.org> package.mask:
   Mask libpng with multilib support next to sys-libs/zlib wrt #474356, #457134
