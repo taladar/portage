@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.474 2013/06/24 16:48:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.476 2013/06/27 20:30:18 radhermit Exp $
+
+  27 Jun 2013; Tim Harder <radhermit@gentoo.org> Manifest:
+  Update ldap patch to fix segfault issue.
+
+*openssh-6.2_p2-r1 (27 Jun 2013)
+
+  27 Jun 2013; Tim Harder <radhermit@gentoo.org> +openssh-6.2_p2-r1.ebuild:
+  Revision bump, add ldap and hpn support.
 
 *openssh-6.2_p2 (24 Jun 2013)
 
