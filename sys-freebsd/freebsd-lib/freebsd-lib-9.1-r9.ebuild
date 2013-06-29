@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-freebsd/freebsd-lib/freebsd-lib-9.1-r9.ebuild,v 1.1 2013/06/27 20:38:35 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-freebsd/freebsd-lib/freebsd-lib-9.1-r9.ebuild,v 1.4 2013/06/28 12:08:11 aballier Exp $
 
 EAPI=5
 
@@ -236,6 +236,12 @@ bootstrap_libssp_nonshared() {
 	export LDADD="-lssp_nonshared"
 }
 
+bootstrap_libc() {
+	cd "${WORKDIR}/lib/libc" || die
+	freebsd_src_compile
+	append-ldflags "-L${MAKEOBJDIRPREFIX}/${WORKDIR}/lib/libc"
+}
+
 bootstrap_libgcc() {
 	cd "${WORKDIR}/lib/libcompiler_rt" || die
 	freebsd_src_compile
@@ -243,9 +249,7 @@ bootstrap_libgcc() {
 	ln -s libcompiler_rt.a libgcc.a || die
 	append-ldflags "-L${MAKEOBJDIRPREFIX}/${WORKDIR}/lib/libcompiler_rt"
 
-	cd "${WORKDIR}/lib/libc" || die
-	freebsd_src_compile
-	append-ldflags "-L${MAKEOBJDIRPREFIX}/${WORKDIR}/lib/libc"
+	bootstrap_libc
 
 	cd "${WORKDIR}/gnu/lib/libgcc" || die
 	freebsd_src_compile
@@ -310,10 +314,8 @@ do_bootstrap() {
 	fi
 	bootstrap_csu
 	bootstrap_libssp_nonshared
-	if ! is_crosscompile && ! is_native_abi ; then
-		# Bootstrap the compiler libs
-		bootstrap_libgcc
-	fi
+	is_crosscompile && bootstrap_libc
+	is_crosscompile || is_native_abi || bootstrap_libgcc
 }
 
 # Compile it. Assume we have the toolchain setup correctly.
@@ -463,10 +465,17 @@ wrap_header_end() {
 }
 
 do_install() {
-	INCLUDEDIR="/usr/include"
+	if is_crosscompile ; then
+		INCLUDEDIR="/usr/${CTARGET}/usr/include"
+	else
+		INCLUDEDIR="/usr/include"
+	fi
+
 	dodir ${INCLUDEDIR}
 	CTARGET="${CHOST}" \
 		install_includes ${INCLUDEDIR}
+
+	is_crosscompile && use crosscompile_opts_headers-only && return 0
 
 	for i in $(get_subdirs) ; do
 		einfo "Installing in ${i}..."
@@ -511,11 +520,9 @@ do_install() {
 src_install() {
 	if is_crosscompile ; then
 		einfo "Installing for ${CTARGET} in ${CHOST}.."
-		INCLUDEDIR="/usr/${CTARGET}/usr/include"
-		dodir ${INCLUDEDIR}
-		install_includes ${INCLUDEDIR}
-
-		use crosscompile_opts_headers-only && return 0
+		# From this point we need to force: get stripped with the correct tools,
+		# get tc-arch-kernel to return the right value, etc.
+		export CHOST=${CTARGET}
 
 		mymakeopts="${mymakeopts} NO_MAN= \
 			INCLUDEDIR=/usr/${CTARGET}/usr/include \
@@ -525,9 +532,6 @@ src_install() {
 		dosym "usr/include" "/usr/${CTARGET}/sys-include"
 		do_install
 
-		# This is to get it stripped with the correct tools, otherwise it gets
-		# stripped with the host strip.
-		export CHOST=${CTARGET}
 		return 0
 	else
 		export STRIP_MASK="*/usr/lib*/*crt*.o"
