@@ -1633,6 +1633,7 @@ dev-lisp/sbcl:ldb - Include support for the SBCL low level debugger
 dev-lisp/sbcl:pax_kernel - Enable if the user plans to run the package under a pax enabled hardened kernel
 dev-lua/luarocks:curl - Uses net-misc/curl for fetching lua packages instead of net-misc/wget.
 dev-lua/luarocks:openssl - Uses dev-libs/openssl for verifying lua packages instead of md5sum.
+dev-lua/luvit:bundled-libs - Use bundled versions of some libraries.
 dev-lua/luvit:system-libs - Use system version of dev-libs/yajl.
 dev-ml/cairo-ocaml:pango - Enable support for x11-libs/pango
 dev-ml/deriving-ocsigen:type-conv - Enable type-conv for the syntax extention.
@@ -6646,7 +6647,6 @@ x11-wm/enlightenment:udev - Use sys-fs/udev to determine available devices
 x11-wm/enlightenment:ukit - Use upower/udisks to automount devices
 x11-wm/enlightenment:xrandr - Enable support for the X xrandr extension
 x11-wm/fluxbox:bidi - Enable bidirectional language support with dev-libs/fribidi
-x11-wm/fluxbox:newmousefocus - Patches the focus model to the upcoming 1.1.2 model, which adds a new 'StrictMouseFocus' mode
 x11-wm/fluxbox:slit - Enables the fluxbox slit (or dock)
 x11-wm/fluxbox:toolbar - Enables the fluxbox toolbar
 x11-wm/fvwm:gtk2-perl - Enable GTK2 Perl bindings
