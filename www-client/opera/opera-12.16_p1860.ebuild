@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/opera/opera-12.16_p1860.ebuild,v 1.1 2013/07/04 13:02:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/opera/opera-12.16_p1860.ebuild,v 1.4 2013/07/05 18:21:51 ago Exp $
 
 EAPI=4
 inherit eutils fdo-mime gnome2-utils multilib pax-utils versionator
@@ -10,7 +10,7 @@ HOMEPAGE="http://www.opera.com/"
 
 SLOT="0"
 LICENSE="OPERA-12 LGPL-2 LGPL-3"
-KEYWORDS="~amd64 ~x86 ~x86-fbsd"
+KEYWORDS="amd64 x86 ~x86-fbsd"
 IUSE="elibc_FreeBSD gtk kde +gstreamer multilib"
 
 O_V="$(get_version_component_range 1-2)" # Version, i.e. 11.00
@@ -66,7 +66,7 @@ GTKRDEPEND="
 	dev-libs/glib:2
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf
-	gtk? ( || ( x11-libs/gtk+:3 x11-libs/gtk+:2 ) )
+	gtk? ( x11-libs/gtk+:2 )
 	x11-libs/pango
 	x11-libs/pixman
 "
@@ -143,7 +143,6 @@ src_prepare() {
 	# Optional libraries
 	if ! use gtk; then
 		rm lib/${PN}/liboperagtk2.so || die
-		rm lib/${PN}/liboperagtk3.so || die
 	fi
 	if ! use kde; then
 		rm lib/${PN}/liboperakde4.so || die
