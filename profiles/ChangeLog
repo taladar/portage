@@ -1,10 +1,26 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8028 2013/07/11 23:28:44 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8033 2013/07/12 19:40:17 mgorny Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  12 Jul 2013; Michał Górny <mgorny@gentoo.org> package.mask:
+  Add multilib udis86 to the p.mask.
+
+  12 Jul 2013; Ian Delaney <idella4@gentoo.org> package.mask:
+  dev-python/elixir purged, see Bug #472496
+
+  12 Jul 2013; Sergei Trofimovich <slyfox@gentoo.org> package.mask:
+  Mask live ebuild for 'app-misc/mc'.
+
+  12 Jul 2013; Sergey Popov <pinkbyte@gentoo.org> package.mask:
+  Remove obsolete mask on dev-util/lafilefixer
+
+  11 Jul 2013; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  package.mask:
+  Remove mask on xf86-input-citron which has been dropped.
 
   11 Jul 2013; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
   package.mask:
