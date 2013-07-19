@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udisks/udisks-2.1.0.ebuild,v 1.12 2013/05/01 11:11:11 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udisks/udisks-2.1.0.ebuild,v 1.14 2013/07/18 16:07:15 ssuominen Exp $
 
 EAPI=5
 inherit bash-completion-r1 eutils linux-info systemd udev
@@ -12,7 +12,7 @@ SRC_URI="http://udisks.freedesktop.org/releases/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 sh sparc x86"
-IUSE="debug crypt +gptfdisk +introspection selinux systemd"
+IUSE="debug cryptsetup +gptfdisk +introspection selinux systemd"
 
 UDEV_VERSION="197"
 COMMON_DEPEND=">=dev-libs/glib-2.32
@@ -29,7 +29,10 @@ RDEPEND="${COMMON_DEPEND}
 	>=sys-apps/util-linux-2.20.1-r2
 	>=sys-block/parted-3
 	virtual/eject
-	crypt? ( sys-fs/cryptsetup )
+	cryptsetup? (
+		sys-fs/cryptsetup[udev(+)]
+		sys-fs/lvm2[udev(+)]
+		)
 	gptfdisk? ( >=sys-apps/gptfdisk-0.8 )"
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xsl-stylesheets
@@ -48,9 +51,9 @@ pkg_setup() {
 	if use amd64 || use arm || use ppc || use ppc64 || use x86; then
 		CONFIG_CHECK="~!IDE" #319829
 		CONFIG_CHECK+=" ~TMPFS_POSIX_ACL" #412377
-		CONFIG_CHECK+=" ~USB_SUSPEND" #331065
 		CONFIG_CHECK+=" ~SWAP" # http://forums.gentoo.org/viewtopic-t-923640.html
 		CONFIG_CHECK+=" ~NLS_UTF8" #425562
+		kernel_is lt 3 10 && CONFIG_CHECK+=" ~USB_SUSPEND" #331065, #477278
 		linux-info_pkg_setup
 	fi
 }
