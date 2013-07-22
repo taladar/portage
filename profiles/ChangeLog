@@ -1,10 +1,36 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8057 2013/07/20 20:32:49 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8065 2013/07/21 16:35:18 hasufell Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  21 Jul 2013; Julian Ospald <hasufell@gentoo.org> package.mask:
+  rather mask all sci-geosciences/googleearth versions
+
+  21 Jul 2013; Julian Ospald <hasufell@gentoo.org> package.mask:
+  mask broken googleearth versions
+
+  21 Jul 2013; Pacho Ramos <pacho@gentoo.org> use.desc:
+  Add connman to global
+  (http://gentoo.2317880.n4.nabble.com/Make-connman-a-global-USE-flag-td46400.h
+  tml)
+
+  21 Jul 2013; Michał Górny <mgorny@gentoo.org> package.mask:
+  Mask multilib LLVM and clang meta-package requiring it for testing.
+
+  21 Jul 2013; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Mask packages for removal
+
+  21 Jul 2013; Pacho Ramos <pacho@gentoo.org> package.mask:
+  Clean obsolete entries
+
+  21 Jul 2013; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Mask ruby18-only packages in dev-ruby for removal.
+
+  21 Jul 2013; Julian Ospald <hasufell@gentoo.org> package.mask:
+  remove mask entry, because bug is fixed
 
   20 Jul 2013; Julian Ospald <hasufell@gentoo.org> package.mask:
   mask profile-sync-daemon
