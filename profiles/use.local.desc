@@ -1550,6 +1550,7 @@ dev-libs/libverto:glib - Support event loops using dev-libs/glib
 dev-libs/libverto:libev - Support event loops using dev-libs/libev
 dev-libs/libverto:libevent - Support event loops using dev-libs/libevent
 dev-libs/libverto:tevent - Support event loops using sys-libs/tevent
+dev-libs/libzypp:libproxy - Use net-libs/libproxy for getting the HTTP/HTTPS/SOCKS proxy configuration
 dev-libs/link-grammar:aspell - Adds support for app-text/aspell spell checker
 dev-libs/link-grammar:hunspell - Adds support for app-text/hunspell spell checker
 dev-libs/log4cplus:iconv - Use inconv for wchar_t <-> char conversions. See also log4cplus's unicode.txt documentation
@@ -4697,6 +4698,7 @@ net-libs/telepathy-qt:farstream - Enable support for audio/video calls via farst
 net-libs/telepathy-qt:glib - Enable support for various telepathy/glib related packages
 net-libs/webkit-gtk:coverage - Enable code coverage support
 net-libs/webkit-gtk:geoloc - Enable geolocation support through app-misc/geoclue
+net-libs/webkit-gtk:libsecret - Enable libsecret support to store login credentials
 net-libs/webkit-gtk:webgl - Build support for the WebGL HTML API using virtual/opengl
 net-libs/webkit-gtk:webkit2 - Enable WebKit2 API that splits web content rendering and application UI into separate processes
 net-libs/wt:extjs - Build Wt Ext library with JavaScript-only widgets (http://extjs.com/)
