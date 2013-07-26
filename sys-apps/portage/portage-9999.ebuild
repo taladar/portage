@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-9999.ebuild,v 1.82 2013/07/23 03:18:29 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/portage/portage-9999.ebuild,v 1.84 2013/07/25 22:09:16 zmedico Exp $
 
 EAPI=3
 PYTHON_COMPAT=(
@@ -276,11 +276,14 @@ src_prepare() {
 		done < <(find . -type f -print0)
 
 		einfo "Adjusting make.globals ..."
-		sed -e "s|^\(PORTAGE_TMPDIR=\)\(/var/tmp\)|\\1\"${EPREFIX}\\2\"|" \
+		sed -e "s|\(/usr/portage\)|${EPREFIX}\\1|" \
+			-e "s|^\(PORTAGE_TMPDIR=\"\)\(/var/tmp\"\)|\\1${EPREFIX}\\2|" \
 			-i cnf/make.globals || die "sed failed"
 
 		einfo "Adjusting repos.conf ..."
-		sed -e "s|^\(location = \)\(/usr/portage\)|\\1\"${EPREFIX}\\2\"|" \
+		sed -e "s|^\(main-repo = \).*|\\1gentoo_prefix|" \
+			-e "s|^\\[gentoo\\]|[gentoo_prefix]|" \
+			-e "s|^\(location = \)\(/usr/portage\)|\\1${EPREFIX}\\2|" \
 			-e "s|^\(sync-uri = \).*|\\1rsync://rsync.prefix.freens.org/gentoo-portage-prefix|" \
 			-i cnf/repos.conf || die "sed failed"
 
