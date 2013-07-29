@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/evolution-data-server-3.8.4.ebuild,v 1.1 2013/07/23 20:44:36 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/evolution-data-server-3.8.4.ebuild,v 1.3 2013/07/28 10:19:22 pacho Exp $
 
 EAPI="5"
-PYTHON_COMPAT=( python{2_7,3,3} )
 GCONF_DEBUG="no"
+PYTHON_COMPAT=( python{2_7,3_2,3_3} pypy{1_9,2_0})
 VALA_MIN_API_VERSION="0.18"
 VALA_USE_DEPEND="vapigen"
 
@@ -45,6 +45,7 @@ RDEPEND="
 	weather? ( >=dev-libs/libgweather-3.5:2= )
 "
 DEPEND="${RDEPEND}
+	${PYTHON_DEPS}
 	dev-util/fix-la-relink-command
 	dev-util/gperf
 	>=dev-util/gtk-doc-am-1.9
@@ -61,20 +62,21 @@ pkg_setup() {
 }
 
 src_prepare() {
-	gnome2_src_prepare
 	use vala && vala_src_prepare
+	gnome2_src_prepare
 
 	# /usr/include/db.h is always db-1 on FreeBSD
 	# so include the right dir in CPPFLAGS
 	append-cppflags "-I$(db_includedir)"
 
-	# Fix compilation flags crazyness
+	# FIXME: Fix compilation flags crazyness
 	# Touch configure.ac if doing eautoreconf
 	sed 's/^\(AM_CPPFLAGS="\)$WARNING_FLAGS/\1/' \
 		-i configure || die "sed failed"
 }
 
 src_configure() {
+	# phonenumber does not exist in tree
 	gnome2_src_configure \
 		$(use_enable api-doc-extras gtk-doc) \
 		$(use_with api-doc-extras private-docs) \
@@ -91,6 +93,7 @@ src_configure() {
 		--enable-largefile \
 		--enable-smime \
 		--with-libdb="${EPREFIX}"/usr \
+		--without-phonenumber \
 		--disable-uoa
 }
 
