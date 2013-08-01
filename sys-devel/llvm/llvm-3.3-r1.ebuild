@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/llvm/llvm-3.3-r1.ebuild,v 1.4 2013/07/30 23:10:46 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/llvm/llvm-3.3-r1.ebuild,v 1.7 2013/07/31 22:08:14 mgorny Exp $
 
 EAPI=5
 
@@ -41,7 +41,13 @@ DEPEND="app-admin/chrpath
 	${PYTHON_DEPS}"
 RDEPEND="dev-lang/perl
 	libffi? ( virtual/libffi[${MULTILIB_USEDEP}] )
-	clang? ( python? ( ${PYTHON_DEPS} ) )
+	clang? (
+		python? ( ${PYTHON_DEPS} )
+		static-analyzer? (
+			dev-lang/perl
+			${PYTHON_DEPS}
+		)
+	)
 	udis86? ( dev-libs/udis86[pic(+),${MULTILIB_USEDEP}] )
 	clang? ( !<=sys-devel/clang-3.3-r99
 		!>=sys-devel/clang-9999 )
@@ -205,25 +211,11 @@ multilib_src_configure() {
 }
 
 multilib_src_compile() {
-	local mymakeopts=(
-		VERBOSE=1
-		REQUIRES_RTTI=1
-		GENTOO_LIBDIR="$(get_libdir)"
-	)
-
-	# Tests need all the LLVM built.
-	if multilib_is_native_abi || use test; then
-		emake "${mymakeopts[@]}"
-	else
-		# we need to build libs for llvm, then whole clang,
-		# since libs-only omits clang dir
-		# and clang fails to sub-compile with libs-only.
-		emake "${mymakeopts[@]}" libs-only
-		use clang && emake -C tools/clang "${mymakeopts[@]}"
-	fi
+	emake VERBOSE=1 REQUIRES_RTTI=1 GENTOO_LIBDIR=$(get_libdir)
 
 	if multilib_is_native_abi && use doc; then
-		emake -C "${S}"/docs -f Makefile.sphinx man html
+		emake -C "${S}"/docs -f Makefile.sphinx man
+		emake -C "${S}"/docs -f Makefile.sphinx html
 	fi
 
 	if use debug; then
@@ -263,12 +255,7 @@ src_install() {
 }
 
 multilib_src_install() {
-	local mymakeopts=(
-		DESTDIR="${D}"
-		GENTOO_LIBDIR="$(get_libdir)"
-	)
-
-	emake "${mymakeopts[@]}" install
+	emake DESTDIR="${D}" GENTOO_LIBDIR=$(get_libdir) install
 
 	# Fix rpaths.
 	chrpath -r "${EPREFIX}"/usr/$(get_libdir)/llvm \
