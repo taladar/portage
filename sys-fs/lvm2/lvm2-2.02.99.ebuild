@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/lvm2/lvm2-2.02.99.ebuild,v 1.1 2013/08/01 19:02:35 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/lvm2/lvm2-2.02.99.ebuild,v 1.5 2013/08/02 15:53:33 ssuominen Exp $
 
 EAPI=5
 inherit eutils multilib toolchain-funcs autotools linux-info udev systemd
@@ -16,10 +16,9 @@ KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
 
 IUSE="readline static static-libs clvm cman +lvm1 selinux +udev +thin"
 
-DEPEND_COMMON="readline? ( sys-libs/readline )
-	clvm? ( =sys-cluster/libdlm-3*
-			cman? ( =sys-cluster/cman-3* ) )
-	udev? ( virtual/udev[static-libs?] )"
+DEPEND_COMMON="clvm? ( cman? ( =sys-cluster/cman-3* ) =sys-cluster/libdlm-3* )
+	readline? ( sys-libs/readline )
+	udev? ( >=virtual/udev-200[static-libs?] )"
 # /run is now required for locking during early boot. /var cannot be assumed to
 # be available.
 RDEPEND="${DEPEND_COMMON}
@@ -35,9 +34,11 @@ RDEPEND="${RDEPEND}
 DEPEND="${DEPEND_COMMON}
 	virtual/pkgconfig
 	>=sys-devel/binutils-2.20.1-r1
-	static? ( udev? ( virtual/udev[static-libs] ) )"
+	static? ( udev? ( >=virtual/udev-200[static-libs] ) )"
 
 S=${WORKDIR}/${PN/lvm/LVM}.${PV}
+
+#QA_MULTILIB_PATHS="usr/lib/systemd/system-generators/.*" #479520
 
 pkg_setup() {
 	local CONFIG_CHECK="~SYSVIPC"
@@ -154,6 +155,7 @@ src_configure() {
 		--with-default-run-dir=/run/lvm \
 		--with-default-locking-dir=/run/lock/lvm \
 		--with-dmeventd-path=/sbin/dmeventd \
+		--with-default-pid-dir=/run \
 		$(use_enable udev udev_rules) \
 		$(use_enable udev udev_sync) \
 		$(use_with udev udevdir "${udevdir}") \
@@ -163,13 +165,12 @@ src_configure() {
 }
 
 src_compile() {
-	einfo "Doing symlinks"
 	pushd include >/dev/null
 	emake
 	popd >/dev/null
 
-	einfo "Starting main build"
 	emake AR="$(tc-getAR)"
+	emake CC="$(tc-getCC)" -C scripts lvm2_activation_generator_systemd_red_hat
 }
 
 src_install() {
@@ -221,24 +222,17 @@ src_install() {
 	sed -i \
 		-e "s|/lib/rcscripts/|/$(get_libdir)/rcscripts/|" \
 		"${ED}"/etc/init.d/* || die
-
-	elog "USE flag nocman is deprecated and replaced"
-	elog "with the cman USE flag."
-	elog ""
-	elog "USE flags clvm and cman are masked"
-	elog "by default and need to be unmasked to be used"
-	elog ""
-	elog "If you are using genkernel and root-on-LVM, rebuild the initramfs."
 }
 
 pkg_postinst() {
-	elog "lvm volumes are no longer automatically created for"
-	elog "baselayout-2 users. If you are using baselayout-2, be sure to"
-	elog "run: # rc-update add lvm boot"
-	elog "Do NOT add it if you are still using baselayout-1."
+	ewarn "Make sure the \"lvm\" init script is in the runlevels:"
+	ewarn "# rc-update add lvm boot"
+	ewarn
+	ewarn "Make sure to enable lvmetad in /etc/lvm/lvm.conf if you want"
+	ewarn "to enable lvm autoactivation and metadata caching."
 }
 
 src_test() {
-	einfo "Testcases disabled because of device-node mucking"
-	einfo "If you want them, compile the package and see ${S}/tests"
+	einfo "Tests are disabled because of device-node mucking, if you want to"
+	einfo "run tests, compile the package and see ${S}/tests"
 }
