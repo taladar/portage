@@ -501,6 +501,7 @@ app-emulation/qemu:alsa - Enable alsa output for sound emulation
 app-emulation/qemu:brltty - Adds support for braille displays using brltty
 app-emulation/qemu:curl - Support ISOs / -cdrom directives vis HTTP or HTTPS.
 app-emulation/qemu:fdt - Enables firmware device tree support
+app-emulation/qemu:glusterfs - Enables GlusterFS cluster fileystem via sys-cluster/glusterfs
 app-emulation/qemu:iscsi - Enable direct iSCSI support via net-libs/libiscsi instead of indirectly via the Linux block layer that sys-block/open-iscsi does.
 app-emulation/qemu:jpeg - Enable jpeg image support for the VNC console server
 app-emulation/qemu:mixemu - Enable audio mixer emulation. On Fedora, known to cause performance problems when using SDL output and ALSA. For OSS, locks the sound device from other applications.
@@ -537,7 +538,6 @@ app-emulation/virt-manager:policykit - Enables sys-auth/polkit authentication su
 app-emulation/virt-manager:sasl - Depend on the proper libraries needed to connect to SASL-enabled libvirtd instances (e.g. Kerberos-protected instances).
 app-emulation/virt-manager:spice - Support connecting to SPICE-enabled virtual machines.
 app-emulation/virt-manager:vnc - Support connecting to VNC-enabled virtual machines.
-app-emulation/virt-viewer:gtk3 - Link against x11-libs/gtk+:3 instead of x11-libs/gtk+:2
 app-emulation/virt-viewer:spice - Support connecting to SPICE-enabled virtual machines.
 app-emulation/virt-viewer:vnc - Support connecting to VNC-enabled virtual machines.
 app-emulation/virtualbox:additions - Install Guest System Tools ISO
@@ -1852,7 +1852,7 @@ dev-python/translate-toolkit:html - Support conversion between po and html files
 dev-python/translate-toolkit:ical - Support conversion between po and ical files
 dev-python/translate-toolkit:ini - Support conversion between po and ini files
 dev-python/translate-toolkit:subtitles - Support conversion between po and sub files
-dev-python/twisted:serial - include serial port support
+dev-python/twisted-core:serial - include serial port support
 dev-python/vatnumber:vies - Enable VIES
 dev-python/ws4py:client - Install client modules
 dev-python/ws4py:server - Install server modules
@@ -4087,7 +4087,9 @@ net-analyzer/tcpreplay:tcpdump - Use net-analyzer/tcpdump for packet decoding fe
 net-analyzer/wireshark:adns - Use the GNU net-dns/c-ares library to resolve DNS names
 net-analyzer/wireshark:crypt - Use dev-libs/libgcrypt to decrypt traffic
 net-analyzer/wireshark:doc-pdf - Build documentation in pdf format (US and a4 paper sizes)
-net-analyzer/wireshark:gtk - Build the wireshark executable with a GTK+ UI.
+net-analyzer/wireshark:gtk - Build the wireshark executable with a GTK+ UI version 2.
+net-analyzer/wireshark:gtk2 - Build the wireshark executable with a GTK+ UI version 2.
+net-analyzer/wireshark:gtk3 - Build the wireshark executable with a GTK+ UI version 3.
 net-analyzer/wireshark:libadns - Use net-lib/adns (DEPRECATED) instead of net-dns/c-ares to resolve DNS names
 net-analyzer/wireshark:netlink - Use dev-libs/libnl
 net-analyzer/wireshark:pcap - Use net-libs/libpcap for network packet capturing (build dumpcap, rawshark)
@@ -5183,6 +5185,11 @@ net-p2p/mldonkey:fasttrack - enable fasttrack support
 net-p2p/mldonkey:gnutella - enable gnutella and gnutella2 support
 net-p2p/mldonkey:guionly - enable client build only
 net-p2p/mldonkey:magic - enable use of libmagic
+net-p2p/retroshare:cli - Enables the CLI version of RetroShare
+net-p2p/retroshare:feedreader - Enables the Feedreader plugin
+net-p2p/retroshare:links-cloud - Enables LinkClouds plugin
+net-p2p/retroshare:qt4 - Enables the GUI using qt4
+net-p2p/retroshare:voip - Enables VOIP plugin
 net-p2p/rtorrent:color - Add custom color support for torrent list
 net-p2p/rtorrent:daemon - Uses app-misc/screen to daemonize this application
 net-p2p/transmission:lightweight - Optimize transmission for low-resource systems (smaller cache size, prefer unencrypted peer connections, etc.)
@@ -5587,6 +5594,7 @@ sci-libs/vtk:patented - Build patented classes
 sci-mathematics/Macaulay2:optimization - Accept upstream's choices for -O option, i.e. -O3 almost everywhere.
 sci-mathematics/agda:epic - Add support for the epic compiler.
 sci-mathematics/agda:stdlib - Install the standard library.
+sci-mathematics/bertini:optimization - Accept upstream's choices for -O option.
 sci-mathematics/cgal:mpfi - Enable support for multiple recision interval arithmetic via sci-mathematics/mpfi
 sci-mathematics/coq:camlp5 - Build using camlp5. This is required for some plugins like Ssreflect.
 sci-mathematics/cvc3:isabelle - Add integration support for the Isabelle/HOL theorem prover.
@@ -6097,6 +6105,7 @@ sys-fs/loop-aes:padlock - Use VIA padlock instructions, detected at run time, co
 sys-fs/lvm2:clvm - Allow users to build clustered lvm2
 sys-fs/lvm2:cman - Cman support for clustered lvm
 sys-fs/lvm2:lvm1 - Allow users to build lvm2 with lvm1 support
+sys-fs/lvm2:lvm2create_initrd - Install lvm2create_initrd script and pull in sys-apps/makedev for the /sbin/MAKEDEV command
 sys-fs/lvm2:thin - Support for thin volumes
 sys-fs/mtpfs:mad - Enable handling of MP3's metadata
 sys-fs/ntfs3g:crypt - Add support for encrypted NTFS drives/partitions.

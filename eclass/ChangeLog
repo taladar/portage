@@ -1,6 +1,12 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.913 2013/08/02 16:48:18 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.915 2013/08/04 08:24:28 mgorny Exp $
+
+  04 Aug 2013; Michał Górny <mgorny@gentoo.org> python-r1.eclass:
+  Drop the old PYTHON_COMPAT hack for python-exec.
+
+  03 Aug 2013; Patrick Lauer <patrick@gentoo.org> distutils.eclass:
+  Migrate twisted deps in distutils eclass
 
   02 Aug 2013; Ulrich Müller <ulm@gentoo.org> elisp-common.eclass:
   Sync from Emacs overlay: Make elisp-emacs-version() more robust.

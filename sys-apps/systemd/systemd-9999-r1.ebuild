@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999-r1.ebuild,v 1.4 2013/07/31 22:23:50 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/systemd/systemd-9999-r1.ebuild,v 1.6 2013/08/04 08:15:08 mgorny Exp $
 
 EAPI=5
 
@@ -40,7 +40,7 @@ COMMON_DEPEND=">=sys-apps/dbus-1.6.8-r1
 	gudev? ( >=dev-libs/glib-2 )
 	http? ( net-libs/libmicrohttpd )
 	introspection? ( >=dev-libs/gobject-introspection-1.31.1 )
-	kmod? ( >=sys-apps/kmod-12 )
+	kmod? ( >=sys-apps/kmod-14-r1 )
 	lzma? ( app-arch/xz-utils )
 	pam? ( virtual/pam )
 	python? ( ${PYTHON_DEPS} )
@@ -201,7 +201,7 @@ src_install() {
 
 	# zsh completion
 	insinto /usr/share/zsh/site-functions
-	newins shell-completion/systemd-zsh-completion.zsh "_${PN}"
+	doins shell-completion/zsh/_*
 
 	# we just keep sysvinit tools, so no need for the mans
 	rm "${D}"/usr/share/man/man8/{halt,poweroff,reboot,runlevel,shutdown,telinit}.8 \

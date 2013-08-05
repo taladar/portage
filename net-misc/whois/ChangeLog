@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/whois
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.192 2013/07/30 22:27:46 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.195 2013/08/04 13:36:14 ago Exp $
+
+  04 Aug 2013; Agostino Sarubbo <ago@gentoo.org> whois-5.0.25.ebuild:
+  Stable for ppc64, wrt bug #478528
+
+  04 Aug 2013; Agostino Sarubbo <ago@gentoo.org> whois-5.0.25.ebuild:
+  Stable for ia64, wrt bug #478528
+
+  03 Aug 2013; Agostino Sarubbo <ago@gentoo.org> whois-5.0.25.ebuild:
+  Stable for sparc, wrt bug #478528
 
   30 Jul 2013; Jeroen Roovers <jer@gentoo.org> whois-5.0.25.ebuild:
   Stable for HPPA (bug #478528).
