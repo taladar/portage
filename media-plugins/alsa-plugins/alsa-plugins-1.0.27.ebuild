@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/alsa-plugins/alsa-plugins-1.0.27.ebuild,v 1.4 2013/08/02 11:35:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/alsa-plugins/alsa-plugins-1.0.27.ebuild,v 1.6 2013/08/07 13:33:28 ago Exp $
 
 EAPI=5
 inherit autotools eutils flag-o-matic multilib
@@ -11,7 +11,7 @@ SRC_URI="mirror://alsaproject/plugins/${P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-linux"
+KEYWORDS="~alpha amd64 arm ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc x86 ~amd64-linux"
 IUSE="debug ffmpeg jack libsamplerate pulseaudio speex"
 
 RDEPEND=">=media-libs/alsa-lib-${PV}
@@ -26,7 +26,8 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	epatch \
 		"${FILESDIR}"/${PN}-1.0.19-missing-avutil.patch \
-		"${FILESDIR}"/${PN}-1.0.23-automagic.patch
+		"${FILESDIR}"/${PN}-1.0.23-automagic.patch \
+		"${FILESDIR}"/${PN}-1.0.27-ffmpeg-version-check.patch
 
 	epatch_user
 

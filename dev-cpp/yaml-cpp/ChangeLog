@@ -1,6 +1,13 @@
 # ChangeLog for dev-cpp/yaml-cpp
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/yaml-cpp/ChangeLog,v 1.9 2013/07/10 01:39:12 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/yaml-cpp/ChangeLog,v 1.11 2013/08/07 14:58:05 ago Exp $
+
+  07 Aug 2013; Agostino Sarubbo <ago@gentoo.org> yaml-cpp-0.5.1.ebuild:
+  Stable for amd64, wrt bug #478212
+
+  07 Aug 2013; Sergey Popov <pinkbyte@gentoo.org> yaml-cpp-0.3.0.ebuild,
+  yaml-cpp-0.5.1.ebuild:
+  Add ~arm keyword
 
   10 Jul 2013; <neurogeek@gentoo.org> yaml-cpp-0.5.1.ebuild:
   Added dev-libs/boost as a dependency. Closes bug #472658. Thanks, pinkbyte
