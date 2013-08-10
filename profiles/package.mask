@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15003 2013/08/08 21:09:59 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15006 2013/08/09 18:41:25 axs Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -267,12 +267,6 @@ net-analyzer/openvas-server
 # Prerelease ebuild, mostly untested and held together by duct tape.
 =sys-boot/syslinux-6.02_pre*
 
-# Doug Goldstein <cardoe@gentoo.org> (30 Jun 2013)
-# Masked for dev work
-# You can follow the patchset at https://github.com/cardoe/qemu/tree/qemu-1.5-gentoo
-# Warning: These branches get rebased often.
-=app-emulation/qemu-1.5.2-r1
-
 # Tom Wijsman <TomWij@gentoo.org> (30 Jun 2013)
 # Sun JDK and JRE contain critical vulnerabilities and receive no further
 # updates; masking to make users aware of this, users that still need this
@@ -412,12 +406,6 @@ app-portage/g-ctan
 # Breaks it sole rev. dep: vlc
 # Keep it masked until fixed.
 >=media-libs/libdvbpsi-1.1.0
-
-# Kacper Kowalik <xarthisius@gentoo.org> (01 May 2013)
-# Removal due to licensing issue wrt #452420
-# If you want to save particular theme from the bundle and
-# you are able to identify correct license, please file a bug
-x11-themes/pidgin-smileys
 
 # Markos Chandras <hwoarang@gentoo.org> (28 Apr 2013)
 # Early release of pcmanfm Qt4 port
@@ -689,12 +677,8 @@ dev-ml/ocamlduce
 # Ian Stakenvicius <axs@gentoo.org> (19 Jun 2012)
 # Mask new spidermonkeys until rdeps can accept it
 # 1.8.7 will be masked indefinitely and will be removed
-# from the tree once spidermonkey-17 is unmasked.
-# See tracker bug 463924
-# >=sys-auth/polkit-0.111-r1 is waiting for unmasking of spidermonkey-17
+# from the tree soon.
 ~dev-lang/spidermonkey-1.8.7
-~dev-lang/spidermonkey-17.0.0
->=sys-auth/polkit-0.111-r1
 
 # Michael Weber <xmw@gentoo.org> (13 Jun 2012)
 # Mask beta versions for testing
