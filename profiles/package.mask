@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15006 2013/08/09 18:41:25 axs Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15012 2013/08/10 17:51:14 aballier Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,15 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Ole Markus With <olemarkus@olemarkus.org> (10 Aug 2013)
+# About a year since upstream stopped maintaining this package.
+# Masked for removal in 30 days
+dev-php/symfony
+
+# Andreas K. Huettel <dilfridge@gentoo.org> (9 Aug 2013)
+# Mask upcoming poppler-0.24 until stuff builds with it
+=app-text/poppler-0.24*
 
 # Michał Górny <mgorny@gentoo.org> (07 Aug 2013)
 # These outdated versions of Python are no longer updated or maintained
