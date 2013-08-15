@@ -501,7 +501,6 @@ app-emulation/q4wine:wineappdb - Enable Win AppDB browser subsystem
 app-emulation/qemu:accessibility - Adds support for braille displays using brltty
 app-emulation/qemu:aio - Enables support for Linux's Async IO
 app-emulation/qemu:alsa - Enable alsa output for sound emulation
-app-emulation/qemu:brltty - Adds support for braille displays using brltty
 app-emulation/qemu:curl - Support ISOs / -cdrom directives vis HTTP or HTTPS.
 app-emulation/qemu:fdt - Enables firmware device tree support
 app-emulation/qemu:glusterfs - Enables GlusterFS cluster fileystem via sys-cluster/glusterfs
@@ -2565,6 +2564,7 @@ kde-base/kdelibs:opengl - Enable OpenGL support for Plasma (GLApplet)
 kde-base/kdelibs:udisks - Use udisks for block device access (e.g., automounting)
 kde-base/kdelibs:upower - Use upower for power management
 kde-base/kdenetwork-meta:ppp - Enable support for net-dialup/ppp.
+kde-base/kdepim-runtime:facebook - Facebook service integration via net-libs/libkfbapi
 kde-base/kdepim-runtime:google - Google service integration via net-libs/libkgapi
 kde-base/kdepimlibs:prison - Enable support for QRcodes in contacts
 kde-base/kdeplasma-addons:attica - Enable support for dev-libs/libattica
@@ -2626,6 +2626,7 @@ kde-base/libkdcraw:jasper - Use media-libs/jasper to support RedOne digital movi
 kde-base/libplasmaclock:holidays - Include support for holidays in plasma calendar
 kde-base/marble:designer-plugin - Enable designer plugin
 kde-base/marble:shapefile - Enable support for ESRI shapefiles
+kde-base/nepomuk-core:epub - Adds support for reading EPUB ebook metadata
 kde-base/okular:chm - Enable support for Microsoft Compiled HTML Help files
 kde-base/okular:ebook - Add E-Book support
 kde-base/oxygen-icons:bindist - Additionally install the svg sources of the bitmap icons (needed for redistribution)
@@ -2644,6 +2645,7 @@ kde-base/perlqt:webkit - Compile bindings for dev-qt/qtwebkit.
 kde-base/plasma-workspace:json - Enable JSON support via dev-libs/qjson
 kde-base/plasma-workspace:qalculate - Enable Qalculate runner using sci-libs/libqalculate
 kde-base/powerdevil:pm-utils - Adds support for suspend/resume the system through sys-power/pm-utils
+kde-base/poxml:extras - Build po2xml and swappo tools
 kde-base/pykde4:semantic-desktop - Enables Nepomuk and Soprano python language bindings
 kde-base/qtruby:declarative - Compile bindings for dev-qt/qtdeclarative.
 kde-base/qtruby:phonon - Compile bindings for Phonon.
@@ -3378,6 +3380,7 @@ media-sound/jack-audio-connection-kit:pam - Add basic realime configuration via 
 media-sound/jalv:gtk2 - Adds support for GTK+2 in addition to GTK+3 controlled by the gtk useflag.
 media-sound/jalv:gtkmm - Adds support for dev-cpp/gtkmm: C++ interface for GTK+2
 media-sound/kid3:acoustid - Enable support for acoustic fingerprinting plugin using (media-libs/chromaprint)
+media-sound/kwave:opus - Enable Opus audio codec support
 media-sound/kwave:phonon - Enable playback via Phonon
 media-sound/lame:mp3rtp - Build the mp3-to-RTP streaming utility. **UNSUPPORTED**
 media-sound/lmms:fluidsynth - Enables Fluidsynth MIDI software synthesis plugin.
@@ -5794,6 +5797,7 @@ sys-apps/memtest86+:floppy - Install a script to create floppy disks containing 
 sys-apps/memtest86+:serial - Compile with serial console support
 sys-apps/moreutils:perl - Install scripts written in Perl
 sys-apps/net-tools:old-output - use old ifconfig output style (useful for when new output breaks scripts)
+sys-apps/openrc:netifrc - enable Gentoo's network stack (net.* scripts)
 sys-apps/openrc:newnet - enable the new network stack (experimental)
 sys-apps/openrc:tools - build optional tools
 sys-apps/pacman:gpg - Support verifying packages signed with GPG using app-crypt/gpgme
@@ -6061,6 +6065,7 @@ sys-freebsd/freebsd-sbin:pf - Build tools to administer the PF firewall.
 sys-freebsd/freebsd-share:isdn - Enable ISDN support
 sys-freebsd/freebsd-share:zfs - Enable ZFS support.
 sys-freebsd/freebsd-sources:build-generic - Build and install a generic kernel (recommended).
+sys-freebsd/freebsd-sources:dtrace - Enable DTrace support.
 sys-freebsd/freebsd-ubin:ar - Build FreeBSD's ar and ranlib replacements based on libarchive. The toolchain will still use binutils' version but you can play with it. They have been renamed to freebsd-ar and freebsd-ranlib not to collide with binutils.
 sys-freebsd/freebsd-ubin:audit - Build auditing tools.
 sys-freebsd/freebsd-ubin:netware - Build libraries and tools to work with NetWare protocols (IPX and NCP).
@@ -6078,10 +6083,10 @@ sys-fs/aufs3:pax_kernel - Apply patch needed for pax enabled kernels
 sys-fs/aufs3:ramfs - Enable initramfs/rootfs support
 sys-fs/btrfs-progs:debug-utils - Build additional utils for debugging
 sys-fs/cryptsetup:dynamic - Build cryptsetup dynamically
-sys-fs/cryptsetup:gcrypt - Enable the dev-libs/libgcrypt crypto backend
-sys-fs/cryptsetup:kernel - Enable the kernel crypto backend
-sys-fs/cryptsetup:nettle - Enable the dev-libs/nettle crypto backend
-sys-fs/cryptsetup:openssl - Enable the dev-libs/openssl crypto backend
+sys-fs/cryptsetup:gcrypt - Use dev-libs/libgcrypt crypto backend
+sys-fs/cryptsetup:kernel - Use kernel crypto backend (mainly for embedded systems)
+sys-fs/cryptsetup:nettle - Use dev-libs/nettle crypto backend
+sys-fs/cryptsetup:openssl - Use dev-libs/openssl crypto backend
 sys-fs/cryptsetup:reencrypt - Build cryptsetup-reencrypt
 sys-fs/cryptsetup:urandom - Use /dev/urandom instead of /dev/random
 sys-fs/dmraid:dietlibc - Compile against dev-libs/dietlibc
