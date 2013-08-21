@@ -1667,7 +1667,6 @@ dev-lua/luvit:bundled-libs - Use bundled versions of some libraries.
 dev-lua/luvit:system-libs - Use system version of dev-libs/yajl.
 dev-ml/cairo-ocaml:pango - Enable support for x11-libs/pango
 dev-ml/deriving-ocsigen:type-conv - Enable type-conv for the syntax extention.
-dev-ml/eliom:ocamlduce - Enables ocamlduce XML typechecking.
 dev-ml/js_of_ocaml:deriving-ocsigen - Enable deriving-ocsigen for improving the type safety.
 dev-ml/lablgtk:glade - Enable libglade bindings compilation.
 dev-ml/lablgtk:gnomecanvas - Enable libgnomecanvas bindings compilation.
@@ -5974,6 +5973,13 @@ sys-cluster/openmpi:mpi-threads - Enable MPI_THREAD_MULTIPLE
 sys-cluster/openmpi:pbs - Add support for the Portable Batch System (PBS)
 sys-cluster/openmpi:romio - Build the ROMIO MPI-IO component
 sys-cluster/openmpi:vt - Enable bundled VampirTrace support
+sys-cluster/openstack-meta:cinder - Installs Openstack Cinder
+sys-cluster/openstack-meta:glance - Installs Openstack Glance
+sys-cluster/openstack-meta:horizon - Installs Openstack Horizon
+sys-cluster/openstack-meta:keystone - Installs Openstack Keystone
+sys-cluster/openstack-meta:neutron - Installs Openstack Neutron
+sys-cluster/openstack-meta:nova - Installs Openstack Nova
+sys-cluster/openstack-meta:swift - Installs Openstack Swift
 sys-cluster/pacemaker:ais - Enable sys-cluster/openais support.
 sys-cluster/pacemaker:cman - Enable sys-cluster/cman support.
 sys-cluster/pacemaker:heartbeat - Enable sys-cluster/heartbeat support.
