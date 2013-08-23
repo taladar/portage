@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/neutron/neutron-2013.1.3.ebuild,v 1.3 2013/08/20 19:36:07 prometheanfire Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/neutron/neutron-2013.1.3.ebuild,v 1.5 2013/08/22 16:10:35 prometheanfire Exp $
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -19,8 +19,9 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
+#the cliff dep is as below because it depends on pyparsing, which only has 2.7 OR 3.2, not both
 DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]
-		test? ( dev-python/cliff[${PYTHON_USEDEP}]
+		test? ( dev-python/cliff[python_targets_python2_7]
 				dev-python/configobj[${PYTHON_USEDEP}] )
 				dev-python/coverage[${PYTHON_USEDEP}]
 				>=dev-python/mock-1.0[${PYTHON_USEDEP}]
@@ -48,8 +49,8 @@ RDEPEND=">=dev-python/pastedeploy-1.5.0-r1[${PYTHON_USEDEP}]
 		=dev-python/pyparsing-1.5.7[${PYTHON_USEDEP}]
 		>=dev-python/python-keystoneclient-0.2.0[${PYTHON_USEDEP}]
 		dev-python/python-novaclient[${PYTHON_USEDEP}]
-		>=dev-python/python-neutronclient-2.2.0[${PYTHON_USEDEP}]
-		<=dev-python/python-neutronclient-3.0.0[${PYTHON_USEDEP}]
+		>=dev-python/python-quantumclient-2.2.0[${PYTHON_USEDEP}]
+		<=dev-python/python-quantumclient-3.0.0[${PYTHON_USEDEP}]
 		dev-python/pyudev
 		>dev-python/sqlalchemy-0.7.8
 		<=dev-python/sqlalchemy-0.7.99
@@ -60,8 +61,8 @@ RDEPEND=">=dev-python/pastedeploy-1.5.0-r1[${PYTHON_USEDEP}]
 
 python_install() {
 	distutils-r1_python_install
-	keepdir /etc/neutron
-	insinto /etc/neutron
+	keepdir /etc/quantum
+	insinto /etc/quantum
 
 	doins "etc/api-paste.ini"
 	doins "etc/dhcp_agent.ini"
