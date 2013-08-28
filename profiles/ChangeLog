@@ -1,10 +1,30 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8187 2013/08/25 12:49:11 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8193 2013/08/27 23:25:17 tomwij Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  27 Aug 2013; Tom Wijsman <TomWij@gentoo.org> package.mask:
+  Clarified what eselect was exactly masked for, expanded 'it'.
+
+  27 Aug 2013; Tom Wijsman <TomWij@gentoo.org> package.mask:
+  Masked =app-admin/eselect-1.3.7 and =apps-shells/bash-completion-2.1-r1 on
+  behalf of Luca Barbato <lu_zero@gentoo.org> for QA problems and regressions,
+  see package.mask entry for details.
+
+  27 Aug 2013; Ian Stakenvicius <axs@gentoo.org> desc/lirc_devices.desc:
+  Add lirc_devices setting 'zotac' for bug 462595.
+
+  27 Aug 2013; Michael Palimaka <kensington@gentoo.org> package.mask:
+  Remove no longer needed mask for net-libs/libinfinity.
+
+  27 Aug 2013; Sergey Popov <pinkbyte@gentoo.org> package.mask:
+  Remove obsolete mask on sys-kernel/openvz-sources
+
+  27 Aug 2013; Sergey Popov <pinkbyte@gentoo.org> package.mask:
+  Add masks for Boost 1.54
 
   25 Aug 2013; Julian Ospald <hasufell@gentoo.org> package.mask:
   mask net-p2p/pybitmessage experimental
