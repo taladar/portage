@@ -1806,7 +1806,7 @@ dev-python/falcon:cython - Build cython-based python modules
 dev-python/icalendar:doc - Generate examples and other extra documentation
 dev-python/ipython:matplotlib - Add support for dev-python/matplotlib
 dev-python/ipython:mongodb - Enable support for MongoDB via dev-python/pymongo
-dev-python/ipython:nbconvert - Enable support for converting notebooks to various formats using app-text/tornado
+dev-python/ipython:nbconvert - Enable support for converting notebooks to various formats using app-text/pandoc
 dev-python/ipython:notebook - Install requirements for the web notebook based on www-servers/tornado
 dev-python/ipython:octave - Enable octave bridge via dev-python/oct2py
 dev-python/jinja:i18n - Enables support for i18n with dev-python/Babel
@@ -2184,13 +2184,13 @@ dev-vcs/git-annex:android - Building for Android
 dev-vcs/git-annex:assistant - Enable git-annex assistant and watch command
 dev-vcs/git-annex:dns - Enable the haskell DNS library for DNS lookup
 dev-vcs/git-annex:feed - Enable podcast feed support
-dev-vcs/git-annex:pairing - Enable pairing
+dev-vcs/git-annex:pairing - Enable pairing of git annex repositories
 dev-vcs/git-annex:production - Enable production build (slower build; faster binary)
-dev-vcs/git-annex:s3 - Enable S3 support
+dev-vcs/git-annex:s3 - Enable Amazon S3 remote
 dev-vcs/git-annex:tdfa - Use regex-tdfa for wildcards
 dev-vcs/git-annex:testsuite - Embed the test suite into git-annex
 dev-vcs/git-annex:webapp - Enable git-annex webapp
-dev-vcs/git-annex:webdav - Enable webdav support
+dev-vcs/git-annex:webdav - Enable webdav remote
 dev-vcs/gitg:glade - Install a glade catalog file
 dev-vcs/gitolite:contrib - Install user-contributed files
 dev-vcs/gitolite:tools - Install tools to e.g. convert a Gitosis config to gitolite or one to check if your setup is gitolite >= 3.x compatible
@@ -3119,6 +3119,13 @@ media-libs/libsdl:joystick - Control joystick support (disable at your own risk)
 media-libs/libsdl:ps3 - Build the PS3 video driver
 media-libs/libsdl:tslib - Build with tslib support for touchscreen devices
 media-libs/libsdl:video - Control video support (disable at your own risk)
+media-libs/libsdl2:audio - Control audio support (disable at your own risk)
+media-libs/libsdl2:fusionsound - use FusionSound audio driver
+media-libs/libsdl2:gles - include OpenGL ES support
+media-libs/libsdl2:haptic - Enable the haptic (force feedback) subsystem
+media-libs/libsdl2:joystick - Control joystick support (disable at your own risk)
+media-libs/libsdl2:tslib - Build with tslib support for touchscreen devices
+media-libs/libsdl2:video - Control video support (disable at your own risk)
 media-libs/libvpx:postproc - Enable additional post processing filters
 media-libs/libvpx:sse3 - Enable optimization for SSE3 capable chips
 media-libs/libvpx:sse4_1 - Enable optimization for SSE4_1 capable processors (Intel Core 2 Penryn and later chips)
@@ -3198,6 +3205,14 @@ media-libs/sdl-mixer:playtools - Install playwave and playmus tools (useful for 
 media-libs/sdl-mixer:smpeg - Use media-libs/smpeg for MP3 support
 media-libs/sdl-mixer:wav - support WAVE files
 media-libs/sdl-sound:physfs - Enable physfs support
+media-libs/sdl2-image:webp - support loading WEBP images
+media-libs/sdl2-mixer:fluidsynth - Use media-sound/fluidsynth for MIDI support
+media-libs/sdl2-mixer:midi - basic support for MIDI files
+media-libs/sdl2-mixer:mod - basic support for MOD files
+media-libs/sdl2-mixer:playtools - Install playwave and playmus tools (useful for testing)
+media-libs/sdl2-mixer:smpeg - Use media-libs/smpeg for MP3 support
+media-libs/sdl2-mixer:tremor - enable OGG Vorbis music via libtremor
+media-libs/sdl2-mixer:wav - support WAVE files
 media-libs/sge:image - enable sdl-image support
 media-libs/silgraphite:pango - Enables the pango-graphite pango module.
 media-libs/spandsp:fixed-point - Enable fixed point support
