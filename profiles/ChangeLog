@@ -1,10 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8222 2013/09/08 20:25:25 axs Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8226 2013/09/09 19:56:13 tomwij Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  09 Sep 2013; Tom Wijsman <TomWij@gentoo.org> package.mask:
+  Listed two more important security bugs in the gentoo-sources-3.8.13 mask
+  reason.
+
+  09 Sep 2013; Julian Ospald <hasufell@gentoo.org> package.mask:
+  revert mask wrt #483588
+
+  09 Sep 2013; Patrick Lauer <patrick@gentoo.org> package.mask:
+  Fix perl mask once more
+
+  09 Sep 2013; Patrick Lauer <patrick@gentoo.org> package.mask:
+  Fix perl mask
 
   08 Sep 2013; Ian Stakenvicius <axs@gentoo.org> package.mask:
   masked media-libs/openal-1.15.1-r1 until emul-linux-* can be adjusted to
