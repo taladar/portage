@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15115 2013/09/15 15:52:37 hd_brummy Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15117 2013/09/16 20:23:09 radhermit Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,10 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Tim Harder <radhermit@gentoo.org> (16 Sep 2013)
+# masked until libmatroska-1.4.1 is released
+>=media-video/mkvtoolnix-6.4.0
 
 # Joerg Bornkessel <hd_brummy@gentoo.org> (15 Sep 2013)
 # removal on ~15 Oct 2013
@@ -344,9 +348,10 @@ dev-vcs/bzr-svn
 ~net-analyzer/nmap-6.40
 
 # Justin Lecher <jlec@gentoo.org> (28 Jul 2013)
-# First alpha for testing
+# First alpha/beta for testing
 =net-im/gajim-0.16_alpha1
 =net-im/gajim-0.16_alpha2
+=net-im/gajim-0.16_beta1
 
 # Tim Harder <radhermit@gentoo.org> (26 Jul 2013)
 # Masked for testing
