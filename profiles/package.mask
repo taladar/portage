@@ -1,6 +1,6 @@
 ####################################################################
 
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15117 2013/09/16 20:23:09 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15121 2013/09/17 21:42:37 radhermit Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,9 +31,11 @@
 
 #--- END OF EXAMPLES ---
 
-# Tim Harder <radhermit@gentoo.org> (16 Sep 2013)
-# masked until libmatroska-1.4.1 is released
->=media-video/mkvtoolnix-6.4.0
+# Michał Górny <mgorny@gentoo.org> (17 Sep 2013)
+# Mask for testing. It enables some new eclass code, some new distutils
+# magic and certainly will trigger some random failures.
+# http://thread.gmane.org/gmane.linux.gentoo.devel/88175
+>=dev-python/python-exec-2
 
 # Joerg Bornkessel <hd_brummy@gentoo.org> (15 Sep 2013)
 # removal on ~15 Oct 2013
@@ -326,10 +328,6 @@ sci-libs/mccp4
 # About a year since upstream stopped maintaining symfony 1.x.
 # Will be removed on the 17th of Sept.
 dev-php/symfony
-
-# Andreas K. Huettel <dilfridge@gentoo.org> (9 Aug 2013)
-# Mask upcoming poppler-0.24 until stuff builds with it
-=app-text/poppler-0.24*
 
 # Christian Faulhammer <fauli@gentoo.org> (06 Aug 2013)
 # Masked for removal, dead upstream, bug #474518
