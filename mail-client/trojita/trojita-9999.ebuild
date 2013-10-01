@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/trojita/trojita-9999.ebuild,v 1.18 2013/06/20 13:13:20 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/trojita/trojita-9999.ebuild,v 1.19 2013/09/30 17:04:13 ago Exp $
 
 EAPI=5
 
@@ -18,7 +18,7 @@ if [[ ${PV} == "9999" ]]; then
 else
 	SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 	KEYWORDS="~amd64 ~ppc ~x86"
-	MY_LANGS="bs cs da de el es et fr ga gl hu ia lt mr nl pl pt pt_BR sk sv tr uk zh_CN zh_TW"
+	MY_LANGS="bs cs da de el es et fr ga gl hu ia lt mr nl pl pt pt_BR ro sk sv tr ug uk zh_CN zh_TW"
 fi
 
 LICENSE="|| ( GPL-2 GPL-3 )"
@@ -58,7 +58,7 @@ src_configure() {
 
 	# the build system is taking a look at `git describe ... --dirty` and
 	# gentoo's modifications to CMakeLists.txt break these
-	sed -i "s/--dirty//" "${S}/cmake/GitVersion.cmake"
+	sed -i "s/--dirty//" "${S}/cmake/TrojitaVersion.cmake" || die "Cannot fix the version check"
 
 	cmake-utils_src_configure
 }
