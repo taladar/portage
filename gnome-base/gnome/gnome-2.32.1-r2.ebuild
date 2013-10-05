@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome/gnome-2.32.1-r2.ebuild,v 1.10 2013/10/02 20:36:03 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome/gnome-2.32.1-r2.ebuild,v 1.12 2013/10/04 15:03:09 tetromino Exp $
 
 EAPI="4"
 
