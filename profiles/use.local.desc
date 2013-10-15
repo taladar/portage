@@ -345,10 +345,10 @@ app-doc/doxygen:nodot - removes graphviz dependency, along with dot graphs
 app-doc/linuxfromscratch:htmlsingle - Install all-on-one-page HTML version.
 app-doc/pms:binary - Download pre-built files instead of building from sources
 app-doc/pms:html - Generate PMS as .html as well
-app-doc/tldp-howto:html - Install the docs in multipage HTML format (default)
-app-doc/tldp-howto:htmlsingle - Install the docs in single page HTML format
-app-doc/tldp-howto:pdf - Install the docs in pdf format
-app-doc/tldp-howto:text - Install the docs in plain text format
+app-doc/tldp-howto:html - Install multi-chapter HTML docs
+app-doc/tldp-howto:htmlsingle - Install all-on-one-page HTML docs
+app-doc/tldp-howto:pdf - Install pdf docs
+app-doc/tldp-howto:text - Install plain-text docs
 app-editors/emacs:athena - Enable the MIT Athena widget set (x11-libs/libXaw)
 app-editors/emacs:games - Support shared score files for games
 app-editors/emacs:gconf - Use gnome-base/gconf to read the system font name
@@ -858,11 +858,14 @@ app-mobilephone/obexd:server - Enables server installation, it's incompatible wi
 app-mobilephone/smstools:stats - Enable statistic reporting
 app-mobilephone/yaps:capi - Enable CAPI support
 app-office/abiword:collab - Enable collaborative editing plugin
+app-office/abiword:goffice - Enable goffice plugin
 app-office/abiword:grammar - Enable grammar checking via dev-libs/link-grammar
+app-office/abiword:map - Enable world map support through media-libs/libchamplain
 app-office/abiword:math - Enable support for x11-libs/gtkmathview
 app-office/abiword:openxml - Enable OpenXML support
 app-office/abiword:ots - Enable Text Summarizer plugin
 app-office/abiword:plugins - Enable plugins build (see http://www.abisource.com/wiki/PluginMatrix for more information). If your file cannot be opened due lack of support, try enabling this.
+app-office/abiword:redland - Enables support redland and raptor libs.
 app-office/abiword:thesaurus - Enable thesaurus support
 app-office/abiword:wordperfect - Enable wordperfect file support via app-text/libwpd
 app-office/calligra:attica - Get hot stuff with dev-libs/libattica
@@ -1643,6 +1646,7 @@ dev-libs/opensc:pcsc-lite - Use sys-apps/pcsc-lite (and PC/SC API) for accessing
 dev-libs/opensc:secure-messaging - Enable secure messaging.
 dev-libs/openssl:bindist - Disable EC/RC5 algorithms (as they seem to be patented)
 dev-libs/openssl:rfc3779 - Enable support for RFC 3779 (X.509 Extensions for IP Addresses and AS Identifiers)
+dev-libs/openssl:tls-heartbeat - Enable the Heartbeat Extension in TLS and DTLS
 dev-libs/pkcs11-helper:nss - Enable NSS crypto engine
 dev-libs/ppl:lpsol - Build the ppl_lpsol linear programming problem solver
 dev-libs/ppl:watchdog - Build the PPL Watchdog library - a C++ library for multiple, concurrent watchdog timers
@@ -5286,8 +5290,6 @@ net-p2p/amule:daemon - Enable amule daemon
 net-p2p/amule:remote - Enable remote controlling of the client
 net-p2p/amule:stats - Enable statistic reporting
 net-p2p/bitcoin-qt:1stclassmsg - Enable first-class Bitcoin message tools
-net-p2p/bitcoin-qt:bip16 - Enable backported support for relaying and mining new BIP16 pay-to-script-hash transactions
-net-p2p/bitcoin-qt:eligius - Enable using lower fees accepted by Eligius
 net-p2p/bitcoin-qt:qrcode - Enable generation of QR Codes for receiving payments
 net-p2p/bitcoind:logrotate - Use app-admin/logrotate for rotating logs
 net-p2p/dbhub:switch_user - Enable support for switching user
@@ -6206,6 +6208,7 @@ sys-devel/llvm:doc - Build and install the HTML documentation and regenerate the
 sys-devel/llvm:gold - Build the gold linker plugin
 sys-devel/llvm:llvm-gcc - Build LLVM with sys-devel/llvm-gcc
 sys-devel/llvm:multitarget - Build all host targets (default: host only)
+sys-devel/llvm:ncurses - Support querying terminal properties using ncurses' terminfo
 sys-devel/llvm:static-analyzer - Install the Clang static analyzer (requires USE=clang)
 sys-devel/llvm:udis86 - Enable support for dev-libs/udis86 disassembler library
 sys-devel/sparse:gtk - Build the test-inspect utility (requires x11-libs/gtk+ version 2)
