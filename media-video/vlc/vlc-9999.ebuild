@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/vlc-9999.ebuild,v 1.194 2013/10/24 23:34:33 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/vlc-9999.ebuild,v 1.201 2013/10/26 22:22:45 tomwij Exp $
 
 EAPI="5"
 
@@ -40,9 +40,9 @@ else
 	KEYWORDS=""
 fi
 
-IUSE="a52 aac aalib alsa altivec atmo +audioqueue avahi +avcodec
+IUSE="a52 aalib alsa altivec atmo +audioqueue avahi +avcodec
 	+avformat bidi bluray cdda cddb chromaprint dbus dc1394 debug dirac
-	directfb directx dts dvb +dvbpsi dvd dxva2 elibc_glibc egl +encode fdk
+	directfb directx dts dvb +dvbpsi dvd dxva2 elibc_glibc egl +encode faad fdk
 	fluidsynth +ffmpeg flac fontconfig +gcrypt gme gnome gnutls
 	growl httpd ieee1394 ios-vout jack kate kde libass libcaca libnotify
 	libsamplerate libtiger linsys libtar lirc live lua +macosx
@@ -55,13 +55,13 @@ IUSE="a52 aac aalib alsa altivec atmo +audioqueue avahi +avcodec
 	vlm vnc	vorbis vpx wma-fixed +X x264 +xcb xml xv zvbi"
 
 RDEPEND="
+		!<media-video/ffmpeg-1.2:0
 		dev-libs/libgpg-error:0
 		net-dns/libidn:0
 		>=sys-devel/gettext-0.18.3:0
 		>=sys-libs/zlib-1.2.5.1-r2:0[minizip]
 		a52? ( >=media-libs/a52dec-0.7.4-r3:0 )
 		aalib? ( media-libs/aalib:0 )
-		aac? ( >=media-libs/faad2-2.6.1:0 )
 		alsa? ( >=media-libs/alsa-lib-1.0.23:0 )
 		avahi? ( >=net-dns/avahi-0.6:0[dbus] )
 		avcodec? ( virtual/ffmpeg:0 )
@@ -79,6 +79,7 @@ RDEPEND="
 		dvd? ( media-libs/libdvdread:0 >=media-libs/libdvdnav-0.1.9:0 )
 		egl? ( virtual/opengl:0 )
 		elibc_glibc? ( >=sys-libs/glibc-2.8:2.2 )
+		faad? ( >=media-libs/faad2-2.6.1:0 )
 		fdk? ( media-libs/fdk-aac:0 )
 		flac? ( media-libs/libogg:0 >=media-libs/flac-1.1.2:0 )
 		fluidsynth? ( >=media-sound/fluidsynth-1.1.0:0 )
@@ -114,13 +115,13 @@ RDEPEND="
 		opengl? ( virtual/opengl:0 >=x11-libs/libX11-1.3.99.901:0 )
 		opus? ( >=media-libs/opus-1.0.3:0 )
 		png? ( media-libs/libpng:0= sys-libs/zlib:0 )
-		postproc? ( || ( media-video/ffmpeg:0= media-libs/libpostproc:0 ) )
+		postproc? ( || ( >=media-video/ffmpeg-1.2:0= media-libs/libpostproc:0 ) )
 		projectm? ( media-libs/libprojectm:0 media-fonts/dejavu:0 )
 		pulseaudio? ( >=media-sound/pulseaudio-0.9.22:0 )
 		qt4? ( dev-qt/qtgui:4 dev-qt/qtcore:4 )
 		qt5? ( dev-qt/qtgui:5 dev-qt/qtcore:5 )
-		rdp? ( net-misc/freerdp:0 )
-		samba? ( >=net-fs/samba-3.4.6:0[smbclient] )
+		rdp? ( net-misc/freerdp:0= )
+		samba? ( || ( >=net-fs/samba-3.4.6:0[smbclient] >=net-fs/samba-4.0.0:0[client] ) )
 		schroedinger? ( >=media-libs/schroedinger-1.0.10:0 )
 		sdl? ( >=media-libs/libsdl-1.2.8:0
 			sdl-image? ( media-libs/sdl-image:0 sys-libs/zlib:0 ) )
@@ -185,6 +186,14 @@ REQUIRED_USE="
 
 S="${WORKDIR}/${MY_P}"
 
+pkg_setup() {
+	if [[ "$(tc-getCC)" == *"gcc"* ]] ; then
+		if [[ $(gcc-major-version) < 4 || ( $(gcc-major-version) == 4 && $(gcc-minor-version) < 5 ) ]] ; then
+			die "You need to have at least >=sys-devel/gcc-4.5 to build and/or have a working vlc, see bug #426754."
+		fi
+	fi
+}
+
 src_unpack() {
 	if [ "${PV%9999}" != "${PV}" ] ; then
 		git-r3_src_unpack
@@ -225,12 +234,15 @@ src_prepare() {
 	# We are not in a real git checkout due to the absence of a .git directory.
 	touch src/revision.txt || die
 
-	# Fix mistakes.
+	# Fix build system mistake.
 	epatch "${FILESDIR}"/${PN}-2.1.0-fix-libtremor-libs.patch
 
 	# Patch up incompatibilities and reconfigure autotools.
 	epatch "${FILESDIR}"/${PN}-2.1.0-newer-rdp.patch
 	epatch "${FILESDIR}"/${PN}-2.1.0-libva-1.2.1-compat.patch
+
+	# Fix up broken audio when skipping using a fixed reversed bisected commit.
+	epatch "${FILESDIR}"/${PN}-2.1.0-TomWij-bisected-PA-broken-underflow.patch
 
 	eautoreconf
 
@@ -239,6 +251,9 @@ src_prepare() {
 }
 
 src_configure() {
+	# Compatibility fix for Samba 4.
+	use samba && append-cppflags "-I/usr/include/samba-4.0"
+
 	# Needs libresid-builder from libsidplay:2 which is in another directory...
 	# FIXME!
 	append-ldflags "-L/usr/$(get_libdir)/sidplay/builders/"
@@ -267,7 +282,6 @@ src_configure() {
 		--enable-screen \
 		$(use_enable a52) \
 		$(use_enable aalib aa) \
-		$(use_enable aac faad) \
 		$(use_enable alsa) \
 		$(use_enable altivec) \
 		$(use_enable atmo) \
@@ -292,6 +306,7 @@ src_configure() {
 		$(use_enable dxva2) \
 		$(use_enable egl) \
 		$(use_enable encode sout) \
+		$(use_enable faad) \
 		$(use_enable fdk fdkaac) \
 		$(use_enable flac) \
 		$(use_enable fluidsynth) \

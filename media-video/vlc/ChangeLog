@@ -1,6 +1,92 @@
 # ChangeLog for media-video/vlc
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/ChangeLog,v 1.857 2013/10/24 23:40:49 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/ChangeLog,v 1.869 2013/10/26 22:22:45 tomwij Exp $
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org> vlc-2.1.0.ebuild,
+  vlc-2.1.9999.ebuild, vlc-9999.ebuild:
+  Raise minimal version of media-video/ffmpeg to 1.2 as that is the first
+  version that introduces VDPAU context and common hw accel support helpers;
+  fixes bug #489512, reported by Frank Krömmelbein.
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org> vlc-9999.ebuild:
+  Actually, upon checking I now see that in the 9999 branch the configure flag
+  was renamed from libfreerdp to freerdp; it is due to this that the bug occured
+  as I was changing the backport of the freerdp USE flag right before committing
+  2.1.0.
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org> vlc-2.1.0.ebuild,
+  vlc-2.1.9999.ebuild, vlc-9999.ebuild:
+  Corrected name of freerdp configure flag; reported by Jouni Kosonen, fixes bug
+  #489504. Since it was automatically enabled and a rather minor feature in
+  terms of size, not worth the compile time of a revision bump.
+
+*vlc-2.1.0 (26 Oct 2013)
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org>
+  +files/vlc-2.1.0-TomWij-bisected-PA-broken-underflow.patch,
+  +files/vlc-2.1.0-avcodec-check-update-buffered_time-earlier-so-we-sho.patch,
+  +files/vlc-2.1.0-transcode-don-t-check-drift-if-we-have-VLC_TS_INVALI.patch,
+  +vlc-2.1.0.ebuild, vlc-2.0.8.ebuild, vlc-2.0.8a.ebuild, vlc-2.0.9.ebuild,
+  vlc-2.0.9999.ebuild, vlc-2.1.9999.ebuild, vlc-9999.ebuild:
+  Version bump to 2.1.0; summary of the commits leading up to this: Removed and
+  added USE flags so users are adviced to check them, dependencies were also
+  revised, Qt5 support has been added, increased freerdp and libva
+  compatibility, downstream bisected and/or backported fixes of broken audio,
+  default fonts are now set trough econf based on USE flags, configure flags
+  were revised and automagic dependencies have been fixed. Fixes bug #479566.
+  Unrelated to this summary; for the other versions (>=2.0.8) the freerdp and
+  gettext dependencies were updated in this commit to reflect what vlc needs and
+  provides, thanks to Nikoli and Mike Gilbert (floppym) for reporting this last
+  issue on IRC.
+
+*vlc-2.0.8 (26 Oct 2013)
+*vlc-2.0.9 (26 Oct 2013)
+*vlc-2.0.8a (26 Oct 2013)
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org> +vlc-2.0.8.ebuild,
+  +vlc-2.0.8a.ebuild, +vlc-2.0.9.ebuild, vlc-2.0.9999.ebuild:
+  Version bumps 2.0.8, 2.0.8a and 2.0.9.
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org> metadata.xml,
+  vlc-2.0.9999.ebuild, vlc-2.1.9999.ebuild, vlc-9999.ebuild:
+  Renamed the aac USE flag to faad as with --disable-faad, libavcodec will do
+  aac decoding; documented the faad USE flag in metadata.xml; solution for bug
+  #476598, reported by Nikoli.
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org> vlc-2.0.9999.ebuild,
+  vlc-2.1.9999.ebuild, vlc-9999.ebuild:
+  Support Samba 4; reported and patch provided by Torsten Kurbad, patch slightly
+  adapted to keep minimal version restriction in place (USE flags will
+  differentiate between both), fixes bug #452048.
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org>
+  +files/vlc-2.0.8-support-uclibc.patch, vlc-2.0.9999.ebuild,
+  vlc-2.1.9999.ebuild, vlc-9999.ebuild:
+  Support uclibc on the 2.0 branch; not applied to older branches as they no
+  longer have the code present, therefore they might already support it.
+  Reported and patch contributed by Amadeusz Sławiński, fixes bug #479542.
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org> metadata.xml:
+  Document lua USE flag; fixes bug #437632, description contributed and reported
+  by tucxholg.
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org> metadata.xml:
+  Proper indentation of metadata.xml.
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org> vlc-2.0.9999.ebuild,
+  vlc-2.1.9999.ebuild, vlc-9999.ebuild:
+  Fix bug #426754 by bailing out on <sys-devel/gcc-4.5. Prepared for version
+  bumps by fixing up SRC_URI to support the a release.
+
+*vlc-2.1.9999 (26 Oct 2013)
+
+  26 Oct 2013; Tom Wijsman <TomWij@gentoo.org>
+  +files/vlc-2.0.8-freetype-proper-default-font.patch, +vlc-2.1.9999.ebuild,
+  metadata.xml, vlc-2.0.9999.ebuild:
+  Updated 2.0.9999 and added 2.1.9999 by backporting fixes from 9999; adapted
+  2.0.9999 to work for the 2.0 branch, disabled opencv support because it breaks
+  against current ~ versions of opencv and requires multiple commits to be
+  backported.
 
   24 Oct 2013; Tom Wijsman <TomWij@gentoo.org>
   +files/vlc-2.1.0-fix-libtremor-libs.patch, vlc-9999.ebuild:

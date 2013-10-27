@@ -1,6 +1,14 @@
 # ChangeLog for app-arch/lrzip
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lrzip/ChangeLog,v 1.26 2013/08/17 04:27:02 mattst88 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lrzip/ChangeLog,v 1.28 2013/10/26 14:26:35 jer Exp $
+
+  26 Oct 2013; Jeroen Roovers <jer@gentoo.org> lrzip-0.614.ebuild:
+  Stable for HPPA (bug #458184).
+
+*lrzip-0.616 (26 Oct 2013)
+
+  26 Oct 2013; Ben de Groot <yngwin@gentoo.org> +lrzip-0.616.ebuild:
+  version bump
 
   17 Aug 2013; Matt Turner <mattst88@gentoo.org> lrzip-0.614.ebuild:
   Added ~mips, bug 468854.
