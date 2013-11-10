@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.603 2013/11/07 03:19:00 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.605 2013/11/09 10:05:12 dirtyepic Exp $
 
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1284,12 +1284,18 @@ gcc_do_configure() {
 
 has toolchain_death_notice ${EBUILD_DEATH_HOOKS} || EBUILD_DEATH_HOOKS+=" toolchain_death_notice"
 toolchain_death_notice() {
-	pushd "${WORKDIR}"/build >/dev/null
-	tar jcf gcc-build-logs.tar.bz2 $(find -name config.log)
-	eerror
-	eerror "Please include ${PWD}/gcc-build-logs.tar.bz2 in your bug report"
-	eerror
-	popd >/dev/null
+	if [[ -e "${WORKDIR}"/build ]] ; then 
+		pushd "${WORKDIR}"/build >/dev/null
+		(echo '' | $(tc-getCC ${CTARGET}) ${CFLAGS} -v -E - 2>&1) > gccinfo.log
+		[[ -e "${T}"/build.log ]] && cp "${T}"/build.log .
+		tar jcf "${WORKDIR}"/gcc-build-logs.tar.bz2 \
+			gccinfo.log build.log $(find -name config.log)
+		rm gccinfo.log build.log
+		eerror
+		eerror "Please include ${WORKDIR}/gcc-build-logs.tar.bz2 in your bug report."
+		eerror
+		popd >/dev/null
+	fi
 }
 
 # This function accepts one optional argument, the make target to be used.
