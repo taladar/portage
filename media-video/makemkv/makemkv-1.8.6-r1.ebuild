@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/makemkv/makemkv-1.8.6-r1.ebuild,v 1.1 2013/11/21 21:35:38 mattm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/makemkv/makemkv-1.8.6-r1.ebuild,v 1.5 2013/11/22 09:52:39 mattm Exp $
 
 EAPI=4
 inherit eutils gnome2-utils multilib flag-o-matic
@@ -15,7 +15,7 @@ SRC_URI="http://www.makemkv.com/download/${MY_P}.tar.gz
 
 LICENSE="LGPL-2.1 MPL-1.1 MakeMKV-EULA openssl"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="multilib"
 
 QA_PREBUILT="opt/bin/makemkvcon opt/bin/mmdtsdec"
@@ -32,7 +32,7 @@ RDEPEND="dev-libs/expat
 	amd64? ( multilib? ( app-emulation/emul-linux-x86-baselibs ) )"
 DEPEND="${RDEPEND}"
 
-S=${WORKDIR}/${MY_P}
+S=${WORKDIR}/makemkv-oss-${PV}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-makefile.linux.patch
@@ -40,10 +40,13 @@ src_prepare() {
 
 src_configure() {
 	replace-flags -O* -Os
+	if [[ -x ${ECONF_SOURCE:-.}/configure ]] ; then
+		econf
+	fi
 }
 
 src_compile() {
-	emake GCC="$(tc-getCC) ${CFLAGS} ${LDFLAGS}" -f makefile.linux
+	emake GCC="$(tc-getCC) ${CFLAGS} ${LDFLAGS}" || die "Make failed!"
 }
 
 src_install() {
