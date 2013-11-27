@@ -443,6 +443,8 @@ app-emulation/bochs:debugger - Enable debugger (slows down emulation)
 app-emulation/bochs:gdb - Enable support for the remote GDB stub
 app-emulation/bochs:x86-64 - Enable support for emulation of 64-bit CPUs
 app-emulation/crossover-bin:capi - Enable ISDN support via CAPI
+app-emulation/docker:aufs - Enables dependencies for the "aufs" driver, including necessary kernel flags.
+app-emulation/docker:device-mapper - Enables dependencies for the "device-mapper" driver, including necessary kernel flags.
 app-emulation/dosemu:fluidsynth - use media-sound/fluidsynth for MIDI emulation
 app-emulation/e-uae:capslib - Add CAPS library support
 app-emulation/e-uae:sdl-sound - Use media-libs/sdl-sound for audio output
@@ -2304,6 +2306,8 @@ games-action/minetest:server - Build minetest server
 games-action/openlierox:breakpad - Compile with support for breakpad crash reporting system
 games-action/solar2:bundled-libs - Use the upstream provided bundled libraries.
 games-action/super-hexagon:bundled-libs - Use the upstream provided bundled libraries.
+games-action/supertuxkart:fribidi - Support for right-to-left languages
+games-action/supertuxkart:wiimote - Support for wiimote input devices
 games-action/swordandsworcery:bundled-libs - Use the upstream provided bundled libraries.
 games-action/trine2:bundled-libs - Use bundled libraries.
 games-action/trine2:launcher - Install gtk+ launcher
@@ -5125,6 +5129,7 @@ net-misc/freerdp:client - Build client binaries
 net-misc/freerdp:server - Build server binaries
 net-misc/gsasl:gcrypt - Use dev-libs/libgcrypt for low-level crypto
 net-misc/gsasl:ntlm - Add support for Microsoft's NTLM mechanism using net-libs/libntlm
+net-misc/guacamole-server:ssh - enable support for ssh connections
 net-misc/gwget:epiphany - Build epiphany extensions
 net-misc/hotot:chrome - Build chrome browser extension
 net-misc/htbinit:esfq - Add support for Enhanced Stochastic Fairness queueing discipline.
@@ -6360,8 +6365,8 @@ sys-fs/eudev:gudev - enable libudev gobject interface
 sys-fs/eudev:hwdb - read vendor/device string database and add it to udev database
 sys-fs/eudev:introspection - Use dev-libs/gobject-introspection for introspection
 sys-fs/eudev:keymap - map custom hardware's multimedia keys
-sys-fs/eudev:kmod - enable module loading through libkmod (requires modules)
-sys-fs/eudev:modutils - enable module loading support
+sys-fs/eudev:kmod - enable module loading through libkmod
+sys-fs/eudev:modutils - enable module loading support - use modutils calls if kmod not enabled
 sys-fs/eudev:openrc - install the OpenRC init scripts
 sys-fs/eudev:rule-generator - install legacy rule generator rules and support scripts - note that the functionality within was dropped from sys-fs/udev as it is not stable in all cases; use at your own risk
 sys-fs/ext4magic:expert-mode - Builds ext4magic with expert mode. Highly useful in recovering data from a corrupted filesystem
