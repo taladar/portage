@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/btrfs-progs/btrfs-progs-9999.ebuild,v 1.29 2013/11/26 17:06:49 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/btrfs-progs/btrfs-progs-9999.ebuild,v 1.31 2013/11/30 20:55:15 slyfox Exp $
 
 EAPI=5
 
-inherit multilib toolchain-funcs
+inherit eutils multilib toolchain-funcs
 
 libbtrfs_soname=0
 
@@ -33,6 +33,11 @@ DEPEND="
 	sys-fs/e2fsprogs
 "
 RDEPEND="${DEPEND}"
+
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-3.12-fix-send-subvol-492776.patch
+	epatch_user
+}
 
 src_compile() {
 	emake \
