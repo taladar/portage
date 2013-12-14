@@ -2253,6 +2253,7 @@ dev-vcs/bzr-gtk:sourceview - Enable GtkSourceView support
 dev-vcs/cvs:server - Enable server support
 dev-vcs/cvs2svn:bazaar - Support for dev-vcs/bzr
 dev-vcs/fossil:json - Enable the JSON API of Fossil's wiki
+dev-vcs/fossil:lineedit - Enable line-editing with libedit or readline
 dev-vcs/fossil:sqlite - Use the system SQLite instead of the bundled one
 dev-vcs/git:blksha1 - Use the new optimized SHA1 implementation
 dev-vcs/git:cgi - Install gitweb too
@@ -3462,7 +3463,6 @@ media-sound/alsa-utils:libsamplerate - install utils that use libsamplerate (e.g
 media-sound/alsa-utils:minimal - omit utils that rely on extra packages (e.g. alsaconf and alsa-info)
 media-sound/alsa-utils:ncurses - install utils that use ncurses (e.g. alsamixer)
 media-sound/alsaplayer:id3tag - Enables ID3 tagging with id3tag library
-media-sound/amarok:daap - Enable the scripts for music sharing through DAAP. This flag adds dependencies on www-servers/mongrel to allow sharing of the Amarok music collection through DAAP protocol. Please note that turning this flag off has no effect on DAAP browsing.
 media-sound/amarok:embedded - Use libmysqld, MySQL embedded server library. Try disabling this if you encounter -PIC related in amarok, it will make amarok rely only on standalone MySQL server.
 media-sound/amarok:lastfm - Enable Last.fm streaming services support through media-libs/liblastfm
 media-sound/amarok:mp3tunes - Enable mp3tunes integration
@@ -4831,7 +4831,6 @@ net-libs/daq:dump - Build the Dump data acquisition module. The dump DAQ allows 
 net-libs/daq:ipq - Build the IPQ data acquisition module. IPQ is the old way to process iptables packets for inline deployments. Snort can not run unprivileged when using this module.
 net-libs/daq:nfq - Build the NFQ data acquisition module. NFQ is the new way to process iptables packets for inline deployments. Snort can not run unprivileged when using this module.
 net-libs/daq:pcap - Build the PCAP data acquisition module.
-net-libs/farstream:introspection - Use dev-libs/gobject-introspection for introspection
 net-libs/glib-networking:gnome - Extract HTTP/HTTPS/SOCKS proxy configuration stored using GSettings
 net-libs/glib-networking:libproxy - Use net-libs/libproxy for getting the HTTP/HTTPS/SOCKS proxy configuration
 net-libs/gnome-online-accounts:gnome - Use gnome-base/gnome-control-center to set GNOME online accounts preferences
