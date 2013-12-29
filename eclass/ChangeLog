@@ -1,6 +1,21 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1094 2013/12/28 00:25:53 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1099 2013/12/28 17:19:10 mgorny Exp $
+
+  28 Dec 2013; Michał Górny <mgorny@gentoo.org> eutils.eclass:
+  Fix eclassdoc for einstalldocs.
+
+  28 Dec 2013; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
+  Missed one.
+
+  28 Dec 2013; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
+  Use version ranges instead of case statements in gcc_do_filter_flags().
+
+  28 Dec 2013; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
+  Add tc_version_is_between() helper.
+
+  28 Dec 2013; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
+  Reintroduce texinfo patch to unbreak older versions (bug #496224).
 
   28 Dec 2013; Robin H. Johnson <robbat2@gentoo.org> flag-o-matic.eclass:
   Spelling fixes.
