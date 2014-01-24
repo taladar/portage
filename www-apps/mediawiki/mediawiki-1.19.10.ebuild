@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/mediawiki/mediawiki-1.19.10.ebuild,v 1.2 2014/01/22 18:15:56 zlogene Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/mediawiki/mediawiki-1.19.10.ebuild,v 1.5 2014/01/23 09:46:58 zlogene Exp $
 
 EAPI=5
 inherit webapp versionator
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.mediawiki.org"
 SRC_URI="http://download.wikimedia.org/mediawiki/${MY_BRANCH}/${P}.tar.gz"
 
 LICENSE="GPL-2"
-KEYWORDS="~alpha amd64 ~ppc ~x86"
+KEYWORDS="~alpha amd64 ppc x86"
 IUSE="imagemagick mysql postgres sqlite"
 
 RDEPEND=">=dev-lang/php-5.3[mysql?,postgres?,session,xml,xmlreader]
@@ -43,8 +43,8 @@ src_install() {
 	dodoc docs/php-memcached/*
 
 	# Clean everything not used at the site...
-	rm -rf ${DOCS} COPYING tests docs
-	find . -name Makefile -delete
+	rm -rf ${DOCS} COPYING tests docs || die
+	find . -name Makefile -delete || die
 	# and install
 	insinto "${MY_HTDOCSDIR}"
 	doins -r .
@@ -64,17 +64,17 @@ pkg_postinst() {
 	webapp_pkg_postinst
 
 	if [[ -n ${REPLACING_VERSIONS} ]]; then
-		einfo
+		echo
 		elog "=== Consult the release notes ==="
 		elog "Before doing anything, stop and consult the release notes"
 		elog "/usr/share/doc/${PF}/RELEASE-NOTES-${PV:0:4}.bz2"
-		elog
+		echo
 		elog "These detail bug fixes, new features and functionality, and any"
 		elog "particular points that may need to be noted during the upgrade procedure."
-		einfo
+		echo
 		ewarn "Back up existing files and the database before upgrade."
 		ewarn "http://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki"
 		ewarn "provides an overview of the backup process."
-		einfo
+		echo
 	fi
 }
