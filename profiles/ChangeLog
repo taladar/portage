@@ -1,10 +1,16 @@
 # ChangeLog for profile directory
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8581 2014/01/30 22:25:28 axs Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8583 2014/01/31 20:23:56 ulm Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  31 Jan 2014; Ulrich Müller <ulm@gentoo.org> license_groups:
+  Add CC-BY-SA-4.0 license to MISC-FREE-DOCS group.
+
+  31 Jan 2014; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Remove beta net-analyzer/tcpreplay mask.
 
   30 Jan 2014; Ian Stakenvicius (_AxS_) <axs@gentoo.org> package.mask:
   drop mask of multilib gettext
