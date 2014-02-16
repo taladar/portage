@@ -1,10 +1,12 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/eyeD3/eyeD3-0.7.4.ebuild,v 1.1 2014/02/14 20:34:02 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/eyeD3/eyeD3-0.7.4.ebuild,v 1.4 2014/02/15 11:25:18 jer Exp $
 
 EAPI=5
 
-PYTHON_COMPAT=( python2_7 python3_{2,3} )
+# For python3_{2,3}, see bugs 501338, 501340
+
+PYTHON_COMPAT=( python2_7 )
 
 inherit distutils-r1
 
@@ -14,7 +16,7 @@ SRC_URI="http://eyed3.nicfit.net/releases/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0.7"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64 ~hppa ~ia64 ~x86 ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 RDEPEND="dev-python/python-magic[${PYTHON_USEDEP}]
