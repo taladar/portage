@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15410 2014/02/18 20:17:13 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15412 2014/02/19 21:12:58 tomwij Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -29,6 +29,13 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Tom Wijsman <TomWij@gentoo.org> (19 Feb 2014)
+# Masked for removal in 30 days, as this is an old revision that stuck behind; 
+# however we are not sure if it is kept for a reason, if it is then please let 
+# me know such that we can continue to keep it around. Guess nobody even still
+# uses this package either, but that's for another day...
+=dev-java/jikes-1.22-r1
 
 # Ulrich Müller <ulm@gentoo.org> (18 Feb 2014)
 # Last upstream release in 1996.
@@ -487,7 +494,7 @@ net-irc/xchat-otr
 # updates; masking to make users aware of this, users that still need this
 # package and have no alternative can unmask at their own risk. See bug #473830.
 #
-# This is continued by Oracle Corproation, which has acquired Sun Microsystems
+# This is continued by Oracle Corporation, which has acquired Sun Microsystems
 # in early 2010; as per http://en.wikipedia.org/wiki/Sun_acquisition_by_Oracle
 #
 # Users are suggested to upgrade to one of the newer Oracle packages like
