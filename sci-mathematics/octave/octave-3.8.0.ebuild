@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/octave-3.8.0.ebuild,v 1.2 2014/02/19 23:47:48 gienah Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/octave-3.8.0.ebuild,v 1.6 2014/02/20 08:50:37 gienah Exp $
 
 EAPI=5
 
@@ -32,7 +32,7 @@ RDEPEND="
 	hdf5? ( sci-libs/hdf5 )
 	imagemagick? ( || (
 			media-gfx/graphicsmagick[cxx]
-			>=media-gfx/imagemagick-6.8.8.5[cxx] ) )
+			media-gfx/imagemagick[cxx] ) )
 	opengl? (
 		media-libs/freetype:2
 		media-libs/fontconfig
@@ -77,11 +77,12 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-3.8.0-llvm-configure.patch
 	"${FILESDIR}"/${PN}-3.8.0-JIT-64-bit-indexing.patch
 	"${FILESDIR}"/${PN}-3.8.0-disable-getcwd-path-max-test-as-it-is-too-slow.patch
+	"${FILESDIR}"/${PN}-3.8.0-avoid-gui-sigsegv-if-curl-is-not-available.patch
 )
 
 pkg_pretend() {
 	if use qrupdate || use sparse; then
-		local blaslib=$(pkg-config --libs-only-l "blas" | sed -e 's@.*-l@lib@' | cut -d' ' -f 1)
+		local blaslib=$(pkg-config --libs-only-l blas | sed -e 's@-l\([^ \t]*\)@lib\1@' | cut -d' ' -f 1)
 		einfo "Checking dependencies are built with the same blas lib = ${blaslib}"
 		local usr_lib="${ROOT}usr/$(get_libdir)"
 		local libs=( )
@@ -135,6 +136,12 @@ src_prepare() {
 		ewarn "with OpenGL graphics requires the gl2ps - but at the time of writing x11-libs/gl2ps"
 		ewarn "does not have the hppa keyword"
 	fi
+	# Fix bug 501756 - sci-mathematics/octave-3.8.0 LC_ALL=et_EE - octave.cc:485:56:
+	# error: 'Fallow_noninteger_range_as_index' was not declared in this scope
+	sed -e 's@A-Za-z0-9@[:alnum:]@g' \
+		-e 's@A-Za-z@[:alpha:]@g' \
+		-i "${S}/libinterp/mkbuiltins" \
+		|| die "Could not patch ${S}/libinterp/mkbuiltins for some non-English locales"
 	autotools-utils_src_prepare
 }
 
