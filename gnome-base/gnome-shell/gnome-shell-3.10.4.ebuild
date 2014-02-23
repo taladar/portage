@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-shell/gnome-shell-3.10.4.ebuild,v 1.1 2014/02/20 21:47:03 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-shell/gnome-shell-3.10.4.ebuild,v 1.3 2014/02/22 21:45:39 pacho Exp $
 
 EAPI="5"
 GCONF_DEBUG="no"
