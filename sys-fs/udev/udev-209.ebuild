@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-209.ebuild,v 1.3 2014/02/21 13:53:38 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-209.ebuild,v 1.5 2014/02/24 08:40:57 ssuominen Exp $
 
 EAPI=5
 
@@ -86,7 +86,7 @@ check_default_rules() {
 }
 
 pkg_setup() {
-	CONFIG_CHECK="~BLK_DEV_BSG ~DEVTMPFS ~!IDE ~INOTIFY_USER ~!SYSFS_DEPRECATED ~!SYSFS_DEPRECATED_V2 ~SIGNALFD ~EPOLL ~FHANDLE"
+	CONFIG_CHECK="~BLK_DEV_BSG ~DEVTMPFS ~!IDE ~INOTIFY_USER ~!SYSFS_DEPRECATED ~!SYSFS_DEPRECATED_V2 ~SIGNALFD ~EPOLL ~FHANDLE ~NET ~DMIID"
 	linux-info_pkg_setup
 
 	# Based on README from tarball:
@@ -124,14 +124,6 @@ src_prepare() {
 	# accept4() function is supported for some arch's wrt #457868
 	SUBSYSTEM=="mem", KERNEL=="null|zero|full|random|urandom", MODE="0666"
 	EOF
-
-	# Create link to systemd-udevd.8 here to avoid parallel build problem and
-	# while at it, create convinience link to `man 8 udevd` even if upstream
-	# doesn't do that anymore
-	local man
-	for man in udevd systemd-udevd; do
-		echo '.so systemd-udevd.service.8' > "${T}"/${man}.8
-	done
 
 	# Remove requirements for gettext and intltool wrt bug #443028
 	if ! has_version dev-util/intltool && ! [[ ${PV} = 9999* ]]; then
@@ -381,10 +373,13 @@ multilib_src_install_all() {
 		"${D}"/lib/udev/rules.d/99-systemd.rules \
 		"${D}"/usr/share/doc/${PF}/{LICENSE.*,sd-shutdown.h}
 
-	# see src_prepare() for content of these files
+	# see src_prepare() for content of 40-gentoo.rules
 	insinto /lib/udev/rules.d
 	doins "${T}"/40-gentoo.rules
-	doman "${T}"/{systemd-,}udevd.8
+
+	# maintainer note: by not letting the upstream build-sys create the .so
+	# link, you also avoid a parallel make problem
+	mv "${D}"/usr/share/man/man8/systemd-udevd{.service,}.8
 }
 
 pkg_preinst() {
