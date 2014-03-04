@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15436 2014/03/01 19:03:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15440 2014/03/03 21:21:25 pacho Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,21 @@
 
 #--- END OF EXAMPLES ---
 
+# Samuli Suominen <ssuominen@gentoo.org> (03 Mar 2013)
+# gnome-extra/polkit-gnome is the "GTK+ polkit agent" and has no extra
+# dependencies that installing lxde-base/lxpolkit would solve, thus
+# the only motivation for creation of lxpolkit was to drop the word
+# 'gnome' from the package's name. The packages are near identical
+# by the outlook, determined by the used GTK+ theme.
+#
+# Raise yourself above the word 'gnome' and install the de facto GTK+ agent:
+# emerge -C lxpolkit
+# emerge -1 polkit-gnome
+#
+# Removal will happen at later date, but since there is no hurry, give it
+# until rest of the year.
+lxde-base/lxpolkit
+
 # Ulrich Müller <ulm@gentoo.org> (1 Mar 2014)
 # Version 0.3 does not work with Emacs 24; git master
 # also fails, because of changed Delicious API.
@@ -49,7 +64,7 @@ dev-libs/libgcrypt:11
 >=app-emulation/emul-linux-x86-baselibs-20131008-r20
 >=x11-libs/cairo-1.12.16-r1
 >=app-emulation/emul-linux-x86-gtklibs-20131008-r2
->=x11-libs/gdk-pixbuf-2.30.5-r1
+>=x11-libs/gdk-pixbuf-2.30.6-r1
 >=app-emulation/emul-linux-x86-gtklibs-20131008-r3
 >=media-gfx/graphite2-1.2.4-r1
 >=media-libs/harfbuzz-0.9.26-r1
@@ -245,10 +260,6 @@ rox-extra/comicthumb
 # removal ~08/Mar/2014 , depend on i18n issues
 # wrt bug #424255
 media-plugins/vdr-amarok
-
-# Patrick Lauer <patrick@gentoo.org> (07 Feb 2014)
-# Reliably makes cryptsetup segfault, breaking boot is not acceptable
-=dev-libs/libgcrypt-1.6.1
 
 # Tim Harder <radhermit@gentoo.org> (04 Feb 2014)
 # Masked for testing
@@ -601,10 +612,6 @@ net-irc/xchat-otr
 dev-java/sun-jdk
 dev-java/sun-jre-bin
 dev-java/sun-jce-bin
-
-# Joerg Bornkessel <hd_brummy@gentoo.org> (30 Jun 2013)
-# temp masked for testing, wrt bug 474888
-=media-plugins/vdr-music-0.9.9
 
 # Alexis Ballier <aballier@gentoo.org> (26 Jun 2013)
 # New major release. Rev. deps need to be checked first.
