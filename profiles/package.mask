@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15452 2014/03/06 16:17:16 mrueg Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15454 2014/03/08 08:39:35 mgorny Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -40,7 +40,6 @@ www-servers/mongrel
 # Compatibility packages masked for removal in 30 days.
 <dev-lang/python-exec-0.3.1-r1:0
 <dev-lang/python-exec-2.0.1-r1:2
-dev-python/python-exec
 
 # Manuel Rüger <mrueg@gentoo.org> (05 Mar 2014)
 # Mask further ruby18-only packages
@@ -469,10 +468,6 @@ games-emulation/m64py
 <media-tv/mythtv-0.26
 <media-plugins/mythplugins-0.26
 <www-apps/mythweb-0.26
-
-# Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org> (10 Nov 2013)
-# Causes build failures, bug #492800
-=media-libs/mesa-10.0*
 
 # Ben de Groot <yngwin@gentoo.org> (11 Nov 2013)
 # Mask older roboto versions to give users a regular upgrade path
