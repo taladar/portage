@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mate-extra/mate-power-manager/mate-power-manager-1.6.3.ebuild,v 1.1 2014/03/09 15:40:57 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/mate-extra/mate-power-manager/mate-power-manager-1.6.3.ebuild,v 1.3 2014/03/10 22:07:54 tomwij Exp $
 
 EAPI="5"
 
@@ -23,12 +23,11 @@ IUSE="+applet gnome-keyring man policykit test unique"
 # Interactive testsuite.
 RESTRICT="test"
 
-COMMON_DEPEND="
+COMMON_DEPEND="app-text/rarian:0
 	>=dev-libs/dbus-glib-0.70:0
 	>=dev-libs/glib-2.13:2
 	>=media-libs/libcanberra-0.10:0[gtk]
 	>=sys-apps/dbus-1:0
-	sys-libs/glibc:2.2
 	>=sys-power/upower-0.9.1:0
 	>=x11-apps/xrandr-1.2:0
 	>=x11-libs/cairo-1:0
@@ -39,7 +38,6 @@ COMMON_DEPEND="
 	x11-libs/libXrandr:0
 	>=x11-libs/libnotify-0.7:0
 	x11-libs/pango:0
-	>=x11-proto/xproto-7.0.15:0
 	applet? ( >=mate-base/mate-panel-1.6:0 )
 	gnome-keyring? ( >=gnome-base/gnome-keyring-3:0 )
 	unique? ( >=dev-libs/libunique-0.9.4:1 )"
@@ -50,11 +48,12 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.3
 	>=app-text/mate-doc-utils-1.6:0
-	app-text/scrollkeeper:0
-	>=dev-util/intltool-0.35:0
+	>=app-text/scrollkeeper-dtd-1:1.0
+	>=dev-util/intltool-0.35:*
 	x11-proto/randrproto:0
-	sys-devel/gettext:0
-	virtual/pkgconfig:0
+	>=x11-proto/xproto-7.0.15:0
+	sys-devel/gettext:*
+	virtual/pkgconfig:*
 	man? ( app-text/docbook-sgml-utils:0
 			>=app-text/docbook-sgml-dtd-4.3 )"
 

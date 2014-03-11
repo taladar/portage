@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mate-extra/mate-character-map/mate-character-map-1.6.0.ebuild,v 1.1 2014/03/09 15:19:49 tomwij Exp $
+# $Header: /var/cvsroot/gentoo-x86/mate-extra/mate-character-map/mate-character-map-1.6.0.ebuild,v 1.3 2014/03/10 21:56:29 tomwij Exp $
 
 EAPI="5"
 
@@ -20,9 +20,11 @@ HOMEPAGE="http://mate-desktop.org"
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
+
 IUSE="cjk +introspection test"
 
-RDEPEND="dev-libs/atk:0
+RDEPEND="app-text/rarian:0
+	dev-libs/atk:0
 	>=dev-libs/glib-2.16.3:2
 	x11-libs/cairo:0
 	>=x11-libs/pango-1.2.1:0
@@ -31,12 +33,11 @@ RDEPEND="dev-libs/atk:0
 	introspection? ( >=dev-libs/gobject-introspection-0.6:0 )"
 
 DEPEND="${RDEPEND}
-	app-text/scrollkeeper:0
-	sys-devel/gettext:0
-	sys-libs/glibc:2.2
-	virtual/pkgconfig:0
-	>=dev-util/intltool-0.40:0
 	>=app-text/mate-doc-utils-1.6:0
+	>=app-text/scrollkeeper-dtd-1:1.0
+	>=dev-util/intltool-0.40:*
+	sys-devel/gettext:*
+	virtual/pkgconfig:*
 	test? ( app-text/docbook-xml-dtd:4.1.2 )"
 
 src_prepare() {
