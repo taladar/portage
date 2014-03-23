@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15494 2014/03/21 17:48:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15497 2014/03/22 21:22:23 zerochaos Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -29,6 +29,19 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Rick Farina <zerochaos@gentoo.org> (22 Mar 2014)
+# Upstream has replaced dev-util/dissy with dev-util/emilpro
+# Please switch to emilpro or report issues in bug #505380
+# removal in 30 days.
+dev-util/dissy
+
+# Hans de Graaff <graaff@gentoo.org> (22 Mar 2014) Dead upstream (no
+# releases since 2008, website no longer available). Can only support
+# a single ruby version. Has security issues with shared code between
+# processes. Use a rack-based alternative instead.
+# Removal in 30 days.
+www-apache/mod_ruby
 
 # Sergey Popov <pinkbyte@gentoo.org> (20 Mar 2014)
 # Security mask of vulnerable versions, wrt bug #424167
@@ -259,6 +272,7 @@ media-gfx/kgraphviewer
 #     https://gist.github.com/TomWij/cf9cdd0fe90ac08b8ded
 #
 # If you use another overlay, replace the ::mate-overlay suffix by that overlay.
+app-admin/mate-system-tools
 app-arch/mate-file-archiver
 app-editors/mate-text-editor
 app-text/mate-doc-utils
@@ -266,10 +280,14 @@ app-text/mate-document-viewer
 dev-libs/libmateweather
 dev-python/python-caja
 mate-base/libmatekbd
+mate-base/libmatekeyring
+mate-base/mate
 mate-base/mate-applets
 mate-base/mate-common
+mate-base/mate-control-center
 mate-base/mate-desktop
 mate-base/mate-file-manager
+mate-base/mate-keyring
 mate-base/mate-menus
 mate-base/mate-panel
 mate-base/mate-session-manager
@@ -282,11 +300,13 @@ mate-extra/mate-file-manager-image-converter
 mate-extra/mate-file-manager-open-terminal
 mate-extra/mate-file-manager-sendto
 mate-extra/mate-file-manager-share
+mate-extra/mate-media
 mate-extra/mate-polkit
 mate-extra/mate-power-manager
 mate-extra/mate-screensaver
 mate-extra/mate-sensors-applet
 mate-extra/mate-system-monitor
+mate-extra/mate-user-share
 mate-extra/mate-utils
 media-gfx/mate-image-viewer
 net-analyzer/mate-netspeed
@@ -306,6 +326,7 @@ x11-wm/mate-window-manager
 #
 # Given that MATE Desktop Environment 1.8 will release soon, this mask is
 # placed in advance to allow to bump to it as soon as it hits.
+>=app-admin/mate-system-tools-1.7
 >=app-arch/mate-file-archiver-1.7
 >=app-editors/mate-text-editor-1.7
 >=app-text/mate-doc-utils-1.7
@@ -313,10 +334,14 @@ x11-wm/mate-window-manager
 >=dev-libs/libmateweather-1.7
 >=dev-python/python-caja-1.7
 >=mate-base/libmatekbd-1.7
+>=mate-base/libmatekeyring-1.7
+>=mate-base/mate-1.7
 >=mate-base/mate-applets-1.7
 >=mate-base/mate-common-1.7
+>=mate-base/mate-control-center-1.7
 >=mate-base/mate-desktop-1.7
 >=mate-base/mate-file-manager-1.7
+>=mate-base/mate-keyring-1.7
 >=mate-base/mate-menus-1.7
 >=mate-base/mate-panel-1.7
 >=mate-base/mate-session-manager-1.7
@@ -329,11 +354,13 @@ x11-wm/mate-window-manager
 >=mate-extra/mate-file-manager-open-terminal-1.7
 >=mate-extra/mate-file-manager-sendto-1.7
 >=mate-extra/mate-file-manager-share-1.7
+>=mate-extra/mate-media-1.7
 >=mate-extra/mate-polkit-1.7
 >=mate-extra/mate-power-manager-1.7
 >=mate-extra/mate-screensaver-1.7
 >=mate-extra/mate-sensors-applet-1.7
 >=mate-extra/mate-system-monitor-1.7
+>=mate-extra/mate-user-share-1.7
 >=mate-extra/mate-utils-1.7
 >=media-gfx/mate-image-viewer-1.7
 >=net-analyzer/mate-netspeed-1.7
