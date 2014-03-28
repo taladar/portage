@@ -1,10 +1,36 @@
 # ChangeLog for profile directory
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8746 2014/03/26 19:35:09 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8750 2014/03/27 22:18:15 mgorny Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  27 Mar 2014; Michał Górny <mgorny@gentoo.org> targets/desktop/package.use:
+  Copy the USE defaults to virtual/libgudev.
+
+  27 Mar 2014; Andreas K. Huettel <dilfridge@gentoo.org> releases/13.0/eapi,
+  +uclibc/amd64/eapi, +releases/freebsd-8.2/eapi, +uclibc/arm/2.4/eapi,
+  +releases/freebsd-9.1/eapi, +uclibc/arm/armeb/2.4/eapi,
+  +releases/freebsd-9.2/eapi, +releases/eapi, +targets/desktop/eapi,
+  +targets/desktop/gnome/eapi, +targets/desktop/kde/eapi,
+  +targets/developer/eapi, +targets/systemd/eapi, +uclibc/arm/armeb/eapi,
+  +uclibc/arm/eapi, +uclibc/eapi, +uclibc/mips/eapi,
+  +uclibc/mips/hardened/eapi, +uclibc/mips/mipsel/eapi,
+  +uclibc/mips/mipsel/hardened/eapi, +uclibc/ppc/2.4/eapi, +uclibc/ppc/eapi,
+  +uclibc/ppc/hardened/2.4/eapi, +uclibc/ppc/hardened/eapi,
+  +uclibc/sh/2.4/eapi, +uclibc/sh/eapi, +uclibc/x86/2.4/eapi,
+  +uclibc/x86/2005.1/2.4/eapi, +uclibc/x86/2005.1/eapi, +uclibc/x86/eapi,
+  +uclibc/x86/hardened/2.4/eapi, +uclibc/x86/hardened/eapi,
+  +uclibc/x86/linux24/eapi, +uclibc/x86/linux26/eapi:
+  Increase EAPI to 5
+
+  27 Mar 2014; Mike Gilbert <floppym@gentoo.org> package.mask:
+  Remove mask on >=sys-apps/systemd-210.
+
+  27 Mar 2014; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask -r22 of emul-linux-x86-baselibs with removed libmagic.so* together with
+  >=sys-apps/file-5.18-r1 wrt #505936
 
   26 Mar 2014; Ulrich Müller <ulm@gentoo.org> profiles.desc:
   Drop m68k, s390, sh profiles to exp per 20140225 council decision.

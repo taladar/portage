@@ -1278,6 +1278,7 @@ dev-games/physfs:mvl - Enable Descent I/II MVL archive support
 dev-games/physfs:qpak - Enable Quake I/II QPAK archive support
 dev-games/physfs:wad - Enable Doom WAD archive support
 dev-games/physfs:zip - Enable ZIP archive support
+dev-games/simgear:subversion - Enables terrasync scenery downloader
 dev-haskell/abstract-deque:usecas - Enable the reference implementation to use hardware compare-and-swap.
 dev-haskell/aeson:developer - Operate in developer mode.'
 dev-haskell/aeson-pretty:lib-only - don't build 'aeson-pretty' executable.
@@ -2010,7 +2011,7 @@ dev-python/pytables:contrib - Install user-contributed files
 dev-python/pyudev:pygobject - Install PyGobject binding
 dev-python/pyudev:pyqt4 - Install PyQt4 binding
 dev-python/pyudev:pyside - Install PySide binding
-dev-python/pyyaml:libyaml - enable support for C implementaion using libyaml
+dev-python/pyyaml:libyaml - enable support for C implementation using libyaml
 dev-python/pyzmq:green - Enable gevent compatibility with zeromq
 dev-python/pyzor:pyzord - enable support for pyzord
 dev-python/rarfile:compressed - Enables the module to support compressed v3 archives by calling the app-arch/unrar.
@@ -2558,6 +2559,7 @@ games-simulation/corsix-th:opengl - Use OpenGL for rendering.
 games-simulation/corsix-th:sdl - Use SDL for rendering.
 games-simulation/corsix-th:sound - Use SDL mixer for in-game sound.
 games-simulation/corsix-th:truetype - Use high quality fonts.
+games-simulation/flightgear:dbus - Enable screensaver DBus interaction
 games-simulation/flightgear:fgpanel - Enables standalone lightweight 2D-panel rendering utility
 games-simulation/flightgear:jsbsim - Enables JSBSim Flight Dynamics Model (default)
 games-simulation/flightgear:oldfdm - Enables deprecated Flight Dynamics Models (LaRCsim, UIUC)
@@ -5068,6 +5070,7 @@ net-libs/pjsip:g7221 - Builds the G7221 codec
 net-libs/pjsip:ilbc - Builds the ilbc codec
 net-libs/pjsip:l16 - Builds the L16 codec
 net-libs/polarssl:havege - Enable the HAVEGE random generator. Warning: the HAVEGE random generator is not suitable for virtualized environments
+net-libs/polarssl:programs - Build PolarSSL programs
 net-libs/ptlib:asn - Enable ASN decoding/encoding support
 net-libs/ptlib:audio - Enable audio support
 net-libs/ptlib:dtmf - Enable DTMF encoding/decoding support
@@ -5808,6 +5811,7 @@ sci-biology/tophat:bam - Compile support for the BAM format
 sci-biology/ucsc-genome-browser:server - Install genome browser Web application. If this flag is off, only libraries and utilities from the suite are installed.
 sci-biology/yass:dmalloc - Enable debugging with the dmalloc library
 sci-biology/yass:lowmem - Build for environments with low amounts of memory
+sci-calculators/units:units_cur - Install the units_cur python script that updates currencies
 sci-chemistry/PyMca:matplotlib - Support for plotting through matplotlib
 sci-chemistry/apbs:arpack - Include support for arpack libs
 sci-chemistry/apbs:fetk - Include support for FeTK
