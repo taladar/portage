@@ -1,6 +1,15 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1195 2014/04/03 22:09:36 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1197 2014/04/05 20:56:03 mgorny Exp $
+
+  05 Apr 2014; Michał Górny <mgorny@gentoo.org> python-r1.eclass:
+  Fix improper suggestions to put unsupported implmentations in USE_PYTHON, bug
+  #506814.
+
+  05 Apr 2014; Alexandre Rostovtsev <tetromino@gentoo.org>
+  gst-plugins10.eclass:
+  Use LC_ALL=C for tr call; fixes invalid configure options when using Turkish
+  locale (bug #490894, thanks to Emre Eryilmaz and Samuli Suominen).
 
   03 Apr 2014; Michał Górny <mgorny@gentoo.org> autotools-multilib.eclass,
   cmake-multilib.eclass, multilib-build.eclass:

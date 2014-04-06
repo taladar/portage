@@ -1,10 +1,34 @@
 # ChangeLog for profile directory
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8778 2014/04/02 23:27:31 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.8785 2014/04/05 21:49:23 bicatali Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  05 Apr 2014; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  Removing glpk mask
+
+  05 Apr 2014; Andreas K. Huettel <dilfridge@gentoo.org>
+  -eapi-5-files/ChangeLog, -eapi-5-files/eapi,
+  -eapi-5-files/package.use.stable.mask:
+  Remove obsolete directory
+
+  05 Apr 2014; Andreas K. Huettel <dilfridge@gentoo.org> releases/13.0/parent:
+  Remove empty directory eapi-5-files from parents
+
+  05 Apr 2014; Julian Ospald <hasufell@gentoo.org> package.mask:
+  mask >=dev-libs/DirectFB-1.7.1 wrt #499740 and #497124
+
+  05 Apr 2014; Manuel Rüger <mrueg@gentoo.org> package.mask:
+  Cleanup package.mask.
+
+  05 Apr 2014; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask broken libnatpmp release for transmission wrt #506832 by Hans Nieser
+
+  05 Apr 2014; Pacho Ramos <pacho@gentoo.org>
+  eapi-5-files/package.use.stable.mask, base/package.use.stable.mask:
+  Migrate and drop obsolete use.stable.mask entries
 
   02 Apr 2014; Julian Ospald <hasufell@gentoo.org> package.mask:
   mask =sys-devel/llvm-3.4 to prevent breakage
