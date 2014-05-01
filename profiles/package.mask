@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15630 2014/04/29 19:26:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.15635 2014/04/30 21:16:25 axs Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -29,6 +29,12 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Justin Lecher <jlec@gentoo.org> (03 Apr 2014)
+# Wrong license 465690
+# Fails to build and no fixes after years, #147574
+# removal in 30 days
+sci-geosciences/gempak
 
 # Mike Frysinger <vapier@gentoo.org> (28 Apr 2014)
 # Use app-emulation/qemu instead.  It has USE=static-user to support building
@@ -500,13 +506,6 @@ www-plugins/chrome-binary-plugins:unstable
 # until rest of the year.
 lxde-base/lxpolkit
 
-# Ulrich Müller <ulm@gentoo.org> (1 Mar 2014)
-# Version 0.3 does not work with Emacs 24; git master
-# also fails, because of changed Delicious API.
-# According to upstream, a new release is "unlikely".
-# Masked for removal in 60 days, bug 502168.
-app-emacs/delicious
-
 # Michał Górny <mgorny@gentoo.org> (28 Feb 2014)
 # New multilib conversions for testing, grouped with corresponding
 # emul-linux bumps.
@@ -653,13 +652,6 @@ www-client/google-chrome:unstable
 # Michael Sterrett <mr_bones_@gentoo.org> (16 Jan 2014)
 # testing mask for 3.5.x releases
 >=app-admin/syslog-ng-3.5
-
-# Michał Górny <mgorny@gentoo.org> (15 Jan 2014)
-# Multilib conversion and Python support code seriously broken.
-# Has dependencies that are not converted to multilib yet.
-# Do not unmask without prior review from multilib@g.o.
-# https://bugs.gentoo.org/show_bug.cgi?id=474654#c5
-=media-gfx/exiv2-0.23-r2
 
 # Tony Vroon <chainsaw@gentoo.org> (13 Jan 2014)
 # Asterisk 12 is a short term "standard" release
