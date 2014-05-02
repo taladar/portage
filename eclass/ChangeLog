@@ -1,6 +1,15 @@
 # ChangeLog for eclass directory
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1233 2014/04/30 18:17:19 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.1236 2014/05/01 19:27:14 ottxor Exp $
+
+  01 May 2014; Christoph Junghans <ottxor@gentoo.org> unpacker.eclass:
+  add app-arch/plzip support (bug #509264)
+
+  01 May 2014; Justin Lecher <jlec@gentoo.org> python-utils-r1.eclass:
+  Add missing @DESCRIPTION
+
+  01 May 2014; Michał Górny <mgorny@gentoo.org> multilib-build.eclass:
+  Add MULTILIB_COMPAT to limit the supported ABIs for pre-built packages.
 
   30 Apr 2014; Michał Górny <mgorny@gentoo.org> autotools-multilib.eclass:
   Update the doc and make it simpler.
