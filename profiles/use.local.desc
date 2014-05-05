@@ -2779,6 +2779,7 @@ gnustep-base/gnustep-make:native-exceptions - Enables use of the native Objectiv
 gnustep-base/libobjc2:boehm-gc - Enable Hans Boehm's garbage collector (dev-libs/boehm-gc). Not recommended by upstream
 gpe-base/gpe:games - Builds and installs GPE games.
 kde-base/ark:archive - Enable support for a variety of archive formats through libarchive
+kde-base/baloo:alternatekcm - Use the alternate Systemsettings module by Lindsay Mathieson for better configurability
 kde-base/cantor:R - Enable dev-lang/R backend support
 kde-base/cantor:analitza - Enable kde-base/analitza backend support
 kde-base/cantor:qalculate - Enable sci-libs/libqalculate backend support
@@ -3075,6 +3076,12 @@ mate-base/mate-file-manager:unique - Enable single instance support using dev-li
 mate-base/mate-keyring:gpg-agent - Include GPG agent in mate-keyring.
 mate-base/mate-keyring:ssh-agent - Include SSH agent in mate-keyring.
 mate-base/mate-session-manager:upower - Suspend and hibernate using sys-power/upower.
+mate-extra/caja-extensions:gajim - Add an extension to support net-im/gajim.
+mate-extra/caja-extensions:image-converter - Add image conversion support.
+mate-extra/caja-extensions:mail - Add an extension to support e-mail functionality.
+mate-extra/caja-extensions:open-terminal - Add an extension to support an open terminal.
+mate-extra/caja-extensions:pidgin - Add an extension to support net-im/pidgin
+mate-extra/caja-extensions:share - Add an extension to support sharing files.
 mate-extra/mate-file-manager-sendto:gajim - Enables support for net-im/gajim
 mate-extra/mate-file-manager-sendto:mail - Enables support for mailto using gnome-extra/evolution-data-server
 mate-extra/mate-file-manager-sendto:pidgin - Enables support for net-im/pidgin
