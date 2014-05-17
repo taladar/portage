@@ -2702,6 +2702,7 @@ gnome-base/orbit:pic - Force libname-server-2 to be built as PIC; needed on hard
 gnome-extra/avant-window-navigator:gconf - Enable GConf as configuration backend
 gnome-extra/avant-window-navigator:vala - Enable installation of dev-lang/vala binding
 gnome-extra/avant-window-navigator-extras:gconf - Enable GConf as configuration backend
+gnome-extra/cinnamon:l10n - Pull in gnome-extra/cinnamon-translations for localization support
 gnome-extra/cinnamon-control-center:colord - Support color management using x11-misc/colord
 gnome-extra/cinnamon-control-center:socialweb - Add support for desktop background images from Flickr using net-libs/libsocialweb
 gnome-extra/cinnamon-session:gconf - Support old autostart conditions which use gnome-base/gconf
@@ -2746,6 +2747,7 @@ gnome-extra/nautilus-sendto:gajim - Enables support for net-im/gajim
 gnome-extra/nautilus-sendto:mail - Enables support for mailto using gnome-extra/evolution-data-server
 gnome-extra/nautilus-sendto:pidgin - Enables support for net-im/pidgin
 gnome-extra/nemo:introspection - Use dev-libs/gobject-introspection for introspection
+gnome-extra/nemo:l10n - Pull in gnome-extra/cinnamon-translations for localization support
 gnome-extra/nemo:packagekit - Use packagekit to search for programs to open unknown file types
 gnome-extra/nemo:tracker - Add support for app-misc/tracker search
 gnome-extra/nm-applet:gconf - Build tool for migrating gconf settings from nm-applet-0.8.x
@@ -4722,6 +4724,7 @@ net-ftp/proftpd:linguas_fr_FR - Language support for fr_FR
 net-ftp/proftpd:linguas_it_IT - Language support for it_IT
 net-ftp/proftpd:linguas_ja_JP - Language support for ja_JP
 net-ftp/proftpd:linguas_ru_RU - Language support for ru_RU
+net-ftp/proftpd:log_forensic - Enable support for the mod_log_forensic module, log only suspicious actions.
 net-ftp/proftpd:memcache - Enable support for the mod_memcache module, for using memcached servers
 net-ftp/proftpd:msg - Enable support for the mod_msg module, allows system users to send messages to connected clients via the ftpdctl program.
 net-ftp/proftpd:openssl - Enable dev-libs/openssl support
@@ -4734,6 +4737,7 @@ net-ftp/proftpd:shaper - Enable support for the mod_shaper module
 net-ftp/proftpd:sitemisc - Enable support for the sitemisc module
 net-ftp/proftpd:softquota - Enable support for the quotatab module
 net-ftp/proftpd:trace - Build with trace support. Should not be enabled on production servers
+net-ftp/proftpd:unique_id - Enable support for the mod_unique_id module, every connection gets unique ID.
 net-ftp/proftpd:vroot - Enable support for the virtual root module
 net-ftp/pure-ftpd:anondel - Permit anonymous to delete files
 net-ftp/pure-ftpd:anonperm - Permit anonymous to change file permissions
