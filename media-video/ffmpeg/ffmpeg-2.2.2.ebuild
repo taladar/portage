@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-2.2.2.ebuild,v 1.3 2014/05/15 17:11:09 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-2.2.2.ebuild,v 1.6 2014/05/20 18:30:09 aballier Exp $
 
 EAPI="5"
 
@@ -37,7 +37,7 @@ FFMPEG_REVISION="${PV#*_p}"
 LICENSE="GPL-2 amr? ( GPL-3 ) encode? ( aac? ( GPL-3 ) )"
 SLOT="0/${FFMPEG_SUBSLOT}"
 if [ "${PV#9999}" = "${PV}" ] ; then
-	KEYWORDS="~amd64 ~mips ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
+	KEYWORDS="~amd64 ~hppa ~mips ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
 fi
 IUSE="
 	aac aacplus alsa amr amrenc bindist bluray +bzip2 cdio celt
@@ -91,7 +91,7 @@ RDEPEND="
 		wavpack? ( media-sound/wavpack )
 		webp? ( media-libs/libwebp )
 		x264? ( >=media-libs/x264-0.0.20111017:= )
-		x265? ( <media-libs/x265-0.9:= )
+		x265? ( media-libs/x265:= )
 		xvid? ( >=media-libs/xvid-1.1.0 )
 	)
 	fdk? ( >=media-libs/fdk-aac-0.1.3 )
@@ -162,6 +162,7 @@ src_prepare() {
 	if [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot
 		export revision=git-N-${FFMPEG_REVISION}
 	fi
+	epatch "${FILESDIR}/ladspadl.patch"
 	epatch_user
 }
 
